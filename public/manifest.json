@@ -1,0 +1,16 @@
+{
+  "name": "Yasvik Natural Foods & Everyday Essentials",
+  "short_name": "Yasvik",
+  "description": "Millets, native rice, wood-pressed oils and thoughtfully chosen everyday essentials.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f1e8",
+  "theme_color": "#f6f1e8",
+  "icons": [
+    {
+      "src": "/brand-logos/symbol-original.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

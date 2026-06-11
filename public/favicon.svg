@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Yasvik Seed Emblem">
+  <rect width="64" height="64" rx="12" fill="#f6f1e8" />
+  <path d="M32 8c12.4 0 22 10 22 22.2 0 15.1-11.8 23.7-22 25.8-10.2-2.1-22-10.7-22-25.8C10 18 19.6 8 32 8Z" fill="none" stroke="#211a15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M32 18v27m0 0-9 11m9-11 9 11" fill="none" stroke="#211a15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M32 30c-6 0-11.4-2.3-15.5-6.2M32 30c6 0 11.4-2.3 15.5-6.2" fill="none" stroke="#211a15" stroke-width="1.8" stroke-linecap="round" />
+</svg>
