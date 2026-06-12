@@ -18,29 +18,29 @@
 
     /* Yasvik primitive tokens */
     --ysv-monsoon: #F5F9EA;
-    --ysv-paddy: #49CF43;
-    --ysv-copper: #34C230;
+    --ysv-paddy: #5F873F;
+    --ysv-copper: #B96A2E;
     --ysv-silver: #082514;
     --ysv-color-alabaster: #F5F9EA;
     --ysv-color-oat: #EFE2BF;
-    --ysv-color-rice-paper: #FFFFFF;
-    --ysv-color-espresso: #07130E;
-    --ysv-color-clay: #34C230;
-    --ysv-color-field: #49CF43;
+    --ysv-color-rice-paper: #FFFDF3;
+    --ysv-color-espresso: #1F1710;
+    --ysv-color-clay: #B96A2E;
+    --ysv-color-field: #5F873F;
     --ysv-color-moss: #9fbf2b;
     --ysv-color-kraft: #EFE2BF;
     --ysv-color-ink-soft: rgba(26, 26, 14, 0.68);
 
     /* Admin-switchable quick-commerce theme tokens */
-    --bg-canvas: #F5F9EA;
+    --bg-canvas: #F8F4E7;
     --bg-card: #FFFDF3;
-    --text-main: #082514;
-    --action-primary: #49CF43;
-    --action-text: #07130E;
-    --theme-accent: #34C230;
-    --theme-muted: #4E604A;
-    --theme-border: rgba(8, 69, 36, 0.18);
-    --theme-header: #06351F;
+    --text-main: #1F1710;
+    --action-primary: #5F873F;
+    --action-text: #FFFDF3;
+    --theme-accent: #B96A2E;
+    --theme-muted: #6E604C;
+    --theme-border: rgba(43, 33, 24, 0.16);
+    --theme-header: #1F1710;
     --theme-header-text: #FFFFFF;
 
     /* Yasvik semantic tokens */
@@ -263,14 +263,14 @@
     @apply inline-flex items-center justify-center font-inter uppercase;
     min-height: 3rem;
     border-radius: var(--ysv-button-radius);
-    background: var(--ysv-paddy);
-    color: var(--action-text, var(--ysv-monsoon));
+    background: var(--ysv-color-espresso);
+    color: var(--ysv-color-rice-paper);
     letter-spacing: 0.16em;
     box-shadow: 0 16px 34px rgba(33, 26, 21, 0.18);
   }
 
   .yasvik-harvest-cta:hover {
-    background: color-mix(in srgb, var(--action-primary) 86%, white 14%);
+    background: color-mix(in srgb, var(--ysv-color-espresso) 86%, var(--ysv-color-clay) 14%);
     box-shadow: 0 20px 42px rgba(33, 26, 21, 0.22);
   }
 
@@ -293,17 +293,17 @@
   }
 
   .yasvik-product-card {
-    background: rgba(229, 230, 237, 0.09);
-    border: 1px solid var(--ysv-border-paper);
-    border-radius: var(--ysv-card-radius);
+    background: var(--ysv-color-rice-paper);
+    border: 1px solid rgba(43, 33, 24, 0.14);
+    border-radius: 1.35rem;
     box-shadow: 0 10px 34px rgba(33, 26, 21, 0.06);
   }
 
   .yasvik-trace-ribbon {
     @apply inline-flex items-center rounded-full font-inter;
-    background: rgba(92, 111, 77, 0.12);
-    color: var(--ysv-color-field);
-    border: 1px solid rgba(92, 111, 77, 0.18);
+    background: rgba(95, 135, 63, 0.1);
+    color: #31582F;
+    border: 1px solid rgba(95, 135, 63, 0.22);
   }
 
   .yasvik-paper-divider {

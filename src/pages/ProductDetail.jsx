@@ -32,6 +32,10 @@ function normalizeList(value) {
 }
 function getTitle(product) { return product?.title || product?.name || 'Yasvik product'; }
 function safeMedia(url = '') { const v = String(url || '').trim(); return /picsum|source\.unsplash|placehold/i.test(v) ? '' : v; }
+function compactText(value = '') { return String(value || '').trim(); }
+function getProcessingMethod(product) {
+  return compactText(product?.processing_method || product?.process || product?.method || product?.traditional_process || product?.category_name) || 'Thoughtfully chosen';
+}
 function cleanPublicLicense(value = '') {
   const text = String(value || '').trim();
   return /pending|to be confirmed|license number/i.test(text) ? '' : text;
@@ -186,7 +190,7 @@ export default function ProductDetail() {
     });
   }, [product, selectedVariant]);
 
-  if (isLoading) return <div className="min-h-screen bg-[#F8F4E7] p-6"><div className="mx-auto max-w-[1200px] animate-pulse rounded-3xl bg-white h-[560px]" /></div>;
+  if (isLoading) return <div className="min-h-screen bg-[#F8F4E7] p-6"><div className="mx-auto h-[560px] max-w-[1200px] animate-pulse rounded-3xl bg-[#FFFDF3]" /></div>;
   if (error || !product) return <div className="flex min-h-screen items-center justify-center bg-[#F8F4E7] px-6 text-center"><div><h1 className="font-syne text-3xl font-bold text-[#122615]">Product not found</h1><p className="mt-2 font-inter text-sm text-[#6E735D]">This product may be unpublished or moved.</p><Link to="/shop" className="mt-5 inline-block rounded-xl bg-[#0B4F2F] px-5 py-3 font-inter text-sm font-bold text-white">Back to Shop</Link></div></div>;
 
   const activeMedia = mediaItems[activeImage] || null;
@@ -201,6 +205,12 @@ export default function ProductDetail() {
   const traceLocation = linkedRegion?.name || product.sourcing_location || linkedPerson?.location_label || '';
   const traceNote = product.sourcing_story || product.story_description || product.short_description || linkedJourney?.description || '';
   const hasTraceability = Boolean(product.person_id || product.journey_id);
+  const tracePills = [
+    { label: 'Source', value: linkedPerson?.name || product.farm_name || product.vendor_name || 'Trusted Yasvik shelf' },
+    { label: 'Region', value: traceLocation || product.origin_region || product.region_name || 'Origin added where available' },
+    { label: 'Process', value: getProcessingMethod(product) },
+    { label: 'Journey', value: linkedJourney?.title || (hasTraceability ? 'Linked sourcing journey' : 'Context where applicable') },
+  ].filter((item) => item.value);
   const hasPackComplianceDetails = Boolean(fssaiLicense || allergenInfo || product.front_label_image_url || product.label_image_url);
   const inStock = product.availability === 'in_stock' || Number(product.stock ?? product.stock_quantity ?? 1) > 0;
 
@@ -213,13 +223,13 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F4E7] pb-20 text-[#122615]">
-      <div className="mx-auto max-w-[1280px] px-4 py-6 md:px-8 md:py-10">
-        <Link to="/shop" className="mb-5 inline-flex items-center gap-2 font-inter text-sm font-semibold text-[#6E735D] hover:text-[#0B4F2F]"><ArrowLeft className="h-4 w-4" /> Back to shop</Link>
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+    <div className="min-h-screen bg-[#F8F4E7] pb-20 text-[#1F1710]">
+      <div className="mx-auto max-w-[1320px] px-4 py-6 md:px-8 md:py-10">
+        <div className="grid gap-8 lg:grid-cols-[1.06fr_0.94fr]">
           <div>
-            <div className="overflow-hidden rounded-3xl border border-[#D9D0B0] bg-white shadow-sm">
-              <div className="aspect-square bg-[#F3F3EB] md:aspect-[1.08/1]">
+            <div className="overflow-hidden rounded-[34px] border border-[#E4D7B9] bg-[#FFFDF3] shadow-[0_20px_60px_rgba(43,33,24,.08)]">
+              <div className="relative aspect-[4/3] bg-[#F3F3EB] md:aspect-[16/10]">
+                <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(0deg,rgba(31,23,16,.10),transparent_44%)]" />
                 <AnimatePresence mode="wait">
                   {activeMedia?.type === 'image' && <motion.img key={activeMedia.url} src={activeMedia.url} alt={productImageAlt} className="h-full w-full object-contain" initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} exit={{ opacity: 0.2 }} transition={{ duration: 0.22 }} loading="eager" decoding="sync" fetchPriority="high" />}
                   {activeMedia?.type === 'video' && <motion.video key={activeMedia.url} src={activeMedia.url} className="h-full w-full object-cover" controls playsInline autoPlay muted loop initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} />}
@@ -227,24 +237,29 @@ export default function ProductDetail() {
                   {!activeMedia && <ProductFallback title={title} />}
                 </AnimatePresence>
               </div>
-              {mediaItems.length > 1 && <div className="flex gap-2 overflow-x-auto border-t border-[#D9D0B0] p-3 hide-scrollbar">{mediaItems.map((item, i) => <button key={`${item.url}-${i}`} onClick={() => setActiveImage(i)} className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border ${i === activeImage ? 'border-[#0B4F2F]' : 'border-[#D9D0B0]'}`}>{item.type === 'image' ? <img src={item.url} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" fetchPriority="low" /> : <div className="flex h-full w-full items-center justify-center bg-[#EAF1D8] font-inter text-[10px] font-bold text-[#0B4F2F]">{item.type === 'youtube' ? 'YT' : 'VID'}</div>}</button>)}</div>}
+              {mediaItems.length > 1 && <div className="flex gap-2 overflow-x-auto border-t border-[#E4D7B9] p-3 hide-scrollbar">{mediaItems.map((item, i) => <button key={`${item.url}-${i}`} onClick={() => setActiveImage(i)} className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border ${i === activeImage ? 'border-[#5F873F]' : 'border-[#E4D7B9]'}`}>{item.type === 'image' ? <img src={item.url} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" fetchPriority="low" /> : <div className="flex h-full w-full items-center justify-center bg-[#EAF1D8] font-inter text-[10px] font-bold text-[#0B4F2F]">{item.type === 'youtube' ? 'YT' : 'VID'}</div>}</button>)}</div>}
             </div>
           </div>
 
-          <div className="rounded-3xl border border-[#D9D0B0] bg-white p-5 shadow-sm md:p-7">
+          <div className="rounded-[34px] border border-[#E4D7B9] bg-[#FFFDF3] p-5 shadow-[0_20px_60px_rgba(43,33,24,.08)] md:p-8">
             <div className="flex items-start justify-between gap-4">
-              <div><p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-[#96947B]">{product.vendor_name || 'Yasvik Foods'}</p><h1 className="mt-2 font-syne text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#122615]">{title}</h1></div>
+              <div><p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-[#9A6B32]">{product.vendor_name || 'Yasvik Foods'}</p><h1 className="mt-2 font-cormorant text-5xl font-semibold leading-[0.95] text-[#1F1710] md:text-6xl">{title}</h1></div>
               <button onClick={() => toggle(product.id)} className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-[#D9D0B0] hover:bg-[#FBF7EA]"><Heart className={`h-5 w-5 ${isWishlisted(product.id) ? 'fill-[#B96A2E] text-[#B96A2E]' : 'text-[#6E735D]'}`} /></button>
             </div>
-            <div className="mt-4 flex items-center gap-2 font-inter text-sm text-[#6E735D]"><span className="flex text-[#C9952D]"><Star className="h-4 w-4 fill-current" /></span><span>4.8 customer confidence</span>{product.person_id && <span className="rounded-full bg-[#DAEABA] px-2 py-1 text-[10px] font-bold uppercase text-[#0B4F2F]">Traceable</span>}</div>
-            <div className="mt-5 flex items-baseline gap-3"><span className="font-syne text-4xl font-extrabold text-[#122615]">₹{price}</span>{comparePrice > price && <span className="font-inter text-lg text-[#96947B] line-through">₹{comparePrice}</span>}{discount && <span className="rounded-md bg-[#F5E1CE] px-2 py-1 font-inter text-xs font-bold text-[#B96A2E]">Save {discount}%</span>}</div>
-            <p className="mt-4 font-inter text-sm leading-7 text-[#6E735D]">{product.short_description || product.description || 'Natural Yasvik grocery selected for everyday family kitchens.'}</p>
+            <div className="mt-4 flex items-center gap-2 font-inter text-sm text-[#6E604C]"><span className="flex text-[#B96A2E]"><Star className="h-4 w-4 fill-current" /></span><span>4.8 customer confidence</span>{hasTraceability && <span className="rounded-full bg-[#EAF1D8] px-2 py-1 text-[10px] font-bold uppercase text-[#31582F]">Traceable</span>}</div>
+            <div className="mt-5 flex flex-wrap gap-2 rounded-2xl border border-[#E4D7B9] bg-[#F8F4E7] p-3">
+              {tracePills.map((pill) => <span key={`${pill.label}-${pill.value}`} className="yasvik-trace-ribbon px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em]"><span className="mr-1 opacity-70">{pill.label}:</span>{pill.value}</span>)}
+            </div>
+            <p className="mt-5 font-cormorant text-2xl italic leading-snug text-[#4A3726]">{traceNote || 'Chosen for everyday kitchens, with origin and process context added wherever it genuinely applies.'}</p>
+            <div className="mt-6 flex items-baseline gap-3"><span className="font-cormorant text-5xl font-semibold text-[#1F1710]">₹{price}</span>{comparePrice > price && <span className="font-inter text-lg text-[#96947B] line-through">₹{comparePrice}</span>}{discount && <span className="rounded-md bg-[#F5E1CE] px-2 py-1 font-inter text-xs font-bold text-[#B96A2E]">Save {discount}%</span>}</div>
+            <p className="mt-1 font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[#9A6B32]">fair price</p>
+            <p className="mt-5 max-w-[65ch] font-inter text-[17px] leading-[1.75] text-[#6E604C]">{product.short_description || product.description || 'Natural Yasvik grocery selected for everyday family kitchens.'}</p>
 
             {productVariants.length > 0 && <div className="mt-5"><p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-[#96947B]">Select size</p><div className="flex flex-wrap gap-2">{productVariants.map((v, i) => <button key={`${v.label}-${i}`} onClick={() => { setSelectedVariant(v); setActiveImage(0); }} className={`rounded-full border px-4 py-2 font-inter text-xs font-bold ${selectedVariant === v ? 'border-[#0B4F2F] bg-[#0B4F2F] text-white' : 'border-[#D9D0B0] bg-[#F8F4E7] text-[#6E735D] hover:border-[#A8CF45]'}`}>{v.label || v.title}</button>)}</div></div>}
 
             <div className={`mt-6 flex items-center gap-3 ${!inStock ? 'pointer-events-none opacity-50' : ''}`}>
               <div className="flex items-center overflow-hidden rounded-xl border border-[#D9D0B0] bg-[#FBF7EA]"><button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="flex h-12 w-11 items-center justify-center hover:bg-white"><Minus className="h-4 w-4" /></button><span className="min-w-9 text-center font-inter text-sm font-bold">{quantity}</span><button onClick={() => setQuantity((q) => q + 1)} className="flex h-12 w-11 items-center justify-center hover:bg-white"><Plus className="h-4 w-4" /></button></div>
-              <button onClick={handleAddToCart} className={`flex h-12 flex-1 items-center justify-center rounded-xl bg-[#0B4F2F] font-inter text-sm font-bold uppercase tracking-[0.1em] text-white hover:bg-[#2D7A3E] active:scale-[0.98] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>{added ? 'Added to Cart' : 'Add to Cart'}</button>
+              <button onClick={handleAddToCart} className={`yasvik-harvest-cta flex h-12 flex-1 items-center justify-center rounded-xl font-inter text-sm font-bold uppercase tracking-[0.14em] active:scale-[0.98] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>{added ? 'Added to Harvest Bag' : 'Add to Harvest Bag'}</button>
             </div>
 
             <div className="mt-5 grid gap-3 md:grid-cols-3">
@@ -262,7 +277,7 @@ export default function ProductDetail() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-[#D9D0B0] px-4">
-              <Accordion title="Description" defaultOpen>{product.description || product.short_description || 'Detailed product story will appear here when added in admin.'}</Accordion>
+              <Accordion title="Description" defaultOpen><div className="max-w-[65ch] text-[17px] leading-[1.75]">{product.description || product.short_description || 'Detailed product story will appear here when added in admin.'}</div></Accordion>
               <Accordion title="Nutrition & Allergens">{allergenInfo && <p className="mb-3"><strong>Allergen:</strong> {allergenInfo}</p>}{nutritionRows.length ? <div className="divide-y divide-[#D9D0B0] rounded-xl border border-[#D9D0B0]">{nutritionRows.slice(0, 8).map((row, index) => <div key={index} className="flex justify-between px-3 py-2 text-sm"><span>{row.label || row.name}</span><span className="font-semibold">{row.value || row.amount}</span></div>)}</div> : <p>{allergenInfo ? 'Nutrition table will display here when added in the product record.' : 'Nutrition and allergen details will display here when added in admin.'}</p>}</Accordion>
               <Accordion title="Statutory Label"><div className="flex items-center gap-3"><span className="flex h-6 w-6 items-center justify-center border border-[#009a44] bg-white"><span className="h-3 w-3 rounded-full bg-[#009a44]" /></span><span>Vegetarian food product</span></div>{hasPackComplianceDetails ? <p className="mt-3">{fssaiLicense ? `FSSAI: ${fssaiLicense}. ` : ''}Front label panel and declared product information are shown when added to this record.</p> : <p className="mt-3">Public compliance details will appear here only after they are added in the product/admin record.</p>}</Accordion>
             </div>

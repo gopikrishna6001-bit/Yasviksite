@@ -65,8 +65,20 @@ function getProductTitle(product) {
   return product?.title || product?.name || 'Yasvik product';
 }
 
+function compactText(value = '') {
+  return String(value || '').trim();
+}
+
 function isTraceableProduct(product) {
   return Boolean(product?.person_id || product?.journey_id || product?.source_person_id);
+}
+
+function getOriginRegion(product) {
+  return compactText(product?.origin_region || product?.region_name || product?.sourcing_location || product?.location_label || product?.source_region) || 'Origin noted where available';
+}
+
+function getProcessingMethod(product) {
+  return compactText(product?.processing_method || product?.process || product?.method || product?.traditional_process || product?.category_name) || 'Thoughtfully chosen';
 }
 
 function isNewLaunch(product) {
@@ -91,8 +103,8 @@ function getValueStrip(product, price, comparePrice, traceable) {
   const explicit = product?.coupon_text || product?.best_price_text || product?.offer_text;
   if (explicit) return String(explicit);
   if (comparePrice > price && price > 0) return `Best price ₹${price} with offer`;
-  if (traceable) return 'Traceability where applicable';
-  return product?.unit ? `${product.unit} everyday staple` : 'Thoughtfully chosen everyday food';
+  if (traceable) return 'Linked origin story where applicable';
+  return product?.unit ? `${product.unit} everyday staple` : 'Better everyday food';
 }
 
 function getBadgeIcon(badge) {
@@ -147,6 +159,8 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
   const activeComparePrice = Number(selectedVariant?.compare_price ?? product.compare_price ?? 0);
   const discount = activeComparePrice && activeComparePrice > activePrice ? Math.round(((activeComparePrice - activePrice) / activeComparePrice) * 100) : null;
   const traceable = isTraceableProduct(product);
+  const originRegion = getOriginRegion(product);
+  const processingMethod = getProcessingMethod(product);
   const productBadge = getProductBadge(product, traceable);
   const BadgeIcon = getBadgeIcon(productBadge);
   const valueStrip = getValueStrip(product, activePrice, activeComparePrice, traceable);
@@ -214,13 +228,13 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-30px' }}
       transition={{ duration: 0.34, delay: Math.min(index * 0.03, 0.18), ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[18px] border border-[var(--theme-border)] bg-[var(--bg-card)] text-[var(--text-main)] shadow-[0_10px_32px_rgba(6,53,31,.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--action-primary)_54%,var(--theme-border))] hover:shadow-[0_16px_42px_rgba(6,53,31,.13)]"
+      className="yasvik-product-card group relative flex h-full flex-col overflow-hidden text-[var(--text-main)] transition-all duration-300 hover:-translate-y-1 hover:border-[#5F873F]/35 hover:shadow-[0_22px_54px_rgba(43,33,24,.14)]"
       onPointerEnter={(event) => {
         if (event.pointerType === 'mouse' || event.pointerType === 'pen') setIsHovering(true);
       }}
       onPointerLeave={() => setIsHovering(false)}
     >
-      <div className="relative aspect-[1.08/1] overflow-hidden bg-[color-mix(in_srgb,var(--action-primary)_10%,var(--bg-card))]">
+      <div className="relative aspect-[1.08/1] overflow-hidden bg-[#F4ECD8]">
         {onQuickView ? (
           <button type="button" onClick={handlePreview} className="absolute inset-0 z-[1]" aria-label={`Preview ${title}`} />
         ) : (
@@ -274,7 +288,7 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         )}
         <div className="absolute left-2 top-2 z-[3] flex flex-col gap-1.5">
           {discount ? (
-            <span className="flex min-h-12 min-w-12 flex-col items-center justify-center rounded-b-2xl rounded-t-md bg-[var(--theme-header)] px-2 py-1 text-center font-inter text-[10px] font-extrabold uppercase leading-none text-[var(--theme-header-text)] shadow-sm">
+            <span className="flex min-h-12 min-w-12 flex-col items-center justify-center rounded-b-2xl rounded-t-md bg-[#1F1710] px-2 py-1 text-center font-inter text-[10px] font-extrabold uppercase leading-none text-[#FFFDF3] shadow-sm">
               <span>Flat</span>
               <span className="text-[13px]">{discount}%</span>
               <span>Off</span>
@@ -283,7 +297,7 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         </div>
         {productBadge && (
           <div className="absolute right-2 top-2 z-[3]">
-            <span className="inline-flex items-center gap-1.5 rounded-bl-xl rounded-tr-xl bg-[color-mix(in_srgb,var(--theme-accent)_78%,var(--bg-card))] px-2.5 py-1.5 font-inter text-[10px] font-extrabold text-white shadow-sm">
+            <span className="inline-flex items-center gap-1.5 rounded-bl-xl rounded-tr-xl bg-[#B96A2E] px-2.5 py-1.5 font-inter text-[10px] font-extrabold text-[#FFFDF3] shadow-sm">
               <BadgeIcon className="h-3.5 w-3.5" />
               {productBadge}
             </span>
@@ -296,13 +310,17 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-3">
+      <div className="flex flex-1 flex-col p-3.5">
         <Link to={detailUrl} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
-          <p className="font-inter text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--theme-muted)]">{product.brand || product.vendor_name || 'Yasvik Foods'}</p>
-          <h3 className="mt-1 line-clamp-2 min-h-[38px] font-inter text-[13.5px] font-semibold leading-snug text-[var(--text-main)]">{title}</h3>
+          <p className="font-inter text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9A6B32]">{product.brand || product.vendor_name || 'Yasvik Foods'}</p>
+          <h3 className="mt-1 line-clamp-2 min-h-[48px] font-cormorant text-[22px] font-semibold leading-[1.05] text-[#1F1710] md:text-[24px]">{title}</h3>
         </Link>
-        <div className="mt-1.5 flex items-center gap-1.5 font-inter text-[11px] text-[var(--theme-muted)]"><Star className="h-3 w-3 fill-[var(--theme-accent)] text-[var(--theme-accent)]" /><span>{traceable ? 'Traceability where applicable' : 'Trusted shelf'}</span></div>
-        {product.unit && <p className="mt-1 font-inter text-[11px] text-[var(--theme-muted)]">{product.unit}</p>}
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <span className="yasvik-trace-ribbon px-2 py-1 text-[9.5px] font-bold uppercase tracking-[0.08em]">{originRegion}</span>
+          <span className="yasvik-trace-ribbon px-2 py-1 text-[9.5px] font-bold uppercase tracking-[0.08em]">{processingMethod}</span>
+        </div>
+        <div className="mt-2 flex items-center gap-1.5 font-inter text-[11px] text-[#6E604C]"><Star className="h-3 w-3 fill-[#B96A2E] text-[#B96A2E]" /><span>{traceable ? 'Origin story linked' : 'Trusted Yasvik shelf'}</span></div>
+        {product.unit && <p className="mt-1 font-inter text-[11px] text-[#6E604C]">{product.unit}</p>}
         {variantOptions.length > 0 && (
           <div className="mt-2 flex gap-1.5 overflow-x-auto pb-0.5 hide-scrollbar">
             {variantOptions.map((variant) => (
@@ -310,7 +328,7 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
                 key={variant.label}
                 type="button"
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setSelectedVariantLabel(variant.label); }}
-                className={`flex-shrink-0 rounded-full px-2.5 py-1 font-inter text-[10px] transition-colors ${selectedVariant?.label === variant.label ? 'bg-[var(--action-primary)] text-[var(--action-text)]' : 'border border-[var(--theme-border)] bg-[var(--bg-canvas)] text-[var(--theme-muted)] hover:border-[var(--action-primary)]'}`}
+                className={`flex-shrink-0 rounded-full px-2.5 py-1 font-inter text-[10px] transition-colors ${selectedVariant?.label === variant.label ? 'bg-[#1F1710] text-[#FFFDF3]' : 'border border-[#E4D7B9] bg-[#F8F4E7] text-[#6E604C] hover:border-[#5F873F]'}`}
               >
                 {variant.label}
               </button>
@@ -319,15 +337,16 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         )}
         <div className="mt-auto flex items-end justify-between gap-3 pt-3">
           <div>
-            <div className="font-syne text-[17px] font-bold text-[var(--text-main)]">₹{activePrice || product.price || 0}</div>
-            {activeComparePrice > activePrice && <div className="font-inter text-[11px] text-[var(--theme-muted)] line-through">₹{activeComparePrice}</div>}
+            <div className="font-inter text-[9px] font-bold uppercase tracking-[0.16em] text-[#9A6B32]">fair price</div>
+            <div className="font-cormorant text-[24px] font-semibold leading-none text-[#1F1710]">₹{activePrice || product.price || 0}</div>
+            {activeComparePrice > activePrice && <div className="font-inter text-[11px] text-[#6E604C] line-through">₹{activeComparePrice}</div>}
           </div>
           {product.isFallback ? (
-            <Link to="/shop" className="flex h-9 min-w-16 items-center justify-center rounded-lg border border-[var(--action-primary)] px-3 font-inter text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--action-primary)]">View</Link>
+            <Link to="/shop" className="flex h-9 min-w-16 items-center justify-center rounded-full border border-[#1F1710] px-3 font-inter text-[11px] font-bold uppercase tracking-[0.08em] text-[#1F1710]">View</Link>
           ) : qty === 0 ? (
-            <button onClick={handleAdd} className={`flex h-9 min-w-16 items-center justify-center rounded-lg bg-[var(--action-primary)] px-3 font-inter text-[12px] font-bold uppercase tracking-[0.08em] text-[var(--action-text)] transition-all hover:brightness-95 active:scale-95 ${isPulseActive ? 'premium-haptic-pulse' : ''}`}><Plus className="mr-1 h-3.5 w-3.5" />ADD</button>
+            <button onClick={handleAdd} className={`flex h-9 min-w-16 items-center justify-center rounded-full bg-[#1F1710] px-3 font-inter text-[11px] font-bold uppercase tracking-[0.1em] text-[#FFFDF3] transition-all hover:bg-[#5F873F] active:scale-95 md:min-w-[9.5rem] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}><Plus className="mr-1 h-3.5 w-3.5" /><span className="md:hidden">ADD</span><span className="hidden md:inline">Add to harvest bag</span></button>
           ) : (
-            <div className={`flex h-9 items-center overflow-hidden rounded-lg bg-[var(--action-primary)] text-[var(--action-text)] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
+            <div className={`flex h-9 items-center overflow-hidden rounded-full bg-[#1F1710] text-[#FFFDF3] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
               <button onClick={handleDec} className="flex h-9 w-8 items-center justify-center hover:bg-white/15"><Minus className="h-3.5 w-3.5" /></button>
               <span className="min-w-6 text-center font-inter text-sm font-bold">{qty}</span>
               <button onClick={handleInc} className="flex h-9 w-8 items-center justify-center hover:bg-white/15"><Plus className="h-3.5 w-3.5" /></button>
@@ -335,12 +354,12 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
           )}
         </div>
         {valueStrip && (
-          <div className="mt-2 flex min-h-6 items-center gap-1.5 rounded-md bg-[color-mix(in_srgb,var(--action-primary)_12%,var(--bg-card))] px-2 py-1 font-inter text-[10.5px] font-bold text-[var(--theme-accent)]">
+          <div className="mt-2 flex min-h-6 items-center gap-1.5 rounded-md bg-[#F2E5C8] px-2 py-1 font-inter text-[10.5px] font-bold text-[#7A4B20]">
             <Tag className="h-3.5 w-3.5 flex-shrink-0" />
             <span className="line-clamp-1">{valueStrip}</span>
           </div>
         )}
-          <Link to={detailUrl} className="mt-2 block text-center font-inter text-[9px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)] hover:text-[var(--action-primary)]">View details</Link>
+          <Link to={detailUrl} className="mt-2 block text-center font-inter text-[9px] font-bold uppercase tracking-[0.16em] text-[#6E604C] hover:text-[#1F1710]">View details</Link>
       </div>
     </motion.article>
   );
