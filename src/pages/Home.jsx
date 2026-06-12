@@ -169,7 +169,7 @@ function CinematicHero({ slide, desktopMedia, mobileMedia }) {
       <div className="mx-auto flex min-h-[78svh] max-w-[1400px] items-end px-5 pb-14 pt-16 md:min-h-[calc(100svh-var(--yasvik-content-top-no-nav,120px))] md:px-8 md:pb-20">
         <div className="max-w-3xl text-[#FFFDF3]">
           <p className="font-inter text-[11px] font-bold uppercase tracking-[0.28em] text-[#F4D9A4]">Traditional Foods • Fair Prices • Trusted Quality</p>
-          <h1 className="mt-5 font-cormorant text-6xl font-semibold leading-[0.88] tracking-[0.03em] text-[#FFFDF3] md:text-8xl lg:text-9xl">Taste What Was Lost</h1>
+          <h1 className="mt-5 font-cormorant text-6xl font-bold leading-[0.92] tracking-[-0.02em] text-[#FFFDF3] md:text-7xl lg:text-8xl">Taste What Was Lost</h1>
           <p className="mt-6 max-w-2xl font-inter text-base leading-8 text-[#FFFDF3]/82 md:text-lg">Food should not become anonymous. Yasvik reconnects everyday staples with soil, seasons, hands and heritage.</p>
           <Link to={href} className="yasvik-harvest-cta yasvik-pressable mt-8 min-w-[14rem] px-7 py-3 text-sm font-bold">{cta}<ArrowRight className="ml-3 h-4 w-4" /></Link>
         </div>
@@ -182,7 +182,7 @@ function PhilosophyStrip() {
   return (
     <section className="bg-[#F8F4E7] px-5 py-14 md:px-8 md:py-20">
       <div className="mx-auto max-w-4xl text-center">
-        <p className="font-cormorant text-3xl italic leading-snug text-[#2B2118] md:text-5xl">Food is never just food. It is memory, culture, livelihood and care.</p>
+        <p className="font-cormorant text-3xl font-semibold leading-snug text-[#2B2118] md:text-5xl">Food is never just food. It is memory, culture, livelihood and care.</p>
         <p className="mx-auto mt-6 max-w-2xl font-inter text-sm leading-7 text-[#6E604C] md:text-base">We help families make better everyday choices through thoughtfully chosen foods, with stories and journeys where they deepen trust.</p>
       </div>
     </section>
@@ -197,7 +197,7 @@ function CategoryRibbon({ categories, onSelect }) {
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
             <p className="font-inter text-[11px] font-bold uppercase tracking-[0.2em] text-[#9A6B32]">Begin with the pantry</p>
-            <h2 className="font-cormorant text-4xl font-semibold leading-none text-[#1F1710] md:text-5xl">Choose a food journey.</h2>
+            <h2 className="font-cormorant text-4xl font-bold leading-tight text-[#1F1710] md:text-5xl">Choose a food journey.</h2>
           </div>
           <Link to="/shop" className="hidden items-center gap-2 font-inter text-sm font-bold text-[#2D5C35] md:flex">View all <ArrowRight className="h-4 w-4" /></Link>
         </div>
@@ -231,7 +231,7 @@ function FeaturedProducts({ products }) {
         <div className="mb-7 flex items-end justify-between gap-4">
           <div>
             <p className="font-inter text-[11px] font-bold uppercase tracking-[0.2em] text-[#9A6B32]">Fair price staples</p>
-            <h2 className="font-cormorant text-4xl font-semibold leading-none text-[#1F1710] md:text-5xl">Featured harvests.</h2>
+            <h2 className="font-cormorant text-4xl font-bold leading-tight text-[#1F1710] md:text-5xl">Featured harvests.</h2>
           </div>
           <Link to="/shop" className="hidden rounded-full border border-[#2D5C35]/30 px-5 py-2 font-inter text-sm font-bold text-[#2D5C35] transition-colors hover:bg-[#2D5C35] hover:text-[#FFFDF3] md:inline-flex">See all</Link>
         </div>

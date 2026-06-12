@@ -313,7 +313,7 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
       <div className="flex flex-1 flex-col p-3.5">
         <Link to={detailUrl} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
           <p className="font-inter text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9A6B32]">{product.brand || product.vendor_name || 'Yasvik Foods'}</p>
-          <h3 className="mt-1 line-clamp-2 min-h-[48px] font-cormorant text-[22px] font-semibold leading-[1.05] text-[#1F1710] md:text-[24px]">{title}</h3>
+          <h3 className="mt-1 line-clamp-2 min-h-[48px] font-cormorant text-[20px] font-bold leading-[1.1] text-[#1F1710] md:text-[22px]">{title}</h3>
         </Link>
         <div className="mt-2 flex flex-wrap gap-1.5">
           <span className="yasvik-trace-ribbon px-2 py-1 text-[9.5px] font-bold uppercase tracking-[0.08em]">{originRegion}</span>
