@@ -31,7 +31,7 @@ function clampNumber(value, fallback, min, max) {
 function IconButton({ as: Component = 'button', children, className = '', ...props }) {
   return (
     <Component
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1a1814]/12 bg-[#fffaf0]/78 text-[#1a1814] shadow-[0_10px_28px_rgba(26,24,20,.08)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-[#8b6914]/35 hover:bg-[#fffaf0] active:scale-95 ${className}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-deep-forest/12 bg-white/85 text-deep-forest shadow-[0_10px_28px_rgba(31,61,43,0.08)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-neon-paddy/30 hover:bg-white active:scale-95 ${className}`}
       {...props}
     >
       {children}
@@ -91,15 +91,15 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
   }, [scrolled]);
 
   const shellClass = isHome && !scrolled
-    ? 'border-transparent bg-[#f5f1e8]/78 shadow-none backdrop-blur-md'
-    : 'border-[#1a1814]/10 bg-[#f5f1e8]/96 shadow-[0_14px_38px_rgba(26,24,20,.08)] backdrop-blur-xl';
+    ? 'border-transparent bg-warm-cream/80 shadow-none backdrop-blur-md'
+    : 'border-soft-border bg-warm-cream/95 shadow-[0_14px_38px_rgba(31,61,43,0.08)] backdrop-blur-xl';
 
   return (
     <motion.header
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-40 border-b text-[#1a1814] transition-all duration-300 ${shellClass}`}
+      className={`fixed inset-x-0 top-0 z-40 border-b text-deep-forest transition-all duration-300 ${shellClass}`}
     >
       <div className="mx-auto flex h-[76px] max-w-[1480px] items-center justify-between gap-4 px-4 md:h-[84px] md:px-8">
         <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-5">
@@ -129,7 +129,7 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
             <NavLink
               key={item.path}
               to={item.path}
-              className={({ isActive }) => `rounded-full px-4 py-2 font-inter text-[12px] font-bold uppercase tracking-[0.17em] transition-colors ${isActive ? 'bg-[#1a1814] text-[#f5f1e8]' : 'text-[#1a1814]/72 hover:bg-[#1a1814]/7 hover:text-[#1a1814]'}`}
+              className={({ isActive }) => `rounded-full px-4 py-2 font-inter text-[12px] font-bold uppercase tracking-[0.17em] transition-colors ${isActive ? 'bg-deep-forest text-warm-cream' : 'text-deep-forest/72 hover:bg-deep-forest/7 hover:text-deep-forest'}`}
             >
               {item.label}
             </NavLink>
@@ -142,11 +142,21 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
               <Search className="h-5 w-5" strokeWidth={1.7} />
             </IconButton>
           )}
+          <IconButton
+            as="a"
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Order on WhatsApp"
+            className="inline-flex text-neon-paddy lg:hidden"
+          >
+            <MessageCircle className="h-5 w-5" strokeWidth={1.7} />
+          </IconButton>
           <a
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="hidden h-11 items-center gap-2 rounded-full border border-[#4a6741]/22 bg-[#fffaf0]/68 px-4 font-inter text-[12px] font-bold uppercase tracking-[0.14em] text-[#4a6741] shadow-[0_10px_28px_rgba(26,24,20,.06)] transition-all hover:-translate-y-0.5 hover:bg-[#fffaf0] lg:inline-flex"
+            className="hidden h-11 items-center gap-2 rounded-full border border-neon-paddy/20 bg-white/80 px-4 font-inter text-[12px] font-bold uppercase tracking-[0.14em] text-neon-paddy shadow-[0_10px_28px_rgba(31,61,43,0.06)] transition-all hover:-translate-y-0.5 hover:bg-white lg:inline-flex"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -160,7 +170,7 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
                 key={totalItems}
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#8b6914] px-1 font-inter text-[10px] font-bold text-[#fffaf0]"
+                className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-sun-dried-clay px-1 font-inter text-[10px] font-bold text-warm-cream"
               >
                 {totalItems > 99 ? '99+' : totalItems}
               </motion.span>

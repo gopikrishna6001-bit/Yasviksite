@@ -19,7 +19,7 @@ export default function AppLayout() {
   const contentTopPadding = location.pathname === '/' ? 'pt-0' : 'pt-[var(--yasvik-content-top,5.5rem)]';
 
   return (
-    <div className="min-h-screen bg-[#f5f1e8] text-[#1a1814] transition-colors duration-300">
+    <div className="min-h-screen bg-warm-cream text-deep-forest transition-colors duration-300">
       <HeroTopBar
         onMenuOpen={() => setNavOpen(true)}
         onCartOpen={() => setCartOpen(true)}

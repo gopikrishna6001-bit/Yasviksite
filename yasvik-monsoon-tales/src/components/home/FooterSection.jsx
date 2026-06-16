@@ -47,7 +47,7 @@ export default function FooterSection() {
       <div className="relative mx-auto max-w-[1480px] px-6 py-14 md:px-8 md:py-18">
         <div className="grid gap-12 md:grid-cols-[1.6fr_0.9fr_0.9fr_1fr]">
           <div>
-            <Link to="/" aria-label="Yasvik Home" className="inline-flex rounded-2xl bg-[#f5f1e8] px-4 py-3">
+            <Link to="/" aria-label="Yasvik Home" className="inline-flex rounded-2xl bg-warm-cream px-4 py-3">
               <YasvikLogo variant="horizontal" imageClassName="h-12 w-auto" />
             </Link>
             <h2 className="mt-8 max-w-xl font-cormorant text-5xl font-semibold leading-[0.95] text-[#fffaf0] md:text-6xl">Because food is never just food.</h2>

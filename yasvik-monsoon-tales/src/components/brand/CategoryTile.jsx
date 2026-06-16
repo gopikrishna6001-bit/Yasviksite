@@ -1,6 +1,41 @@
 import { Link } from 'react-router-dom';
+import {
+  Bean,
+  Cookie,
+  Droplets,
+  Flame,
+  Nut,
+  Sparkles,
+  Wheat,
+} from 'lucide-react';
+
+const CATEGORY_ICONS = [
+  { match: /millet/i, Icon: Wheat },
+  { match: /pulse|staple/i, Icon: Bean },
+  { match: /rice/i, Icon: Wheat },
+  { match: /oil/i, Icon: Droplets },
+  { match: /honey|ghee|jaggery/i, Icon: Droplets },
+  { match: /spice|masala/i, Icon: Flame },
+  { match: /dry fruit|superfood|nut/i, Icon: Nut },
+  { match: /snack/i, Icon: Cookie },
+  { match: /pooja|puja/i, Icon: Sparkles },
+];
+
+function getCategoryIcon(label = '') {
+  const entry = CATEGORY_ICONS.find(({ match }) => match.test(label));
+  return entry?.Icon || Wheat;
+}
 
 export default function CategoryTile({ label, href, imageUrl, index = 0 }) {
+  const FallbackIcon = getCategoryIcon(label);
+  const badge = label
+    .split(/[&\s]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+
   return (
     <Link
       to={href}
@@ -16,15 +51,15 @@ export default function CategoryTile({ label, href, imageUrl, index = 0 }) {
             decoding="async"
           />
         ) : (
-          <div
-            className="flex h-full w-full items-end p-4"
-            style={{
-              background: `linear-gradient(135deg, color-mix(in srgb, #34C230 ${12 + (index % 3) * 4}%, #FAF7EF), #F3EDE0)`,
-            }}
-          >
-            <span className="font-inter text-[10px] font-bold uppercase tracking-[0.14em] text-deep-forest/40">
-              {String(index + 1).padStart(2, '0')}
+          <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-warm-cream via-white to-[#F3EDE0] p-4">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-soft-border bg-white text-neon-paddy shadow-[0_8px_20px_rgba(31,61,43,0.06)]">
+              <FallbackIcon className="h-7 w-7" strokeWidth={1.75} aria-hidden="true" />
             </span>
+            {badge && (
+              <span className="rounded-full border border-soft-border bg-white/90 px-2.5 py-1 font-inter text-[10px] font-bold uppercase tracking-[0.12em] text-deep-forest/55">
+                {badge}
+              </span>
+            )}
           </div>
         )}
       </div>

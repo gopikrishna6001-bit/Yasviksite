@@ -6,6 +6,7 @@ export default function SectionHeader({
   description,
   align = 'left',
   className = '',
+  id,
 }) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : '';
 
@@ -17,7 +18,7 @@ export default function SectionHeader({
         </p>
       )}
       {title && (
-        <h2 className="mt-2 font-cormorant text-3xl font-semibold leading-tight text-deep-forest md:text-5xl">
+        <h2 id={id} className="mt-2 font-cormorant text-3xl font-semibold leading-tight text-deep-forest md:text-5xl">
           {title}
         </h2>
       )}

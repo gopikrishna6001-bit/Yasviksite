@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Search } from 'lucide-react';
+import { MessageCircle, Search, X } from 'lucide-react';
 import { categories as categoriesApi, products as productsApi } from '@/services/api';
 import { appClient } from '@/api/appClient';
 import ComboCard from '@/components/products/ComboCard';
 import ProductCard from '@/components/products/ProductCard';
+import { fetchAllAppSettings, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
 
 const BUNDLES_KEY = '__bundles__';
+/** Region filter UI disabled for now; logic kept for future use. */
+const SHOW_REGION_FILTER = false;
+
+function normalizePhone(value = '') {
+  const digits = String(value || '').replace(/\D/g, '');
+  if (!digits) return '917842938998';
+  if (digits.length === 10) return `91${digits}`;
+  return digits;
+}
 
 function getRegionLabel(product) {
   return String(product?.origin_region || product?.region_name || product?.sourcing_location || product?.location_label || '').trim();
+}
+
+function getCategoryLabel(category) {
+  return String(category?.name || category?.emotional_title || 'Category').trim();
 }
 
 function sortProducts(items, sort) {
@@ -22,106 +36,342 @@ function sortProducts(items, sort) {
   return list;
 }
 
-export default function Shop() {
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [search, setSearch] = useState('');
-  const [activeRegion, setActiveRegion] = useState('');
-  const [sort, setSort] = useState('latest');
-  const [searchParams] = useSearchParams();
-
-  const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: () => categoriesApi.listActive(24), staleTime: 5 * 60 * 1000 });
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ['shop-products', activeCategory],
-    queryFn: () => activeCategory && activeCategory !== BUNDLES_KEY ? productsApi.listByCategory(activeCategory, 80) : productsApi.listPublished('-created_date', 120),
-    staleTime: 3 * 60 * 1000,
-    enabled: activeCategory !== BUNDLES_KEY,
-  });
-  const { data: combos = [], isLoading: combosLoading } = useQuery({ queryKey: ['shop-combos'], queryFn: () => appClient.entities.Combo.filter({ is_published: true }, '-created_date', 20), staleTime: 5 * 60 * 1000 });
-
-  useEffect(() => {
-    const categoryFromUrl = searchParams.get('category');
-    if (!categoryFromUrl) { setActiveCategory(null); return; }
-    setActiveCategory(categoryFromUrl);
-  }, [searchParams]);
-
-  const showBundles = activeCategory === BUNDLES_KEY;
-  const regions = [...new Set(products.map(getRegionLabel).filter(Boolean))].slice(0, 12);
-  const filtered = sortProducts(
-    products
-      .filter((p) => !activeRegion || getRegionLabel(p) === activeRegion)
-      .filter((p) => !search.trim() || `${p.title || p.name || ''} ${p.short_description || ''} ${p.description || ''}`.toLowerCase().includes(search.toLowerCase())),
-    sort,
-  );
-
+function ProductSkeletonGrid() {
   return (
-    <div className="min-h-screen bg-[#F5F1E8] pb-24 text-[#1A1814] transition-colors duration-300">
-      <section className="mx-auto max-w-[1400px] px-4 pt-8 md:px-8 md:pt-10">
-        <div className="relative overflow-hidden rounded-[34px] border border-[#D8CCB5] bg-[#FFFAF0] px-5 py-9 shadow-[0_18px_56px_rgba(43,33,24,.08)] md:px-9 md:py-12">
-          <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#E8D4A7] blur-3xl" />
-          <p className="relative font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-[#8B6914]">Millets • Native Rice • Wood-Pressed Oils • Everyday Essentials</p>
-          <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h1 className="relative max-w-2xl font-cormorant text-5xl font-semibold leading-none text-[#1A1814] md:text-7xl">Shop better everyday foods.</h1>
-            <p className="relative max-w-xl font-inter text-sm leading-7 text-[#6F675D]">Millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday groceries chosen to help families make one better choice at a time.</p>
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="overflow-hidden rounded-[1.35rem] border border-soft-border bg-white">
+          <div className="aspect-square animate-pulse bg-warm-cream" />
+          <div className="space-y-2 p-3.5">
+            <div className="h-4 w-3/4 animate-pulse rounded bg-warm-cream" />
+            <div className="h-6 w-1/3 animate-pulse rounded bg-warm-cream" />
           </div>
         </div>
-      </section>
-
-      <section className="sticky top-[var(--yasvik-content-top,8rem)] z-20 border-y border-[#D8CCB5] bg-[#FFFAF0]/94 px-4 py-3 shadow-[0_12px_34px_rgba(43,33,24,.06)] backdrop-blur md:px-8">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="relative lg:w-[22rem]">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6F675D]" />
-            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products..." className="h-11 w-full rounded-full border border-[#D8CCB5] bg-[#F5F1E8] pl-10 pr-4 font-inter text-sm text-[#1A1814] outline-none transition-colors placeholder:text-[#6F675D]/70 focus:border-[#4A6741] focus:ring-2 focus:ring-[#4A6741]/20" />
-          </div>
-          <div className="flex flex-1 gap-2 overflow-x-auto hide-scrollbar">
-            <button onClick={() => setActiveCategory(null)} className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-[12px] font-bold transition-colors ${!activeCategory ? 'bg-[#1A1814] text-[#FFFAF0]' : 'border border-[#D8CCB5] bg-[#F5F1E8] text-[#6F675D] hover:border-[#4A6741]'}`}>All</button>
-            {categories.map((cat) => <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-[12px] font-bold transition-colors ${activeCategory === cat.id ? 'bg-[#1A1814] text-[#FFFAF0]' : 'border border-[#D8CCB5] bg-[#F5F1E8] text-[#6F675D] hover:border-[#4A6741]'}`}>{cat.emotional_title || cat.name}</button>)}
-            {combos.length > 0 && <button onClick={() => setActiveCategory(BUNDLES_KEY)} className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-[12px] font-bold transition-colors ${activeCategory === BUNDLES_KEY ? 'bg-[#8B6914] text-[#FFFAF0]' : 'border border-[#D8CCB5] bg-[#F5F1E8] text-[#6F675D] hover:border-[#8B6914]'}`}>Bundles</button>}
-          </div>
-          <div className="flex gap-2 overflow-x-auto hide-scrollbar">
-            {regions.length > 0 && (
-              <select value={activeRegion} onChange={(e) => setActiveRegion(e.target.value)} className="h-9 rounded-full border border-[#D8CCB5] bg-[#F5F1E8] px-3 font-inter text-[12px] font-bold text-[#6F675D] outline-none focus:border-[#4A6741]">
-                <option value="">All regions</option>
-                {regions.map((region) => <option key={region} value={region}>{region}</option>)}
-              </select>
-            )}
-            <select value={sort} onChange={(e) => setSort(e.target.value)} className="h-9 rounded-full border border-[#D8CCB5] bg-[#F5F1E8] px-3 font-inter text-[12px] font-bold text-[#6F675D] outline-none focus:border-[#4A6741]">
-              <option value="latest">Latest</option>
-              <option value="price-low">Price: low to high</option>
-              <option value="price-high">Price: high to low</option>
-              <option value="name">Name</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1400px] px-4 py-7 md:px-8">
-        {showBundles ? (
-          combosLoading ? <div className="grid grid-cols-1 gap-4">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-48 animate-pulse rounded-2xl bg-[var(--bg-card)]" />)}</div>
-          : combos.length === 0 ? <EmptyState text="No harvests found for this journey — try a different season or region." />
-          : <div className="grid grid-cols-1 gap-4">{combos.map((combo) => <ComboCard key={combo.id} combo={combo} />)}</div>
-        ) : isLoading ? (
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-5">{Array.from({ length: 10 }).map((_, i) => <div key={i} className="aspect-[3/4] animate-pulse rounded-2xl bg-[#FFFAF0]" />)}</div>
-        ) : filtered.length === 0 ? (
-          <EmptyState text="No harvests found for this journey — try a different season or region." action={search ? <button onClick={() => setSearch('')} className="mt-3 font-inter text-sm font-bold text-[#4A6741] underline">Clear search</button> : null} />
-        ) : (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-            {filtered.map((product, i) => <ProductCard key={product.id} product={product} index={i} />)}
-          </motion.div>
-        )}
-      </section>
-
-      {!isLoading && filtered.length > 0 && (
-        <div className="mx-auto max-w-[1400px] px-4 pb-8 md:px-8">
-          <Link to="/our-roots#roads" className="flex items-center justify-between rounded-2xl border border-[#D8CCB5] bg-[#FFFAF0] px-5 py-4 transition-colors hover:bg-[#EEE4CF]">
-            <div><p className="font-cormorant text-2xl font-semibold text-[#1A1814]">Explore Our Roots</p><p className="font-inter text-xs text-[#6F675D]">The stories behind the sourcing</p></div>
-            <span className="text-xl text-[#8B6914]">→</span>
-          </Link>
-        </div>
-      )}
+      ))}
     </div>
   );
 }
 
-function EmptyState({ text, action }) {
-  return <div className="flex flex-col items-center justify-center rounded-2xl border border-[#D8CCB5] bg-[#FFFAF0] py-20 text-center"><p className="max-w-sm font-cormorant text-2xl font-semibold text-[#1A1814]">{text}</p>{action}</div>;
+function ShopEmptyState({ title, children }) {
+  return (
+    <div className="flex flex-col items-center justify-center rounded-[1.75rem] border border-soft-border bg-white px-6 py-16 text-center md:py-20">
+      <p className="max-w-md font-cormorant text-2xl font-semibold leading-snug text-deep-forest md:text-3xl">{title}</p>
+      {children}
+    </div>
+  );
+}
+
+export default function Shop() {
+  const [search, setSearch] = useState('');
+  const [activeRegion, setActiveRegion] = useState('');
+  const [sort, setSort] = useState('latest');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeCategory = searchParams.get('category') || null;
+  const showBundles = activeCategory === BUNDLES_KEY;
+
+  const { data: settings = [] } = useQuery({
+    queryKey: SETTINGS_QUERY_KEYS.public,
+    queryFn: fetchAllAppSettings,
+    staleTime: 10 * 60 * 1000,
+  });
+  const settingsMap = useMemo(() => resolveSettingsMap(settings), [settings]);
+  const whatsappNumber = normalizePhone(settingsMap.whatsapp_number || settingsMap.support_whatsapp_number || '');
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I need help choosing products from the shop.')}`;
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => categoriesApi.listActive(24),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const {
+    data: products = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ['shop-products', activeCategory],
+    queryFn: () =>
+      activeCategory && activeCategory !== BUNDLES_KEY
+        ? productsApi.listByCategory(activeCategory, 80)
+        : productsApi.listPublished('-created_date', 120),
+    staleTime: 3 * 60 * 1000,
+    enabled: activeCategory !== BUNDLES_KEY,
+  });
+
+  const { data: combos = [], isLoading: combosLoading } = useQuery({
+    queryKey: ['shop-combos'],
+    queryFn: () => appClient.entities.Combo.filter({ is_published: true }, '-created_date', 20),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const regions = [...new Set(products.map(getRegionLabel).filter(Boolean))].slice(0, 12);
+  const filtered = sortProducts(
+    products
+      .filter((p) => !SHOW_REGION_FILTER || !activeRegion || getRegionLabel(p) === activeRegion)
+      .filter((p) => {
+        if (!search.trim()) return true;
+        const haystack = `${p.title || p.name || ''} ${p.short_description || ''} ${p.description || ''}`.toLowerCase();
+        return haystack.includes(search.toLowerCase());
+      }),
+    sort,
+  );
+
+  const activeCategoryLabel = useMemo(() => {
+    if (!activeCategory) return null;
+    if (activeCategory === BUNDLES_KEY) return 'Bundles';
+    return getCategoryLabel(categories.find((cat) => cat.id === activeCategory));
+  }, [activeCategory, categories]);
+
+  const hasActiveFilters = Boolean(search.trim() || activeCategory || sort !== 'latest' || (SHOW_REGION_FILTER && activeRegion));
+
+  const setCategory = (categoryId) => {
+    const next = new URLSearchParams(searchParams);
+    if (!categoryId) next.delete('category');
+    else next.set('category', categoryId);
+    setSearchParams(next, { replace: true });
+  };
+
+  const clearAllFilters = () => {
+    setSearch('');
+    setSort('latest');
+    setActiveRegion('');
+    setSearchParams({}, { replace: true });
+  };
+
+  const resultCount = showBundles ? combos.length : filtered.length;
+
+  return (
+    <div className="min-h-screen bg-warm-cream pb-24 text-deep-forest transition-colors duration-300">
+      <section className="mx-auto max-w-[1400px] px-4 pt-6 md:px-8 md:pt-8">
+        <div className="rounded-[1.75rem] border border-soft-border bg-white px-5 py-7 shadow-[0_12px_36px_rgba(31,61,43,0.05)] md:px-8 md:py-9">
+          <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay">Shop</p>
+          <h1 className="mt-2 font-cormorant text-3xl font-semibold leading-tight text-deep-forest md:text-5xl">
+            Everyday essentials for your kitchen
+          </h1>
+          <p className="mt-3 max-w-2xl font-inter text-sm leading-7 text-deep-forest/70 md:text-base">
+            Millets, staples, oils, spices, and pantry items — browse by category or search what you need.
+          </p>
+        </div>
+      </section>
+
+      <section className="sticky top-[var(--yasvik-content-top,8rem)] z-20 border-y border-soft-border bg-warm-cream/95 px-4 py-3 shadow-[0_8px_24px_rgba(31,61,43,0.05)] backdrop-blur md:px-8">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-3">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+            <div className="relative lg:w-[22rem]">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-deep-forest/45" />
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search staples, oils, spices…"
+                className="h-11 w-full rounded-full border border-soft-border bg-white pl-10 pr-10 font-inter text-sm text-deep-forest outline-none transition-colors placeholder:text-deep-forest/45 focus:border-neon-paddy focus:ring-2 focus:ring-neon-paddy/15"
+              />
+              {search.trim() && (
+                <button
+                  type="button"
+                  onClick={() => setSearch('')}
+                  aria-label="Clear search"
+                  className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-deep-forest/55 hover:bg-warm-cream hover:text-deep-forest"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-1 gap-2 overflow-x-auto hide-scrollbar">
+              <button
+                type="button"
+                onClick={() => setCategory(null)}
+                className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-xs font-bold transition-colors sm:text-[13px] ${!activeCategory ? 'bg-deep-forest text-warm-cream' : 'border border-soft-border bg-white text-deep-forest/70 hover:border-neon-paddy/35'}`}
+              >
+                All
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setCategory(cat.id)}
+                  className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-xs font-bold transition-colors sm:text-[13px] ${activeCategory === cat.id ? 'bg-deep-forest text-warm-cream' : 'border border-soft-border bg-white text-deep-forest/70 hover:border-neon-paddy/35'}`}
+                >
+                  {getCategoryLabel(cat)}
+                </button>
+              ))}
+              {combos.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setCategory(BUNDLES_KEY)}
+                  className={`h-9 flex-shrink-0 rounded-full px-4 font-inter text-xs font-bold transition-colors sm:text-[13px] ${activeCategory === BUNDLES_KEY ? 'bg-sun-dried-clay text-warm-cream' : 'border border-soft-border bg-white text-deep-forest/70 hover:border-sun-dried-clay/40'}`}
+                >
+                  Bundles
+                </button>
+              )}
+            </div>
+
+            <div className="flex gap-2">
+              {SHOW_REGION_FILTER && regions.length > 0 && (
+                <select
+                  value={activeRegion}
+                  onChange={(e) => setActiveRegion(e.target.value)}
+                  className="h-9 rounded-full border border-soft-border bg-white px-3 font-inter text-xs font-bold text-deep-forest/70 outline-none focus:border-neon-paddy sm:text-[13px]"
+                >
+                  <option value="">All origin areas</option>
+                  {regions.map((region) => (
+                    <option key={region} value={region}>
+                      {region}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+                className="h-9 rounded-full border border-soft-border bg-white px-3 font-inter text-xs font-bold text-deep-forest/70 outline-none focus:border-neon-paddy sm:text-[13px]"
+              >
+                <option value="latest">Latest</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="name">Name</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-soft-border pt-3">
+            <p className="font-inter text-sm text-deep-forest/75">
+              {isLoading && !showBundles ? (
+                'Loading products…'
+              ) : (
+                <>
+                  <span className="font-bold text-deep-forest">{resultCount}</span>
+                  {resultCount === 1 ? ' item' : ' products'}
+                  {activeCategoryLabel ? (
+                    <>
+                      {' '}
+                      in <span className="font-bold text-deep-forest">{activeCategoryLabel}</span>
+                    </>
+                  ) : null}
+                  {search.trim() ? (
+                    <>
+                      {' '}
+                      matching &ldquo;{search.trim()}&rdquo;
+                    </>
+                  ) : null}
+                </>
+              )}
+            </p>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={clearAllFilters}
+                className="font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest"
+              >
+                Clear all
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-soft-border bg-white px-4 py-2.5 text-sm shadow-[0_6px_18px_rgba(31,61,43,0.04)] transition-colors hover:border-neon-paddy/25"
+        >
+          <span className="font-inter text-deep-forest/75">Need help choosing?</span>
+          <span className="inline-flex items-center gap-1.5 font-inter text-sm font-bold text-neon-paddy">
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp us
+          </span>
+        </a>
+      </div>
+
+      <section className="mx-auto max-w-[1400px] px-4 py-7 md:px-8">
+        {showBundles ? (
+          combosLoading ? (
+            <div className="grid grid-cols-1 gap-4">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="h-48 animate-pulse rounded-2xl bg-white" />
+              ))}
+            </div>
+          ) : combos.length === 0 ? (
+            <ShopEmptyState title="No bundles available right now.">
+              <button type="button" onClick={() => setCategory(null)} className="mt-4 font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
+                Browse all products
+              </button>
+            </ShopEmptyState>
+          ) : (
+            <div className="grid grid-cols-1 gap-4">
+              {combos.map((combo) => (
+                <ComboCard key={combo.id} combo={combo} />
+              ))}
+            </div>
+          )
+        ) : isError ? (
+          <ShopEmptyState title="Couldn't load products right now.">
+            <p className="mt-3 max-w-sm font-inter text-sm leading-6 text-deep-forest/65">
+              Please check your connection and try again.
+            </p>
+            <button
+              type="button"
+              onClick={() => refetch()}
+              className="mt-5 rounded-full bg-neon-paddy px-5 py-2.5 font-inter text-sm font-bold text-white hover:bg-deep-forest"
+            >
+              Retry
+            </button>
+          </ShopEmptyState>
+        ) : isLoading ? (
+          <ProductSkeletonGrid />
+        ) : filtered.length === 0 ? (
+          <ShopEmptyState title="No products found.">
+            <p className="mt-3 max-w-sm font-inter text-sm leading-6 text-deep-forest/65">
+              Try another category or clear your search.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+              {hasActiveFilters && (
+                <button type="button" onClick={clearAllFilters} className="font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
+                  Clear all filters
+                </button>
+              )}
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
+                <MessageCircle className="h-4 w-4" />
+                Ask on WhatsApp
+              </a>
+            </div>
+          </ShopEmptyState>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+          >
+            {filtered.map((product, i) => (
+              <ProductCard key={product.id} product={product} index={i} variant="shop" />
+            ))}
+          </motion.div>
+        )}
+      </section>
+
+      {!isLoading && !isError && (showBundles ? combos.length > 0 : filtered.length > 0) && (
+        <div className="mx-auto max-w-[1400px] px-4 pb-8 md:px-8">
+          <div className="flex flex-col gap-3 rounded-2xl border border-soft-border bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-inter text-sm text-deep-forest/75">
+              Questions about delivery, stock, or pack sizes?
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/contact" className="font-inter text-sm font-bold text-deep-forest hover:text-neon-paddy">
+                Contact us
+              </Link>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

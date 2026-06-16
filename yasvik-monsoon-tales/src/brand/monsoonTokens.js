@@ -100,7 +100,56 @@ export const MONSOON_CSS_VARS = {
   '--ysv-color-kraft': MONSOON_COLORS.softBorder,
 };
 
-/** Content constants for Phase 2+ components — not used on homepage yet */
+export const HOMEPAGE_CATEGORIES = [
+  { label: 'Millets & Millet Foods', keywords: ['millet'] },
+  { label: 'Pulses & Staples', keywords: ['pulse', 'staple', 'dal'] },
+  { label: 'Heritage Rice', keywords: ['rice', 'heritage rice'] },
+  { label: 'Cold-Pressed Oils', keywords: ['oil', 'cold-pressed', 'wood-pressed'] },
+  { label: 'Honey, Ghee & Jaggery', keywords: ['honey', 'ghee', 'jaggery'] },
+  { label: 'Spices & Masalas', keywords: ['spice', 'masala'] },
+  { label: 'Dry Fruits & Superfoods', keywords: ['dry fruit', 'superfood', 'nut'] },
+  { label: 'Healthy Snacks', keywords: ['snack'] },
+  { label: 'Pooja Essentials', keywords: ['pooja', 'puja'] },
+];
+
+export const HERO_COPY = {
+  headline: 'Better Food Choices, Every Day',
+  subheadline:
+    'Thoughtfully chosen natural foods, staples, millets, oils, spices, and everyday essentials for modern families.',
+  primaryCta: 'Shop Now',
+  secondaryCta: 'WhatsApp Order',
+  deliveryNote: 'Free home delivery above ₹999 within colony and nearby areas.',
+};
+
+export const STORY_COPY =
+  'We choose foods that make sense for everyday Indian homes — staples, millets, oils, spices, and essentials that are useful, fairly priced, and quality checked.';
+
+export function matchCategoryId(categories = [], config) {
+  const haystack = categories.map((cat) => ({
+    id: cat.id,
+    name: String(cat.name || cat.emotional_title || '').toLowerCase(),
+    cover_image: cat.cover_image || cat.image_url || '',
+  }));
+  for (const keyword of config.keywords) {
+    const match = haystack.find((cat) => cat.name.includes(keyword.toLowerCase()));
+    if (match) return match;
+  }
+  return null;
+}
+
+export function resolveCategoryLinks(categories = []) {
+  return HOMEPAGE_CATEGORIES.map((config) => {
+    const match = matchCategoryId(categories, config);
+    return {
+      ...config,
+      categoryId: match?.id || null,
+      imageUrl: match?.cover_image || '',
+      href: match?.id ? `/shop?category=${match.id}` : '/shop',
+    };
+  });
+}
+
+/** Homepage trust strip labels */
 export const TRUST_POINTS = [
   { label: 'Quality Checked', icon: 'shield' },
   { label: 'Fair Prices', icon: 'tag' },

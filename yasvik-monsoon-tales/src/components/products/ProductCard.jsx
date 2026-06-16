@@ -67,7 +67,9 @@ function ProductImagePlaceholder({ title }) {
   );
 }
 
-export default function ProductCard({ product, index = 0, onQuickView }) {
+export default function ProductCard({ product, index = 0, onQuickView, variant = 'default' }) {
+  const isCommerce = variant === 'homepage' || variant === 'shop';
+  const isShop = variant === 'shop';
   const { items, addItem, updateQty } = useCart();
   const [imgLoaded, setImgLoaded] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -164,19 +166,32 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
 
   const whatsappHref = `https://wa.me/917842938998?text=${encodeURIComponent(`Hi Yasvik, I want to know more about ${title}.`)}`;
 
+  const cardClass = isCommerce
+    ? 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-soft-border bg-white text-deep-forest shadow-[0_10px_34px_rgba(31,61,43,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-neon-paddy/25 hover:shadow-[0_16px_42px_rgba(31,61,43,0.1)]'
+    : 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.45rem] border border-[#1a1814]/10 bg-[#fffaf0] text-[#1a1814] shadow-[0_16px_42px_rgba(26,24,20,.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#8b6914]/30 hover:shadow-[0_24px_62px_rgba(26,24,20,.13)]';
+
+  const imageWrapClass = isCommerce ? 'relative aspect-[1.02/1] overflow-hidden bg-warm-cream' : 'relative aspect-[1.02/1] overflow-hidden bg-[#eee4cf]';
+
+  const titleClass = isCommerce
+    ? 'line-clamp-2 min-h-[2.75rem] font-inter text-[15px] font-bold leading-snug text-deep-forest md:min-h-[3rem] md:text-base'
+    : 'line-clamp-2 min-h-[3.2rem] font-cormorant text-[24px] font-semibold leading-[1.05] tracking-[-0.01em] text-[#1a1814] md:text-[26px]';
+
+  const showSourceBadge = sourceContext && !isCommerce;
+  const showSourceSubtitle = sourceContext && !isCommerce;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-30px' }}
       transition={{ duration: 0.34, delay: Math.min(index * 0.03, 0.18), ease: [0.22, 1, 0.36, 1] }}
-      className="yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.45rem] border border-[#1a1814]/10 bg-[#fffaf0] text-[#1a1814] shadow-[0_16px_42px_rgba(26,24,20,.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#8b6914]/30 hover:shadow-[0_24px_62px_rgba(26,24,20,.13)]"
+      className={cardClass}
       onPointerEnter={(event) => {
         if (event.pointerType === 'mouse' || event.pointerType === 'pen') setIsHovering(true);
       }}
       onPointerLeave={() => setIsHovering(false)}
     >
-      <div className="relative aspect-[1.02/1] overflow-hidden bg-[#eee4cf]">
+      <div className={imageWrapClass}>
         {onQuickView ? (
           <button type="button" onClick={handlePreview} className="absolute inset-0 z-[1]" aria-label={`Preview ${title}`} />
         ) : (
@@ -217,22 +232,22 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         {hoverMedia?.url && hoverMedia.isVideo && isHovering && (
           <video src={hoverMedia.url} className="absolute inset-0 h-full w-full object-cover opacity-100 transition-opacity duration-500" autoPlay loop muted playsInline preload="metadata" />
         )}
-        {sourceContext && (
+        {showSourceBadge && (
           <div className="absolute left-3 top-3 z-[3] max-w-[calc(100%-1.5rem)] rounded-full bg-[#1e1c18]/82 px-3 py-1.5 font-inter text-[10px] font-bold uppercase tracking-[0.13em] text-[#f5f1e8] backdrop-blur">
             <span className="line-clamp-1">{sourceContext}</span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
+      <div className={`flex flex-1 flex-col ${isCommerce ? 'p-3.5 md:p-4' : 'p-4'}`}>
         <Link to={detailUrl} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
-          <h3 className="line-clamp-2 min-h-[3.2rem] font-cormorant text-[24px] font-semibold leading-[1.05] tracking-[-0.01em] text-[#1a1814] md:text-[26px]">{title}</h3>
+          <h3 className={titleClass}>{title}</h3>
         </Link>
-        {sourceContext ? (
+        {showSourceSubtitle ? (
           <p className="mt-2 line-clamp-1 font-inter text-[12px] leading-5 text-[#6f675d]">{sourceContext}</p>
-        ) : (
+        ) : !isCommerce ? (
           <p className="mt-2 line-clamp-1 font-inter text-[12px] leading-5 text-[#9a9185]">Thoughtfully chosen for everyday kitchens</p>
-        )}
+        ) : null}
 
         {variantOptions.length > 0 && (
           <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5 hide-scrollbar">
@@ -241,7 +256,7 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
                 key={variant.label}
                 type="button"
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setSelectedVariantLabel(variant.label); }}
-                className={`flex-shrink-0 rounded-full px-3 py-1.5 font-inter text-[10px] font-bold transition-colors ${selectedVariant?.label === variant.label ? 'bg-[#1e1c18] text-[#f5f1e8]' : 'border border-[#1a1814]/10 bg-[#f5f1e8] text-[#6f675d] hover:border-[#8b6914]/35'}`}
+                className={`flex-shrink-0 rounded-full px-3 py-1.5 font-inter text-[10px] font-bold transition-colors ${selectedVariant?.label === variant.label ? (isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]') : (isCommerce ? 'border border-soft-border bg-warm-cream text-deep-forest/70 hover:border-neon-paddy/30' : 'border border-[#1a1814]/10 bg-[#f5f1e8] text-[#6f675d] hover:border-[#8b6914]/35')}`}
               >
                 {variant.label}
               </button>
@@ -249,20 +264,38 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
           </div>
         )}
 
-        <div className="mt-auto flex items-end justify-between gap-3 pt-4">
+        <div className={`mt-auto flex items-end justify-between gap-3 ${isCommerce ? 'pt-3' : 'pt-4'}`}>
           <div>
-            {unitLabel && <div className="font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[#9a9185]">{unitLabel}</div>}
-            <div className="mt-1 font-cormorant text-[28px] font-semibold leading-none text-[#1a1814]">₹{activePrice || product.price || 0}</div>
-            {activeComparePrice > activePrice && <div className="font-inter text-[11px] text-[#9a9185] line-through">₹{activeComparePrice}</div>}
+            <div className={`font-cormorant font-semibold leading-none text-deep-forest ${isCommerce ? 'text-[1.65rem] md:text-[1.75rem]' : 'mt-1 text-[28px] text-[#1a1814]'}`}>
+              ₹{activePrice || product.price || 0}
+            </div>
+            {activeComparePrice > activePrice && (
+              <div className={`font-inter line-through ${isCommerce ? 'mt-0.5 text-[11px] text-deep-forest/45' : 'text-[11px] text-[#9a9185]'}`}>
+                ₹{activeComparePrice}
+              </div>
+            )}
+            {unitLabel && (
+              <div className={`font-inter ${isCommerce ? 'mt-1 text-[11px] font-medium text-deep-forest/55' : 'text-[10px] font-bold uppercase tracking-[0.16em] text-[#9a9185]'}`}>
+                {unitLabel}
+              </div>
+            )}
           </div>
           {product.isFallback ? (
-            <Link to="/shop" className="flex h-10 min-w-20 items-center justify-center rounded-full border border-[#1a1814]/20 px-4 font-inter text-[11px] font-bold uppercase tracking-[0.12em] text-[#1a1814]">View</Link>
+            <Link
+              to="/shop"
+              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.12em] ${isCommerce ? 'border border-soft-border text-deep-forest hover:border-neon-paddy/30' : 'border border-[#1a1814]/20 text-[#1a1814]'}`}
+            >
+              View
+            </Link>
           ) : qty === 0 ? (
-            <button onClick={handleAdd} className={`flex h-10 min-w-20 items-center justify-center rounded-full bg-[#1e1c18] px-4 font-inter text-[11px] font-bold uppercase tracking-[0.13em] text-[#f5f1e8] transition-all hover:bg-[#4a6741] active:scale-95 ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
+            <button
+              onClick={handleAdd}
+              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.13em] transition-all active:scale-95 ${isCommerce ? 'bg-neon-paddy text-white hover:bg-deep-forest' : 'bg-[#1e1c18] text-[#f5f1e8] hover:bg-[#4a6741]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}
+            >
               <Plus className="mr-1 h-3.5 w-3.5" /> Add
             </button>
           ) : (
-            <div className={`flex h-10 items-center overflow-hidden rounded-full bg-[#1e1c18] text-[#f5f1e8] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
+            <div className={`flex h-10 items-center overflow-hidden rounded-full ${isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
               <button onClick={handleDec} aria-label={`Decrease ${title}`} className="flex h-10 w-9 items-center justify-center hover:bg-white/12"><Minus className="h-3.5 w-3.5" /></button>
               <span className="min-w-7 text-center font-inter text-sm font-bold">{qty}</span>
               <button onClick={handleInc} aria-label={`Increase ${title}`} className="flex h-10 w-9 items-center justify-center hover:bg-white/12"><Plus className="h-3.5 w-3.5" /></button>
@@ -271,10 +304,17 @@ export default function ProductCard({ product, index = 0, onQuickView }) {
         </div>
 
         {!product.isFallback && (
-          <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#1a1814]/8 pt-3">
-            <Link to={detailUrl} className="font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[#6f675d] hover:text-[#1a1814]">View details</Link>
-            <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[#4a6741] hover:text-[#1a1814]" onClick={(event) => event.stopPropagation()}>
-              <MessageCircle className="h-3.5 w-3.5" /> Ask
+          <div className={`mt-3 flex items-center justify-between gap-3 border-t pt-3 ${isCommerce ? 'border-soft-border' : 'border-[#1a1814]/8'}`}>
+            <Link to={detailUrl} className={`font-inter text-[10px] font-bold uppercase tracking-[0.16em] ${isCommerce ? 'text-deep-forest/60 hover:text-deep-forest' : 'text-[#6f675d] hover:text-[#1a1814]'}`}>View details</Link>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-1.5 font-inter font-bold uppercase tracking-[0.14em] ${isShop ? 'text-[11px] text-neon-paddy hover:text-deep-forest sm:text-xs' : isCommerce ? 'text-[10px] text-neon-paddy hover:text-deep-forest' : 'text-[10px] text-[#4a6741] hover:text-[#1a1814]'}`}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <MessageCircle className={isShop ? 'h-4 w-4' : 'h-3.5 w-3.5'} />
+              {isShop ? 'Ask on WhatsApp' : 'Ask'}
             </a>
           </div>
         )}
