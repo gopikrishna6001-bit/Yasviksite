@@ -1,0 +1,500 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Typography ── */
+    --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --font-inter: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+    --ysv-text-xs: 0.75rem;
+    --ysv-text-sm: 0.875rem;
+    --ysv-text-base: 1rem;
+    --ysv-text-lg: 1.125rem;
+    --ysv-text-xl: 1.25rem;
+    --ysv-text-2xl: 1.5rem;
+    --ysv-text-3xl: 1.875rem;
+    --ysv-text-4xl: 2.25rem;
+    --ysv-leading-body: 1.65;
+    --ysv-leading-heading: 1.15;
+    --ysv-leading-tight: 1.25;
+    --ysv-tracking-eyebrow: 0.18em;
+    --ysv-tracking-button: 0.04em;
+    --ysv-tracking-display: 0.02em;
+
+    /* ── Spacing ── */
+    --ysv-space-1: 0.25rem;
+    --ysv-space-2: 0.5rem;
+    --ysv-space-3: 0.75rem;
+    --ysv-space-4: 1rem;
+    --ysv-space-5: 1.25rem;
+    --ysv-space-6: 1.5rem;
+    --ysv-space-8: 2rem;
+    --ysv-space-10: 2.5rem;
+    --ysv-space-12: 3rem;
+    --ysv-space-16: 4rem;
+    --ysv-space-20: 5rem;
+    --ysv-section-y: 4rem;
+    --ysv-section-y-md: 5rem;
+    --ysv-section-x: 1.25rem;
+    --ysv-section-x-md: 2rem;
+
+    /* ── Monsoon-natural HSL palette (shadcn) ── */
+    --yasvik-alabaster-bone: 45 44% 96%;
+    --yasvik-raw-oatmeal: 38 33% 90%;
+    --yasvik-deep-espresso: 152 31% 18%;
+    --yasvik-sun-dried-clay: 18 38% 22%;
+    --yasvik-forest-sage: 118 61% 47%;
+    --yasvik-moss-muted: 118 40% 55%;
+
+    /* ── Primitive color tokens ── */
+    --ysv-monsoon: #FAF7EF;
+    --ysv-paddy: #34C230;
+    --ysv-fresh: #62D75F;
+    --ysv-copper: #4B2D22;
+    --ysv-silver: #1F3D2B;
+    --ysv-forest: #1F3D2B;
+    --ysv-color-alabaster: #FAF7EF;
+    --ysv-color-oat: #F3EDE0;
+    --ysv-color-rice-paper: #FFFFFF;
+    --ysv-color-espresso: #1F3D2B;
+    --ysv-color-clay: #4B2D22;
+    --ysv-color-field: #34C230;
+    --ysv-color-moss: #62D75F;
+    --ysv-color-kraft: #E8E1D5;
+    --ysv-color-border: #E8E1D5;
+    --ysv-color-ink-soft: rgba(31, 61, 43, 0.68);
+
+    /* ── Admin-switchable theme tokens (monsoon-natural defaults) ── */
+    --bg-canvas: #FAF7EF;
+    --bg-card: #FFFFFF;
+    --text-main: #1F3D2B;
+    --action-primary: #34C230;
+    --action-text: #FFFFFF;
+    --theme-accent: #4B2D22;
+    --theme-muted: #5C6B58;
+    --theme-border: #E8E1D5;
+    --theme-header: #FAF7EF;
+    --theme-header-text: #1F3D2B;
+
+    /* ── Semantic surface & text tokens ── */
+    --ysv-surface-page: var(--ysv-monsoon);
+    --ysv-surface-paper: var(--ysv-color-rice-paper);
+    --ysv-surface-raised: var(--ysv-forest);
+    --ysv-surface-earth: var(--ysv-copper);
+    --ysv-text-primary: var(--ysv-silver);
+    --ysv-text-muted: #5C6B58;
+    --ysv-text-soft: #8A9586;
+    --ysv-border-soft: var(--ysv-color-border);
+    --ysv-border-paper: var(--ysv-color-border);
+    --ysv-focus-ring: rgba(52, 194, 48, 0.42);
+    --theme-section: color-mix(in srgb, var(--bg-canvas) 88%, var(--action-primary) 12%);
+    --theme-soft: color-mix(in srgb, var(--bg-card) 90%, var(--action-primary) 10%);
+    --theme-soft-strong: color-mix(in srgb, var(--bg-card) 82%, var(--action-primary) 18%);
+    --theme-header-soft: color-mix(in srgb, var(--theme-header) 92%, white 8%);
+    --theme-header-deep: color-mix(in srgb, var(--theme-header) 88%, var(--ysv-forest) 12%);
+
+    /* ── shadcn/ui tokens ── */
+    --background: 45 44% 96%;
+    --foreground: 152 31% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 152 31% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 152 31% 18%;
+    --primary: 118 61% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 38 33% 90%;
+    --secondary-foreground: 152 31% 18%;
+    --muted: 38 33% 92%;
+    --muted-foreground: 118 12% 38%;
+    --accent: 18 38% 22%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 33% 87%;
+    --input: 38 33% 87%;
+    --ring: 118 61% 47%;
+    --chart-1: 152 31% 18%;
+    --chart-2: 118 61% 47%;
+    --chart-3: 38 33% 90%;
+    --chart-4: 118 40% 55%;
+    --chart-5: 18 38% 22%;
+
+    /* ── Layout, radius, shadow, motion ── */
+    --radius: 1rem;
+    --yasvik-nav-top: 84px;
+    --yasvik-content-top: 102px;
+    --yasvik-content-top-no-nav: 84px;
+    --yasvik-dynamic-bg: #FAF7EF;
+    --ysv-card-radius: 1.35rem;
+    --ysv-button-radius: 999px;
+    --ysv-shadow-paper: 0 10px 34px rgba(31, 61, 43, 0.06);
+    --ysv-shadow-paper-hover: 0 16px 42px rgba(31, 61, 43, 0.1);
+    --ysv-shadow-inset-paper: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    --ysv-shadow-button: 0 8px 24px rgba(52, 194, 48, 0.22);
+    --ysv-shadow-button-hover: 0 12px 32px rgba(52, 194, 48, 0.28);
+    --ysv-duration-fast: 150ms;
+    --ysv-duration-standard: 240ms;
+    --ysv-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ── Admin sidebar (unchanged structure) ── */
+    --sidebar-background: 152 31% 12%;
+    --sidebar-foreground: 45 44% 96%;
+    --sidebar-primary: 118 61% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 152 24% 18%;
+    --sidebar-accent-foreground: 45 44% 96%;
+    --sidebar-border: 152 20% 22%;
+    --sidebar-ring: 118 61% 47%;
+  }
+
+  .dark {
+    --background: 152 31% 10%;
+    --foreground: 45 44% 96%;
+    --card: 152 28% 14%;
+    --card-foreground: 45 44% 96%;
+    --popover: 152 28% 14%;
+    --popover-foreground: 45 44% 96%;
+    --primary: 118 61% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 152 20% 20%;
+    --secondary-foreground: 45 44% 96%;
+    --muted: 152 18% 18%;
+    --muted-foreground: 38 20% 74%;
+    --accent: 118 40% 55%;
+    --accent-foreground: 152 31% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 152 18% 24%;
+    --input: 152 18% 24%;
+    --ring: 118 61% 47%;
+    --chart-1: 45 44% 96%;
+    --chart-2: 118 61% 47%;
+    --chart-3: 38 33% 90%;
+    --chart-4: 118 40% 55%;
+    --chart-5: 18 38% 22%;
+    --sidebar-background: 152 31% 10%;
+    --sidebar-foreground: 45 44% 96%;
+    --sidebar-primary: 118 61% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 152 20% 18%;
+    --sidebar-accent-foreground: 45 44% 96%;
+    --sidebar-border: 152 18% 24%;
+    --sidebar-ring: 118 61% 47%;
+  }
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    background-color: var(--bg-canvas, var(--yasvik-dynamic-bg, var(--ysv-monsoon)));
+    color: var(--text-main, var(--ysv-text-primary));
+    font-size: var(--ysv-text-base);
+    line-height: var(--ysv-leading-body);
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 320ms linear;
+  }
+
+  h1, h2, h3, h4 {
+    line-height: var(--ysv-leading-heading);
+    color: var(--text-main, var(--ysv-text-primary));
+  }
+
+  ::selection {
+    background: rgba(52, 194, 48, 0.22);
+    color: var(--ysv-text-primary);
+  }
+}
+
+@layer components {
+  .yasvik-wordmark {
+    @apply font-cormorant;
+    letter-spacing: var(--ysv-tracking-display);
+    font-weight: 600;
+  }
+
+  .yasvik-descriptor {
+    @apply font-inter uppercase;
+    letter-spacing: var(--ysv-tracking-eyebrow);
+    font-size: var(--ysv-text-xs);
+    line-height: var(--ysv-leading-tight);
+    color: var(--ysv-text-soft);
+  }
+
+  .yasvik-surface {
+    border: 1px solid var(--ysv-border-paper);
+    background: var(--ysv-color-rice-paper);
+    box-shadow: var(--ysv-shadow-paper), var(--ysv-shadow-inset-paper);
+  }
+
+  .yasvik-section-title {
+    @apply font-cormorant text-deep-forest;
+    letter-spacing: var(--ysv-tracking-display);
+  }
+
+  .yasvik-eyebrow {
+    @apply font-inter uppercase;
+    color: var(--ysv-text-soft);
+    font-size: var(--ysv-text-xs);
+    letter-spacing: var(--ysv-tracking-eyebrow);
+    line-height: var(--ysv-leading-tight);
+  }
+
+  .yasvik-body-copy {
+    @apply font-inter;
+    color: var(--ysv-text-muted);
+    font-size: var(--ysv-text-sm);
+    line-height: var(--ysv-leading-body);
+  }
+
+  .yasvik-header-shell {
+    background: var(--theme-header, var(--ysv-monsoon));
+    color: var(--theme-header-text, var(--ysv-text-primary));
+    box-shadow: var(--ysv-shadow-paper);
+    backdrop-filter: blur(14px);
+  }
+
+  .yasvik-search-pill {
+    @apply font-inter;
+    border: 1px solid var(--ysv-border-soft);
+    background: var(--ysv-color-rice-paper);
+    color: var(--ysv-text-soft);
+    box-shadow: var(--ysv-shadow-inset-paper);
+    transition: border-color var(--ysv-duration-standard) var(--ysv-ease-out),
+      box-shadow var(--ysv-duration-standard) var(--ysv-ease-out),
+      background-color var(--ysv-duration-standard) var(--ysv-ease-out);
+  }
+
+  .yasvik-search-pill:hover,
+  .yasvik-search-pill:focus-visible {
+    border-color: color-mix(in srgb, var(--ysv-paddy) 45%, var(--ysv-color-border));
+    background: var(--ysv-color-rice-paper);
+    box-shadow: var(--ysv-shadow-paper);
+  }
+
+  .yasvik-icon-button {
+    @apply inline-flex items-center justify-center rounded-full;
+    border: 1px solid var(--ysv-border-soft);
+    background: var(--ysv-color-rice-paper);
+    color: var(--ysv-text-primary);
+    box-shadow: var(--ysv-shadow-paper);
+    transition: transform var(--ysv-duration-fast) var(--ysv-ease-out),
+      border-color var(--ysv-duration-standard) var(--ysv-ease-out),
+      background-color var(--ysv-duration-standard) var(--ysv-ease-out),
+      box-shadow var(--ysv-duration-standard) var(--ysv-ease-out);
+  }
+
+  .yasvik-icon-button:hover {
+    border-color: color-mix(in srgb, var(--ysv-paddy) 40%, var(--ysv-color-border));
+    background: color-mix(in srgb, var(--ysv-color-rice-paper) 94%, var(--ysv-fresh) 6%);
+    box-shadow: var(--ysv-shadow-paper-hover);
+  }
+
+  .yasvik-pressable {
+    transform-origin: center;
+    transition: transform var(--ysv-duration-fast) var(--ysv-ease-out),
+      box-shadow var(--ysv-duration-standard) var(--ysv-ease-out),
+      background-color var(--ysv-duration-standard) var(--ysv-ease-out),
+      border-color var(--ysv-duration-standard) var(--ysv-ease-out);
+  }
+
+  .yasvik-pressable:active {
+    transform: scale(0.975);
+  }
+
+  /* Primary CTA — fresh green */
+  .yasvik-harvest-cta {
+    @apply inline-flex items-center justify-center font-inter font-bold;
+    min-height: 3rem;
+    padding-inline: var(--ysv-space-6);
+    border-radius: var(--ysv-button-radius);
+    background: var(--ysv-paddy);
+    color: var(--action-text);
+    font-size: var(--ysv-text-sm);
+    letter-spacing: var(--ysv-tracking-button);
+    box-shadow: var(--ysv-shadow-button);
+  }
+
+  .yasvik-harvest-cta:hover {
+    background: color-mix(in srgb, var(--ysv-paddy) 88%, var(--ysv-forest) 12%);
+    box-shadow: var(--ysv-shadow-button-hover);
+  }
+
+  /* Secondary outline */
+  .yasvik-btn-outline {
+    @apply inline-flex items-center justify-center font-inter font-bold;
+    min-height: 3rem;
+    padding-inline: var(--ysv-space-6);
+    border-radius: var(--ysv-button-radius);
+    border: 1.5px solid var(--ysv-color-border);
+    background: var(--ysv-color-rice-paper);
+    color: var(--ysv-forest);
+    font-size: var(--ysv-text-sm);
+    letter-spacing: var(--ysv-tracking-button);
+  }
+
+  .yasvik-btn-outline:hover {
+    border-color: var(--ysv-paddy);
+    background: color-mix(in srgb, var(--ysv-color-rice-paper) 92%, var(--ysv-fresh) 8%);
+  }
+
+  /* Earth brown secondary */
+  .yasvik-btn-earth {
+    @apply inline-flex items-center justify-center font-inter font-bold;
+    min-height: 3rem;
+    padding-inline: var(--ysv-space-6);
+    border-radius: var(--ysv-button-radius);
+    background: var(--ysv-copper);
+    color: var(--action-text);
+    font-size: var(--ysv-text-sm);
+    letter-spacing: var(--ysv-tracking-button);
+    box-shadow: 0 8px 24px rgba(75, 45, 34, 0.18);
+  }
+
+  .yasvik-btn-earth:hover {
+    background: color-mix(in srgb, var(--ysv-copper) 88%, var(--ysv-forest) 12%);
+  }
+
+  /* WhatsApp / trust action */
+  .yasvik-btn-whatsapp {
+    @apply inline-flex items-center justify-center font-inter font-bold;
+    min-height: 3rem;
+    padding-inline: var(--ysv-space-6);
+    border-radius: var(--ysv-button-radius);
+    border: 1.5px solid color-mix(in srgb, var(--ysv-paddy) 40%, transparent);
+    background: color-mix(in srgb, var(--ysv-paddy) 8%, var(--ysv-color-rice-paper));
+    color: var(--ysv-forest);
+    font-size: var(--ysv-text-sm);
+    letter-spacing: var(--ysv-tracking-button);
+  }
+
+  .yasvik-btn-whatsapp:hover {
+    background: color-mix(in srgb, var(--ysv-paddy) 14%, var(--ysv-color-rice-paper));
+    border-color: var(--ysv-paddy);
+  }
+
+  /* Ghost text button */
+  .yasvik-btn-ghost {
+    @apply inline-flex items-center justify-center font-inter font-bold;
+    min-height: 2.75rem;
+    padding-inline: var(--ysv-space-4);
+    border-radius: var(--ysv-button-radius);
+    color: var(--ysv-text-muted);
+    font-size: var(--ysv-text-sm);
+    letter-spacing: var(--ysv-tracking-button);
+  }
+
+  .yasvik-btn-ghost:hover {
+    color: var(--ysv-forest);
+    background: color-mix(in srgb, var(--ysv-monsoon) 60%, transparent);
+  }
+
+  .yasvik-editorial-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--ysv-card-radius);
+    border: 1px solid var(--ysv-border-paper);
+    background: var(--ysv-color-rice-paper);
+    box-shadow: var(--ysv-shadow-paper);
+  }
+
+  .yasvik-editorial-card::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--ysv-shadow-inset-paper);
+  }
+
+  .yasvik-product-card {
+    background: var(--ysv-color-rice-paper);
+    border: 1px solid var(--ysv-color-border);
+    border-radius: var(--ysv-card-radius);
+    box-shadow: var(--ysv-shadow-paper);
+  }
+
+  .yasvik-trace-ribbon {
+    @apply inline-flex items-center rounded-full font-inter;
+    background: color-mix(in srgb, var(--ysv-paddy) 12%, transparent);
+    color: var(--ysv-forest);
+    border: 1px solid color-mix(in srgb, var(--ysv-paddy) 28%, transparent);
+  }
+
+  .yasvik-paper-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ysv-forest) 16%, transparent), transparent);
+  }
+
+  .yasvik-section-shell {
+    padding-block: var(--ysv-section-y);
+    padding-inline: var(--ysv-section-x);
+  }
+
+  @media (min-width: 768px) {
+    .yasvik-section-shell {
+      padding-block: var(--ysv-section-y-md);
+      padding-inline: var(--ysv-section-x-md);
+    }
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.premium-haptic-pulse {
+  animation: visualSpring 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center center;
+}
+
+@keyframes visualSpring {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .premium-haptic-pulse {
+    animation: none;
+  }
+
+  .yasvik-pressable:active {
+    transform: none;
+  }
+}
