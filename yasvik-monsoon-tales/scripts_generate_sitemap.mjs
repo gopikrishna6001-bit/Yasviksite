@@ -5,6 +5,11 @@ const rootDir = process.cwd();
 const publicDir = path.join(rootDir, 'public');
 const sitemapPath = path.join(publicDir, 'sitemap.xml');
 const canonicalOrigin = 'https://www.yasvik.com';
+const STATIC_URL_COUNT = 4;
+const OVERRIDE_ENV = 'YASVIK_SITEMAP_ALLOW_STATIC';
+
+const isProductionBuild = process.env.npm_lifecycle_event === 'prebuild';
+const allowStaticOverride = process.env[OVERRIDE_ENV] === '1';
 
 function readEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return {};
@@ -73,12 +78,16 @@ async function fetchRows({ supabaseUrl, anonKey, table, select, filter = '', lim
   return res.json();
 }
 
-async function fetchOptionalRows(options) {
+async function fetchCatalogRows(options) {
   try {
-    return await fetchRows(options);
+    const rows = await fetchRows(options);
+    return { table: options.table, rows, error: null };
   } catch (error) {
+    if (isProductionBuild) {
+      return { table: options.table, rows: [], error: error.message };
+    }
     console.warn(`[sitemap] skipped ${options.table}: ${error.message}`);
-    return [];
+    return { table: options.table, rows: [], error: null };
   }
 }
 
@@ -89,6 +98,37 @@ function rowToUrlItems(rows, toPath, priority, changefreq, updatedField = 'updat
     changefreq,
     lastmod: fmtDate(row[updatedField] || row.created_at || null),
   }));
+}
+
+function formatOverrideHint() {
+  return `Set ${OVERRIDE_ENV}=1 to force the ${STATIC_URL_COUNT}-URL static sitemap anyway.`;
+}
+
+function failProductionSitemap(reason, details = []) {
+  const lines = [
+    '',
+    '[sitemap] PRODUCTION BUILD BLOCKED',
+    `[sitemap] ${reason}`,
+    ...details.map((line) => `[sitemap] ${line}`),
+    `[sitemap] A static-only sitemap would shrink SEO coverage from the full published catalog to ${STATIC_URL_COUNT} URLs.`,
+    `[sitemap] ${formatOverrideHint()}`,
+    '',
+  ];
+  console.error(lines.join('\n'));
+  process.exit(1);
+}
+
+function warnProductionStaticOverride(reason, details = []) {
+  const lines = [
+    '',
+    '[sitemap] ⚠️  PRODUCTION OVERRIDE ACTIVE — STATIC SITEMAP ONLY',
+    `[sitemap] ${reason}`,
+    ...details.map((line) => `[sitemap] ${line}`),
+    `[sitemap] Writing only ${STATIC_URL_COUNT} static URLs because ${OVERRIDE_ENV}=1.`,
+    '[sitemap] Remove the override once Supabase env and catalog fetch are healthy.',
+    '',
+  ];
+  console.error(lines.join('\n'));
 }
 
 async function buildSitemapEntries() {
@@ -102,64 +142,109 @@ async function buildSitemapEntries() {
     { loc: `${canonicalOrigin}/contact`, changefreq: 'monthly', priority: '0.5' },
   ];
 
-  if (!supabaseUrl || !anonKey) return staticEntries;
+  if (!supabaseUrl || !anonKey) {
+    if (isProductionBuild) {
+      const reason = 'Supabase env is missing (VITE_SUPABASE_URL and/or VITE_SUPABASE_ANON_KEY).';
+      const details = [
+        'Add credentials to .env.local or the build environment before production deploy.',
+      ];
+      if (allowStaticOverride) {
+        warnProductionStaticOverride(reason, details);
+        return staticEntries;
+      }
+      failProductionSitemap(reason, details);
+    }
 
-  const [products, journeys, stories, people, categories, recipes] = await Promise.all([
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+    console.warn('[sitemap] Supabase env missing; using static routes only (local/dev fallback).');
+    return staticEntries;
+  }
+
+  const catalogSources = [
+    {
       table: 'products',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-    }),
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+      toPath: (r) => `/product/${r.id}`,
+      priority: '0.9',
+      changefreq: 'daily',
+    },
+    {
       table: 'journeys',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-    }),
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+      toPath: (r) => `/journeys/${r.id}`,
+      priority: '0.8',
+      changefreq: 'weekly',
+    },
+    {
       table: 'stories',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-    }),
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+      toPath: (r) => `/stories/${r.id}`,
+      priority: '0.8',
+      changefreq: 'weekly',
+    },
+    {
       table: 'people',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-    }),
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+      toPath: (r) => `/people/${r.id}`,
+      priority: '0.8',
+      changefreq: 'weekly',
+    },
+    {
       table: 'categories',
       select: 'id,updated_at,created_at,is_active',
       filter: 'is_active=eq.true',
-    }),
-    fetchOptionalRows({
-      supabaseUrl,
-      anonKey,
+      toPath: (r) => `/shop?category=${r.id}`,
+      priority: '0.7',
+      changefreq: 'weekly',
+    },
+    {
       table: 'recipes',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-    }),
-  ]);
-
-  const dynamicEntries = [
-    ...rowToUrlItems(products, (r) => `/product/${r.id}`, '0.9', 'daily'),
-    ...rowToUrlItems(journeys, (r) => `/journeys/${r.id}`, '0.8', 'weekly'),
-    ...rowToUrlItems(stories, (r) => `/stories/${r.id}`, '0.8', 'weekly'),
-    ...rowToUrlItems(people, (r) => `/people/${r.id}`, '0.8', 'weekly'),
-    ...rowToUrlItems(categories, (r) => `/shop?category=${r.id}`, '0.7', 'weekly'),
-    ...rowToUrlItems(recipes, (r) => `/recipes/${r.id}`, '0.7', 'weekly'),
+      toPath: (r) => `/recipes/${r.id}`,
+      priority: '0.7',
+      changefreq: 'weekly',
+    },
   ];
 
+  const results = await Promise.all(
+    catalogSources.map(({ table, select, filter }) =>
+      fetchCatalogRows({ supabaseUrl, anonKey, table, select, filter }),
+    ),
+  );
+
+  const fetchFailures = results.filter((result) => result.error);
+  const dynamicEntries = results.flatMap((result, index) => {
+    const source = catalogSources[index];
+    return rowToUrlItems(
+      result.rows,
+      source.toPath,
+      source.priority,
+      source.changefreq,
+    );
+  });
+
+  if (isProductionBuild && (fetchFailures.length > 0 || dynamicEntries.length === 0)) {
+    const reason = fetchFailures.length > 0
+      ? 'One or more Supabase catalog fetches failed during production build.'
+      : 'Supabase catalog fetch returned zero publishable URLs during production build.';
+    const details = fetchFailures.length > 0
+      ? fetchFailures.map(({ table, error }) => `${table}: ${error}`)
+      : ['Verify published products/categories/recipes exist and RLS allows anon read.'];
+
+    if (allowStaticOverride) {
+      warnProductionStaticOverride(reason, details);
+      return staticEntries;
+    }
+
+    failProductionSitemap(reason, details);
+  }
+
   if (dynamicEntries.length === 0) {
-    console.warn('[sitemap] dynamic sources returned no rows; using static routes only');
+    console.warn('[sitemap] dynamic sources returned no rows; using static routes only (local/dev fallback).');
   }
 
   return [...staticEntries, ...dynamicEntries];
