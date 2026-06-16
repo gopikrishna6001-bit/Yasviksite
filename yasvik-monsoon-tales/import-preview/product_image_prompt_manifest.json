@@ -1,0 +1,1205 @@
+{
+  "source": "/Users/macbookprom3/Downloads/yasvik_full_product_image_prompt_sheet (2).xlsx",
+  "products": [
+    {
+      "product_slug": "whole-wheat",
+      "source_prompt_slug": "whole-wheat",
+      "title": "Whole Wheat",
+      "local_name": "Godhumalu",
+      "category": "Staples & Grains",
+      "visual_family": "Grain",
+      "ingredient_form": "whole grain",
+      "primary_color": "golden brown",
+      "recommended_units": "1kg|5kg",
+      "product_purpose": "Clean whole wheat grains for chapati, grinding, and regular home use.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole grain; color should read as golden brown. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "whole-wheat-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Wheat (Godhumalu), shown as whole grain, with primary color golden brown. whole grain texture clear; clean spread or bowl composition; no farm-scene overkill. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "whole-wheat-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Wheat (Godhumalu), shown as whole grain, with primary color golden brown. whole grain texture clear; clean spread or bowl composition; no farm-scene overkill. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "whole-wheat-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Wheat (Godhumalu), shown as whole grain, with primary color golden brown. whole grain texture clear; clean spread or bowl composition; no farm-scene overkill. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "whole-wheat-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Wheat (Godhumalu), shown as whole grain, with primary color golden brown. whole grain texture clear; clean spread or bowl composition; no farm-scene overkill. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "kabuli-chana",
+      "source_prompt_slug": "kabuli-chana",
+      "title": "Kabuli Chana",
+      "local_name": "Kabuli Senagalu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole chickpea",
+      "primary_color": "cream beige",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Large white chickpeas for chole, curries, salads, and sundal-style snacks.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole chickpea; color should read as cream beige. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "kabuli-chana-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Kabuli Chana (Kabuli Senagalu), shown as whole chickpea, with primary color cream beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "kabuli-chana-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Kabuli Chana (Kabuli Senagalu), shown as whole chickpea, with primary color cream beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "kabuli-chana-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Kabuli Chana (Kabuli Senagalu), shown as whole chickpea, with primary color cream beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "kabuli-chana-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Kabuli Chana (Kabuli Senagalu), shown as whole chickpea, with primary color cream beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "masoor-dal",
+      "source_prompt_slug": "masoor-dal",
+      "title": "Masoor Dal",
+      "local_name": "Masoor Pappu",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal",
+      "ingredient_form": "split lentil",
+      "primary_color": "orange red",
+      "recommended_units": "500g",
+      "product_purpose": "Quick-cooking dal for everyday dal, soups, and light home meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split lentil; color should read as orange red. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "masoor-dal-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Masoor Dal (Masoor Pappu), shown as split lentil, with primary color orange red. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "masoor-dal-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Masoor Dal (Masoor Pappu), shown as split lentil, with primary color orange red. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "masoor-dal-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Masoor Dal (Masoor Pappu), shown as split lentil, with primary color orange red. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "masoor-dal-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Masoor Dal (Masoor Pappu), shown as split lentil, with primary color orange red. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "whole-green-gram",
+      "source_prompt_slug": "whole-green-gram",
+      "title": "Whole Green Gram",
+      "local_name": "Pesarlu Raw",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole green gram",
+      "primary_color": "green",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Whole pesarlu for pesarattu, sprouts, guggillu, and light protein-rich meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole green gram; color should read as green. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "whole-green-gram-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Green Gram (Pesarlu Raw), shown as whole green gram, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "whole-green-gram-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Green Gram (Pesarlu Raw), shown as whole green gram, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "whole-green-gram-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Green Gram (Pesarlu Raw), shown as whole green gram, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "whole-green-gram-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Green Gram (Pesarlu Raw), shown as whole green gram, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "poha-flattened-rice",
+      "source_prompt_slug": "poha-flattened-rice",
+      "title": "Poha / Flattened Rice",
+      "local_name": "Atukulu",
+      "category": "Breakfast Essentials",
+      "visual_family": "Flake",
+      "ingredient_form": "flattened rice flakes",
+      "primary_color": "off white",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Atukulu for quick breakfast, upma, mixture, and simple evening snacks.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like flattened rice flakes; color should read as off white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "poha-flattened-rice-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Poha / Flattened Rice (Atukulu), shown as flattened rice flakes, with primary color off white. flattened flakes clearly visible; light clean breakfast-essential styling. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "poha-flattened-rice-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Poha / Flattened Rice (Atukulu), shown as flattened rice flakes, with primary color off white. flattened flakes clearly visible; light clean breakfast-essential styling. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "poha-flattened-rice-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Poha / Flattened Rice (Atukulu), shown as flattened rice flakes, with primary color off white. flattened flakes clearly visible; light clean breakfast-essential styling. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "poha-flattened-rice-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Poha / Flattened Rice (Atukulu), shown as flattened rice flakes, with primary color off white. flattened flakes clearly visible; light clean breakfast-essential styling. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "upma-sooji-rava",
+      "source_prompt_slug": "upma-sooji-rava",
+      "title": "Upma Sooji / Rava",
+      "local_name": "Ravva",
+      "category": "Breakfast Essentials",
+      "visual_family": "Coarse Grain",
+      "ingredient_form": "coarse semolina",
+      "primary_color": "cream pale yellow",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Rava for upma, halwa, dosa batter support, and daily tiffin cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like coarse semolina; color should read as cream pale yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "upma-sooji-rava-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Upma Sooji / Rava (Ravva), shown as coarse semolina, with primary color cream pale yellow. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "upma-sooji-rava-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Upma Sooji / Rava (Ravva), shown as coarse semolina, with primary color cream pale yellow. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "upma-sooji-rava-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Upma Sooji / Rava (Ravva), shown as coarse semolina, with primary color cream pale yellow. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "upma-sooji-rava-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Upma Sooji / Rava (Ravva), shown as coarse semolina, with primary color cream pale yellow. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "flax-seeds",
+      "source_prompt_slug": "flax-seeds",
+      "title": "Flax Seeds",
+      "local_name": "Aviselu",
+      "category": "Seeds & Superfoods",
+      "visual_family": "Seed",
+      "ingredient_form": "small glossy seed",
+      "primary_color": "brown",
+      "recommended_units": "100g|250g|500g",
+      "product_purpose": "Aviselu for podi, chutney powders, laddus, and small daily seed use.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like small glossy seed; color should read as brown. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "flax-seeds-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Flax Seeds (Aviselu), shown as small glossy seed, with primary color brown. macro seed texture; wooden spoon and small bowl; premium detail-focused composition. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "flax-seeds-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Flax Seeds (Aviselu), shown as small glossy seed, with primary color brown. macro seed texture; wooden spoon and small bowl; premium detail-focused composition. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "flax-seeds-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Flax Seeds (Aviselu), shown as small glossy seed, with primary color brown. macro seed texture; wooden spoon and small bowl; premium detail-focused composition. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "flax-seeds-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Flax Seeds (Aviselu), shown as small glossy seed, with primary color brown. macro seed texture; wooden spoon and small bowl; premium detail-focused composition. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "whole-toor",
+      "source_prompt_slug": "whole-toor",
+      "title": "Whole Toor",
+      "local_name": "Kandulu Raw",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole pigeon pea",
+      "primary_color": "brown beige",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Raw kandulu for traditional soaking, sprouting, or regional pulse cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole pigeon pea; color should read as brown beige. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "whole-toor-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Toor (Kandulu Raw), shown as whole pigeon pea, with primary color brown beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "whole-toor-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Toor (Kandulu Raw), shown as whole pigeon pea, with primary color brown beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "whole-toor-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Toor (Kandulu Raw), shown as whole pigeon pea, with primary color brown beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "whole-toor-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Toor (Kandulu Raw), shown as whole pigeon pea, with primary color brown beige. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "idly-rava",
+      "source_prompt_slug": "idly-rava",
+      "title": "Idly Rava",
+      "local_name": "Idly Ravva",
+      "category": "Breakfast Essentials",
+      "visual_family": "Coarse Grain",
+      "ingredient_form": "coarse rice rava",
+      "primary_color": "white cream",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Idly ravva for soft idli batter and regular South Indian breakfast preparation.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like coarse rice rava; color should read as white cream. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "idly-rava-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "idly-rava-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "idly-rava-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "idly-rava-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "white-jowar",
+      "source_prompt_slug": "white-jowar",
+      "title": "White Jowar",
+      "local_name": "White Jonnalu",
+      "category": "Millets & Grains",
+      "visual_family": "Millet Grain",
+      "ingredient_form": "whole sorghum grain",
+      "primary_color": "pearl white",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "White jowar for rotte, flour grinding, ambali, and millet-based meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole sorghum grain; color should read as pearl white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-jowar-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Jowar (White Jonnalu), shown as whole sorghum grain, with primary color pearl white. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-jowar-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Jowar (White Jonnalu), shown as whole sorghum grain, with primary color pearl white. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-jowar-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Jowar (White Jonnalu), shown as whole sorghum grain, with primary color pearl white. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-jowar-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Jowar (White Jonnalu), shown as whole sorghum grain, with primary color pearl white. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "whole-urad",
+      "source_prompt_slug": "whole-urad",
+      "title": "Whole Urad",
+      "local_name": "Minumulu Raw",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole black gram",
+      "primary_color": "black with white interior",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Whole minumulu for dosa, idli batter, garelu, and traditional pulse cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole black gram; color should read as black with white interior. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "whole-urad-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Urad (Minumulu Raw), shown as whole black gram, with primary color black with white interior. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "whole-urad-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Urad (Minumulu Raw), shown as whole black gram, with primary color black with white interior. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "whole-urad-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Urad (Minumulu Raw), shown as whole black gram, with primary color black with white interior. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "whole-urad-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Whole Urad (Minumulu Raw), shown as whole black gram, with primary color black with white interior. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "white-peas",
+      "source_prompt_slug": "white-peas",
+      "title": "White Peas",
+      "local_name": "White Batani",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole dried pea",
+      "primary_color": "pale cream",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "White batani for curries, masala peas, chaat-style dishes, and snacks.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole dried pea; color should read as pale cream. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-peas-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Peas (White Batani), shown as whole dried pea, with primary color pale cream. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-peas-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Peas (White Batani), shown as whole dried pea, with primary color pale cream. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-peas-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Peas (White Batani), shown as whole dried pea, with primary color pale cream. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-peas-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Peas (White Batani), shown as whole dried pea, with primary color pale cream. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "brown-chana",
+      "source_prompt_slug": "brown-chana",
+      "title": "Brown Chana",
+      "local_name": "Chenagalu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole brown chickpea",
+      "primary_color": "brown",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Brown chana for curries, sundal, guggillu, and regular protein-rich cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole brown chickpea; color should read as brown. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "brown-chana-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Brown Chana (Chenagalu), shown as whole brown chickpea, with primary color brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "brown-chana-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Brown Chana (Chenagalu), shown as whole brown chickpea, with primary color brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "brown-chana-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Brown Chana (Chenagalu), shown as whole brown chickpea, with primary color brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "brown-chana-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Brown Chana (Chenagalu), shown as whole brown chickpea, with primary color brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "roasted-gram",
+      "source_prompt_slug": "roasted-gram",
+      "title": "Roasted Gram",
+      "local_name": "Putnalu",
+      "category": "Snacks & Cooking Essentials",
+      "visual_family": "Roasted Pulse",
+      "ingredient_form": "roasted split gram",
+      "primary_color": "pale yellow cream",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Putnalu for chutneys, podi, snacks, and quick kitchen use.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like roasted split gram; color should read as pale yellow cream. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "roasted-gram-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Roasted Gram (Putnalu), shown as roasted split gram, with primary color pale yellow cream. roasted split gram texture and pale color clear; kitchen-use composition. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "roasted-gram-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Roasted Gram (Putnalu), shown as roasted split gram, with primary color pale yellow cream. roasted split gram texture and pale color clear; kitchen-use composition. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "roasted-gram-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Roasted Gram (Putnalu), shown as roasted split gram, with primary color pale yellow cream. roasted split gram texture and pale color clear; kitchen-use composition. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "roasted-gram-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Roasted Gram (Putnalu), shown as roasted split gram, with primary color pale yellow cream. roasted split gram texture and pale color clear; kitchen-use composition. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "yellow-jowar",
+      "source_prompt_slug": "yellow-jowar",
+      "title": "Yellow Jowar",
+      "local_name": "Pacha Jonnalu / Yellow",
+      "category": "Millets & Grains",
+      "visual_family": "Millet Grain",
+      "ingredient_form": "whole sorghum grain",
+      "primary_color": "pale yellow",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Yellow jowar for rotte, flour grinding, and millet food rotation.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole sorghum grain; color should read as pale yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "yellow-jowar-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Yellow Jowar (Pacha Jonnalu / Yellow), shown as whole sorghum grain, with primary color pale yellow. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "yellow-jowar-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Yellow Jowar (Pacha Jonnalu / Yellow), shown as whole sorghum grain, with primary color pale yellow. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "yellow-jowar-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Yellow Jowar (Pacha Jonnalu / Yellow), shown as whole sorghum grain, with primary color pale yellow. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "yellow-jowar-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Yellow Jowar (Pacha Jonnalu / Yellow), shown as whole sorghum grain, with primary color pale yellow. whole sorghum/millet grain clearly visible; bowl/spread composition; avoid animal-feed look. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "urad-gota",
+      "source_prompt_slug": "urad-gota",
+      "title": "Urad Gota",
+      "local_name": "Minapa Gundulu",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal",
+      "ingredient_form": "split/dehusked urad gota",
+      "primary_color": "ivory white",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Minapa gundulu for idli, dosa, garelu, and batter-based cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split/dehusked urad gota; color should read as ivory white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "urad-gota-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Urad Gota (Minapa Gundulu), shown as split/dehusked urad gota, with primary color ivory white. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "urad-gota-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Urad Gota (Minapa Gundulu), shown as split/dehusked urad gota, with primary color ivory white. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "urad-gota-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Urad Gota (Minapa Gundulu), shown as split/dehusked urad gota, with primary color ivory white. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "urad-gota-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Urad Gota (Minapa Gundulu), shown as split/dehusked urad gota, with primary color ivory white. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "horse-gram",
+      "source_prompt_slug": "horse-gram",
+      "title": "Horse Gram",
+      "local_name": "Ulavalu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole horse gram",
+      "primary_color": "reddish brown",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Ulavalu for ulava charu, rasam, podi, guggillu, and traditional meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole horse gram; color should read as reddish brown. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "horse-gram-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Horse Gram (Ulavalu), shown as whole horse gram, with primary color reddish brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "horse-gram-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Horse Gram (Ulavalu), shown as whole horse gram, with primary color reddish brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "horse-gram-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Horse Gram (Ulavalu), shown as whole horse gram, with primary color reddish brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "horse-gram-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Horse Gram (Ulavalu), shown as whole horse gram, with primary color reddish brown. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "black-horse-gram",
+      "source_prompt_slug": "black-horse-gram",
+      "title": "Black Horse Gram",
+      "local_name": "Nalla Ulavalu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole black horse gram",
+      "primary_color": "dark brown black",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Nalla ulavalu for deeper-flavoured traditional horse gram preparations.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole black horse gram; color should read as dark brown black. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "black-horse-gram-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Black Horse Gram (Nalla Ulavalu), shown as whole black horse gram, with primary color dark brown black. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "black-horse-gram-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Black Horse Gram (Nalla Ulavalu), shown as whole black horse gram, with primary color dark brown black. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "black-horse-gram-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Black Horse Gram (Nalla Ulavalu), shown as whole black horse gram, with primary color dark brown black. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "black-horse-gram-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Black Horse Gram (Nalla Ulavalu), shown as whole black horse gram, with primary color dark brown black. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "green-peas",
+      "source_prompt_slug": "green-peas",
+      "title": "Green Peas",
+      "local_name": "Green Batani",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "dried green pea",
+      "primary_color": "green",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Green batani for curries, masala peas, rice dishes, and snacks.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like dried green pea; color should read as green. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "green-peas-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Green Peas (Green Batani), shown as dried green pea, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "green-peas-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Green Peas (Green Batani), shown as dried green pea, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "green-peas-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Green Peas (Green Batani), shown as dried green pea, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "green-peas-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Green Peas (Green Batani), shown as dried green pea, with primary color green. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "split-urad-dal-with-skin",
+      "source_prompt_slug": "split-urad-dal-with-skin",
+      "title": "Split Urad Dal with Skin",
+      "local_name": "Minapappu with Skin",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal with Skin",
+      "ingredient_form": "split urad with black skin",
+      "primary_color": "black and white",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Split urad with skin for dal, seasoning-friendly preparations, and traditional cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split urad with black skin; color should read as black and white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "split-urad-dal-with-skin-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Urad Dal with Skin (Minapappu with Skin), shown as split urad with black skin, with primary color black and white. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "split-urad-dal-with-skin-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Urad Dal with Skin (Minapappu with Skin), shown as split urad with black skin, with primary color black and white. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "split-urad-dal-with-skin-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Urad Dal with Skin (Minapappu with Skin), shown as split urad with black skin, with primary color black and white. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "split-urad-dal-with-skin-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Urad Dal with Skin (Minapappu with Skin), shown as split urad with black skin, with primary color black and white. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "split-moong-dal-with-skin",
+      "source_prompt_slug": "split-moong-dal-with-skin",
+      "title": "Split Moong Dal with Skin",
+      "local_name": "Pesara Pappu with Skin",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal with Skin",
+      "ingredient_form": "split moong with green skin",
+      "primary_color": "green and yellow",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Pesara pappu with skin for light dal, khichdi, pesarattu-style batter, and everyday meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split moong with green skin; color should read as green and yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "split-moong-dal-with-skin-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Moong Dal with Skin (Pesara Pappu with Skin), shown as split moong with green skin, with primary color green and yellow. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "split-moong-dal-with-skin-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Moong Dal with Skin (Pesara Pappu with Skin), shown as split moong with green skin, with primary color green and yellow. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "split-moong-dal-with-skin-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Moong Dal with Skin (Pesara Pappu with Skin), shown as split moong with green skin, with primary color green and yellow. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "split-moong-dal-with-skin-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Split Moong Dal with Skin (Pesara Pappu with Skin), shown as split moong with green skin, with primary color green and yellow. raw split dal with visible skin; skin color and split interior must be clear; no cooked food as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "red-rajma",
+      "source_prompt_slug": "red-rajma",
+      "title": "Red Rajma",
+      "local_name": "Rajma Red",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Bean",
+      "ingredient_form": "kidney bean",
+      "primary_color": "deep red",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Red rajma for rajma curry, rice meals, and hearty family cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like kidney bean; color should read as deep red. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "red-rajma-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Red Rajma (Rajma Red), shown as kidney bean, with primary color deep red. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "red-rajma-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Red Rajma (Rajma Red), shown as kidney bean, with primary color deep red. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "red-rajma-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Red Rajma (Rajma Red), shown as kidney bean, with primary color deep red. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "red-rajma-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Red Rajma (Rajma Red), shown as kidney bean, with primary color deep red. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "white-rajma",
+      "source_prompt_slug": "white-rajma",
+      "title": "White Rajma",
+      "local_name": "Rajma White",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Bean",
+      "ingredient_form": "white kidney bean",
+      "primary_color": "cream white",
+      "recommended_units": "250g|500g",
+      "product_purpose": "White rajma for mild curries, salads, and North Indian comfort dishes.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like white kidney bean; color should read as cream white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-rajma-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Rajma (Rajma White), shown as white kidney bean, with primary color cream white. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-rajma-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Rajma (Rajma White), shown as white kidney bean, with primary color cream white. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-rajma-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Rajma (Rajma White), shown as white kidney bean, with primary color cream white. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-rajma-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Rajma (Rajma White), shown as white kidney bean, with primary color cream white. whole kidney beans clearly identifiable by shape and color; premium rustic food styling. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "white-lobiya",
+      "source_prompt_slug": "white-cowpea-lobiya",
+      "title": "White Cowpea / Lobiya",
+      "local_name": "Lobiya White",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "white cowpea with eye",
+      "primary_color": "cream with black eye",
+      "recommended_units": "250g|500g",
+      "product_purpose": "White lobiya for curries, sundal-style snacks, salads, and rice/roti meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like white cowpea with eye; color should read as cream with black eye. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-cowpea-lobiya-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-cowpea-lobiya-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-cowpea-lobiya-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-cowpea-lobiya-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "wheat-rava",
+      "source_prompt_slug": "wheat-rava",
+      "title": "Wheat Rava",
+      "local_name": "Godhuma Ravva",
+      "category": "Breakfast Essentials",
+      "visual_family": "Coarse Grain",
+      "ingredient_form": "broken wheat/coarse wheat rava",
+      "primary_color": "brown beige",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Godhuma ravva for upma, porridge, khichdi-style tiffin, and light meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like broken wheat/coarse wheat rava; color should read as brown beige. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "wheat-rava-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Wheat Rava (Godhuma Ravva), shown as broken wheat/coarse wheat rava, with primary color brown beige. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "wheat-rava-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Wheat Rava (Godhuma Ravva), shown as broken wheat/coarse wheat rava, with primary color brown beige. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "wheat-rava-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Wheat Rava (Godhuma Ravva), shown as broken wheat/coarse wheat rava, with primary color brown beige. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "wheat-rava-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Wheat Rava (Godhuma Ravva), shown as broken wheat/coarse wheat rava, with primary color brown beige. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "chana-dal",
+      "source_prompt_slug": "chana-dal",
+      "title": "Chana Dal",
+      "local_name": "Chenaga Pappu",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal",
+      "ingredient_form": "split Bengal gram",
+      "primary_color": "yellow",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Chenaga pappu for dal, vada, chutney powders, sweets, and everyday cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split Bengal gram; color should read as yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "chana-dal-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Chana Dal (Chenaga Pappu), shown as split Bengal gram, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "chana-dal-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Chana Dal (Chenaga Pappu), shown as split Bengal gram, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "chana-dal-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Chana Dal (Chenaga Pappu), shown as split Bengal gram, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "chana-dal-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Chana Dal (Chenaga Pappu), shown as split Bengal gram, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "cowpeas",
+      "source_prompt_slug": "cowpeas-bobbarlu",
+      "title": "Cowpeas",
+      "local_name": "Bobbarlu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole cowpea",
+      "primary_color": "brown/cream with eye",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Bobbarlu for curries, guggillu, sundal-style snacks, and home meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole cowpea; color should read as brown/cream with eye. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "cowpeas-bobbarlu-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "cowpeas-bobbarlu-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "cowpeas-bobbarlu-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "cowpeas-bobbarlu-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "moong-dal",
+      "source_prompt_slug": "moong-dal",
+      "title": "Moong Dal",
+      "local_name": "Pesara Pappu",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal",
+      "ingredient_form": "split yellow moong dal",
+      "primary_color": "yellow",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Pesara pappu for light dal, khichdi, soups, and easy-to-cook daily meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split yellow moong dal; color should read as yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "moong-dal-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Moong Dal (Pesara Pappu), shown as split yellow moong dal, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "moong-dal-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Moong Dal (Pesara Pappu), shown as split yellow moong dal, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "moong-dal-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Moong Dal (Pesara Pappu), shown as split yellow moong dal, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "moong-dal-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Moong Dal (Pesara Pappu), shown as split yellow moong dal, with primary color yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "white-sugar",
+      "source_prompt_slug": "white-sugar",
+      "title": "White Sugar",
+      "local_name": "White Sugar",
+      "category": "Sugar & Sweeteners",
+      "visual_family": "Crystal",
+      "ingredient_form": "granulated sugar crystals",
+      "primary_color": "white",
+      "recommended_units": "1kg|5kg",
+      "product_purpose": "White sugar for tea, coffee, sweets, baking, and daily kitchen use.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like granulated sugar crystals; color should read as white. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-sugar-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Sugar (White Sugar), shown as granulated sugar crystals, with primary color white. granulated crystals clearly visible; avoid looking like salt; clean bright kitchen styling. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-sugar-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Sugar (White Sugar), shown as granulated sugar crystals, with primary color white. granulated crystals clearly visible; avoid looking like salt; clean bright kitchen styling. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-sugar-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Sugar (White Sugar), shown as granulated sugar crystals, with primary color white. granulated crystals clearly visible; avoid looking like salt; clean bright kitchen styling. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-sugar-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Sugar (White Sugar), shown as granulated sugar crystals, with primary color white. granulated crystals clearly visible; avoid looking like salt; clean bright kitchen styling. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "toor-dal",
+      "source_prompt_slug": "toor-dal",
+      "title": "Toor Dal",
+      "local_name": "Kandi Pappu",
+      "category": "Dals & Lentils",
+      "visual_family": "Dal",
+      "ingredient_form": "split pigeon pea",
+      "primary_color": "golden yellow",
+      "recommended_units": "500g|1kg|5kg",
+      "product_purpose": "Kandi pappu for dal, sambar, pappu charu, and regular home cooking.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like split pigeon pea; color should read as golden yellow. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "toor-dal-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Toor Dal (Kandi Pappu), shown as split pigeon pea, with primary color golden yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "toor-dal-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Toor Dal (Kandi Pappu), shown as split pigeon pea, with primary color golden yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "toor-dal-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Toor Dal (Kandi Pappu), shown as split pigeon pea, with primary color golden yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "toor-dal-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Toor Dal (Kandi Pappu), shown as split pigeon pea, with primary color golden yellow. raw split dal in ceramic or brass bowl; color and split texture must be accurate; no cooked dal as hero. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    }
+  ]
+}

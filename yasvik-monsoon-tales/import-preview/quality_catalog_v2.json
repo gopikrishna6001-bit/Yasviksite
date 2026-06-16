@@ -1,0 +1,3433 @@
+{
+  "source": "/Users/macbookprom3/Downloads/yasvik_codex_products_quality_copy_recipe_mapping_v2.xlsx",
+  "products": [
+    {
+      "product_code": "YAS-001",
+      "slug": "whole-wheat",
+      "title": "Whole Wheat",
+      "name": "Whole Wheat",
+      "local_name": "Godhumalu",
+      "category_name": "Staples & Grains",
+      "sku": "YAS-001",
+      "price": 55.0,
+      "compare_price": 65.0,
+      "currency": "INR",
+      "stock": 25,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-001",
+      "shared_stock_kg": 25.0,
+      "short_description": "Quality-assured Godhumalu / Whole Wheat for chapati, wheat rava, homemade flour and regular family cooking.",
+      "description": "Godhumalu / Whole Wheat is a practical kitchen essential used in chapati, wheat rava, homemade flour and regular family cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean grains, everyday freshness and dependable home use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Chapati, wheat rava, homemade flour and regular family cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole grain",
+      "seo_title": "Whole Wheat Online | Yasvik",
+      "seo_description": "Buy Godhumalu / Whole Wheat from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Whole Wheat, Godhumalu, Staples & Grains, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R029",
+      "recipe_titles": "Chapati / Homemade Flour",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R029",
+          "title": "Chapati / Homemade Flour",
+          "slug": "chapati-homemade-flour",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "1kg",
+          "sku": "YAS-001-1KG",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 25,
+          "stock_source_kg": 25.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-001-5KG",
+          "price": 270.0,
+          "compare_price": 320.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 5,
+          "stock_source_kg": 25.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-002",
+      "slug": "kabuli-chana",
+      "title": "Kabuli Chana",
+      "name": "Kabuli Chana",
+      "local_name": "Kabuli Senagalu",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-002",
+      "price": 155.0,
+      "compare_price": 175.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-002",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Kabuli Senagalu / Kabuli Chana for chole, sundal, salads and protein-rich curry meals.",
+      "description": "Kabuli Senagalu / Kabuli Chana is a practical kitchen essential used in chole, sundal, salads and protein-rich curry meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for good grain size, soaking quality and clean cooking results. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Chole, sundal, salads and protein-rich curry meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Kabuli Chana Online | Yasvik",
+      "seo_description": "Buy Kabuli Senagalu / Kabuli Chana from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Kabuli Chana, Kabuli Senagalu, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R013",
+      "recipe_titles": "Kabuli Chana Chole",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R013",
+          "title": "Kabuli Chana Chole",
+          "slug": "kabuli-chana-chole",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-002-500G",
+          "price": 90.0,
+          "compare_price": 100.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-002-1KG",
+          "price": 155.0,
+          "compare_price": 175.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-003",
+      "slug": "masoor-dal",
+      "title": "Masoor Dal",
+      "name": "Masoor Dal",
+      "local_name": "Masoor Pappu",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-003",
+      "price": 129.0,
+      "compare_price": 145.0,
+      "currency": "INR",
+      "stock": 5,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-003",
+      "shared_stock_kg": 5.0,
+      "short_description": "Quality-assured Masoor Pappu / Masoor Dal for quick dal, soups, khichdi and light everyday meals.",
+      "description": "Masoor Pappu / Masoor Dal is a practical kitchen essential used in quick dal, soups, khichdi and light everyday meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for quick cooking, clean dal texture and reliable taste. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Quick dal, soups, khichdi and light everyday meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal",
+      "seo_title": "Masoor Dal Online | Yasvik",
+      "seo_description": "Buy Masoor Pappu / Masoor Dal from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Masoor Dal, Masoor Pappu, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R020",
+      "recipe_titles": "Masoor Dal",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R020",
+          "title": "Masoor Dal",
+          "slug": "masoor-dal",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-003-500G",
+          "price": 75.0,
+          "compare_price": 80.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 10,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-003-1KG",
+          "price": 129.0,
+          "compare_price": 145.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 5,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-004",
+      "slug": "whole-green-gram",
+      "title": "Whole Green Gram",
+      "name": "Whole Green Gram",
+      "local_name": "Pesarlu Raw",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-004",
+      "price": 155.0,
+      "compare_price": 175.0,
+      "currency": "INR",
+      "stock": 5,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-004",
+      "shared_stock_kg": 5.0,
+      "short_description": "Quality-assured Pesarlu Raw / Whole Green Gram for pesarattu, sprouts, sundal, curries and light protein meals.",
+      "description": "Pesarlu Raw / Whole Green Gram is a practical kitchen essential used in pesarattu, sprouts, sundal, curries and light protein meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for sprouting potential, clean grains and regular kitchen use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Pesarattu, sprouts, sundal, curries and light protein meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Whole Green Gram Online | Yasvik",
+      "seo_description": "Buy Pesarlu Raw / Whole Green Gram from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Whole Green Gram, Pesarlu Raw, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R011",
+      "recipe_titles": "Pesarattu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R011",
+          "title": "Pesarattu",
+          "slug": "pesarattu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-004-500G",
+          "price": 90.0,
+          "compare_price": 100.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 10,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-004-1KG",
+          "price": 155.0,
+          "compare_price": 175.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 5,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-005",
+      "slug": "poha-flattened-rice",
+      "title": "Poha / Flattened Rice",
+      "name": "Poha / Flattened Rice",
+      "local_name": "Atukulu",
+      "category_name": "Breakfast Essentials",
+      "sku": "YAS-005",
+      "price": 82.0,
+      "compare_price": 95.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-005",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Atukulu / Poha / Flattened Rice for atukula upma, poha, quick breakfasts and evening snacks.",
+      "description": "Atukulu / Poha / Flattened Rice is a practical kitchen essential used in atukula upma, poha, quick breakfasts and evening snacks. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for practical breakfast use, clean flakes and easy cooking. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Atukula upma, poha, quick breakfasts and evening snacks.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Flattened rice",
+      "seo_title": "Poha / Flattened Rice Online | Yasvik",
+      "seo_description": "Buy Atukulu / Poha / Flattened Rice from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Poha / Flattened Rice, Atukulu, Breakfast Essentials, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R009",
+      "recipe_titles": "Atukula Upma",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R009",
+          "title": "Atukula Upma",
+          "slug": "atukula-upma",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-005-500G",
+          "price": 50.0,
+          "compare_price": 55.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-005-1KG",
+          "price": 82.0,
+          "compare_price": 95.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-006",
+      "slug": "upma-sooji-rava",
+      "title": "Upma Sooji / Rava",
+      "name": "Upma Sooji / Rava",
+      "local_name": "Ravva / Upma Sooji",
+      "category_name": "Breakfast Essentials",
+      "sku": "YAS-006",
+      "price": 58.0,
+      "compare_price": 68.0,
+      "currency": "INR",
+      "stock": 20,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-006",
+      "shared_stock_kg": 20.0,
+      "short_description": "Quality-assured Ravva / Upma Sooji / Upma Sooji / Rava for upma, rava dosa, rava idli, halwa and breakfast cooking.",
+      "description": "Ravva / Upma Sooji / Upma Sooji / Rava is a practical kitchen essential used in upma, rava dosa, rava idli, halwa and breakfast cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — kept as a daily kitchen staple with fair pricing and practical packs. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Upma, rava dosa, rava idli, halwa and breakfast cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Milled cereal",
+      "seo_title": "Upma Sooji / Rava Online | Yasvik",
+      "seo_description": "Buy Ravva / Upma Sooji / Upma Sooji / Rava from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Upma Sooji / Rava, Ravva / Upma Sooji, Breakfast Essentials, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R008|R027",
+      "recipe_titles": "Upma|Rava Laddu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R008",
+          "title": "Upma",
+          "slug": "upma",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R027",
+          "title": "Rava Laddu",
+          "slug": "rava-laddu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-006-500G",
+          "price": 35.0,
+          "compare_price": 40.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 40,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-006-1KG",
+          "price": 58.0,
+          "compare_price": 68.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 20,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-006-5KG",
+          "price": 285.0,
+          "compare_price": 330.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 4,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-007",
+      "slug": "flax-seeds",
+      "title": "Flax Seeds",
+      "name": "Flax Seeds",
+      "local_name": "Aviselu",
+      "category_name": "Seeds & Superfoods",
+      "sku": "YAS-007",
+      "price": 229.0,
+      "compare_price": 269.0,
+      "currency": "INR",
+      "stock": 5,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-007",
+      "shared_stock_kg": 5.0,
+      "short_description": "Quality-assured Aviselu / Flax Seeds for podi, smoothies, chutney powders, laddus and nutrition add-ons.",
+      "description": "Aviselu / Flax Seeds is a practical kitchen essential used in podi, smoothies, chutney powders, laddus and nutrition add-ons. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected as a small-quantity superfood where freshness and clean packing matter. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Podi, smoothies, chutney powders, laddus and nutrition add-ons.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Seed",
+      "seo_title": "Flax Seeds Online | Yasvik",
+      "seo_description": "Buy Aviselu / Flax Seeds from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Flax Seeds, Aviselu, Seeds & Superfoods, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R025",
+      "recipe_titles": "Flax Seed Podi",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R025",
+          "title": "Flax Seed Podi",
+          "slug": "flax-seed-podi",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "100g",
+          "sku": "YAS-007-100G",
+          "price": 45.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.1,
+          "weight_grams": 100,
+          "visible_stock_units": 50,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "250g",
+          "sku": "YAS-007-250G",
+          "price": 75.0,
+          "compare_price": 90.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 20,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-007-500G",
+          "price": 130.0,
+          "compare_price": 150.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 10,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-008",
+      "slug": "whole-toor",
+      "title": "Whole Toor",
+      "name": "Whole Toor",
+      "local_name": "Kandulu Raw",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-008",
+      "price": 145.0,
+      "compare_price": 165.0,
+      "currency": "INR",
+      "stock": 5,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-008",
+      "shared_stock_kg": 5.0,
+      "short_description": "Quality-assured Kandulu Raw / Whole Toor for traditional whole pulse cooking, guggillu and home-style curries.",
+      "description": "Kandulu Raw / Whole Toor is a practical kitchen essential used in traditional whole pulse cooking, guggillu and home-style curries. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean whole grains and regular cooking reliability. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Traditional whole pulse cooking, guggillu and home-style curries.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Whole Toor Online | Yasvik",
+      "seo_description": "Buy Kandulu Raw / Whole Toor from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Whole Toor, Kandulu Raw, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R030",
+      "recipe_titles": "Kandula Guggillu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R030",
+          "title": "Kandula Guggillu",
+          "slug": "kandula-guggillu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-008-500G",
+          "price": 80.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 10,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-008-1KG",
+          "price": 145.0,
+          "compare_price": 165.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 5,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-009",
+      "slug": "idly-rava",
+      "title": "Idly Rava",
+      "name": "Idly Rava",
+      "local_name": "Idly Ravva",
+      "category_name": "Breakfast Essentials",
+      "sku": "YAS-009",
+      "price": 55.0,
+      "compare_price": 65.0,
+      "currency": "INR",
+      "stock": 20,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-009",
+      "shared_stock_kg": 20.0,
+      "short_description": "Quality-assured Idly Ravva / Idly Rava for idli batter, breakfast prep and regular South Indian cooking.",
+      "description": "Idly Ravva / Idly Rava is a practical kitchen essential used in idli batter, breakfast prep and regular South Indian cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for practical batter use, clean texture and fair daily pricing. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Idli batter, breakfast prep and regular South Indian cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Coarse rice rava",
+      "seo_title": "Idly Rava Online | Yasvik",
+      "seo_description": "Buy Idly Ravva / Idly Rava from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Idly Rava, Idly Ravva, Breakfast Essentials, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R006",
+      "recipe_titles": "Idli Batter",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R006",
+          "title": "Idli Batter",
+          "slug": "idli-batter",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-009-500G",
+          "price": 35.0,
+          "compare_price": 40.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 40,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-009-1KG",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 20,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-009-5KG",
+          "price": 270.0,
+          "compare_price": 320.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 4,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-010",
+      "slug": "white-jowar",
+      "title": "White Jowar",
+      "name": "White Jowar",
+      "local_name": "White Jonnalu",
+      "category_name": "Rice & Millets",
+      "sku": "YAS-010",
+      "price": 95.0,
+      "compare_price": 110.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-010",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured White Jonnalu / White Jowar for jowar roti, porridge, flour blends and millet-based meals.",
+      "description": "White Jonnalu / White Jowar is a practical kitchen essential used in jowar roti, porridge, flour blends and millet-based meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for grain clarity, traditional use and better everyday choices. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Jowar roti, porridge, flour blends and millet-based meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole millet/grain",
+      "seo_title": "White Jowar Online | Yasvik",
+      "seo_description": "Buy White Jonnalu / White Jowar from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "White Jowar, White Jonnalu, Rice & Millets, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R024",
+      "recipe_titles": "Jowar Roti",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R024",
+          "title": "Jowar Roti",
+          "slug": "jowar-roti",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-010-500G",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-010-1KG",
+          "price": 95.0,
+          "compare_price": 110.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-011",
+      "slug": "whole-urad",
+      "title": "Whole Urad",
+      "name": "Whole Urad",
+      "local_name": "Minumulu Raw",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-011",
+      "price": 145.0,
+      "compare_price": 165.0,
+      "currency": "INR",
+      "stock": 5,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-011",
+      "shared_stock_kg": 5.0,
+      "short_description": "Quality-assured Minumulu Raw / Whole Urad for batter, dal preparations, sundal and traditional recipes.",
+      "description": "Minumulu Raw / Whole Urad is a practical kitchen essential used in batter, dal preparations, sundal and traditional recipes. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean grains and dependable soaking or cooking use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Batter, dal preparations, sundal and traditional recipes.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Whole Urad Online | Yasvik",
+      "seo_description": "Buy Minumulu Raw / Whole Urad from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Whole Urad, Minumulu Raw, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R031",
+      "recipe_titles": "Whole Urad Sundal",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R031",
+          "title": "Whole Urad Sundal",
+          "slug": "whole-urad-sundal",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-011-500G",
+          "price": 80.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 10,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-011-1KG",
+          "price": 145.0,
+          "compare_price": 165.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 5,
+          "stock_source_kg": 5.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-012",
+      "slug": "white-peas",
+      "title": "White Peas",
+      "name": "White Peas",
+      "local_name": "White Batani",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-012",
+      "price": 78.0,
+      "compare_price": 90.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-012",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured White Batani / White Peas for masala curry, chaat, ragda, sundal and snack-style cooking.",
+      "description": "White Batani / White Peas is a practical kitchen essential used in masala curry, chaat, ragda, sundal and snack-style cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — kept as a useful value pulse with clean packing and fair pricing. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Masala curry, chaat, ragda, sundal and snack-style cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "White Peas Online | Yasvik",
+      "seo_description": "Buy White Batani / White Peas from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "White Peas, White Batani, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R014",
+      "recipe_titles": "White Batani Masala",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R014",
+          "title": "White Batani Masala",
+          "slug": "white-batani-masala",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-012-500G",
+          "price": 45.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-012-1KG",
+          "price": 78.0,
+          "compare_price": 90.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-013",
+      "slug": "brown-chana",
+      "title": "Brown Chana",
+      "name": "Brown Chana",
+      "local_name": "Chenagalu",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-013",
+      "price": 109.0,
+      "compare_price": 125.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-013",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Chenagalu / Brown Chana for sundal, curries, sprouts and everyday protein-rich meals.",
+      "description": "Chenagalu / Brown Chana is a practical kitchen essential used in sundal, curries, sprouts and everyday protein-rich meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for soaking quality, familiar taste and everyday use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Sundal, curries, sprouts and everyday protein-rich meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Brown Chana Online | Yasvik",
+      "seo_description": "Buy Chenagalu / Brown Chana from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Brown Chana, Chenagalu, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R012",
+      "recipe_titles": "Chenagala Sundal",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R012",
+          "title": "Chenagala Sundal",
+          "slug": "chenagala-sundal",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-013-500G",
+          "price": 60.0,
+          "compare_price": 70.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-013-1KG",
+          "price": 109.0,
+          "compare_price": 125.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-014",
+      "slug": "roasted-gram",
+      "title": "Roasted Gram",
+      "name": "Roasted Gram",
+      "local_name": "Putnalu",
+      "category_name": "Snacks & Cooking Essentials",
+      "sku": "YAS-014",
+      "price": 135.0,
+      "compare_price": 155.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-014",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Putnalu / Roasted Gram for chutney, podi, snacks, laddus and quick cooking support.",
+      "description": "Putnalu / Roasted Gram is a practical kitchen essential used in chutney, podi, snacks, laddus and quick cooking support. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean roasted gram, useful small packs and daily kitchen convenience. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Chutney, podi, snacks, laddus and quick cooking support.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Roasted pulse",
+      "seo_title": "Roasted Gram Online | Yasvik",
+      "seo_description": "Buy Putnalu / Roasted Gram from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Roasted Gram, Putnalu, Snacks & Cooking Essentials, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R026",
+      "recipe_titles": "Putnala Chutney",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R026",
+          "title": "Putnala Chutney",
+          "slug": "putnala-chutney",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-014-250G",
+          "price": 45.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-014-500G",
+          "price": 75.0,
+          "compare_price": 90.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-014-1KG",
+          "price": 135.0,
+          "compare_price": 155.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-015",
+      "slug": "yellow-jowar",
+      "title": "Yellow Jowar",
+      "name": "Yellow Jowar",
+      "local_name": "Pacha Jonnalu / Yellow",
+      "category_name": "Rice & Millets",
+      "sku": "YAS-015",
+      "price": 95.0,
+      "compare_price": 110.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-015",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Pacha Jonnalu / Yellow / Yellow Jowar for jowar roti, porridge, flour blends and millet-style cooking.",
+      "description": "Pacha Jonnalu / Yellow / Yellow Jowar is a practical kitchen essential used in jowar roti, porridge, flour blends and millet-style cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for practical grain quality, clean stock and traditional use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Jowar roti, porridge, flour blends and millet-style cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole millet/grain",
+      "seo_title": "Yellow Jowar Online | Yasvik",
+      "seo_description": "Buy Pacha Jonnalu / Yellow / Yellow Jowar from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Yellow Jowar, Pacha Jonnalu / Yellow, Rice & Millets, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R024",
+      "recipe_titles": "Jowar Roti",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R024",
+          "title": "Jowar Roti",
+          "slug": "jowar-roti",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-015-500G",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-015-1KG",
+          "price": 95.0,
+          "compare_price": 110.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-016",
+      "slug": "urad-gota",
+      "title": "Urad Gota",
+      "name": "Urad Gota",
+      "local_name": "Minapa Gundulu",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-016",
+      "price": 149.0,
+      "compare_price": 169.0,
+      "currency": "INR",
+      "stock": 20,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-016",
+      "shared_stock_kg": 20.0,
+      "short_description": "Quality-assured Minapa Gundulu / Urad Gota for idli, dosa, vada, batter and dal preparations.",
+      "description": "Minapa Gundulu / Urad Gota is a practical kitchen essential used in idli, dosa, vada, batter and dal preparations. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for batter performance, clean dal and dependable everyday cooking. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Idli, dosa, vada, batter and dal preparations.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split/dehulled dal",
+      "seo_title": "Urad Gota Online | Yasvik",
+      "seo_description": "Buy Minapa Gundulu / Urad Gota from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Urad Gota, Minapa Gundulu, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R006|R007",
+      "recipe_titles": "Idli Batter|Minapa Garelu / Vada",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R006",
+          "title": "Idli Batter",
+          "slug": "idli-batter",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R007",
+          "title": "Minapa Garelu / Vada",
+          "slug": "minapa-garelu-vada",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-016-500G",
+          "price": 85.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 40,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-016-1KG",
+          "price": 149.0,
+          "compare_price": 169.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 20,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-016-5KG",
+          "price": 725.0,
+          "compare_price": 820.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 4,
+          "stock_source_kg": 20.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-017",
+      "slug": "horse-gram",
+      "title": "Horse Gram",
+      "name": "Horse Gram",
+      "local_name": "Ulavalu",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-017",
+      "price": 125.0,
+      "compare_price": 145.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-017",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Ulavalu / Horse Gram for ulava charu, rasam, sprouts, podi and traditional meals.",
+      "description": "Ulavalu / Horse Gram is a practical kitchen essential used in ulava charu, rasam, sprouts, podi and traditional meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for strong traditional use, clean grains and small-pack trial convenience. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Ulava charu, rasam, sprouts, podi and traditional meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Horse Gram Online | Yasvik",
+      "seo_description": "Buy Ulavalu / Horse Gram from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Horse Gram, Ulavalu, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R019",
+      "recipe_titles": "Ulava Charu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R019",
+          "title": "Ulava Charu",
+          "slug": "ulava-charu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-017-250G",
+          "price": 40.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-017-500G",
+          "price": 70.0,
+          "compare_price": 80.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-017-1KG",
+          "price": 125.0,
+          "compare_price": 145.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-018",
+      "slug": "black-horse-gram",
+      "title": "Black Horse Gram",
+      "name": "Black Horse Gram",
+      "local_name": "Nalla Ulavalu",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-018",
+      "price": 135.0,
+      "compare_price": 155.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-018",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Nalla Ulavalu / Black Horse Gram for ulava charu, guggillu, rasam and traditional home cooking.",
+      "description": "Nalla Ulavalu / Black Horse Gram is a practical kitchen essential used in ulava charu, guggillu, rasam and traditional home cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean grain quality and deeper traditional cooking use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Ulava charu, guggillu, rasam and traditional home cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Black Horse Gram Online | Yasvik",
+      "seo_description": "Buy Nalla Ulavalu / Black Horse Gram from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Black Horse Gram, Nalla Ulavalu, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R019",
+      "recipe_titles": "Ulava Charu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R019",
+          "title": "Ulava Charu",
+          "slug": "ulava-charu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-018-250G",
+          "price": 45.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-018-500G",
+          "price": 75.0,
+          "compare_price": 90.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-018-1KG",
+          "price": 135.0,
+          "compare_price": 155.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-019",
+      "slug": "green-peas",
+      "title": "Green Peas",
+      "name": "Green Peas",
+      "local_name": "Green Batani",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-019",
+      "price": 115.0,
+      "compare_price": 135.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-019",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Green Batani / Green Peas for curries, pulao, masala, snacks and everyday cooking.",
+      "description": "Green Batani / Green Peas is a practical kitchen essential used in curries, pulao, masala, snacks and everyday cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — kept for versatile kitchen use with clean packing and fair online pricing. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Curries, pulao, masala, snacks and everyday cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Green Peas Online | Yasvik",
+      "seo_description": "Buy Green Batani / Green Peas from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Green Peas, Green Batani, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R015",
+      "recipe_titles": "Green Batani Curry",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R015",
+          "title": "Green Batani Curry",
+          "slug": "green-batani-curry",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-019-500G",
+          "price": 65.0,
+          "compare_price": 75.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-019-1KG",
+          "price": 115.0,
+          "compare_price": 135.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-020",
+      "slug": "split-urad-dal-with-skin",
+      "title": "Split Urad Dal with Skin",
+      "name": "Split Urad Dal with Skin",
+      "local_name": "Minapappu with Skin",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-020",
+      "price": 149.0,
+      "compare_price": 169.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-020",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Minapappu with Skin / Split Urad Dal with Skin for dal, vada, chutney support and traditional recipes needing skin-on urad.",
+      "description": "Minapappu with Skin / Split Urad Dal with Skin is a practical kitchen essential used in dal, vada, chutney support and traditional recipes needing skin-on urad. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean split dal and stronger taste in home cooking. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Dal, vada, chutney support and traditional recipes needing skin-on urad.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal with skin",
+      "seo_title": "Split Urad Dal with Skin Online | Yasvik",
+      "seo_description": "Buy Minapappu with Skin / Split Urad Dal with Skin from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Split Urad Dal with Skin, Minapappu with Skin, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R022",
+      "recipe_titles": "Skin-On Urad Dal",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R022",
+          "title": "Skin-On Urad Dal",
+          "slug": "skin-on-urad-dal",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-020-500G",
+          "price": 85.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-020-1KG",
+          "price": 149.0,
+          "compare_price": 169.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-021",
+      "slug": "split-moong-dal-with-skin",
+      "title": "Split Moong Dal with Skin",
+      "name": "Split Moong Dal with Skin",
+      "local_name": "Pesara Pappu with Skin",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-021",
+      "price": 149.0,
+      "compare_price": 169.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-021",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Pesara Pappu with Skin / Split Moong Dal with Skin for dal, khichdi, sprouts-style dishes and light home meals.",
+      "description": "Pesara Pappu with Skin / Split Moong Dal with Skin is a practical kitchen essential used in dal, khichdi, sprouts-style dishes and light home meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean split grains, balanced taste and regular family use. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Dal, khichdi, sprouts-style dishes and light home meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal with skin",
+      "seo_title": "Split Moong Dal with Skin Online | Yasvik",
+      "seo_description": "Buy Pesara Pappu with Skin / Split Moong Dal with Skin from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Split Moong Dal with Skin, Pesara Pappu with Skin, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R023",
+      "recipe_titles": "Skin-On Moong Dal",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R023",
+          "title": "Skin-On Moong Dal",
+          "slug": "skin-on-moong-dal",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-021-500G",
+          "price": 85.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-021-1KG",
+          "price": 149.0,
+          "compare_price": 169.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-022",
+      "slug": "red-rajma",
+      "title": "Red Rajma",
+      "name": "Red Rajma",
+      "local_name": "Rajma Red",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-022",
+      "price": 169.0,
+      "compare_price": 195.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-022",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Rajma Red / Red Rajma for rajma curry, rice bowls, salads and weekend family meals.",
+      "description": "Rajma Red / Red Rajma is a practical kitchen essential used in rajma curry, rice bowls, salads and weekend family meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for bean size, soaking quality and clean cooking results. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Rajma curry, rice bowls, salads and weekend family meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole bean",
+      "seo_title": "Red Rajma Online | Yasvik",
+      "seo_description": "Buy Rajma Red / Red Rajma from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Red Rajma, Rajma Red, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R016",
+      "recipe_titles": "Rajma Curry",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R016",
+          "title": "Rajma Curry",
+          "slug": "rajma-curry",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-022-250G",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-022-500G",
+          "price": 95.0,
+          "compare_price": 110.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-022-1KG",
+          "price": 169.0,
+          "compare_price": 195.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-023",
+      "slug": "white-rajma",
+      "title": "White Rajma",
+      "name": "White Rajma",
+      "local_name": "Rajma White",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-023",
+      "price": 165.0,
+      "compare_price": 190.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-023",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Rajma White / White Rajma for rajma curry, stews, salads and protein-rich meals.",
+      "description": "Rajma White / White Rajma is a practical kitchen essential used in rajma curry, stews, salads and protein-rich meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean beans, good cooking use and small-pack trial value. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Rajma curry, stews, salads and protein-rich meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole bean",
+      "seo_title": "White Rajma Online | Yasvik",
+      "seo_description": "Buy Rajma White / White Rajma from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "White Rajma, Rajma White, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R016",
+      "recipe_titles": "Rajma Curry",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R016",
+          "title": "Rajma Curry",
+          "slug": "rajma-curry",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-023-250G",
+          "price": 55.0,
+          "compare_price": 65.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-023-500G",
+          "price": 95.0,
+          "compare_price": 105.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-023-1KG",
+          "price": 165.0,
+          "compare_price": 190.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-024",
+      "slug": "white-lobiya",
+      "title": "White Lobiya",
+      "name": "White Lobiya",
+      "local_name": "Lobiya White",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-024",
+      "price": 125.0,
+      "compare_price": 145.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-024",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Lobiya White / White Lobiya for lobiya curry, sundal, salads and everyday pulse dishes.",
+      "description": "Lobiya White / White Lobiya is a practical kitchen essential used in lobiya curry, sundal, salads and everyday pulse dishes. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean grains, easy soaking and practical home cooking. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Lobiya curry, sundal, salads and everyday pulse dishes.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "White Lobiya Online | Yasvik",
+      "seo_description": "Buy Lobiya White / White Lobiya from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "White Lobiya, Lobiya White, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R017",
+      "recipe_titles": "Lobiya Curry",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R017",
+          "title": "Lobiya Curry",
+          "slug": "lobiya-curry",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-024-250G",
+          "price": 40.0,
+          "compare_price": 50.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-024-500G",
+          "price": 70.0,
+          "compare_price": 80.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-024-1KG",
+          "price": 125.0,
+          "compare_price": 145.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-025",
+      "slug": "wheat-rava",
+      "title": "Wheat Rava",
+      "name": "Wheat Rava",
+      "local_name": "Godhuma Ravva",
+      "category_name": "Breakfast Essentials",
+      "sku": "YAS-025",
+      "price": 62.0,
+      "compare_price": 75.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-025",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Godhuma Ravva / Wheat Rava for wheat rava upma, porridge and lighter breakfast meals.",
+      "description": "Godhuma Ravva / Wheat Rava is a practical kitchen essential used in wheat rava upma, porridge and lighter breakfast meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean texture, regular breakfast use and fair pricing. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Wheat rava upma, porridge and lighter breakfast meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Broken wheat",
+      "seo_title": "Wheat Rava Online | Yasvik",
+      "seo_description": "Buy Godhuma Ravva / Wheat Rava from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Wheat Rava, Godhuma Ravva, Breakfast Essentials, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R010",
+      "recipe_titles": "Godhuma Ravva Upma",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R010",
+          "title": "Godhuma Ravva Upma",
+          "slug": "godhuma-ravva-upma",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-025-500G",
+          "price": 35.0,
+          "compare_price": 45.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-025-1KG",
+          "price": 62.0,
+          "compare_price": 75.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-026",
+      "slug": "chana-dal",
+      "title": "Chana Dal",
+      "name": "Chana Dal",
+      "local_name": "Chenaga Pappu",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-026",
+      "price": 115.0,
+      "compare_price": 135.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-026",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Chenaga Pappu / Chana Dal for dal, chutney, vada, sweets, sundal and regular cooking.",
+      "description": "Chenaga Pappu / Chana Dal is a practical kitchen essential used in dal, chutney, vada, sweets, sundal and regular cooking. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean dal, familiar taste and daily kitchen usefulness. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Dal, chutney, vada, sweets, sundal and regular cooking.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal",
+      "seo_title": "Chana Dal Online | Yasvik",
+      "seo_description": "Buy Chenaga Pappu / Chana Dal from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Chana Dal, Chenaga Pappu, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R021",
+      "recipe_titles": "Chana Dal Curry",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R021",
+          "title": "Chana Dal Curry",
+          "slug": "chana-dal-curry",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-026-500G",
+          "price": 65.0,
+          "compare_price": 75.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-026-1KG",
+          "price": 115.0,
+          "compare_price": 135.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-027",
+      "slug": "cowpeas",
+      "title": "Cowpeas",
+      "name": "Cowpeas",
+      "local_name": "Bobbarlu",
+      "category_name": "Pulses & Legumes",
+      "sku": "YAS-027",
+      "price": 105.0,
+      "compare_price": 125.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-027",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Bobbarlu / Cowpeas for bobbarla guggillu, curries, salads and traditional meals.",
+      "description": "Bobbarlu / Cowpeas is a practical kitchen essential used in bobbarla guggillu, curries, salads and traditional meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — chosen for clean grains, useful trial packs and everyday pulse variety. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Bobbarla guggillu, curries, salads and traditional meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Whole pulse",
+      "seo_title": "Cowpeas Online | Yasvik",
+      "seo_description": "Buy Bobbarlu / Cowpeas from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Cowpeas, Bobbarlu, Pulses & Legumes, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R018",
+      "recipe_titles": "Bobbarla Guggillu",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R018",
+          "title": "Bobbarla Guggillu",
+          "slug": "bobbarla-guggillu",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "250g",
+          "sku": "YAS-027-250G",
+          "price": 35.0,
+          "compare_price": 40.0,
+          "pack_kg": 0.25,
+          "weight_grams": 250,
+          "visible_stock_units": 40,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "500g",
+          "sku": "YAS-027-500G",
+          "price": 60.0,
+          "compare_price": 70.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-027-1KG",
+          "price": 105.0,
+          "compare_price": 125.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-028",
+      "slug": "moong-dal",
+      "title": "Moong Dal",
+      "name": "Moong Dal",
+      "local_name": "Pesara Pappu",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-028",
+      "price": 149.0,
+      "compare_price": 169.0,
+      "currency": "INR",
+      "stock": 10,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-028",
+      "shared_stock_kg": 10.0,
+      "short_description": "Quality-assured Pesara Pappu / Moong Dal for dal, khichdi, pesarapappu kattu and light family meals.",
+      "description": "Pesara Pappu / Moong Dal is a practical kitchen essential used in dal, khichdi, pesarapappu kattu and light family meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for clean dal, quick cooking and dependable daily taste. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Dal, khichdi, pesarapappu kattu and light family meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal",
+      "seo_title": "Moong Dal Online | Yasvik",
+      "seo_description": "Buy Pesara Pappu / Moong Dal from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Moong Dal, Pesara Pappu, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R004|R005",
+      "recipe_titles": "Pesara Pappu Kattu|Moong Dal Khichdi",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R004",
+          "title": "Pesara Pappu Kattu",
+          "slug": "pesara-pappu-kattu",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R005",
+          "title": "Moong Dal Khichdi",
+          "slug": "moong-dal-khichdi",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-028-500G",
+          "price": 85.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 20,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-028-1KG",
+          "price": 149.0,
+          "compare_price": 169.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 10.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-029",
+      "slug": "white-sugar",
+      "title": "White Sugar",
+      "name": "White Sugar",
+      "local_name": "White Sugar",
+      "category_name": "Staples & Sweeteners",
+      "sku": "YAS-029",
+      "price": 52.0,
+      "compare_price": 60.0,
+      "currency": "INR",
+      "stock": 50,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-029",
+      "shared_stock_kg": 50.0,
+      "short_description": "Quality-assured White Sugar / White Sugar for tea, coffee, sweets, payasam and everyday kitchen use.",
+      "description": "White Sugar / White Sugar is a practical kitchen essential used in tea, coffee, sweets, payasam and everyday kitchen use. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — kept as a trust-builder with fair price, clean packing and useful packs. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Tea, coffee, sweets, payasam and everyday kitchen use.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Refined sugar",
+      "seo_title": "White Sugar Online | Yasvik",
+      "seo_description": "Buy White Sugar / White Sugar from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "White Sugar, White Sugar, Staples & Sweeteners, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R027|R028",
+      "recipe_titles": "Rava Laddu|Payasam Sweetener",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R027",
+          "title": "Rava Laddu",
+          "slug": "rava-laddu",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R028",
+          "title": "Payasam Sweetener",
+          "slug": "payasam-sweetener",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "1kg",
+          "sku": "YAS-029-1KG",
+          "price": 52.0,
+          "compare_price": 60.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 50,
+          "stock_source_kg": 50.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-029-5KG",
+          "price": 255.0,
+          "compare_price": 295.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 50.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    },
+    {
+      "product_code": "YAS-030",
+      "slug": "toor-dal",
+      "title": "Toor Dal",
+      "name": "Toor Dal",
+      "local_name": "Kandi Pappu",
+      "category_name": "Dals & Lentils",
+      "sku": "YAS-030",
+      "price": 145.0,
+      "compare_price": 165.0,
+      "currency": "INR",
+      "stock": 50,
+      "stock_unit": "kg",
+      "inventory_group": "YAS-030",
+      "shared_stock_kg": 50.0,
+      "short_description": "Quality-assured Kandi Pappu / Toor Dal for dal, sambar, pappu charu, tomato pappu and everyday Telugu meals.",
+      "description": "Kandi Pappu / Toor Dal is a practical kitchen essential used in dal, sambar, pappu charu, tomato pappu and everyday Telugu meals. When a product is part of regular cooking, quality matters: it should look clean, cook well and feel dependable for family use. At Yasvik, we keep it simple — selected for premium daily quality, cooking reliability and family consumption. No exaggerated claims and no unnecessary packaging burden; just carefully selected food at a fair price. Eat what’s right. Yasvik quality assured. Fair prices guaranteed.",
+      "best_for": "Dal, sambar, pappu charu, tomato pappu and everyday Telugu meals.",
+      "storage_note": "Store in a clean, dry, airtight container. Keep away from moisture, sunlight and strong-smelling items.",
+      "yasvik_mark": "Quality assured by Yasvik • Fair prices guaranteed • Carefully selected stock • Packed for everyday use",
+      "delivery_card": "Packed after order",
+      "pack_info_card": "Clean packing in useful sizes",
+      "sourcing_card": "Carefully selected vendor-sourced stock",
+      "processing_method": "Split dal",
+      "seo_title": "Toor Dal Online | Yasvik",
+      "seo_description": "Buy Kandi Pappu / Toor Dal from Yasvik. Eat what’s right. Yasvik quality assured. Fair prices guaranteed. Useful pack sizes and fair online pricing.",
+      "seo_keywords": "Toor Dal, Kandi Pappu, Dals & Lentils, Yasvik",
+      "hero_image": "",
+      "gallery_images": [],
+      "hover_media": [],
+      "quality_badges": [
+        "Yasvik quality assured",
+        "Fair prices guaranteed",
+        "Carefully selected stock",
+        "Clean packing"
+      ],
+      "purity_badges": [
+        {
+          "label": "Yasvik quality assured",
+          "tone": "trust"
+        },
+        {
+          "label": "Fair prices guaranteed",
+          "tone": "trust"
+        },
+        {
+          "label": "Carefully selected stock",
+          "tone": "trust"
+        },
+        {
+          "label": "Clean packing",
+          "tone": "trust"
+        }
+      ],
+      "recipe_ids": "R001|R002|R003",
+      "recipe_titles": "Daily Kandi Pappu|Tomato Pappu|Sambar Base",
+      "recipe_links": [
+        {
+          "external_recipe_id": "R001",
+          "title": "Daily Kandi Pappu",
+          "slug": "daily-kandi-pappu",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R002",
+          "title": "Tomato Pappu",
+          "slug": "tomato-pappu",
+          "required_or_optional": "required"
+        },
+        {
+          "external_recipe_id": "R003",
+          "title": "Sambar Base",
+          "slug": "sambar-base",
+          "required_or_optional": "required"
+        }
+      ],
+      "quick_variants": [
+        {
+          "label": "500g",
+          "sku": "YAS-030-500G",
+          "price": 80.0,
+          "compare_price": 95.0,
+          "pack_kg": 0.5,
+          "weight_grams": 500,
+          "visible_stock_units": 100,
+          "stock_source_kg": 50.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "1kg",
+          "sku": "YAS-030-1KG",
+          "price": 145.0,
+          "compare_price": 165.0,
+          "pack_kg": 1.0,
+          "weight_grams": 1000,
+          "visible_stock_units": 50,
+          "stock_source_kg": 50.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        },
+        {
+          "label": "5kg",
+          "sku": "YAS-030-5KG",
+          "price": 705.0,
+          "compare_price": 805.0,
+          "pack_kg": 5.0,
+          "weight_grams": 5000,
+          "visible_stock_units": 10,
+          "stock_source_kg": 50.0,
+          "notes": "Shared bulk stock. Website stock deducts from product-level bulk kg.",
+          "image_url": "",
+          "image_urls": []
+        }
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "external_recipe_id": "R001",
+      "title": "Daily Kandi Pappu",
+      "slug": "daily-kandi-pappu",
+      "recipe_category": "Kandi Pappu / Toor Dal",
+      "description": "Simple everyday dal for rice, roti and family meals.",
+      "linked_product_slugs": [
+        "toor-dal"
+      ],
+      "linked_product_titles": [
+        "Toor Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R002",
+      "title": "Tomato Pappu",
+      "slug": "tomato-pappu",
+      "recipe_category": "Kandi Pappu / Toor Dal",
+      "description": "Telugu-style tomato dal for regular home meals.",
+      "linked_product_slugs": [
+        "toor-dal"
+      ],
+      "linked_product_titles": [
+        "Toor Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R003",
+      "title": "Sambar Base",
+      "slug": "sambar-base",
+      "recipe_category": "Kandi Pappu / Toor Dal",
+      "description": "South Indian sambar base using quality toor dal.",
+      "linked_product_slugs": [
+        "toor-dal"
+      ],
+      "linked_product_titles": [
+        "Toor Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R004",
+      "title": "Pesara Pappu Kattu",
+      "slug": "pesara-pappu-kattu",
+      "recipe_category": "Moong Dal",
+      "description": "Light moong dal preparation for simple meals.",
+      "linked_product_slugs": [
+        "moong-dal"
+      ],
+      "linked_product_titles": [
+        "Moong Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R005",
+      "title": "Moong Dal Khichdi",
+      "slug": "moong-dal-khichdi",
+      "recipe_category": "Moong Dal",
+      "description": "Comfort khichdi using moong dal and pantry staples.",
+      "linked_product_slugs": [
+        "moong-dal"
+      ],
+      "linked_product_titles": [
+        "Moong Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R006",
+      "title": "Idli Batter",
+      "slug": "idli-batter",
+      "recipe_category": "Urad Gota",
+      "description": "Home-style idli batter using urad gota and idly rava.",
+      "linked_product_slugs": [
+        "urad-gota",
+        "idly-rava"
+      ],
+      "linked_product_titles": [
+        "Urad Gota",
+        "Idly Rava"
+      ],
+      "ingredient_count": 2
+    },
+    {
+      "external_recipe_id": "R007",
+      "title": "Minapa Garelu / Vada",
+      "slug": "minapa-garelu-vada",
+      "recipe_category": "Urad Gota",
+      "description": "Traditional vada using urad dal batter.",
+      "linked_product_slugs": [
+        "urad-gota"
+      ],
+      "linked_product_titles": [
+        "Urad Gota"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R008",
+      "title": "Upma",
+      "slug": "upma",
+      "recipe_category": "Breakfast",
+      "description": "Quick breakfast made with upma sooji/rava.",
+      "linked_product_slugs": [
+        "upma-sooji-rava"
+      ],
+      "linked_product_titles": [
+        "Upma Sooji / Rava"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R009",
+      "title": "Atukula Upma",
+      "slug": "atukula-upma",
+      "recipe_category": "Breakfast",
+      "description": "Quick poha-style breakfast with atukulu.",
+      "linked_product_slugs": [
+        "poha-flattened-rice"
+      ],
+      "linked_product_titles": [
+        "Poha / Flattened Rice"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R010",
+      "title": "Godhuma Ravva Upma",
+      "slug": "godhuma-ravva-upma",
+      "recipe_category": "Breakfast",
+      "description": "Wheat rava upma for a filling breakfast.",
+      "linked_product_slugs": [
+        "wheat-rava"
+      ],
+      "linked_product_titles": [
+        "Wheat Rava"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R011",
+      "title": "Pesarattu",
+      "slug": "pesarattu",
+      "recipe_category": "Pulses",
+      "description": "Green gram dosa made with whole green gram.",
+      "linked_product_slugs": [
+        "whole-green-gram"
+      ],
+      "linked_product_titles": [
+        "Whole Green Gram"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R012",
+      "title": "Chenagala Sundal",
+      "slug": "chenagala-sundal",
+      "recipe_category": "Pulses",
+      "description": "Brown chana sundal/guggillu for snacks or prasadam.",
+      "linked_product_slugs": [
+        "brown-chana"
+      ],
+      "linked_product_titles": [
+        "Brown Chana"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R013",
+      "title": "Kabuli Chana Chole",
+      "slug": "kabuli-chana-chole",
+      "recipe_category": "Pulses",
+      "description": "Chole curry using soaked kabuli chana.",
+      "linked_product_slugs": [
+        "kabuli-chana"
+      ],
+      "linked_product_titles": [
+        "Kabuli Chana"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R014",
+      "title": "White Batani Masala",
+      "slug": "white-batani-masala",
+      "recipe_category": "Pulses",
+      "description": "White peas curry or ragda-style preparation.",
+      "linked_product_slugs": [
+        "white-peas"
+      ],
+      "linked_product_titles": [
+        "White Peas"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R015",
+      "title": "Green Batani Curry",
+      "slug": "green-batani-curry",
+      "recipe_category": "Pulses",
+      "description": "Green peas masala for rice, roti or snacks.",
+      "linked_product_slugs": [
+        "green-peas"
+      ],
+      "linked_product_titles": [
+        "Green Peas"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R016",
+      "title": "Rajma Curry",
+      "slug": "rajma-curry",
+      "recipe_category": "Pulses",
+      "description": "Comfort rajma curry using red or white rajma.",
+      "linked_product_slugs": [
+        "red-rajma",
+        "white-rajma"
+      ],
+      "linked_product_titles": [
+        "Red Rajma",
+        "White Rajma"
+      ],
+      "ingredient_count": 2
+    },
+    {
+      "external_recipe_id": "R017",
+      "title": "Lobiya Curry",
+      "slug": "lobiya-curry",
+      "recipe_category": "Pulses",
+      "description": "Simple lobiya curry for rice or roti.",
+      "linked_product_slugs": [
+        "white-lobiya"
+      ],
+      "linked_product_titles": [
+        "White Lobiya"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R018",
+      "title": "Bobbarla Guggillu",
+      "slug": "bobbarla-guggillu",
+      "recipe_category": "Pulses",
+      "description": "Traditional cowpea guggillu/snack preparation.",
+      "linked_product_slugs": [
+        "cowpeas"
+      ],
+      "linked_product_titles": [
+        "Cowpeas"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R019",
+      "title": "Ulava Charu",
+      "slug": "ulava-charu",
+      "recipe_category": "Pulses",
+      "description": "Traditional horse gram rasam/charu.",
+      "linked_product_slugs": [
+        "horse-gram",
+        "black-horse-gram"
+      ],
+      "linked_product_titles": [
+        "Horse Gram",
+        "Black Horse Gram"
+      ],
+      "ingredient_count": 2
+    },
+    {
+      "external_recipe_id": "R020",
+      "title": "Masoor Dal",
+      "slug": "masoor-dal",
+      "recipe_category": "Dals",
+      "description": "Quick masoor dal for weekday cooking.",
+      "linked_product_slugs": [
+        "masoor-dal"
+      ],
+      "linked_product_titles": [
+        "Masoor Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R021",
+      "title": "Chana Dal Curry",
+      "slug": "chana-dal-curry",
+      "recipe_category": "Dals",
+      "description": "Chana dal for dal, curry and vada-style cooking.",
+      "linked_product_slugs": [
+        "chana-dal"
+      ],
+      "linked_product_titles": [
+        "Chana Dal"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R022",
+      "title": "Skin-On Urad Dal",
+      "slug": "skin-on-urad-dal",
+      "recipe_category": "Dals",
+      "description": "Rustic dal using split urad with skin.",
+      "linked_product_slugs": [
+        "split-urad-dal-with-skin"
+      ],
+      "linked_product_titles": [
+        "Split Urad Dal with Skin"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R023",
+      "title": "Skin-On Moong Dal",
+      "slug": "skin-on-moong-dal",
+      "recipe_category": "Dals",
+      "description": "Simple skin-on moong dal for light meals.",
+      "linked_product_slugs": [
+        "split-moong-dal-with-skin"
+      ],
+      "linked_product_titles": [
+        "Split Moong Dal with Skin"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R024",
+      "title": "Jowar Roti",
+      "slug": "jowar-roti",
+      "recipe_category": "Millets",
+      "description": "Traditional jowar roti using white/yellow jowar flour.",
+      "linked_product_slugs": [
+        "white-jowar",
+        "yellow-jowar"
+      ],
+      "linked_product_titles": [
+        "White Jowar",
+        "Yellow Jowar"
+      ],
+      "ingredient_count": 2
+    },
+    {
+      "external_recipe_id": "R025",
+      "title": "Flax Seed Podi",
+      "slug": "flax-seed-podi",
+      "recipe_category": "Superfoods",
+      "description": "Flax seed podi for rice, idli or dosa.",
+      "linked_product_slugs": [
+        "flax-seeds"
+      ],
+      "linked_product_titles": [
+        "Flax Seeds"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R026",
+      "title": "Putnala Chutney",
+      "slug": "putnala-chutney",
+      "recipe_category": "Snacks",
+      "description": "Quick roasted gram chutney for tiffins.",
+      "linked_product_slugs": [
+        "roasted-gram"
+      ],
+      "linked_product_titles": [
+        "Roasted Gram"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R027",
+      "title": "Rava Laddu",
+      "slug": "rava-laddu",
+      "recipe_category": "Sweets",
+      "description": "Rava laddu using rava and sugar.",
+      "linked_product_slugs": [
+        "upma-sooji-rava",
+        "white-sugar"
+      ],
+      "linked_product_titles": [
+        "Upma Sooji / Rava",
+        "White Sugar"
+      ],
+      "ingredient_count": 2
+    },
+    {
+      "external_recipe_id": "R028",
+      "title": "Payasam Sweetener",
+      "slug": "payasam-sweetener",
+      "recipe_category": "Sweets",
+      "description": "Everyday sugar use in payasam and sweets.",
+      "linked_product_slugs": [
+        "white-sugar"
+      ],
+      "linked_product_titles": [
+        "White Sugar"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R029",
+      "title": "Chapati / Homemade Flour",
+      "slug": "chapati-homemade-flour",
+      "recipe_category": "Staples",
+      "description": "Wheat for flour, chapati and daily home cooking.",
+      "linked_product_slugs": [
+        "whole-wheat"
+      ],
+      "linked_product_titles": [
+        "Whole Wheat"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R030",
+      "title": "Kandula Guggillu",
+      "slug": "kandula-guggillu",
+      "recipe_category": "Whole Pulse",
+      "description": "Traditional whole toor pulse snack/curry.",
+      "linked_product_slugs": [
+        "whole-toor"
+      ],
+      "linked_product_titles": [
+        "Whole Toor"
+      ],
+      "ingredient_count": 1
+    },
+    {
+      "external_recipe_id": "R031",
+      "title": "Whole Urad Sundal",
+      "slug": "whole-urad-sundal",
+      "recipe_category": "Whole Pulse",
+      "description": "Whole urad snack or curry preparation.",
+      "linked_product_slugs": [
+        "whole-urad"
+      ],
+      "linked_product_titles": [
+        "Whole Urad"
+      ],
+      "ingredient_count": 1
+    }
+  ]
+}

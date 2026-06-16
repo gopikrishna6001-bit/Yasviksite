@@ -1,0 +1,13 @@
+{
+  "product_rows": 30,
+  "image_prompt_count": 120,
+  "catalog_slug_count": 30,
+  "missing_in_manifest": [],
+  "not_in_catalog": [],
+  "slug_aliases_applied": {
+    "white-cowpea-lobiya": "white-lobiya",
+    "cowpeas-bobbarlu": "cowpeas"
+  },
+  "duplicate_filenames": [],
+  "bad_filenames": []
+}

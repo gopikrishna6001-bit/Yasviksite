@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "product_slug": "white-lobiya",
+      "source_prompt_slug": "white-cowpea-lobiya",
+      "title": "White Cowpea / Lobiya",
+      "local_name": "Lobiya White",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "white cowpea with eye",
+      "primary_color": "cream with black eye",
+      "recommended_units": "250g|500g",
+      "product_purpose": "White lobiya for curries, sundal-style snacks, salads, and rice/roti meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like white cowpea with eye; color should read as cream with black eye. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "white-cowpea-lobiya-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "white-cowpea-lobiya-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "white-cowpea-lobiya-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "white-cowpea-lobiya-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of White Cowpea / Lobiya (Lobiya White), shown as white cowpea with eye, with primary color cream with black eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "cowpeas",
+      "source_prompt_slug": "cowpeas-bobbarlu",
+      "title": "Cowpeas",
+      "local_name": "Bobbarlu",
+      "category": "Pulses & Legumes",
+      "visual_family": "Whole Pulse",
+      "ingredient_form": "whole cowpea",
+      "primary_color": "brown/cream with eye",
+      "recommended_units": "250g|500g",
+      "product_purpose": "Bobbarlu for curries, guggillu, sundal-style snacks, and home meals.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like whole cowpea; color should read as brown/cream with eye. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "cowpeas-bobbarlu-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "cowpeas-bobbarlu-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "cowpeas-bobbarlu-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "cowpeas-bobbarlu-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Cowpeas (Bobbarlu), shown as whole cowpea, with primary color brown/cream with eye. whole beans/pulses clearly identifiable; bowl and scoop styling; size and texture visible. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    },
+    {
+      "product_slug": "idly-rava",
+      "source_prompt_slug": "idly-rava",
+      "title": "Idly Rava",
+      "local_name": "Idly Ravva",
+      "category": "Breakfast Essentials",
+      "visual_family": "Coarse Grain",
+      "ingredient_form": "coarse rice rava",
+      "primary_color": "white cream",
+      "recommended_units": "500g|1kg",
+      "product_purpose": "Idly ravva for soft idli batter and regular South Indian breakfast preparation.",
+      "visual_style_tags": "warm neutrals|realistic food photography|premium everyday foods|Yasvik quality assured|fair prices guaranteed|product accurate",
+      "product_visual_notes": "Must look exactly like coarse rice rava; color should read as white cream. Avoid fake claims, finished dish hero, packaging, or confusing it with similar products.",
+      "images": [
+        {
+          "slot": "hero",
+          "filename": "idly-rava-hero.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HERO: raw product as the main subject in a shallow ceramic bowl on warm beige stone surface, with small wooden scoop and a few pieces gently scattered. Product must be accurate and unmistakable. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 4:3.",
+          "aspect_ratio": "4:3"
+        },
+        {
+          "slot": "gallery_1",
+          "filename": "idly-rava-gallery-1.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 1: second composition using brass or ceramic bowl with measuring scoop, soft linen, and subtle Indian kitchen context in the background without clutter. Raw ingredient remains the clear focus; no finished cooked dish. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "gallery_2",
+          "filename": "idly-rava-gallery-2.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. GALLERY 2: tighter detail shot showing texture, size, color, cleanliness, and quality. Use shallow depth of field and warm soft light. Minimal props, product-accurate. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        },
+        {
+          "slot": "hover",
+          "filename": "idly-rava-hover.jpg",
+          "prompt": "Create a realistic premium-quality food photograph for Yasvik website of Idly Rava (Idly Ravva), shown as coarse rice rava, with primary color white cream. coarse grain/rava texture clearly visible; avoid looking like flour, sugar, or salt. HOVER: clean alternate close-up for product card hover. Emphasize ingredient texture and premium quality in a simple bowl or scoop composition. Visually distinct from hero but consistent with Yasvik style. Use Yasvik style: premium but honest everyday-food photography, warm beige/cream neutral background, soft natural light, ceramic, wood, brass, linen, and stone textures, clean composition, high detail, trustworthy quality, no packaging drama. No text, no labels, no watermark, no people, no UI elements. Aspect ratio 1:1.",
+          "aspect_ratio": "1:1"
+        }
+      ]
+    }
+  ]
+}

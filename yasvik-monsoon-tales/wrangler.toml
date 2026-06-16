@@ -1,0 +1,22 @@
+name = "yasvik-app-api"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-05-27"
+workers_dev = true
+account_id = "41871e772a12ed19e7353a9c071aa5f0"
+pages_build_output_dir = "dist"
+
+routes = [
+  { pattern = "www.yasvik.com/api/*", zone_name = "yasvik.com" }
+]
+
+[vars]
+APP_ENV = "development"
+SUPABASE_URL = "https://cpksnpuavywbmhrzglyh.supabase.co"
+
+# Secrets must be set with:
+# wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put RAZORPAY_KEY_ID
+# wrangler secret put RAZORPAY_KEY_SECRET
+# Optional:
+# wrangler secret put EMAIL_FROM

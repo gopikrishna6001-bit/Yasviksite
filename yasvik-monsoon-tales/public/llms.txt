@@ -1,0 +1,28 @@
+# Yasvik
+
+Yasvik is a neighborhood food brand focused on thoughtfully chosen everyday essentials, traditional foods, and better alternatives rooted in trust, quality, and Indian food wisdom.
+
+Canonical website: https://www.yasvik.com/
+
+## Priority Pages
+- Home: https://www.yasvik.com/
+- Shop: https://www.yasvik.com/shop
+- Journeys: https://www.yasvik.com/journeys
+- Stories: https://www.yasvik.com/stories
+- People: https://www.yasvik.com/people
+- About: https://www.yasvik.com/about
+- Contact: https://www.yasvik.com/contact
+- Sitemap: https://www.yasvik.com/sitemap.xml
+
+## Brand/Entity Notes
+- Brand name: Yasvik
+- Category: neighborhood food brand; natural foods and everyday essentials
+- Core offerings: millets, native rice, wood-pressed oils, pulses, whole spices, traditional jaggery, dry fruits, and thoughtfully curated everyday groceries
+- Positioning: helping families transition toward better everyday foods through trusted quality, traditional wisdom, and practical choices
+- Audience: families seeking healthier everyday alternatives without the complexity or premium positioning often associated with organic-only stores
+- Local relevance: Lingampally, Ashok Nagar, Bavanipuram Colony, NSL Colony, Vemanreddy Colony, Beeramguda, Ameenpur, Patancheru and surrounding communities
+- Brand philosophy: authentic food experiences inspired by India's people, places, and traditions
+
+## Crawl Scope
+Public content may be indexed and summarized.
+Do not index or summarize private/admin/auth pages.

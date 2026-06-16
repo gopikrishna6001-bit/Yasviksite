@@ -1,0 +1,2043 @@
+[
+  {
+    "slug": "whole-wheat",
+    "title": "Whole Wheat",
+    "name": "Whole Wheat",
+    "sku": "YAS-WHOLE-WHEAT",
+    "category_name": "Staples & Grains",
+    "local_name": "Godhumalu",
+    "short_description": "Whole Wheat (Godhumalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Daily wheat for chapati flour and home milling. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Whole Wheat (Godhumalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Daily wheat for chapati flour and home milling. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Kept as a trust-builder: practical pricing, simple packs, and easy local-name discovery.\n\nBest for: Daily wheat for chapati flour and home milling.\n\nPack guidance: Available in 1kg, 5kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 49,
+    "compare_price": 59,
+    "currency": "INR",
+    "stock": 25,
+    "stock_unit": "kg",
+    "low_stock_threshold": 3.75,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Whole Wheat",
+    "seo_description": "Buy Whole Wheat (Godhumalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "wheat, godhumalu, atta wheat, whole wheat",
+    "purity_badges": [
+      {
+        "label": "Yasvik Fair Price Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "1kg",
+        "sku": "YAS-WHOLE-WHEAT-1KG",
+        "price": 49,
+        "compare_price": 59,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 25,
+        "stock_source_kg": 25,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "5kg",
+        "sku": "YAS-WHOLE-WHEAT-5KG",
+        "price": 240,
+        "compare_price": 295,
+        "pack_kg": 5,
+        "weight_grams": 5000,
+        "visible_stock_units": 5,
+        "stock_source_kg": 25,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 25 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Whole Wheat / Godhumalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "1",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Godhumalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹49",
+      "badge_line": "Yasvik Fair Price Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "kabuli-chana",
+    "title": "Kabuli Chana",
+    "name": "Kabuli Chana",
+    "sku": "YAS-KABULI-CHANA",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Kabuli Senagalu",
+    "short_description": "Kabuli Chana (Kabuli Senagalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Large white chana for chole, sundal, curries and salads. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Kabuli Chana (Kabuli Senagalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Large white chana for chole, sundal, curries and salads. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Large white chana for chole, sundal, curries and salads.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Kabuli Chana",
+    "seo_description": "Buy Kabuli Chana (Kabuli Senagalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "kabuli chana, white chana, senagalu",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-KABULI-CHANA-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-KABULI-CHANA-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Kabuli Chana / Kabuli Senagalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "2",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Kabuli Senagalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "masoor-dal",
+    "title": "Masoor Dal",
+    "name": "Masoor Dal",
+    "sku": "YAS-MASOOR-DAL",
+    "category_name": "Dals & Lentils",
+    "local_name": "Masoor Pappu",
+    "short_description": "Masoor Dal (Masoor Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Quick-cooking dal for simple weekday meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Masoor Dal (Masoor Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Quick-cooking dal for simple weekday meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Quick-cooking dal for simple weekday meals.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 115,
+    "compare_price": 135,
+    "currency": "INR",
+    "stock": 5,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Masoor Dal",
+    "seo_description": "Buy Masoor Dal (Masoor Pappu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "masoor dal, red lentil, masoor pappu",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-MASOOR-DAL-500G",
+        "price": 65,
+        "compare_price": 75,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 10,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-MASOOR-DAL-1KG",
+        "price": 115,
+        "compare_price": 135,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 5,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 5 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Masoor Dal / Masoor Pappu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "3",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Masoor Pappu for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹65",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "whole-green-gram",
+    "title": "Whole Green Gram",
+    "name": "Whole Green Gram",
+    "sku": "YAS-WHOLE-GREEN-GRAM",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Pesarlu Raw",
+    "short_description": "Whole Green Gram (Pesarlu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole green gram for sprouts, pesarattu and curries. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Whole Green Gram (Pesarlu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole green gram for sprouts, pesarattu and curries. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Whole green gram for sprouts, pesarattu and curries.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 5,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Whole Green Gram",
+    "seo_description": "Buy Whole Green Gram (Pesarlu Raw) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "pesarlu, whole green gram, green moong",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHOLE-GREEN-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 10,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHOLE-GREEN-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 5,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 5 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Whole Green Gram / Pesarlu Raw, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "4",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Pesarlu Raw for everyday Telugu kitchen use.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "poha-flattened-rice",
+    "title": "Poha / Flattened Rice",
+    "name": "Poha / Flattened Rice",
+    "sku": "YAS-POHA-FLATTENED-RICE",
+    "category_name": "Breakfast Essentials",
+    "local_name": "Atukulu",
+    "short_description": "Poha / Flattened Rice (Atukulu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Light breakfast staple for upma, snacks and quick evening tiffin. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Poha / Flattened Rice (Atukulu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Light breakfast staple for upma, snacks and quick evening tiffin. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Light breakfast staple for upma, snacks and quick evening tiffin.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 75,
+    "compare_price": 90,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Poha / Flattened Rice",
+    "seo_description": "Buy Poha / Flattened Rice (Atukulu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "atukulu, poha, flattened rice",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-POHA-FLATTEN-500G",
+        "price": 40,
+        "compare_price": 50,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-POHA-FLATTEN-1KG",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Poha / Flattened Rice / Atukulu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "5",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Atukulu for quick breakfasts and regular home cooking.",
+      "price_line": "From ₹40",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "rava-upma-sooji",
+    "title": "Rava / Upma Sooji",
+    "name": "Rava / Upma Sooji",
+    "sku": "YAS-RAVA-UPMA-SOOJI",
+    "category_name": "Breakfast Essentials",
+    "local_name": "Ravva / Upma Sooji",
+    "short_description": "Rava / Upma Sooji (Ravva / Upma Sooji) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Everyday sooji for upma, kesari, coating and quick breakfast. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Rava / Upma Sooji (Ravva / Upma Sooji) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Everyday sooji for upma, kesari, coating and quick breakfast. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Kept as a trust-builder: practical pricing, simple packs, and easy local-name discovery.\n\nBest for: Everyday sooji for upma, kesari, coating and quick breakfast.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 52,
+    "compare_price": 60,
+    "currency": "INR",
+    "stock": 20,
+    "stock_unit": "kg",
+    "low_stock_threshold": 3.0,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Rava / Upma Sooji",
+    "seo_description": "Buy Rava / Upma Sooji (Ravva / Upma Sooji) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "ravva, rava, sooji, upma rava",
+    "purity_badges": [
+      {
+        "label": "Yasvik Fair Price Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-RAVA-UPMA-SO-500G",
+        "price": 30,
+        "compare_price": 35,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 40,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-RAVA-UPMA-SO-1KG",
+        "price": 52,
+        "compare_price": 60,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 20,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 20 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Rava / Upma Sooji / Ravva / Upma Sooji, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "6",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Ravva / Upma Sooji for quick breakfasts and regular home cooking.",
+      "price_line": "From ₹30",
+      "badge_line": "Yasvik Fair Price Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "flax-seeds",
+    "title": "Flax Seeds",
+    "name": "Flax Seeds",
+    "sku": "YAS-FLAX-SEEDS",
+    "category_name": "Seeds & Superfoods",
+    "local_name": "Aviselu",
+    "short_description": "Flax Seeds (Aviselu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Small-pack seed for chutneys, podi, smoothies and daily add-ons. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Flax Seeds (Aviselu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Small-pack seed for chutneys, podi, smoothies and daily add-ons. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Sold in smaller packs so customers can try without buying more than they need.\n\nBest for: Small-pack seed for chutneys, podi, smoothies and daily add-ons.\n\nPack guidance: Available in 100g, 250g, 500g. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store airtight away from sunlight. For best freshness after opening, keep in a dry place and use a clean spoon.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 35,
+    "compare_price": 50,
+    "currency": "INR",
+    "stock": 5,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Flax Seeds",
+    "seo_description": "Buy Flax Seeds (Aviselu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "flax seeds, aviselu, alsi",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "100g",
+        "sku": "YAS-FLAX-SEEDS-100G",
+        "price": 35,
+        "compare_price": 50,
+        "pack_kg": 0.1,
+        "weight_grams": 100,
+        "visible_stock_units": 50,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "250g",
+        "sku": "YAS-FLAX-SEEDS-250G",
+        "price": 65,
+        "compare_price": 90,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 20,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-FLAX-SEEDS-500G",
+        "price": 110,
+        "compare_price": 140,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 10,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 5 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Flax Seeds / Aviselu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "7",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Small, useful packs for chutneys, podi and daily add-ons.",
+      "price_line": "From ₹35",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "whole-toor",
+    "title": "Whole Toor",
+    "name": "Whole Toor",
+    "sku": "YAS-WHOLE-TOOR",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Kandulu Raw",
+    "short_description": "Whole Toor (Kandulu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole toor for traditional cooking and grinding needs. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Whole Toor (Kandulu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole toor for traditional cooking and grinding needs. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Whole toor for traditional cooking and grinding needs.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 135,
+    "compare_price": 155,
+    "currency": "INR",
+    "stock": 5,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Whole Toor",
+    "seo_description": "Buy Whole Toor (Kandulu Raw) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "kandulu, whole toor, raw toor",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHOLE-TOOR-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 10,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHOLE-TOOR-1KG",
+        "price": 135,
+        "compare_price": 155,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 5,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 5 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Whole Toor / Kandulu Raw, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "8",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Kandulu Raw for everyday Telugu kitchen use.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "idly-rava",
+    "title": "Idly Rava",
+    "name": "Idly Rava",
+    "sku": "YAS-IDLY-RAVA",
+    "category_name": "Breakfast Essentials",
+    "local_name": "Idly Ravva",
+    "short_description": "Idly Rava (Idly Ravva) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Coarse idly rava for soft idlies and home batter. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Idly Rava (Idly Ravva) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Coarse idly rava for soft idlies and home batter. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Kept as a trust-builder: practical pricing, simple packs, and easy local-name discovery.\n\nBest for: Coarse idly rava for soft idlies and home batter.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 48,
+    "compare_price": 58,
+    "currency": "INR",
+    "stock": 20,
+    "stock_unit": "kg",
+    "low_stock_threshold": 3.0,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Idly Rava",
+    "seo_description": "Buy Idly Rava (Idly Ravva) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "idly ravva, idli rava, idli sooji",
+    "purity_badges": [
+      {
+        "label": "Yasvik Fair Price Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-IDLY-RAVA-500G",
+        "price": 30,
+        "compare_price": 35,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 40,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-IDLY-RAVA-1KG",
+        "price": 48,
+        "compare_price": 58,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 20,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 20 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Idly Rava / Idly Ravva, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "9",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Idly Ravva for quick breakfasts and regular home cooking.",
+      "price_line": "From ₹30",
+      "badge_line": "Yasvik Fair Price Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "white-jowar",
+    "title": "White Jowar",
+    "name": "White Jowar",
+    "sku": "YAS-WHITE-JOWAR",
+    "category_name": "Millets & Grains",
+    "local_name": "White Jonnalu",
+    "short_description": "White Jowar (White Jonnalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White jowar for rotis, flour grinding and millet-style meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "White Jowar (White Jonnalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White jowar for rotis, flour grinding and millet-style meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: White jowar for rotis, flour grinding and millet-style meals.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 85,
+    "compare_price": 99,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "White Jowar",
+    "seo_description": "Buy White Jowar (White Jonnalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "white jowar, white jonnalu, sorghum",
+    "purity_badges": [
+      {
+        "label": "Yasvik Everyday Grains Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHITE-JOWAR-500G",
+        "price": 50,
+        "compare_price": 55,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHITE-JOWAR-1KG",
+        "price": 85,
+        "compare_price": 99,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of White Jowar / White Jonnalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "10",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "White Jonnalu for rotis, flour grinding and traditional grain meals.",
+      "price_line": "From ₹50",
+      "badge_line": "Yasvik Everyday Grains Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "whole-urad",
+    "title": "Whole Urad",
+    "name": "Whole Urad",
+    "sku": "YAS-WHOLE-URAD",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Minumulu Raw",
+    "short_description": "Whole Urad (Minumulu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole urad for batter, dal, sprouts and traditional recipes. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Whole Urad (Minumulu Raw) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Whole urad for batter, dal, sprouts and traditional recipes. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Whole urad for batter, dal, sprouts and traditional recipes.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 135,
+    "compare_price": 155,
+    "currency": "INR",
+    "stock": 5,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Whole Urad",
+    "seo_description": "Buy Whole Urad (Minumulu Raw) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "minumulu, whole urad, black gram",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHOLE-URAD-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 10,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHOLE-URAD-1KG",
+        "price": 135,
+        "compare_price": 155,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 5,
+        "stock_source_kg": 5,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 5 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Whole Urad / Minumulu Raw, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "11",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Minumulu Raw for everyday Telugu kitchen use.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "white-peas",
+    "title": "White Peas",
+    "name": "White Peas",
+    "sku": "YAS-WHITE-PEAS",
+    "category_name": "Pulses & Legumes",
+    "local_name": "White Batani",
+    "short_description": "White Peas (White Batani) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Budget-friendly peas for curry, chaat and masala snacks. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "White Peas (White Batani) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Budget-friendly peas for curry, chaat and masala snacks. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Budget-friendly peas for curry, chaat and masala snacks.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 70,
+    "compare_price": 85,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "White Peas",
+    "seo_description": "Buy White Peas (White Batani) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "white batani, white peas, peas",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHITE-PEAS-500G",
+        "price": 40,
+        "compare_price": 50,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHITE-PEAS-1KG",
+        "price": 70,
+        "compare_price": 85,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of White Peas / White Batani, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "12",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "White Batani for everyday Telugu kitchen use.",
+      "price_line": "From ₹40",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "brown-chana",
+    "title": "Brown Chana",
+    "name": "Brown Chana",
+    "sku": "YAS-BROWN-CHANA",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Chenagalu",
+    "short_description": "Brown Chana (Chenagalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Brown chana for sundal, curry and protein-rich home snacks. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Brown Chana (Chenagalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Brown chana for sundal, curry and protein-rich home snacks. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Brown chana for sundal, curry and protein-rich home snacks.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 99,
+    "compare_price": 115,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Brown Chana",
+    "seo_description": "Buy Brown Chana (Chenagalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "chenagalu, brown chana, kala chana",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-BROWN-CHANA-500G",
+        "price": 55,
+        "compare_price": 65,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-BROWN-CHANA-1KG",
+        "price": 99,
+        "compare_price": 115,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Brown Chana / Chenagalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "13",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Chenagalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹55",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "roasted-gram",
+    "title": "Roasted Gram",
+    "name": "Roasted Gram",
+    "sku": "YAS-ROASTED-GRAM",
+    "category_name": "Snacks & Cooking Essentials",
+    "local_name": "Putnalu",
+    "short_description": "Roasted Gram (Putnalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Roasted gram for chutneys, podi, snacks and laddus. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Roasted Gram (Putnalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Roasted gram for chutneys, podi, snacks and laddus. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Roasted gram for chutneys, podi, snacks and laddus.\n\nPack guidance: Available in 250g, 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in a clean, dry, airtight container.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 119,
+    "compare_price": 139,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Roasted Gram",
+    "seo_description": "Buy Roasted Gram (Putnalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "putnalu, roasted gram, chutney dal",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-ROASTED-GRAM-250G",
+        "price": 40,
+        "compare_price": 50,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-ROASTED-GRAM-500G",
+        "price": 65,
+        "compare_price": 80,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-ROASTED-GRAM-1KG",
+        "price": 119,
+        "compare_price": 139,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Roasted Gram / Putnalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "14",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Putnalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹40",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "yellow-jowar",
+    "title": "Yellow Jowar",
+    "name": "Yellow Jowar",
+    "sku": "YAS-YELLOW-JOWAR",
+    "category_name": "Millets & Grains",
+    "local_name": "Pacha Jonnalu / Yellow",
+    "short_description": "Yellow Jowar (Pacha Jonnalu / Yellow) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Jowar grain for rotis, flour grinding and traditional grain cooking. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Yellow Jowar (Pacha Jonnalu / Yellow) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Jowar grain for rotis, flour grinding and traditional grain cooking. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Jowar grain for rotis, flour grinding and traditional grain cooking.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 85,
+    "compare_price": 99,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Yellow Jowar",
+    "seo_description": "Buy Yellow Jowar (Pacha Jonnalu / Yellow) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "yellow jowar, pacha jonnalu, sorghum",
+    "purity_badges": [
+      {
+        "label": "Yasvik Everyday Grains Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-YELLOW-JOWAR-500G",
+        "price": 50,
+        "compare_price": 55,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-YELLOW-JOWAR-1KG",
+        "price": 85,
+        "compare_price": 99,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Yellow Jowar / Pacha Jonnalu / Yellow, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "15",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Pacha Jonnalu / Yellow for rotis, flour grinding and traditional grain meals.",
+      "price_line": "From ₹50",
+      "badge_line": "Yasvik Everyday Grains Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "urad-gota",
+    "title": "Urad Gota",
+    "name": "Urad Gota",
+    "sku": "YAS-URAD-GOTA",
+    "category_name": "Dals & Lentils",
+    "local_name": "Minapa Gundulu",
+    "short_description": "Urad Gota (Minapa Gundulu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Urad gota for dosa/idli batter, vada and home grinding. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Urad Gota (Minapa Gundulu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Urad gota for dosa/idli batter, vada and home grinding. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Urad gota for dosa/idli batter, vada and home grinding.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 20,
+    "stock_unit": "kg",
+    "low_stock_threshold": 3.0,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Urad Gota",
+    "seo_description": "Buy Urad Gota (Minapa Gundulu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "minapa gundulu, urad gota, white urad",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-URAD-GOTA-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 40,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-URAD-GOTA-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 20,
+        "stock_source_kg": 20,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 20 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Urad Gota / Minapa Gundulu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "16",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Minapa Gundulu for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "horse-gram",
+    "title": "Horse Gram",
+    "name": "Horse Gram",
+    "sku": "YAS-HORSE-GRAM",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Ulavalu",
+    "short_description": "Horse Gram (Ulavalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Traditional horse gram for rasam, chutney, sprouts and soups. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Horse Gram (Ulavalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Traditional horse gram for rasam, chutney, sprouts and soups. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: Traditional horse gram for rasam, chutney, sprouts and soups.\n\nPack guidance: Available in 250g, 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 109,
+    "compare_price": 129,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Horse Gram",
+    "seo_description": "Buy Horse Gram (Ulavalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "ulavalu, horse gram, kollu",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-HORSE-GRAM-250G",
+        "price": 35,
+        "compare_price": 50,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-HORSE-GRAM-500G",
+        "price": 60,
+        "compare_price": 75,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-HORSE-GRAM-1KG",
+        "price": 109,
+        "compare_price": 129,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Horse Gram / Ulavalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "17",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Ulavalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹35",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "black-horse-gram",
+    "title": "Black Horse Gram",
+    "name": "Black Horse Gram",
+    "sku": "YAS-BLACK-HORSE-GRAM",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Nalla Ulavalu",
+    "short_description": "Black Horse Gram (Nalla Ulavalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Darker horse gram for traditional rasam, podi and slow-cooked recipes. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Black Horse Gram (Nalla Ulavalu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Darker horse gram for traditional rasam, podi and slow-cooked recipes. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: Darker horse gram for traditional rasam, podi and slow-cooked recipes.\n\nPack guidance: Available in 250g, 500g. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 40,
+    "compare_price": 50,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Black Horse Gram",
+    "seo_description": "Buy Black Horse Gram (Nalla Ulavalu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "nalla ulavalu, black horse gram",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-BLACK-HORSE-250G",
+        "price": 40,
+        "compare_price": 50,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-BLACK-HORSE-500G",
+        "price": 65,
+        "compare_price": 80,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Black Horse Gram / Nalla Ulavalu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "18",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Nalla Ulavalu for everyday Telugu kitchen use.",
+      "price_line": "From ₹40",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "green-peas",
+    "title": "Green Peas",
+    "name": "Green Peas",
+    "sku": "YAS-GREEN-PEAS",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Green Batani",
+    "short_description": "Green Peas (Green Batani) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Green peas for curries, pulao, chaat and snack preparations. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Green Peas (Green Batani) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Green peas for curries, pulao, chaat and snack preparations. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Green peas for curries, pulao, chaat and snack preparations.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 105,
+    "compare_price": 125,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Green Peas",
+    "seo_description": "Buy Green Peas (Green Batani) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "green batani, green peas",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-GREEN-PEAS-500G",
+        "price": 60,
+        "compare_price": 70,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-GREEN-PEAS-1KG",
+        "price": 105,
+        "compare_price": 125,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Green Peas / Green Batani, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "19",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Green Batani for everyday Telugu kitchen use.",
+      "price_line": "From ₹60",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "split-urad-dal-with-skin",
+    "title": "Split Urad Dal with Skin",
+    "name": "Split Urad Dal with Skin",
+    "sku": "YAS-SPLIT-URAD-DAL-WITH-SKIN",
+    "category_name": "Dals & Lentils",
+    "local_name": "Minapappu with Skin",
+    "short_description": "Split Urad Dal with Skin (Minapappu with Skin) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Split urad with skin for dal, batter support and traditional recipes. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Split Urad Dal with Skin (Minapappu with Skin) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Split urad with skin for dal, batter support and traditional recipes. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Split urad with skin for dal, batter support and traditional recipes.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Split Urad Dal with Skin",
+    "seo_description": "Buy Split Urad Dal with Skin (Minapappu with Skin) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "minapappu with skin, split urad, urad dal chilka",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-SPLIT-URAD-D-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-SPLIT-URAD-D-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Split Urad Dal with Skin / Minapappu with Skin, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "20",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Minapappu with Skin for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "split-moong-dal-with-skin",
+    "title": "Split Moong Dal with Skin",
+    "name": "Split Moong Dal with Skin",
+    "sku": "YAS-SPLIT-MOONG-DAL-WITH-SKIN",
+    "category_name": "Dals & Lentils",
+    "local_name": "Pesara Pappu with Skin",
+    "short_description": "Split Moong Dal with Skin (Pesara Pappu with Skin) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Split moong with skin for lighter dal, khichdi and everyday cooking. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Split Moong Dal with Skin (Pesara Pappu with Skin) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Split moong with skin for lighter dal, khichdi and everyday cooking. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Split moong with skin for lighter dal, khichdi and everyday cooking.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Split Moong Dal with Skin",
+    "seo_description": "Buy Split Moong Dal with Skin (Pesara Pappu with Skin) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "pesara pappu with skin, moong dal chilka",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-SPLIT-MOONG-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-SPLIT-MOONG-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Split Moong Dal with Skin / Pesara Pappu with Skin, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "21",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Pesara Pappu with Skin for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "red-rajma",
+    "title": "Red Rajma",
+    "name": "Red Rajma",
+    "sku": "YAS-RED-RAJMA",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Rajma Red",
+    "short_description": "Red Rajma (Rajma Red) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Red kidney beans for rajma curry, salads and weekend meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Red Rajma (Rajma Red) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Red kidney beans for rajma curry, salads and weekend meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: Red kidney beans for rajma curry, salads and weekend meals.\n\nPack guidance: Available in 250g, 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 149,
+    "compare_price": 175,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Red Rajma",
+    "seo_description": "Buy Red Rajma (Rajma Red) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "red rajma, kidney beans, rajma",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-RED-RAJMA-250G",
+        "price": 50,
+        "compare_price": 65,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-RED-RAJMA-500G",
+        "price": 80,
+        "compare_price": 100,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-RED-RAJMA-1KG",
+        "price": 149,
+        "compare_price": 175,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Red Rajma / Rajma Red, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "22",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Red Rajma in trial-friendly packs for weekend cooking.",
+      "price_line": "From ₹50",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "white-rajma",
+    "title": "White Rajma",
+    "name": "White Rajma",
+    "sku": "YAS-WHITE-RAJMA",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Rajma White",
+    "short_description": "White Rajma (Rajma White) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White rajma for mild curries, soups and continental-style bean dishes. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "White Rajma (Rajma White) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White rajma for mild curries, soups and continental-style bean dishes. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: White rajma for mild curries, soups and continental-style bean dishes.\n\nPack guidance: Available in 250g, 500g. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 50,
+    "compare_price": 60,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "White Rajma",
+    "seo_description": "Buy White Rajma (Rajma White) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "white rajma, cannellini beans, rajma white",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-WHITE-RAJMA-250G",
+        "price": 50,
+        "compare_price": 60,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-WHITE-RAJMA-500G",
+        "price": 80,
+        "compare_price": 95,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of White Rajma / Rajma White, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "23",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "White Rajma in trial-friendly packs for weekend cooking.",
+      "price_line": "From ₹50",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "white-cowpea-lobiya",
+    "title": "White Cowpea / Lobiya",
+    "name": "White Cowpea / Lobiya",
+    "sku": "YAS-WHITE-COWPEA-LOBIYA",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Lobiya White",
+    "short_description": "White Cowpea / Lobiya (Lobiya White) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White cowpea for curries, sundal and simple protein-rich meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "White Cowpea / Lobiya (Lobiya White) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. White cowpea for curries, sundal and simple protein-rich meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: White cowpea for curries, sundal and simple protein-rich meals.\n\nPack guidance: Available in 250g, 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 109,
+    "compare_price": 129,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "White Cowpea / Lobiya",
+    "seo_description": "Buy White Cowpea / Lobiya (Lobiya White) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "lobiya white, white cowpea, alasandalu",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-WHITE-COWPEA-250G",
+        "price": 35,
+        "compare_price": 50,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-WHITE-COWPEA-500G",
+        "price": 60,
+        "compare_price": 75,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHITE-COWPEA-1KG",
+        "price": 109,
+        "compare_price": 129,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of White Cowpea / Lobiya / Lobiya White, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "24",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Lobiya White for everyday Telugu kitchen use.",
+      "price_line": "From ₹35",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "wheat-rava",
+    "title": "Wheat Rava",
+    "name": "Wheat Rava",
+    "sku": "YAS-WHEAT-RAVA",
+    "category_name": "Breakfast Essentials",
+    "local_name": "Godhuma Ravva",
+    "short_description": "Wheat Rava (Godhuma Ravva) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Wheat rava for upma, kichadi and light dinner bowls. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Wheat Rava (Godhuma Ravva) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Wheat rava for upma, kichadi and light dinner bowls. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Wheat rava for upma, kichadi and light dinner bowls.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Transfer to a clean dry container after opening. Keep away from moisture and strong odours.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 55,
+    "compare_price": 65,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Wheat Rava",
+    "seo_description": "Buy Wheat Rava (Godhuma Ravva) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "godhuma ravva, wheat rava, dalia",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-WHEAT-RAVA-500G",
+        "price": 30,
+        "compare_price": 40,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-WHEAT-RAVA-1KG",
+        "price": 55,
+        "compare_price": 65,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Wheat Rava / Godhuma Ravva, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "25",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Godhuma Ravva for quick breakfasts and regular home cooking.",
+      "price_line": "From ₹30",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "chana-dal",
+    "title": "Chana Dal",
+    "name": "Chana Dal",
+    "sku": "YAS-CHANA-DAL",
+    "category_name": "Dals & Lentils",
+    "local_name": "Chenaga Pappu",
+    "short_description": "Chana Dal (Chenaga Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Chana dal for dal, vada, chutneys, sweets and everyday cooking. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Chana Dal (Chenaga Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Chana dal for dal, vada, chutneys, sweets and everyday cooking. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Chana dal for dal, vada, chutneys, sweets and everyday cooking.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 105,
+    "compare_price": 125,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Chana Dal",
+    "seo_description": "Buy Chana Dal (Chenaga Pappu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "chenaga pappu, chana dal, bengal gram dal",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-CHANA-DAL-500G",
+        "price": 60,
+        "compare_price": 70,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-CHANA-DAL-1KG",
+        "price": 105,
+        "compare_price": 125,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Chana Dal / Chenaga Pappu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "26",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Chenaga Pappu for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹60",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "cowpeas",
+    "title": "Cowpeas",
+    "name": "Cowpeas",
+    "sku": "YAS-COWPEAS",
+    "category_name": "Pulses & Legumes",
+    "local_name": "Bobbarlu",
+    "short_description": "Cowpeas (Bobbarlu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Cowpeas for curries, sundal, sprouts and traditional meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Cowpeas (Bobbarlu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Cowpeas for curries, sundal, sprouts and traditional meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Given trial-friendly 250g/500g packs because these are not daily bulk purchases for every family.\n\nBest for: Cowpeas for curries, sundal, sprouts and traditional meals.\n\nPack guidance: Available in 250g, 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 95,
+    "compare_price": 115,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Cowpeas",
+    "seo_description": "Buy Cowpeas (Bobbarlu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "bobbarlu, cowpeas, alasandalu",
+    "purity_badges": [
+      {
+        "label": "Yasvik Trial Pack Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "250g",
+        "sku": "YAS-COWPEAS-250G",
+        "price": 35,
+        "compare_price": 45,
+        "pack_kg": 0.25,
+        "weight_grams": 250,
+        "visible_stock_units": 40,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "500g",
+        "sku": "YAS-COWPEAS-500G",
+        "price": 55,
+        "compare_price": 65,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-COWPEAS-1KG",
+        "price": 95,
+        "compare_price": 115,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Cowpeas / Bobbarlu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "27",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Bobbarlu for everyday Telugu kitchen use.",
+      "price_line": "From ₹35",
+      "badge_line": "Yasvik Trial Pack Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "moong-dal",
+    "title": "Moong Dal",
+    "name": "Moong Dal",
+    "sku": "YAS-MOONG-DAL",
+    "category_name": "Dals & Lentils",
+    "local_name": "Pesara Pappu",
+    "short_description": "Moong Dal (Pesara Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Moong dal for quick dal, khichdi, soups and kid-friendly meals. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Moong Dal (Pesara Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Moong dal for quick dal, khichdi, soups and kid-friendly meals. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Chosen for regular cooking with clear naming, clean packing and usable pack sizes.\n\nBest for: Moong dal for quick dal, khichdi, soups and kid-friendly meals.\n\nPack guidance: Available in 500g, 1kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 139,
+    "compare_price": 159,
+    "currency": "INR",
+    "stock": 10,
+    "stock_unit": "kg",
+    "low_stock_threshold": 1.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Moong Dal",
+    "seo_description": "Buy Moong Dal (Pesara Pappu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "pesara pappu, moong dal, yellow moong",
+    "purity_badges": [
+      {
+        "label": "Yasvik Daily Cooking Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-MOONG-DAL-500G",
+        "price": 75,
+        "compare_price": 90,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 20,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-MOONG-DAL-1KG",
+        "price": 139,
+        "compare_price": 159,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 10,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 10 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Moong Dal / Pesara Pappu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "28",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "Pesara Pappu for daily dal, batter and home-style cooking.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Daily Cooking Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "white-sugar",
+    "title": "White Sugar",
+    "name": "White Sugar",
+    "sku": "YAS-WHITE-SUGAR",
+    "category_name": "Sugar & Sweeteners",
+    "local_name": "White Sugar",
+    "short_description": "White Sugar (White Sugar) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Everyday sugar priced as a trust-builder for colony households. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "White Sugar (White Sugar) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Everyday sugar priced as a trust-builder for colony households. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Kept as a trust-builder: practical pricing, simple packs, and easy local-name discovery.\n\nBest for: Everyday sugar priced as a trust-builder for colony households.\n\nPack guidance: Available in 1kg, 5kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in a clean, dry, airtight container.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 47,
+    "compare_price": 52,
+    "currency": "INR",
+    "stock": 50,
+    "stock_unit": "kg",
+    "low_stock_threshold": 7.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "White Sugar",
+    "seo_description": "Buy White Sugar (White Sugar) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "white sugar, sugar, sakkara",
+    "purity_badges": [
+      {
+        "label": "Yasvik Fair Price Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "1kg",
+        "sku": "YAS-WHITE-SUGAR-1KG",
+        "price": 47,
+        "compare_price": 52,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 50,
+        "stock_source_kg": 50,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "5kg",
+        "sku": "YAS-WHITE-SUGAR-5KG",
+        "price": 235,
+        "compare_price": 260,
+        "pack_kg": 5,
+        "weight_grams": 5000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 50,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 50 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of White Sugar / White Sugar, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "29",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "A simple household staple kept at a fair colony price.",
+      "price_line": "From ₹47",
+      "badge_line": "Yasvik Fair Price Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  },
+  {
+    "slug": "toor-dal",
+    "title": "Toor Dal",
+    "name": "Toor Dal",
+    "sku": "YAS-TOOR-DAL",
+    "category_name": "Dals & Lentils",
+    "local_name": "Kandi Pappu",
+    "short_description": "Toor Dal (Kandi Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Core daily dal for sambar, pappu and everyday Telugu cooking. We keep the page simple: what it is, how to use it, and the current fair price.",
+    "description": "Toor Dal (Kandi Pappu) from Yasvik is packed for practical home use, with clear local naming and useful pack sizes. Core daily dal for sambar, pappu and everyday Telugu cooking. We keep the page simple: what it is, how to use it, and the current fair price.\n\nWhy Yasvik keeps this: Kept as a trust-builder: practical pricing, simple packs, and easy local-name discovery.\n\nBest for: Core daily dal for sambar, pappu and everyday Telugu cooking.\n\nPack guidance: Available in 500g, 1kg, 5kg. Show smaller packs first for trial products; show 1kg first for daily staples.\n\nStorage: Store in an airtight container after opening. Keep away from moisture and check regularly during long storage.\n\nNo organic or farmer-direct claim unless verified. Keep wording honest and price-led.",
+    "price": 135,
+    "compare_price": 149,
+    "currency": "INR",
+    "stock": 50,
+    "stock_unit": "kg",
+    "low_stock_threshold": 7.5,
+    "is_published": true,
+    "is_featured": false,
+    "seo_title": "Toor Dal",
+    "seo_description": "Buy Toor Dal (Kandi Pappu) from Yasvik. Clear local names, practical pack sizes and fair colony pricing.",
+    "seo_keywords": "kandi pappu, toor dal, arhar dal",
+    "purity_badges": [
+      {
+        "label": "Yasvik Fair Price Shelf",
+        "tone": "trust"
+      }
+    ],
+    "quick_variants": [
+      {
+        "label": "500g",
+        "sku": "YAS-TOOR-DAL-500G",
+        "price": 75,
+        "compare_price": 85,
+        "pack_kg": 0.5,
+        "weight_grams": 500,
+        "visible_stock_units": 100,
+        "stock_source_kg": 50,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "1kg",
+        "sku": "YAS-TOOR-DAL-1KG",
+        "price": 135,
+        "compare_price": 149,
+        "pack_kg": 1,
+        "weight_grams": 1000,
+        "visible_stock_units": 50,
+        "stock_source_kg": 50,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      },
+      {
+        "label": "5kg",
+        "sku": "YAS-TOOR-DAL-5KG",
+        "price": 675,
+        "compare_price": 745,
+        "pack_kg": 5,
+        "weight_grams": 5000,
+        "visible_stock_units": 10,
+        "stock_source_kg": 50,
+        "notes": "Shared bulk stock. Do not treat variants as separate inventory.",
+        "image_url": "",
+        "image_urls": []
+      }
+    ],
+    "inventory_notes": "Bulk source stock: 50 kg. Variants share this same physical inventory. Deduct stock by pack_kg * quantity; do not treat variants as independent inventory.",
+    "image_prompt": "Clean natural product photo of Toor Dal / Kandi Pappu, loose grains or pulses in a matte bowl, warm beige Yasvik website style, no fake farm scene",
+    "source_workbook_id": "30",
+    "website_copy": {
+      "hero_eyebrow": "YASVIK FOODS",
+      "hero_headline": "The everyday pappu people compare first — priced to build trust.",
+      "price_line": "From ₹75",
+      "badge_line": "Yasvik Fair Price Shelf",
+      "cta_text": "Add to Harvest Bag"
+    }
+  }
+]
