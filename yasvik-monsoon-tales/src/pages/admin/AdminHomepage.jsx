@@ -33,7 +33,7 @@ function SectionForm({ data, onChange }) {
           <input type={type} value={data[key] || ''} onChange={f(key)} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none focus:border-forest-canopy" />
         </div>
       ))}
-      <ImageUploadField label="Media Image" value={data.media_url} onChange={(url) => onChange({ ...data, media_url: url })} aspectClass="aspect-video" />
+      <ImageUploadField label="Media Image" value={data.media_url} onChange={(url) => onChange({ ...data, media_url: url })} aspectClass="aspect-video" folder="heroes" />
       <div>
         <label className="font-inter text-xs text-rain-cloud/55 block mb-1">Body Text</label>
         <textarea value={data.body_text || ''} onChange={f('body_text')} rows={2} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none resize-none" />

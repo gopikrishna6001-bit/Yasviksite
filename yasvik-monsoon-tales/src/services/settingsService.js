@@ -17,7 +17,8 @@ export const SETTINGS_QUERY_KEYS = {
   theme: ['settings', 'theme'],
 };
 
-const SETTINGS_CACHE_KEY = 'yasvik_public_settings_cache_v1';
+const SETTINGS_CACHE_KEY = 'yasvik_public_settings_cache_v2';
+const LEGACY_SETTINGS_CACHE_KEY = 'yasvik_public_settings_cache_v1';
 
 function canUseLocalStorage() {
   return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
@@ -26,6 +27,7 @@ function canUseLocalStorage() {
 function cacheSettings(settings = []) {
   if (!canUseLocalStorage()) return;
   try {
+    window.localStorage.removeItem(LEGACY_SETTINGS_CACHE_KEY);
     window.localStorage.setItem(SETTINGS_CACHE_KEY, JSON.stringify(buildLatestSettingsValueMap(settings)));
   } catch {
     // Local storage can be unavailable in private/strict browser modes.
@@ -53,19 +55,11 @@ export function getCachedSetting(key, fallback = undefined) {
   }
 }
 
-export function optimizeSupabasePublicImageUrl(url = '', width = 480) {
+export function optimizeSupabasePublicImageUrl(url = '', _width = 480) {
   const raw = String(url || '').trim();
-  if (!raw.includes('/storage/v1/object/public/')) return raw;
-  try {
-    const parsed = new URL(raw);
-    parsed.pathname = parsed.pathname.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
-    parsed.searchParams.set('width', String(width));
-    parsed.searchParams.set('quality', '90');
-    parsed.searchParams.set('resize', 'contain');
-    return parsed.toString();
-  } catch {
-    return raw;
-  }
+  if (!raw.includes('/storage/v1/')) return raw;
+  // Do not rewrite to /render/image — that was the main cached-egress multiplier.
+  return raw.replace('/storage/v1/render/image/public/', '/storage/v1/object/public/');
 }
 
 function normalizeSettingRow(row = {}) {

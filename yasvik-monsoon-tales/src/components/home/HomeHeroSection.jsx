@@ -1,100 +1,157 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageCircle, Truck } from 'lucide-react';
-import YasvikButton from '@/components/brand/YasvikButton';
-import YasvikLogo from '@/components/brand/YasvikLogo';
-import { HERO_COPY } from '@/brand/monsoonTokens';
-import { resolveSetting } from '@/services/settingsService';
+import { motion } from 'framer-motion';
+import HeroBackgroundBanner from '@/components/brand/atmosphere/HeroBackgroundBanner';
+import HomeHeroMediaPanel from '@/components/home/HomeHeroMediaPanel';
+import MobileHeroCinematic from '@/components/home/MobileHeroCinematic';
+import { HERO_COPY, heroHeadlineLines, normalizeHeroSubheadline } from '@/brand/monsoonTokens';
+import HomeHeroDesigned from '@/components/home/HomeHeroDesigned';
+import { buildHomeHeroMediaPlan, isDesignedImageHero, parseHomeHeroSlides } from '@/lib/heroMediaUtils';
 
-function normalizePhone(value = '') {
-  const digits = String(value || '').replace(/\D/g, '');
-  if (!digits) return '917842938998';
-  if (digits.length === 10) return `91${digits}`;
-  return digits;
-}
+/* ── Shared animation variants ── */
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.40, delayChildren: 1.1 } },
+};
+const fadeSlideUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
+};
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.85, ease: 'easeOut' } },
+};
 
-function safeMedia(url = '') {
-  const value = String(url || '').trim();
-  return value && !/picsum\.photos|source\.unsplash\.com|placehold/i.test(value) ? value : '';
+function getSetting(settingsMap, key, fallback) {
+  const value = settingsMap?.[key];
+  return value === undefined || value === null || value === '' ? fallback : value;
 }
 
 export default function HomeHeroSection({ settingsMap = {}, heroMedia = {} }) {
-  const whatsappNumber = normalizePhone(
-    resolveSetting(settingsMap, 'whatsapp_number', resolveSetting(settingsMap, 'support_whatsapp_number', '')),
+  const headline = String(getSetting(settingsMap, 'home_hero_headline', HERO_COPY.headline));
+  const subheadline = normalizeHeroSubheadline(
+    getSetting(settingsMap, 'home_hero_subheadline', HERO_COPY.subheadline),
   );
-  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I would like to place an order.')}`;
-  const freeDeliveryThreshold = Number(resolveSetting(settingsMap, 'free_delivery_threshold', 999));
-  const deliveryNote =
-    freeDeliveryThreshold > 0
-      ? `Free home delivery above ₹${freeDeliveryThreshold} within colony and nearby areas.`
-      : HERO_COPY.deliveryNote;
+  const eyebrow = String(getSetting(settingsMap, 'home_hero_eyebrow', HERO_COPY.eyebrow));
+  const headlineLines = heroHeadlineLines(headline);
 
-  const desktopMedia = safeMedia(heroMedia.desktop);
-  const mobileMedia = safeMedia(heroMedia.mobile);
-  const heroImage = mobileMedia || desktopMedia;
+  const slides = parseHomeHeroSlides(getSetting(settingsMap, 'home_hero_slides_json', ''));
+  const mediaPlan = useMemo(
+    () =>
+      buildHomeHeroMediaPlan({
+        slides,
+        desktopUrl: heroMedia.desktop,
+        mobileUrl: heroMedia.mobile,
+        fallbackUrl: heroMedia.fallback,
+      }),
+    [slides, heroMedia.desktop, heroMedia.mobile, heroMedia.fallback],
+  );
+
+  const hasMedia = mediaPlan?.mode !== 'placeholder';
+  const designedHero = isDesignedImageHero(mediaPlan, {
+    desktopUrl: heroMedia.desktop,
+    mobileUrl: heroMedia.mobile,
+  });
+
+  if (designedHero) {
+    return (
+      <HomeHeroDesigned
+        desktopSrc={mediaPlan.desktop || mediaPlan.url}
+        mobileSrc={mediaPlan.mobile || mediaPlan.desktop || mediaPlan.url}
+        primaryCta={HERO_COPY.primaryCta}
+        secondaryCta={HERO_COPY.secondaryCta}
+      />
+    );
+  }
 
   return (
-    <section className="border-b border-soft-border bg-warm-cream px-4 pb-10 pt-28 md:px-8 md:pb-14 md:pt-32">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-12 lg:gap-16">
-        <div className="flex flex-col items-start text-left">
-          <h1 className="font-cormorant text-[2.35rem] font-semibold leading-[1.08] text-deep-forest md:text-5xl lg:text-[3.35rem]">
-            {HERO_COPY.headline}
-          </h1>
+    <>
+      {/* ── Mobile: cinematic full-screen (hidden md+) ── */}
+      <div className="md:hidden">
+        <MobileHeroCinematic
+          mediaPlan={mediaPlan}
+          eyebrow={eyebrow}
+          headline={headline}
+          headlineLines={headlineLines}
+          subheadline={subheadline}
+          primaryCta={HERO_COPY.primaryCta}
+          secondaryCta={HERO_COPY.secondaryCta}
+        />
+      </div>
 
-          <p className="mt-4 max-w-xl font-inter text-base leading-7 text-deep-forest/75 md:text-lg md:leading-8">
-            {HERO_COPY.subheadline}
-          </p>
+      {/* ── Desktop: full-bleed cinematic (hidden on mobile) ── */}
+      <section className="relative isolate hidden overflow-hidden bg-[#0a170d] md:flex md:min-h-screen md:flex-col md:justify-center">
 
-          <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <YasvikButton to="/shop" variant="primary" className="w-full justify-center sm:w-auto">
-              {HERO_COPY.primaryCta}
-            </YasvikButton>
-            <YasvikButton
-              href={whatsappHref}
-              variant="whatsapp"
-              target="_blank"
-              rel="noreferrer"
-              className="w-full justify-center sm:w-auto"
-            >
-              <MessageCircle className="h-4 w-4" />
-              {HERO_COPY.secondaryCta}
-            </YasvikButton>
+        {/* Full-bleed background: uploaded media or illustration fallback */}
+        {hasMedia ? (
+          <div className="absolute inset-0 overflow-hidden">
+            <HomeHeroMediaPanel mediaPlan={mediaPlan} aspectClass="h-full" variant="desktop" />
           </div>
+        ) : (
+          <HeroBackgroundBanner noFade />
+        )}
 
-          <p className="mt-5 inline-flex items-start gap-2 rounded-2xl border border-soft-border bg-white px-4 py-3 font-inter text-sm leading-6 text-deep-forest/80">
-            <Truck className="mt-0.5 h-4 w-4 flex-shrink-0 text-neon-paddy" aria-hidden="true" />
-            {deliveryNote}
-          </p>
-        </div>
+        {/* Left-side legibility gradient — stronger on text side */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(0, 20, 10, 0.55) 0%, rgba(0, 20, 10, 0.28) 42%, transparent 68%)',
+          }}
+        />
+        {/* Bottom + top edge shading */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#0a170d]/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0a170d]/38 to-transparent" />
 
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-soft-border bg-white shadow-[0_16px_42px_rgba(31,61,43,0.08)]">
-          {heroImage ? (
-            <img
-              src={heroImage}
-              alt="Yasvik natural foods and everyday essentials"
-              className="aspect-[4/3] h-full w-full object-cover md:aspect-[5/4]"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-            />
-          ) : (
-            <div
-              className="flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-gradient-to-br from-warm-cream via-white to-[#F3EDE0] p-8 md:aspect-[5/4]"
-              aria-hidden="true"
+        {/* Staggered content — left, slightly below vertical center */}
+        <motion.div
+          className="relative z-10 mx-auto w-full max-w-[1400px] translate-y-[10%] px-12 py-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p
+            variants={fadeSlideUp}
+            className="font-inter text-[10px] font-bold uppercase tracking-[0.30em] text-white/55"
+          >
+            {eyebrow}
+          </motion.p>
+
+          <motion.h1
+            variants={fadeSlideUp}
+            className="mt-2.5 max-w-[800px] font-cormorant text-[3.35rem] font-semibold leading-[1.08] text-white lg:text-[3.95rem]"
+          >
+            {headlineLines.map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {index > 0 ? <br /> : null}
+                {line}
+              </span>
+            ))}
+          </motion.h1>
+
+          <motion.p
+            variants={fadeSlideUp}
+            className="mt-3.5 max-w-[560px] font-inter text-[1rem] leading-7 text-white/75"
+          >
+            {subheadline}
+          </motion.p>
+
+          <motion.div variants={fadeIn} className="mt-7 flex flex-wrap gap-3">
+            <Link
+              to="/shop"
+              className="rounded-full bg-neon-paddy px-7 py-3.5 font-inter text-sm font-bold text-white shadow-[0_4px_22px_rgba(67,160,71,0.42)] transition-transform hover:scale-[1.02] active:scale-95"
             >
-              <YasvikLogo variant="symbol" imageClassName="h-16 w-auto opacity-80" />
-              <p className="max-w-xs text-center font-inter text-sm leading-6 text-deep-forest/60">
-                Millets, staples, oils, spices &amp; everyday essentials for modern families.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="mx-auto mt-6 max-w-[1400px] md:hidden">
-        <Link to="/shop" className="font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
-          Browse all categories →
-        </Link>
-      </div>
-    </section>
+              {HERO_COPY.primaryCta}
+            </Link>
+            <Link
+              to="/#home-categories-heading"
+              className="rounded-full border-2 border-white/35 px-7 py-3.5 font-inter text-sm font-bold text-white backdrop-blur-sm transition-colors hover:border-white/65 active:scale-95"
+            >
+              {HERO_COPY.secondaryCta}
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+    </>
   );
 }

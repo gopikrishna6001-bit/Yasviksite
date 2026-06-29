@@ -5,6 +5,7 @@ import { categories as categoriesApi } from '@/services/api';
 import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CategoryArtwork from '@/components/categories/CategoryArtwork';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 const PRIMARY_LINKS = [
   { label: 'SHOP', path: '/shop', hasMenu: true },
@@ -59,7 +60,7 @@ export default function PrimaryNavRow() {
                 <Link className="block py-1.5 font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to="/shop?category=__bundles__">Bundles</Link>
                 <div className="mt-5 rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] p-3">
                   <p className="font-syne text-lg font-bold leading-tight text-[var(--text-main)]">Foods sourced through journeys.</p>
-                  <p className="mt-1 font-inter text-[11px] leading-relaxed text-[var(--theme-muted)]">Traditional foods, fair prices, trusted quality.</p>
+                  <p className="mt-1 font-inter text-[11px] leading-relaxed text-[var(--theme-muted)]">Conscious food, responsible sourcing, honest quality.</p>
                 </div>
               </div>
               <div className="col-span-2">
@@ -74,7 +75,7 @@ export default function PrimaryNavRow() {
                   {categories.slice(0, 3).map((cat) => (
                     <Link key={`feature-${cat.id}`} to={`/shop?category=${cat.id}`} className="group block overflow-hidden rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-canvas)]">
                       <div className="flex aspect-[4/5] items-center justify-center bg-[color-mix(in_srgb,var(--action-primary)_10%,var(--bg-card))]">
-                        {cat.image_url || cat.media_url ? <img src={cat.image_url || cat.media_url} alt={cat.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" decoding="async" fetchPriority="low" /> : <CategoryArtwork title={cat.emotional_title || cat.name} />}
+                        {cat.image_url || cat.media_url ? <OptimizedImage src={cat.image_url || cat.media_url} alt={cat.name} preset="category" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" /> : <CategoryArtwork title={cat.emotional_title || cat.name} />}
                       </div>
                       <div className="px-2 py-2"><p className="line-clamp-1 font-inter text-xs font-semibold text-[var(--text-main)]">{cat.emotional_title || cat.name}</p></div>
                     </Link>

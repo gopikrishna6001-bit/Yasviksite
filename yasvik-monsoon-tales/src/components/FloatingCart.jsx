@@ -4,17 +4,18 @@ import { useCart } from '@/lib/CartContext';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { useStoreOffline } from '@/hooks/useStoreOffline';
+import { resolveFreeDeliveryThreshold } from '@/lib/commerceCopy';
 import {
   fetchAllAppSettings,
-  resolveSetting,
+  resolveSettingsMap,
   SETTINGS_QUERY_KEYS,
 } from '@/services/settingsService';
-
-const FREE_DELIVERY_DEFAULT = 999;
 
 export default function FloatingCart({ onOpen }) {
   const { items, totalItems, totalPrice } = useCart();
   const location = useLocation();
+  const { enabled: storeOffline } = useStoreOffline();
   const [dismissed, setDismissed] = useState(false);
 
   const { data: settings = [] } = useQuery({
@@ -23,7 +24,7 @@ export default function FloatingCart({ onOpen }) {
     staleTime: 10 * 60 * 1000,
   });
 
-  const threshold = Number(resolveSetting(settings, 'free_delivery_threshold', FREE_DELIVERY_DEFAULT));
+  const threshold = resolveFreeDeliveryThreshold(resolveSettingsMap(settings));
   const remaining = threshold - totalPrice;
   const nearFreeDelivery = remaining > 0 && remaining <= 300;
   const hasFreeDelivery = totalPrice >= threshold;
@@ -35,7 +36,7 @@ export default function FloatingCart({ onOpen }) {
   const canShowOnThisPage = location.pathname === '/shop' || location.pathname.startsWith('/product/');
 
   // Keep the shortcut focused on active shopping flows only.
-  if (totalItems === 0 || !canShowOnThisPage || dismissed) return null;
+  if (totalItems === 0 || !canShowOnThisPage || dismissed || storeOffline) return null;
 
   const deliveryMessage = hasFreeDelivery
     ? 'Free delivery unlocked'

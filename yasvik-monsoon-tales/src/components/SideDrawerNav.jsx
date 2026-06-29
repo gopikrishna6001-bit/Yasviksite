@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Compass,
   Grid3X3,
+  Gift,
   Heart,
   HelpCircle,
   Leaf,
@@ -15,7 +16,6 @@ import {
   ShoppingBag,
   User,
   Users,
-  UtensilsCrossed,
   Wheat,
   X,
 } from 'lucide-react';
@@ -27,12 +27,13 @@ import { groupNavItems, resolveVisibleNavItems } from '@/config/publicNavigation
 
 const ICONS = {
   shop_all: ShoppingBag,
+  bundles: Gift,
   wishlist: Heart,
   our_roots: Compass,
   producers: Users,
+  farmers: Users,
   people: Users,
   stories: BookOpen,
-  recipes: UtensilsCrossed,
   farming_cycle: Wheat,
   profile: User,
   orders: PackageSearch,
@@ -60,18 +61,20 @@ function DrawerLink({ item, compact = false, onClose }) {
     <Link
       to={item.path}
       onClick={onClose}
-      className={`group flex items-center justify-between border-b border-[#f5f1e8]/10 font-inter transition-colors hover:bg-[#f5f1e8]/8 ${
-        compact ? 'min-h-[3.35rem] px-6 text-[14px] font-semibold text-[#f5f1e8]/68' : 'min-h-[4.35rem] px-6 text-[17px] font-bold text-[#f5f1e8]'
+      className={`group flex items-center justify-between border-b border-soft-border font-inter transition-colors hover:bg-deep-forest/[0.04] ${
+        compact ? 'min-h-[3.35rem] px-6 text-sm font-semibold text-deep-forest/75' : 'min-h-[4rem] px-6 text-base font-bold text-deep-forest'
       }`}
     >
       <span className="flex min-w-0 items-center gap-3">
-        <span className={`flex shrink-0 items-center justify-center rounded-full border border-[#f5f1e8]/10 bg-[#f5f1e8]/7 text-[#d9c88d] ${compact ? 'h-8 w-8' : 'h-10 w-10'}`}>
+        <span
+          className={`flex shrink-0 items-center justify-center rounded-full border border-soft-border bg-white text-neon-paddy ${compact ? 'h-8 w-8' : 'h-10 w-10'}`}
+        >
           <Icon className={compact ? 'h-3.5 w-3.5' : 'h-[18px] w-[18px]'} strokeWidth={1.7} />
         </span>
         <span className="truncate">{item.label}</span>
       </span>
       {item.emphasis && (
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#f5f1e8]/12 text-[#f5f1e8]/78 transition-transform group-hover:translate-x-0.5">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-soft-border text-deep-forest/55 transition-transform group-hover:translate-x-0.5">
           <ChevronRight className="h-5 w-5" strokeWidth={1.7} />
         </span>
       )}
@@ -84,7 +87,7 @@ export default function SideDrawerNav({ open, onClose }) {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const { data: categories = [] } = useQuery({
-    queryKey: ['drawer-categories'],
+    queryKey: ['categories'],
     queryFn: () => categoriesApi.listActive(18),
     staleTime: 5 * 60 * 1000,
   });
@@ -107,7 +110,7 @@ export default function SideDrawerNav({ open, onClose }) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-50 bg-[#1a1814]/68 backdrop-blur-[3px]"
+            className="fixed inset-0 z-50 bg-deep-forest/25 backdrop-blur-[2px]"
             onClick={onClose}
           />
 
@@ -118,18 +121,18 @@ export default function SideDrawerNav({ open, onClose }) {
             animate="visible"
             exit="exit"
             aria-label="Yasvik site menu"
-            className="fixed bottom-3 left-3 top-3 z-[60] flex w-[min(88vw,30rem)] flex-col overflow-hidden rounded-[1.4rem] border border-[#f5f1e8]/12 bg-[#1e1c18] text-[#f5f1e8] shadow-[0_30px_90px_rgba(0,0,0,.42)] md:left-6 md:top-6 md:w-[34rem]"
+            className="fixed bottom-3 left-3 top-3 z-[60] flex w-[min(88vw,30rem)] flex-col overflow-hidden rounded-[1.4rem] border border-soft-border bg-warm-cream text-deep-forest shadow-[0_24px_64px_rgba(31,61,43,0.14)] md:left-6 md:top-6 md:w-[34rem]"
           >
-            <div className="flex h-[5.8rem] shrink-0 items-center gap-5 border-b border-[#f5f1e8]/12 px-5">
+            <div className="flex h-[5.5rem] shrink-0 items-center gap-4 border-b border-soft-border bg-white/80 px-5 backdrop-blur-sm">
               <button
                 type="button"
                 onClick={onClose}
                 aria-label="Close menu"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#f5f1e8]/12 text-[#f5f1e8] transition-colors hover:bg-[#f5f1e8]/8 active:scale-95"
+                className="yasvik-icon-button h-11 w-11 active:scale-95"
               >
                 <X className="h-5 w-5" strokeWidth={1.7} />
               </button>
-              <Link to="/" onClick={onClose} aria-label="Yasvik Home" className="inline-flex rounded-xl bg-[#f5f1e8] px-3 py-2">
+              <Link to="/" onClick={onClose} aria-label="Yasvik Home" className="inline-flex">
                 <YasvikLogo variant="horizontal" imageClassName="h-10 w-auto" />
               </Link>
             </div>
@@ -139,26 +142,32 @@ export default function SideDrawerNav({ open, onClose }) {
                 const visibleItems = group.key === 'shop' ? group.items.filter((item) => item.key !== 'shop_all') : group.items;
 
                 return (
-                  <section key={group.key} aria-labelledby={`drawer-${group.key}`} className="border-b border-[#f5f1e8]/10 last:border-b-0">
-                    <h2 id={`drawer-${group.key}`} className="px-6 pb-2 pt-5 font-inter text-[11px] font-black uppercase tracking-[0.24em] text-[#d9c88d]">
+                  <section key={group.key} aria-labelledby={`drawer-${group.key}`} className="border-b border-soft-border last:border-b-0">
+                    <h2
+                      id={`drawer-${group.key}`}
+                      className="px-6 pb-2 pt-5 font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay"
+                    >
                       {group.label}
                     </h2>
 
                     {group.key === 'shop' && (
-                      <div className="border-b border-[#f5f1e8]/10">
+                      <div className="border-b border-soft-border">
                         <button
                           type="button"
                           onClick={() => setCategoriesOpen((value) => !value)}
                           aria-expanded={categoriesOpen}
-                          className="flex min-h-[4.35rem] w-full items-center justify-between px-6 text-left font-inter text-[17px] font-bold text-[#f5f1e8] transition-colors hover:bg-[#f5f1e8]/8"
+                          className="flex min-h-[4rem] w-full items-center justify-between px-6 text-left font-inter text-base font-bold text-deep-forest transition-colors hover:bg-deep-forest/[0.04]"
                         >
                           <span className="flex min-w-0 items-center gap-3">
-                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#f5f1e8]/10 bg-[#f5f1e8]/7 text-[#d9c88d]">
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-soft-border bg-white text-neon-paddy">
                               <Grid3X3 className="h-[18px] w-[18px]" strokeWidth={1.7} />
                             </span>
                             <span className="truncate">All Categories</span>
                           </span>
-                          <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${categoriesOpen ? 'rotate-180' : ''}`} strokeWidth={1.7} />
+                          <ChevronDown
+                            className={`h-5 w-5 shrink-0 text-deep-forest/55 transition-transform duration-200 ${categoriesOpen ? 'rotate-180' : ''}`}
+                            strokeWidth={1.7}
+                          />
                         </button>
 
                         <AnimatePresence initial={false}>
@@ -177,7 +186,7 @@ export default function SideDrawerNav({ open, onClose }) {
                                     key={category.id}
                                     to={`/shop?category=${category.id}`}
                                     onClick={onClose}
-                                    className="flex min-h-[3.1rem] items-center rounded-2xl border border-[#f5f1e8]/10 bg-[#f5f1e8]/6 px-4 font-inter text-[13px] font-bold text-[#f5f1e8]/86 transition-colors hover:bg-[#f5f1e8]/12"
+                                    className="flex min-h-[3.1rem] items-center rounded-2xl border border-soft-border bg-white px-4 font-inter text-[13px] font-semibold text-deep-forest/85 transition-colors hover:border-neon-paddy/30 hover:bg-warm-cream"
                                   >
                                     <span className="line-clamp-2">{category.emotional_title || category.name}</span>
                                   </Link>

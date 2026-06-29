@@ -68,11 +68,11 @@ export default function StoryDetail() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/80 via-rain-cloud/20 to-transparent" />
         <Link
-          to="/our-roots#hands"
+          to="/stories"
           className="absolute top-14 left-5 z-10 flex items-center gap-1 text-white/80 font-inter text-sm"
         >
           <ChevronLeft className="w-4 h-4" />
-          Our Roots
+          Stories
         </Link>
         <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
           {story.read_time_minutes && (

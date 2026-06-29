@@ -9,16 +9,65 @@
     <link rel="dns-prefetch" href="https://cpksnpuavywbmhrzglyh.supabase.co" />
     <link rel="preconnect" href="https://cpksnpuavywbmhrzglyh.supabase.co" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="description" content="Yasvik Natural Foods & Everyday Essentials helps families make better everyday choices with millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and groceries. Serving Lingampally, Ashok Nagar, Beeramguda, Ameenpur, Patancheru and surrounding communities." />
+    <link rel="manifest" href="/manifest.json" id="yasvik-pwa-manifest" />
+    <link rel="apple-touch-icon" href="/media/brand/logo-symbol.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script>
+      (function () {
+        if (!/^\/admin(\/|$)/.test(location.pathname)) return;
+        var link = document.getElementById('yasvik-pwa-manifest');
+        if (link) link.href = '/manifest-admin.json';
+        document.title = 'Yasvik Admin';
+        var titleMeta = document.createElement('meta');
+        titleMeta.name = 'apple-mobile-web-app-title';
+        titleMeta.content = 'Yasvik Admin';
+        document.head.appendChild(titleMeta);
+        var theme = document.querySelector('meta[name="theme-color"]');
+        if (theme) theme.content = '#3d342c';
+      })();
+    </script>
+    <link rel="canonical" href="https://www.yasvik.com/" />
+    <meta name="description" content="Yasvik is a web application and online store for natural foods and everyday groceries in Hyderabad. Browse products, create an account, sign in with Google, and place orders for delivery or pickup." />
     <meta property="og:title" content="Yasvik | Natural Foods & Everyday Essentials" />
-    <meta property="og:description" content="Better choices for everyday living with millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and groceries." />
+    <meta property="og:description" content="Yasvik web application — browse natural foods, create an account, and place grocery orders in Hyderabad." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png" />
+    <meta property="og:url" content="https://www.yasvik.com/" />
+    <meta property="og:image" content="https://www.yasvik.com/media/brand/logo-horizontal.png" />
     <meta name="theme-color" content="#FAF7EF" />
-    <title>Yasvik | Natural Foods & Everyday Essentials in Lingampally, Hyderabad</title>
+    <title>Yasvik | Natural Foods & Everyday Essentials | Hyderabad</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Yasvik",
+        "url": "https://www.yasvik.com",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "Web browser",
+        "description": "Yasvik is a web application operated by Yasvik Natural Foods in Hyderabad, India. It allows customers to browse natural foods and groceries, create an account, sign in with Google or email, and place orders for delivery or pickup.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Yasvik Natural Foods",
+          "email": "yasvikfoods@gmail.com",
+          "url": "https://www.yasvik.com",
+          "sameAs": ["https://maps.app.goo.gl/5ED9n4iZ3tQZKzGb6"]
+        }
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="max-width:42rem;margin:0 auto;padding:1.5rem 1rem;font-family:system-ui,sans-serif;color:#1f3d2b;line-height:1.6">
+        <h1 style="font-size:1.5rem;margin:0 0 0.75rem">Yasvik online store</h1>
+        <p>
+          The purpose of this application is to let customers of Yasvik Natural Foods in Hyderabad browse
+          natural foods and groceries online, create an account, sign in with Google or email, and place orders
+          for delivery or pickup.
+        </p>
+        <p>
+          <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a>
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -229,6 +229,10 @@
 }
 
 @layer components {
+  .admin-safe-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+  }
+
   .yasvik-wordmark {
     @apply font-cormorant;
     letter-spacing: var(--ysv-tracking-display);
@@ -453,6 +457,71 @@
     padding-inline: var(--ysv-section-x);
   }
 
+  .yasvik-atmosphere-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(780px 340px at 80% 6%, rgba(245, 230, 196, 0.38), transparent 60%),
+      radial-gradient(560px 260px at 20% 100%, rgba(168, 185, 158, 0.05), transparent 64%),
+      linear-gradient(175deg, #fcf9f3 0%, #faf7ef 55%, #f8f4ec 100%);
+  }
+
+  .yasvik-atmosphere-story {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(180deg, #faf7ef 0%, #f3ede0 50%, #faf7ef 100%);
+  }
+
+  @keyframes yasvik-hero-sun-glow {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.62;
+      transform: scale(1.02);
+    }
+  }
+
+  .yasvik-hero-sun {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: yasvik-hero-sun-glow 11s ease-in-out infinite;
+  }
+
+  @keyframes yasvik-landscape-drift {
+    0% {
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      transform: translateX(-49%) translateY(-2px);
+    }
+  }
+
+  .yasvik-farming-landscape-svg {
+    transform: translateX(-50%);
+    opacity: 0.72;
+    animation: yasvik-landscape-drift 40s ease-in-out infinite alternate;
+  }
+
+  .yasvik-footer-landscape-svg {
+    transform: translateX(-50%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .yasvik-hero-sun {
+      animation: none;
+    }
+
+    .yasvik-farming-landscape-svg {
+      animation: none;
+      transform: translateX(-50%);
+    }
+  }
+
   @media (min-width: 768px) {
     .yasvik-section-shell {
       padding-block: var(--ysv-section-y-md);
@@ -496,5 +565,43 @@
 
   .yasvik-pressable:active {
     transform: none;
+  }
+}
+
+/* Counter POS receipt printing */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #pos-receipt-print,
+  #pos-receipt-print * {
+    visibility: visible !important;
+  }
+
+  #pos-receipt-print {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 80mm;
+    padding: 8mm 4mm;
+    font-family: ui-monospace, monospace;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  #pos-invoice-print,
+  #pos-invoice-print * {
+    visibility: visible !important;
+  }
+
+  #pos-invoice-print {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    padding: 12mm;
+    color: #000 !important;
+    background: #fff !important;
   }
 }

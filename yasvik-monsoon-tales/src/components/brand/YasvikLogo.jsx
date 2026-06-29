@@ -4,13 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import {
   fetchAllAppSettings,
   getCachedSetting,
-  optimizeSupabasePublicImageUrl,
   resolveSetting,
   SETTINGS_QUERY_KEYS,
 } from '@/services/settingsService';
+import { BRAND_LOGO_HORIZONTAL, BRAND_LOGO_SYMBOL } from '@/lib/brandAssets';
+import { optimizeMediaUrl } from '@/lib/mediaUrl';
 
-const CURRENT_ADMIN_LOGO_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png';
-const CURRENT_ADMIN_SYMBOL_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781518040543-6c7i3giwirb.png';
+const CURRENT_ADMIN_LOGO_URL = BRAND_LOGO_HORIZONTAL;
+const CURRENT_ADMIN_SYMBOL_URL = BRAND_LOGO_SYMBOL;
 
 const DEFAULT_LOGO_VARIANTS = {
   symbol: {
@@ -73,9 +74,8 @@ export default function YasvikLogo({
   const settingKey = BRAND_SETTING_KEYS[variant] || BRAND_SETTING_KEYS.lockup;
   const cachedSrc = getCachedSetting(settingKey, '');
   const settingSrc = String(resolveSetting(settings, settingKey, cachedSrc) || '').trim();
-  const preferredSrc = settingSrc || activeVariant.src;
+  const preferredSrc = optimizeMediaUrl(settingSrc || activeVariant.src, 'logo');
   const resolvedSrc = failedSrc === preferredSrc ? activeVariant.src : preferredSrc;
-  const optimizedSrc = optimizeSupabasePublicImageUrl(resolvedSrc, variant === 'symbol' ? 160 : 520);
   const framedClass = framed
     ? tone === 'light'
       ? 'rounded-lg bg-white/95 px-2 py-1 shadow-sm'
@@ -85,7 +85,7 @@ export default function YasvikLogo({
   return (
     <span className={clsx('inline-flex items-center justify-center', framedClass, className)}>
       <img
-        src={optimizedSrc}
+        src={resolvedSrc}
         alt={activeVariant.alt}
         loading="eager"
         decoding="async"

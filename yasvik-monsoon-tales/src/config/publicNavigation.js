@@ -7,12 +7,12 @@ export const PUBLIC_NAV_GROUPS = [
 
 export const PUBLIC_NAV_ITEMS = [
   { key: 'shop_all', label: 'All Products', path: '/shop', group: 'shop', sortOrder: 10, emphasis: true, configurable: true },
+  { key: 'bundles', label: 'Bundles', path: '/shop?category=__bundles__', group: 'shop', sortOrder: 15, emphasis: true, configurable: true },
   { key: 'wishlist', label: 'Wishlist', path: '/wishlist', group: 'shop', sortOrder: 90, configurable: true },
 
   { key: 'our_roots', label: 'Our Roots', path: '/our-roots', group: 'discover', sortOrder: 10, configurable: true },
-  { key: 'producers', label: 'Producers', path: '/producers', group: 'discover', sortOrder: 20, configurable: true },
+  { key: 'producers', label: 'Our Farmers', path: '/farmers', group: 'discover', sortOrder: 20, configurable: true },
   { key: 'stories', label: 'Stories', path: '/stories', group: 'discover', sortOrder: 30, configurable: true },
-  { key: 'recipes', label: 'Recipes', path: '/recipes', group: 'discover', sortOrder: 40, configurable: true },
   { key: 'farming_cycle', label: 'Farming Cycle', path: '/farming-cycle', group: 'discover', sortOrder: 50, configurable: true },
 
   { key: 'profile', label: 'Profile', path: '/profile', group: 'account', sortOrder: 10, requiresAuth: true, configurable: true },

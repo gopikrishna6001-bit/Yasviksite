@@ -3,235 +3,122 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { Save, Loader2, ChevronDown, ChevronUp, Trash2, Image as ImageIcon } from 'lucide-react';
 import { appClient } from '@/api/appClient';
-import { categories as categoriesApi, products as productsApi } from '@/services/api';
+import { stories as storiesApi } from '@/services/api';
 import MediaPickerModal from '@/components/admin/MediaPickerModal';
+import StoreOfflineAdminPanel from '@/components/admin/StoreOfflineAdminPanel';
+import DeliveryZonesAdminPanel from '@/components/admin/DeliveryZonesAdminPanel';
+import MetaCatalogAdminPanel from '@/components/admin/MetaCatalogAdminPanel';
+import RazorpayPaymentsAdminPanel from '@/components/admin/RazorpayPaymentsAdminPanel';
 import { getLatestSettingRecord } from '@/lib/settingsResolver';
 import { toast } from '@/components/ui/use-toast';
+import { getCoreValueSettingKeys, YASVIK_CORE_VALUES } from '@/brand/monsoonTokens';
 import {
   fetchAllAppSettings,
   SETTINGS_QUERY_KEYS,
   upsertAppSetting,
 } from '@/services/settingsService';
 import { DEFAULT_THEME_PRESET_KEY, YASVIK_THEME_PRESETS } from '@/lib/themePresets';
+import { BRAND_LOGO_HORIZONTAL, BRAND_LOGO_SYMBOL } from '@/lib/brandAssets';
+import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+
+const CORE_VALUE_PROOF_FIELDS = YASVIK_CORE_VALUES.map((value) => {
+  const keys = getCoreValueSettingKeys(value.id);
+  return {
+    key: keys.storyId,
+    label: `${value.title} — Story override`,
+    type: 'story',
+    defaultValue: '',
+    description: `Optional. Leave blank to auto-link by slug (${value.storySlug}). Create pillar stories in Admin → Stories.`,
+  };
+});
 
 const SETTINGS_SECTIONS = [
   {
     id: 'brand',
-    title: 'Brand Identity',
-    description: 'Logos, favicon, and brand assets used across the public site.',
+    title: 'Brand & Logos',
+    description: 'Header logo, favicon, and loading screen. Page banners live in Illustrations.',
     fields: [
-      { key: 'brand_logo_horizontal_url', label: 'Header Full Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png' },
-      { key: 'brand_logo_wordmark_url', label: 'Wordmark Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png' },
-      { key: 'brand_logo_primary_url', label: 'Primary Lockup Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png' },
-      { key: 'brand_logo_symbol_url', label: 'Symbol Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781518040543-6c7i3giwirb.png' },
-      { key: 'brand_logo_tagline_url', label: 'Tagline Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png' },
-      { key: 'brand_favicon_url', label: 'Browser Favicon', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781518040543-6c7i3giwirb.png' },
-      { key: 'brand_organization_logo_url', label: 'SEO Organization Logo', type: 'media', defaultValue: 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png' },
-      { key: 'brand_logo_header_scale', label: 'Header Logo Scale', type: 'number', defaultValue: 1, description: 'Fine control for the public top-bar logo. Use 1 for normal size; reduce to 0.8 if the logo feels too large.' },
-      { key: 'brand_logo_header_width_desktop', label: 'Header Logo Width (Desktop px)', type: 'number', defaultValue: 230, description: 'Desktop logo width before max-height is applied.' },
-      { key: 'brand_logo_header_max_height_desktop', label: 'Header Logo Max Height (Desktop px)', type: 'number', defaultValue: 50, description: 'Prevents tall/large uploaded logos from overpowering the top bar.' },
-      { key: 'brand_logo_header_width_compact', label: 'Header Logo Width (Compact Desktop px)', type: 'number', defaultValue: 220 },
-      { key: 'brand_logo_header_width_mobile', label: 'Header Logo Width (Mobile px)', type: 'number', defaultValue: 162 },
-      { key: 'brand_logo_header_max_height_mobile', label: 'Header Logo Max Height (Mobile px)', type: 'number', defaultValue: 42 },
-      { key: 'brand_logo_splash_width', label: 'Splash Logo Width (px)', type: 'number', defaultValue: 220, description: 'Logo size shown during app loading/refresh.' },
+      { key: 'brand_logo_horizontal_url', label: 'Header Logo', type: 'media', defaultValue: BRAND_LOGO_HORIZONTAL },
+      { key: 'brand_logo_symbol_url', label: 'Symbol Logo (placeholders)', type: 'media', defaultValue: BRAND_LOGO_SYMBOL },
+      { key: 'brand_favicon_url', label: 'Browser Favicon', type: 'media', defaultValue: BRAND_LOGO_SYMBOL },
+      { key: 'brand_organization_logo_url', label: 'SEO Organization Logo', type: 'media', defaultValue: BRAND_LOGO_HORIZONTAL },
+      { key: 'brand_logo_splash_width', label: 'Splash Logo Width (px)', type: 'number', defaultValue: 220 },
       { key: 'brand_logo_splash_height', label: 'Splash Logo Height (px)', type: 'number', defaultValue: 78 },
     ],
   },
   {
     id: 'theme-colors',
     title: 'Storefront Theme',
-    description: 'Switch the public quick-commerce mood from one centralized preset.',
+    description: 'Colour preset for the public site.',
     fields: [
       { key: 'theme_active_preset', label: 'Storefront Theme Preset', type: 'theme-preset', defaultValue: DEFAULT_THEME_PRESET_KEY },
     ],
   },
   {
-    id: 'announcement',
-    title: 'Announcement Strip',
-    description: 'Top marquee strip content and speed.',
-    fields: [
-      { key: 'announcement_enabled', label: 'Announcement Enabled', type: 'boolean', defaultValue: true },
-      {
-        key: 'announcement_mode',
-        label: 'Announcement Mode',
-        type: 'text',
-        defaultValue: 'ticker',
-        description: 'Use ticker for scrolling messages or promo for a fixed campaign strip with CTA.',
-      },
-      {
-        key: 'announcement_items',
-        label: 'Announcement Items',
-        type: 'textarea',
-        rows: 3,
-        defaultValue: 'Sourced by a traveler. Shared like family | From remote hearths to your home | With Yasvik, taste what we lost',
-        description: 'Use | separator for multiple messages.',
-      },
-      { key: 'announcement_speed_seconds', label: 'Scroll Duration (seconds)', type: 'number', defaultValue: 28 },
-      { key: 'announcement_cta_label', label: 'Promo CTA Label', type: 'text', defaultValue: '' },
-      { key: 'announcement_cta_url', label: 'Promo CTA URL', type: 'text', defaultValue: '' },
-    ],
-  },
-  {
     id: 'hero-campaign',
-    title: 'Hero Campaign',
-    description: 'Product-led homepage hero media, message, CTA, and product focus card.',
+    title: 'Homepage Hero Copy & Media',
+    description: 'Headline and optional video/image. Fallback banner art is in Admin → Illustrations → Hero.',
     fields: [
-      { key: 'home_hero_headline', label: 'Hero Headline', type: 'text', defaultValue: 'Better choices for everyday living.' },
+      { key: 'home_hero_headline', label: 'Hero Headline', type: 'text', defaultValue: 'Good Food.\nFair Prices.\nDelivered Home.' },
       {
         key: 'home_hero_subheadline',
         label: 'Hero Subheadline',
         type: 'textarea',
         rows: 3,
-        defaultValue: 'From forest floors and village step-irrigation farms to certified clean facilities, Yasvik brings premium FMCG groceries with visible origins.',
+        defaultValue:
+          'Carefully chosen staples, millets, flours, cold-pressed oils, spices, honey, jaggery, dry fruits and more — delivered home across Hyderabad.',
       },
-      { key: 'home_hero_desktop_media_url', label: 'Hero Media (Desktop Image/Video)', type: 'media', defaultValue: '', description: 'Use a wide image/video URL. Supports images, mp4, webm, mov, and YouTube links.' },
-      { key: 'home_hero_mobile_media_url', label: 'Hero Media (Mobile Portrait Image/Video)', type: 'media', defaultValue: '', description: 'Use a portrait-safe mobile image/video URL when the desktop media crops poorly on phones.' },
-      { key: 'home_hero_product_id', label: 'Hero Product Focus', type: 'product', defaultValue: '' },
-      { key: 'home_hero_cta_label', label: 'Hero CTA Label', type: 'text', defaultValue: 'SHOP IN 2 SECONDS' },
-      { key: 'home_hero_cta_url', label: 'Hero CTA URL', type: 'text', defaultValue: '#featured' },
+      { key: 'home_hero_desktop_media_url', label: 'Hero Media (Desktop)', type: 'media', defaultValue: '', description: 'Designed banner image (16:9). Shows full image — no crop, no duplicate headline. CTAs overlay bottom-left.' },
+      { key: 'home_hero_mobile_media_url', label: 'Hero Media (Mobile)', type: 'media', defaultValue: '', description: 'Optional mobile banner (9:16 or 4:5). Leave blank to reuse desktop.' },
       {
         key: 'home_hero_slides_json',
-        label: 'Hero Slides (JSON)',
+        label: 'Hero Slides (JSON, optional)',
         type: 'textarea',
-        rows: 10,
+        rows: 6,
         defaultValue: '',
-        description: 'Optional. Add an array of slides: [{"cta":"Shop Now","href":"/shop","media":"https://.../desktop.mp4","mobile_media":"https://.../mobile.mp4","poster":"https://.../poster.webp"}]. Supports image/video media and links to /shop, /product/product-id, /our-roots, #featured, etc.',
-      },
-      {
-        key: 'home_pride_phrases',
-        label: 'Hero Trust Pills',
-        type: 'textarea',
-        rows: 3,
-        defaultValue: 'Traditional Foods|Fair Prices|Trusted Quality|Taste What Was Lost',
-        description: 'Use | separator. First four are shown.',
-      },
-    ],
-  },
-  {
-    id: 'category-rail',
-    title: 'Category Rail',
-    description: 'Uses active product categories. Category images/icons are managed on each category record.',
-    fields: [
-      { key: 'home_category_rail_title', label: 'Internal Note', type: 'text', defaultValue: 'Active categories are shown automatically below hero.' },
-    ],
-  },
-  {
-    id: 'trust-blocks',
-    title: 'Trust Blocks',
-    description: 'Homepage proof cards. Keep wording safe for hybrid sourcing.',
-    fields: [
-      {
-        key: 'home_trust_cards_json',
-        label: 'Trust Cards (JSON)',
-        type: 'textarea',
-        rows: 8,
-        defaultValue: '',
-        description: 'Optional array: [{"title":"Thoughtfully Chosen","body":"...","icon":"thoughtful"}]. Supported icons: thoughtful, traditional, quality, neighborhood.',
-      },
-      {
-        key: 'home_trust_illustration_urls',
-        label: 'Trust Illustration URLs',
-        type: 'textarea',
-        rows: 5,
-        defaultValue: '',
-        description: 'Optional. Add up to 4 image URLs, one per line or separated by |.',
-      },
-    ],
-  },
-  {
-    id: 'story-panels',
-    title: 'Native & Traditional Story Cards',
-    description: 'Image-led cards below trust proof. Use safe wording: traditional, regional, thoughtfully chosen.',
-    fields: [
-      {
-        key: 'home_story_cards_json',
-        label: 'Story Cards (JSON)',
-        type: 'textarea',
-        rows: 10,
-        defaultValue: '',
-        description: 'Optional array: [{"title":"Native grains","body":"...","href":"/shop","cta":"Shop grains","media":"https://..."}].',
-      },
-      {
-        key: 'home_story_panel_media_urls',
-        label: 'Story Panel Media URLs',
-        type: 'textarea',
-        rows: 5,
-        defaultValue: '',
-        description: 'Optional. Add 3 image URLs, one per line or separated by |.',
-      },
-      { key: 'home_sourcing_title', label: 'Sourcing Title', type: 'text', defaultValue: 'We source through journeys, not brokers.' },
-      {
-        key: 'home_sourcing_body',
-        label: 'Sourcing Body',
-        type: 'textarea',
-        rows: 4,
-        defaultValue: 'We map the back roads, meet independent farmers and bring back foods with memory.',
-      },
-      { key: 'home_sourcing_media_url', label: 'Sourcing Media', type: 'media', defaultValue: '' },
-    ],
-  },
-  {
-    id: 'product-focus',
-    title: 'Product Focus Shelf',
-    description: 'Homepage shelf after story cards. Choose one category or leave blank to auto-pick.',
-    fields: [
-      { key: 'home_product_focus_title', label: 'Shelf Title', type: 'text', defaultValue: 'Product in Focus: Better everyday staples' },
-      { key: 'home_product_focus_category_id', label: 'Focus Category', type: 'category', defaultValue: '' },
-    ],
-  },
-  {
-    id: 'footer-artwork',
-    title: 'Footer Artwork',
-    description: 'Illustrated footer background and overlay art. Leave blank to use built-in Yasvik illustration shapes.',
-    fields: [
-      { key: 'footer_background_media_url', label: 'Footer Background Media', type: 'media', defaultValue: '' },
-      { key: 'footer_art_overlay_url', label: 'Footer Overlay Illustration', type: 'media', defaultValue: '' },
-      { key: 'footer_headline', label: 'Footer Headline', type: 'text', defaultValue: 'All journeys end in roots.' },
-      {
-        key: 'footer_subcopy',
-        label: 'Footer Subcopy',
-        type: 'textarea',
-        rows: 3,
-        defaultValue: 'Traditional foods, fair prices and trusted quality for everyday family kitchens.',
+        description: 'Advanced: JSON array of slides with media URLs. Leave blank for a single desktop/mobile pair above.',
       },
     ],
   },
   {
     id: 'our-roots',
-    title: 'Our Roots Page',
-    description: 'Top fold editorial copy and section headings.',
+    title: 'Our Roots — Founder Note',
+    description: 'Editable founder letter on /our-roots. Leave body blank to use the built-in copy.',
     fields: [
-      { key: 'roots_philosophy_title', label: 'Philosophy Title', type: 'text', defaultValue: 'THE STORY OF OUR ROOTS' },
-      {
-        key: 'roots_philosophy_body',
-        label: 'Philosophy Body',
-        type: 'textarea',
-        rows: 4,
-        defaultValue: 'Food should not become anonymous. Yasvik exists to reconnect everyday essentials with the people, places and traditions behind them, carrying inherited food wisdom into modern family life with honesty, practicality and care.',
-      },
-      { key: 'roots_founder_note_title', label: 'Founder Note Title', type: 'text', defaultValue: 'A Note from Our Founder' },
+      { key: 'roots_founder_note_title', label: 'Note Title', type: 'text', defaultValue: 'A Note from Yasvik' },
       {
         key: 'roots_founder_note_body',
         label: 'Founder Note Body',
         type: 'textarea',
         rows: 14,
         defaultValue: '',
-        description: 'Optional. Leave blank to use the production founder note copy built into the site.',
       },
-      { key: 'roots_roads_title', label: 'Roads Section Title', type: 'text', defaultValue: 'THE ROADS WE TRAVEL' },
-      { key: 'roots_hands_title', label: 'Hands Section Title', type: 'text', defaultValue: 'THE HANDS BEHIND THE HARVEST' },
     ],
   },
   {
     id: 'commerce',
-    title: 'Commerce',
-    description: 'Store-level threshold and checkout behavior settings.',
+    title: 'Commerce & Contact',
+    description: 'Checkout threshold, compliance, and customer contact details.',
     fields: [
       { key: 'free_delivery_threshold', label: 'Free Delivery Threshold (₹)', type: 'number', defaultValue: 999 },
       { key: 'fssai_license_number', label: 'FSSAI License Number', type: 'text', defaultValue: '' },
       { key: 'support_email', label: 'Consumer Support Email', type: 'text', defaultValue: 'hello@yasvik.com' },
-      { key: 'brand_origin_credentials', label: 'Brand Origin Credentials', type: 'textarea', rows: 3, defaultValue: 'Thoughtfully chosen everyday essentials, traditional foods, and better alternatives from trusted regional sources.' },
+      { key: 'whatsapp_number', label: 'WhatsApp Number', type: 'text', defaultValue: YASVIK_WHATSAPP_NUMBER, description: 'Digits only, with country code. Used on shop, cart, and contact flows.' },
+      { key: 'support_phone', label: 'Support Phone (display)', type: 'text', defaultValue: YASVIK_SUPPORT_PHONE_DISPLAY },
+      {
+        key: 'ga_measurement_id',
+        label: 'Google Analytics ID (build env)',
+        type: 'text',
+        defaultValue: '',
+        description: 'Set VITE_GA_MEASUREMENT_ID in Cloudflare Pages env (e.g. G-XXXXXXXX). Redeploy after changing.',
+      },
     ],
+  },
+  {
+    id: 'core-value-proof',
+    title: 'Core Value Story Links',
+    description: 'Optional override when a homepage value card should link to a different story.',
+    fields: CORE_VALUE_PROOF_FIELDS,
   },
 ];
 
@@ -260,19 +147,13 @@ export default function AdminSettings() {
   const [formValues, setFormValues] = useState({});
   const [savedKey, setSavedKey] = useState('');
   const [expandedSections, setExpandedSections] = useState(() =>
-    SETTINGS_SECTIONS.reduce((acc, section) => ({ ...acc, [section.id]: true }), {})
+    SETTINGS_SECTIONS.reduce((acc, section) => ({ ...acc, [section.id]: section.id === 'commerce' || section.id === 'hero-campaign' }), { legacy: false })
   );
   const [pickerKey, setPickerKey] = useState('');
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ['admin-settings-categories'],
-    queryFn: () => categoriesApi.list('sort_order', 200),
-    staleTime: 10 * 60 * 1000,
-  });
-
-  const { data: products = [] } = useQuery({
-    queryKey: ['admin-settings-products'],
-    queryFn: () => productsApi.listPublished('-created_date', 200),
+  const { data: stories = [] } = useQuery({
+    queryKey: ['admin-settings-stories'],
+    queryFn: () => storiesApi.listPublished(200),
     staleTime: 10 * 60 * 1000,
   });
 
@@ -345,6 +226,10 @@ export default function AdminSettings() {
       if (key?.startsWith('roots_')) {
         await queryClient.invalidateQueries({ queryKey: SETTINGS_QUERY_KEYS.roots });
       }
+      if (key?.startsWith('core_value_')) {
+        await queryClient.invalidateQueries({ queryKey: SETTINGS_QUERY_KEYS.public });
+        await queryClient.invalidateQueries({ queryKey: ['core-value-stories-published'] });
+      }
       toast({
         title: 'Setting saved',
         description: `${key} has been updated and reflected on storefront.`,
@@ -383,6 +268,28 @@ export default function AdminSettings() {
     },
   });
 
+  const deleteAllLegacyMutation = useMutation({
+    mutationFn: async (items) => {
+      await Promise.all(items.map((item) => appClient.entities.AppSettings.delete(item.id)));
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        predicate: (query) =>
+          Array.isArray(query.queryKey) &&
+          query.queryKey[0] === 'settings',
+      });
+      await queryClient.refetchQueries({ queryKey: SETTINGS_QUERY_KEYS.all, type: 'active' });
+      toast({ title: 'Unused settings removed', description: 'Legacy keys were deleted from the database.' });
+    },
+    onError: (error) => {
+      toast({
+        variant: 'destructive',
+        title: 'Cleanup failed',
+        description: error?.message || 'Could not delete all legacy settings.',
+      });
+    },
+  });
+
   const legacySettings = useMemo(() => settings.filter((item) => !ALL_CONFIG_KEYS.has(item.key)), [settings]);
 
   const handleValueChange = (key, value) => {
@@ -405,8 +312,16 @@ export default function AdminSettings() {
     <div className="p-6 max-w-4xl mx-auto">
       <div className="mb-8">
         <h1 className="font-cormorant text-3xl text-rain-cloud font-medium">Settings</h1>
-        <p className="font-inter text-sm text-rain-cloud/45 mt-1">Clean controls for the redesigned website. Everything here is active and used.</p>
+        <p className="font-inter text-sm text-rain-cloud/45 mt-1">
+          Only live storefront controls. Page banners and illustrations are in{' '}
+          <a href="/admin/illustrations" className="text-forest-canopy hover:underline">Illustrations</a>.
+        </p>
       </div>
+
+      <RazorpayPaymentsAdminPanel />
+      <MetaCatalogAdminPanel />
+      <StoreOfflineAdminPanel />
+      <DeliveryZonesAdminPanel />
 
       <div className="space-y-5">
         {SETTINGS_SECTIONS.map((section) => (
@@ -520,29 +435,16 @@ export default function AdminSettings() {
                                 })}
                               </div>
                             </div>
-                          ) : field.type === 'category' ? (
+                          ) : field.type === 'story' ? (
                             <select
                               value={value || ''}
                               onChange={(e) => handleValueChange(field.key, e.target.value)}
                               className="w-full px-4 py-2 border border-border rounded-xl font-inter text-sm text-rain-cloud focus:outline-none focus:border-forest-canopy"
                             >
-                              <option value="">Select category</option>
-                              {categories.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                  {category.name}
-                                </option>
-                              ))}
-                            </select>
-                          ) : field.type === 'product' ? (
-                            <select
-                              value={value || ''}
-                              onChange={(e) => handleValueChange(field.key, e.target.value)}
-                              className="w-full px-4 py-2 border border-border rounded-xl font-inter text-sm text-rain-cloud focus:outline-none focus:border-forest-canopy"
-                            >
-                              <option value="">Auto-select featured/latest product</option>
-                              {products.map((product) => (
-                                <option key={product.id} value={product.id}>
-                                  {product.title || product.name || product.id}
+                              <option value="">Auto-link by slug</option>
+                              {stories.map((story) => (
+                                <option key={story.id} value={story.id}>
+                                  {story.title || story.id}
                                 </option>
                               ))}
                             </select>
@@ -625,35 +527,59 @@ export default function AdminSettings() {
         ))}
       </div>
 
-      <div className="mt-8 bg-white rounded-2xl shadow-sm border border-border/60 p-5">
-        <h3 className="font-cormorant text-xl text-rain-cloud">Legacy / Unused Settings</h3>
-        <p className="font-inter text-xs text-rain-cloud/45 mt-1">
-          These keys are not used by the redesigned site. Safe to review and delete if no longer needed.
-        </p>
+      {legacySettings.length > 0 ? (
+        <div className="mt-8 bg-white rounded-2xl shadow-sm border border-border/60 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection('legacy')}
+            className="w-full px-6 py-4 flex items-start justify-between text-left"
+          >
+            <div>
+              <h3 className="font-cormorant text-xl text-rain-cloud">Old unused settings ({legacySettings.length})</h3>
+              <p className="font-inter text-xs text-rain-cloud/45 mt-1">
+                Leftover keys from older layouts. Safe to delete — they no longer affect the site.
+              </p>
+            </div>
+            {expandedSections.legacy ? (
+              <ChevronUp className="w-5 h-5 text-rain-cloud/35 mt-1" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-rain-cloud/35 mt-1" />
+            )}
+          </button>
 
-        {legacySettings.length === 0 ? (
-          <p className="font-inter text-sm text-rain-cloud/55 mt-4">No unused settings found.</p>
-        ) : (
-          <div className="mt-4 space-y-2">
-            {legacySettings.map((setting) => (
-              <div key={setting.id} className="flex items-center justify-between gap-3 rounded-xl border border-border/60 p-3">
-                <div className="min-w-0">
-                  <p className="font-inter text-sm text-rain-cloud truncate">{setting.key}</p>
-                  <p className="font-inter text-xs text-rain-cloud/45 truncate">{String(setting.value ?? '')}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => deleteSettingMutation.mutate(setting.id)}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-red-200 text-red-500 hover:bg-red-50 transition-colors"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span className="font-inter text-xs">Delete</span>
-                </button>
+          {expandedSections.legacy ? (
+            <div className="px-6 pb-5 border-t border-border/50 pt-4">
+              <button
+                type="button"
+                onClick={() => deleteAllLegacyMutation.mutate(legacySettings)}
+                disabled={deleteAllLegacyMutation.isPending}
+                className="mb-4 inline-flex items-center gap-2 rounded-full border border-red-200 px-4 py-2 font-inter text-xs text-red-600 hover:bg-red-50 disabled:opacity-60"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                Delete all {legacySettings.length} unused keys
+              </button>
+              <div className="space-y-2 max-h-72 overflow-y-auto">
+                {legacySettings.map((setting) => (
+                  <div key={setting.id} className="flex items-center justify-between gap-3 rounded-xl border border-border/60 p-3">
+                    <div className="min-w-0">
+                      <p className="font-inter text-sm text-rain-cloud truncate">{setting.key}</p>
+                      <p className="font-inter text-xs text-rain-cloud/45 truncate">{String(setting.value ?? '')}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => deleteSettingMutation.mutate(setting.id)}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-red-200 text-red-500 hover:bg-red-50 transition-colors"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span className="font-inter text-xs">Delete</span>
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-      </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
       <MediaPickerModal
         open={Boolean(pickerKey)}

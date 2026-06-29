@@ -109,13 +109,14 @@ export default function OrderTracking() {
                 <form onSubmit={handleVerify} className="space-y-4">
                   <div>
                     <label className="block font-inter text-xs text-rain-cloud/50 mb-1.5 uppercase tracking-wider">
-                      Order Reference
+                      Order number
                     </label>
                     <input
                       value={orderId}
                       readOnly
-                      className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl font-inter text-sm text-rain-cloud/60 cursor-default"
+                      className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl font-mono text-sm text-rain-cloud/80 cursor-default"
                     />
+                    <p className="font-inter text-[10px] text-rain-cloud/35 mt-1">Use the order number from your confirmation email</p>
                   </div>
                   <div>
                     <label className="block font-inter text-xs text-rain-cloud/50 mb-1.5 uppercase tracking-wider">

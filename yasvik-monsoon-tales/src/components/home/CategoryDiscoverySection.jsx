@@ -5,16 +5,25 @@ import { ChevronRight } from 'lucide-react';
 import { categories as categoriesApi } from '@/services/api';
 import CategoryTile from '@/components/brand/CategoryTile';
 import SectionHeader from '@/components/brand/SectionHeader';
-import { resolveCategoryLinks } from '@/brand/monsoonTokens';
+import { getCategoryImageUrl } from '@/brand/monsoonTokens';
 
 export default function CategoryDiscoverySection() {
   const { data: categories = [] } = useQuery({
-    queryKey: ['home-category-discovery'],
+    queryKey: ['categories'],
     queryFn: () => categoriesApi.listActive(24),
     staleTime: 5 * 60 * 1000,
   });
 
-  const categoryLinks = useMemo(() => resolveCategoryLinks(categories), [categories]);
+  const categoryLinks = useMemo(
+    () =>
+      categories.map((cat) => ({
+        label: cat.emotional_title || cat.name,
+        href: `/shop?category=${cat.id}`,
+        imageUrl: getCategoryImageUrl(cat),
+        categoryId: cat.id,
+      })),
+    [categories],
+  );
 
   return (
     <section className="bg-white px-4 py-12 md:px-8 md:py-16" aria-labelledby="home-categories-heading">
@@ -24,7 +33,7 @@ export default function CategoryDiscoverySection() {
             id="home-categories-heading"
             eyebrow="Shop by category"
             title="Find what your kitchen needs"
-            description="Millets, staples, oils, spices, snacks and pooja essentials — chosen for everyday Indian homes."
+            description="Dals, flours, rice, spices, dry fruits, oils, snacks, pickles and sweeteners — chosen for everyday Indian homes."
           />
           <Link
             to="/shop"
@@ -37,7 +46,7 @@ export default function CategoryDiscoverySection() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {categoryLinks.map((category, index) => (
             <CategoryTile
-              key={category.label}
+              key={category.categoryId || category.label}
               label={category.label}
               href={category.href}
               imageUrl={category.imageUrl}

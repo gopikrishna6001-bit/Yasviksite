@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { appClient } from "@/api/appClient";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { UserPlus, Mail, Lock, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import AuthLayout from "@/components/AuthLayout";
+import AuthLayout, { AuthField, AuthInput, AuthNotice } from "@/components/AuthLayout";
 import GoogleIcon from "@/components/GoogleIcon";
+import YasvikButton from "@/components/brand/YasvikButton";
+import { isGoogleAuthEnabled } from "@/lib/googleAuth";
 import { toast } from "@/components/ui/use-toast";
 
 export default function Register() {
   const location = useLocation();
   const next = new URLSearchParams(location.search).get("next") || "/";
-  const googleEnabled = import.meta.env.VITE_ENABLE_GOOGLE_AUTH === "true";
+  const googleEnabled = isGoogleAuthEnabled();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
   const [otpCode, setOtpCode] = useState("");
 
@@ -70,23 +70,26 @@ export default function Register() {
     }
   };
 
-  const handleGoogle = () => {
-    appClient.auth.loginWithProvider("google", next);
+  const handleGoogle = async () => {
+    setError("");
+    setGoogleLoading(true);
+    try {
+      await appClient.auth.loginWithProvider("google", next);
+    } catch (err) {
+      setError(err.message || "Could not start Google sign-in");
+      setGoogleLoading(false);
+    }
   };
 
   if (showOtp) {
     return (
       <AuthLayout
-        icon={Mail}
+        eyebrow="Almost there"
         title="Verify your email"
-        subtitle={`We sent a code to ${email}`}
+        subtitle={`We sent a 6-digit code to ${email}`}
       >
-        {error && (
-          <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
-            {error}
-          </div>
-        )}
-        <div className="flex justify-center mb-6">
+        {error ? <div className="mb-4"><AuthNotice tone="error">{error}</AuthNotice></div> : null}
+        <div className="mb-6 flex justify-center">
           <InputOTP
             maxLength={6}
             value={otpCode}
@@ -104,23 +107,23 @@ export default function Register() {
             </InputOTPGroup>
           </InputOTP>
         </div>
-        <Button
-          className="w-full h-12 font-medium"
+        <YasvikButton
+          className="w-full disabled:opacity-60"
           onClick={handleVerify}
           disabled={loading || otpCode.length < 6}
         >
           {loading ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
               Verifying...
-            </>
+            </span>
           ) : (
-            "Verify"
+            "Verify and continue"
           )}
-        </Button>
-        <p className="text-center text-sm text-muted-foreground mt-4">
-          Didn't receive the code?{" "}
-          <button onClick={handleResend} className="text-primary font-medium hover:underline">
+        </YasvikButton>
+        <p className="mt-4 text-center font-inter text-sm text-deep-forest/55">
+          Didn&apos;t receive the code?{" "}
+          <button type="button" onClick={handleResend} className="font-semibold text-forest-canopy hover:underline">
             Resend
           </button>
         </p>
@@ -130,112 +133,94 @@ export default function Register() {
 
   return (
     <AuthLayout
-      icon={UserPlus}
+      eyebrow="Join Yasvik"
       title="Create your account"
-      subtitle="Sign up to get started"
+      subtitle="Save your profile, wishlist, and orders — from the store and from your phone."
       footer={
         <>
           Already have an account?{" "}
-          <Link to={`/login?next=${encodeURIComponent(next)}`} className="text-primary font-medium hover:underline">
-            Log in
+          <Link to={`/login?next=${encodeURIComponent(next)}`} className="font-semibold text-forest-canopy hover:underline">
+            Sign in
           </Link>
         </>
       }
     >
-      {googleEnabled && (
+      {googleEnabled ? (
         <>
-          <Button
-            variant="outline"
-            className="w-full h-12 text-sm font-medium mb-6"
+          <button
+            type="button"
             onClick={handleGoogle}
+            disabled={googleLoading || loading}
+            className="yasvik-btn-outline mb-6 flex w-full items-center justify-center gap-2 disabled:opacity-60"
           >
-            <GoogleIcon className="w-5 h-5 mr-2" />
+            {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <GoogleIcon className="h-5 w-5" />}
             Continue with Google
-          </Button>
+          </button>
 
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border" />
+              <div className="w-full border-t border-[var(--theme-border)]" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-3 text-muted-foreground">or</span>
+            <div className="relative flex justify-center">
+              <span className="bg-white px-3 font-inter text-[11px] font-semibold uppercase tracking-[0.14em] text-deep-forest/40">
+                or use email
+              </span>
             </div>
           </div>
         </>
+      ) : (
+        <AuthNotice className="mb-5">
+          Google sign-up needs to be enabled in site settings. Create your account with email instead.
+        </AuthNotice>
       )}
 
-      {!googleEnabled && (
-        <div className="mb-4 p-3 rounded-lg bg-muted text-muted-foreground text-xs">
-          Google sign-up is currently unavailable. Create account with email and password.
-        </div>
-      )}
-
-      {error && (
-        <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
-          {error}
-        </div>
-      )}
+      {error ? <div className="mb-4"><AuthNotice tone="error">{error}</AuthNotice></div> : null}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-            <Input
-              id="email"
-              type="email"
-              autoComplete="email"
-              autoFocus
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="pl-10 h-12"
-              required
-            />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-            <Input
-              id="password"
-              type="password"
-              autoComplete="new-password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="pl-10 h-12"
-              required
-            />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="confirm">Confirm Password</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-            <Input
-              id="confirm"
-              type="password"
-              autoComplete="new-password"
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="pl-10 h-12"
-              required
-            />
-          </div>
-        </div>
-        <Button type="submit" className="w-full h-12 font-medium" disabled={loading}>
+        <AuthField id="email" label="Email">
+          <AuthInput
+            id="email"
+            type="email"
+            autoComplete="email"
+            autoFocus
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </AuthField>
+        <AuthField id="password" label="Password">
+          <AuthInput
+            id="password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="Create a password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </AuthField>
+        <AuthField id="confirm" label="Confirm password">
+          <AuthInput
+            id="confirm"
+            type="password"
+            autoComplete="new-password"
+            placeholder="Repeat your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </AuthField>
+        <YasvikButton type="submit" className="w-full disabled:opacity-60" disabled={loading || googleLoading}>
           {loading ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
               Creating account...
-            </>
+            </span>
           ) : (
             "Create account"
           )}
-        </Button>
+        </YasvikButton>
       </form>
     </AuthLayout>
   );

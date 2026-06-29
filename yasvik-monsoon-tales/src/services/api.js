@@ -14,6 +14,11 @@
  */
 
 import { appClient } from '@/api/appClient';
+import { sortCatalogProducts, sortFeaturedProducts } from '@/lib/productSortUtils';
+import { getSampleCoreValueStory } from '@/content/coreValueStories';
+import { isProductUuid } from '@/lib/productUrls';
+import { countMediaReferences } from '@/lib/mediaReferences';
+import { normalizeMediaStorageKey } from '@/lib/mediaStorageKey';
 
 // ─── AUTH ────────────────────────────────────────────────────────────────────
 
@@ -39,20 +44,53 @@ export const products = {
 
   get: (id) => appClient.entities.Product.get(id),
 
+  async getBySlugOrId(param) {
+    const key = String(param || '').trim();
+    if (!key) return null;
+
+    if (isProductUuid(key)) {
+      try {
+        return await appClient.entities.Product.get(key);
+      } catch {
+        // Fall through to slug lookup below.
+      }
+    }
+
+    const bySlug = await appClient.entities.Product.filter({ slug: key, is_published: true }, '-created_date', 1);
+    if (bySlug?.[0]) return bySlug[0];
+
+    if (isProductUuid(key)) return null;
+
+    try {
+      return await appClient.entities.Product.get(key);
+    } catch {
+      const all = await appClient.entities.Product.filter({ is_published: true }, '-created_date', 300);
+      return all.find((product) => product.slug === key || product.id === key) || null;
+    }
+  },
+
   filter: (filters, sort = '-created_date', limit = 20) =>
     appClient.entities.Product.filter(filters, sort, limit),
 
-  listPublished: (sort = '-created_date', limit = 20) =>
-    appClient.entities.Product.filter({ is_published: true }, sort, limit),
+  listPublished: async (sort = 'sort_order', limit = 20) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true }, sort, limit);
+    return sortCatalogProducts(rows);
+  },
 
-  listFeatured: (limit = 6) =>
-    appClient.entities.Product.filter({ is_published: true, is_featured: true }, '-created_date', limit),
+  listFeatured: async (limit = 6) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, is_featured: true }, 'sort_order', limit);
+    return sortFeaturedProducts(rows);
+  },
 
-  listFeaturedInHero: (limit = 8) =>
-    appClient.entities.Product.filter({ is_published: true, featured_in_hero: true }, '-created_date', limit),
+  listFeaturedInHero: async (limit = 8) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, featured_in_hero: true }, 'sort_order', limit);
+    return sortFeaturedProducts(rows);
+  },
 
-  listByCategory: (categoryId, limit = 20) =>
-    appClient.entities.Product.filter({ is_published: true, category_id: categoryId }, '-created_date', limit),
+  listByCategory: async (categoryId, limit = 200) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, category_id: categoryId }, 'sort_order', limit);
+    return sortCatalogProducts(rows);
+  },
 
   listByJourney: (journeyId, limit = 6) =>
     appClient.entities.Product.filter({ is_published: true, journey_id: journeyId }, '-created_date', limit),
@@ -96,7 +134,11 @@ export const stories = {
   list: (sort = '-created_date', limit = 20) =>
     appClient.entities.Story.list(sort, limit),
 
-  get: (id) => appClient.entities.Story.get(id),
+  get: async (id) => {
+    const sample = getSampleCoreValueStory(id);
+    if (sample) return sample;
+    return appClient.entities.Story.get(id);
+  },
 
   filter: (filters, sort = '-created_date', limit = 20) =>
     appClient.entities.Story.filter(filters, sort, limit),
@@ -132,28 +174,6 @@ export const people = {
   create: (data) => appClient.entities.Person.create(data),
   update: (id, data) => appClient.entities.Person.update(id, data),
   delete: (id) => appClient.entities.Person.delete(id),
-};
-
-// ─── RECIPES ─────────────────────────────────────────────────────────────────
-
-export const recipes = {
-  list: (sort = '-created_date', limit = 20) =>
-    appClient.entities.Recipe.list(sort, limit),
-
-  get: (id) => appClient.entities.Recipe.get(id),
-
-  filter: (filters, sort = '-created_date', limit = 20) =>
-    appClient.entities.Recipe.filter(filters, sort, limit),
-
-  listPublished: (limit = 20) =>
-    appClient.entities.Recipe.filter({ is_published: true }, '-created_date', limit),
-
-  listFeatured: (limit = 1) =>
-    appClient.entities.Recipe.filter({ is_published: true, is_featured: true }, '-created_date', limit),
-
-  create: (data) => appClient.entities.Recipe.create(data),
-  update: (id, data) => appClient.entities.Recipe.update(id, data),
-  delete: (id) => appClient.entities.Recipe.delete(id),
 };
 
 // ─── CATEGORIES ──────────────────────────────────────────────────────────────
@@ -216,8 +236,8 @@ export const orders = {
   filter: (filters, sort = '-created_date', limit = 20) =>
     appClient.entities.Order.filter(filters, sort, limit),
 
-  listByUser: (userEmail, limit = 20) =>
-    appClient.entities.Order.filter({ created_by: userEmail, status: 'paid' }, '-created_date', limit),
+  listByUser: (userId, limit = 20) =>
+    appClient.entities.Order.filter({ user_id: userId }, '-created_date', limit),
 
   create: (data) => appClient.entities.Order.create(data),
   update: (id, data) => appClient.entities.Order.update(id, data),
@@ -282,7 +302,25 @@ export const mediaAssets = {
 
   create: (data) => appClient.entities.MediaAsset.create(data),
   update: (id, data) => appClient.entities.MediaAsset.update(id, data),
-  delete: (id) => appClient.entities.MediaAsset.delete(id),
+  delete: async (id) => {
+    const asset = await appClient.entities.MediaAsset.get(id);
+    const storageKey = normalizeMediaStorageKey(
+      asset.file_path || asset.upload_url || asset.file_url || asset.url,
+    );
+
+    let storageDeleted = false;
+    if (storageKey) {
+      const refs = await countMediaReferences(storageKey, { excludeMediaAssetId: id });
+      if (refs === 0) {
+        await appClient.integrations.Core.DeleteFile({ file_path: storageKey });
+        storageDeleted = true;
+      }
+    }
+
+    await appClient.entities.MediaAsset.delete(id);
+    return { success: true, storageDeleted, storageKey };
+  },
+  countReferences: (storageKey, options) => countMediaReferences(storageKey, options),
 };
 
 // ─── HOMEPAGE SECTIONS ───────────────────────────────────────────────────────
@@ -385,9 +423,8 @@ export const functions = {
 //   createSignedUrl()→ { signed_url: string }
 //
 // Migration targets:
-//   Supabase Storage:      supabase.storage.from('bucket').upload(path, file)
-//   Cloudflare R2:         env.R2.put(key, file)  (in Worker context)
-//   AWS S3 / Vercel Blob:  standard S3 putObject or @vercel/blob put()
+//   Cloudflare R2 (current): Worker POST /api/media/upload → media.yasvik.com
+//   Supabase Storage (legacy): deprecated for new uploads
 //
 // FILE URL AUDIT NOTE:
 //   All file_url values are stored in entity fields (hero_image, cover_image, etc.)
@@ -403,7 +440,7 @@ export const files = {
    * Returns { file_url: string }
    * [MIGRATION POINT] — swap implementation for Supabase Storage / R2 / S3
    */
-  upload: (file) => appClient.integrations.Core.UploadFile({ file }),
+  upload: (file, options = {}) => appClient.integrations.Core.UploadFile({ file, ...options }),
 
   /**
    * Uploads a file to private (authenticated) storage.
@@ -445,6 +482,14 @@ export const email = {
     appClient.integrations.Core.SendEmail({ to, subject, body, from_name }),
 };
 
+export {
+  fetchFrequentlyBoughtTogether,
+  fetchCompleteYourBasket,
+  fetchActiveBundles,
+  fetchBundleBySlug,
+  fetchCartCrossSell,
+} from './productRelationsApi';
+
 // ─── DEFAULT EXPORT — convenience namespace ──────────────────────────────────
 
 const api = {
@@ -453,7 +498,6 @@ const api = {
   journeys,
   stories,
   people,
-  recipes,
   categories,
   regions,
   reviews,

@@ -1,21 +1,21 @@
-import { Heart, ShieldCheck, ShoppingBasket, Tag, Truck } from 'lucide-react';
+import { Heart, MapPin, ShieldCheck, ShoppingBasket, Truck } from 'lucide-react';
 import { TRUST_POINTS } from '@/brand/monsoonTokens';
 
 const ICONS = {
   shield: ShieldCheck,
-  tag: Tag,
   basket: ShoppingBasket,
   truck: Truck,
   heart: Heart,
+  pin: MapPin,
 };
 
 export default function TrustStrip({ className = '' }) {
   return (
     <section
       className={`border-y border-soft-border bg-white px-4 py-6 md:px-8 md:py-7 ${className}`}
-      aria-label="Why families trust Yasvik"
+      aria-label="How Yasvik serves you"
     >
-      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 md:gap-4">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
         {TRUST_POINTS.map((point) => {
           const Icon = ICONS[point.icon] || ShieldCheck;
           return (

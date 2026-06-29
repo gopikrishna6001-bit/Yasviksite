@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { appClient } from '@/api/appClient';
+import { supabase } from '@/api/supabaseClient';
 
 const AuthContext = createContext();
 
@@ -14,6 +15,20 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAppState();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
+        checkUserAuth();
+      }
+      if (event === 'SIGNED_OUT') {
+        setUser(null);
+        setIsAuthenticated(false);
+        setAuthChecked(true);
+        setIsLoadingAuth(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const checkAppState = async () => {
@@ -21,22 +36,24 @@ export const AuthProvider = ({ children }) => {
       setIsLoadingPublicSettings(true);
       setAuthError(null);
       setAppPublicSettings(null);
-      await checkUserAuth();
+      await Promise.race([
+        checkUserAuth(),
+        new Promise((_, reject) => {
+          window.setTimeout(() => reject(new Error('auth_check_timeout')), 4000);
+        }),
+      ]);
       setIsLoadingPublicSettings(false);
     } catch (error) {
       console.error('Unexpected error:', error);
-      setAuthError({
-        type: 'unknown',
-        message: error.message || 'An unexpected error occurred'
-      });
-      setIsLoadingPublicSettings(false);
       setIsLoadingAuth(false);
+      setIsAuthenticated(false);
+      setAuthChecked(true);
+      setIsLoadingPublicSettings(false);
     }
   };
 
   const checkUserAuth = async () => {
     try {
-      // Now check if the user is authenticated
       setIsLoadingAuth(true);
       const currentUser = await appClient.auth.me();
       setUser(currentUser);
@@ -48,14 +65,6 @@ export const AuthProvider = ({ children }) => {
       setIsLoadingAuth(false);
       setIsAuthenticated(false);
       setAuthChecked(true);
-      
-      // If user auth fails, it might be an expired token
-      if (error.status === 401 || error.status === 403) {
-        setAuthError({
-          type: 'auth_required',
-          message: 'Authentication required'
-        });
-      }
     }
   };
 

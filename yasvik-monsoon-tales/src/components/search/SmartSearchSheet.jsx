@@ -7,10 +7,12 @@
  */
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Clock, ArrowRight, Compass, BookOpen, Mail } from 'lucide-react';
+import { X, Search, Clock, Grid3X3 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { appClient } from '@/api/appClient';
+import { categories as categoriesApi } from '@/services/api';
+import { getProductTeluguName } from '@/lib/teluguProductNames';
 import { useDebounce } from '@/hooks/useDebounce';
 import { resolveIntentTerms } from '@/lib/searchIntentMap';
 
@@ -30,7 +32,7 @@ const saveRecent = (q) => {
 };
 
 // ─── Idle discovery panel ────────────────────────────────────────────────────
-function IdlePanel({ recents, liveSuggestions, onSelect, onClose }) {
+function IdlePanel({ recents, liveSuggestions, categories, featuredProducts, onSelect, onClose }) {
   return (
     <motion.div
       key="idle"
@@ -38,25 +40,24 @@ function IdlePanel({ recents, liveSuggestions, onSelect, onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="px-5 pt-6 pb-10 overflow-y-auto flex-1"
+      className="flex-1 overflow-y-auto px-5 pb-10 pt-6"
     >
-      {/* Atmospheric prompt */}
-      <p className="font-cormorant text-[1.6rem] text-rain-cloud/20 font-light italic text-center mb-9 leading-snug px-4">
-        What are you looking for?
+      <p className="mb-8 text-center font-cormorant text-[1.75rem] font-medium leading-snug text-deep-forest/80">
+        What does your kitchen need today?
       </p>
 
-      {/* Recent searches */}
       {recents.length > 0 && (
         <div className="mb-7">
-          <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-rain-cloud/25 mb-3">Recent</p>
+          <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-sun-dried-clay">Recent</p>
           <div className="flex flex-wrap gap-2">
-            {recents.map(r => (
+            {recents.map((r) => (
               <button
                 key={r}
+                type="button"
                 onClick={() => onSelect(r)}
-                className="flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-rain-mist font-inter text-xs text-rain-cloud/55 active:scale-95 transition-transform"
+                className="flex items-center gap-1.5 rounded-full border border-soft-border bg-warm-cream px-3.5 py-1.5 font-inter text-xs text-deep-forest/70 transition-colors hover:border-neon-paddy/30"
               >
-                <Clock className="w-3 h-3 text-rain-cloud/30 flex-shrink-0" />
+                <Clock className="h-3 w-3 text-deep-forest/35" />
                 {r}
               </button>
             ))}
@@ -64,17 +65,15 @@ function IdlePanel({ recents, liveSuggestions, onSelect, onClose }) {
         </div>
       )}
 
-      {/* Mood / discovery chips */}
       <div className="mb-8">
-        <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-rain-cloud/25 mb-3">
-          Try searching
-        </p>
+        <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-sun-dried-clay">Try searching</p>
         <div className="flex flex-wrap gap-2">
-          {(liveSuggestions.length >= 4 ? liveSuggestions : MOOD_CHIPS).map(term => (
+          {(liveSuggestions.length >= 4 ? liveSuggestions : MOOD_CHIPS).map((term) => (
             <button
               key={term}
+              type="button"
               onClick={() => onSelect(term)}
-              className="py-1.5 px-3.5 rounded-full border border-temple-stone/35 font-inter text-xs text-rain-cloud/55 hover:bg-temple-stone/15 hover:text-rain-cloud active:scale-95 transition-all"
+              className="rounded-full border border-soft-border bg-white px-3.5 py-1.5 font-inter text-xs text-deep-forest/70 transition-colors hover:border-neon-paddy/35 hover:text-deep-forest"
             >
               {term}
             </button>
@@ -82,33 +81,52 @@ function IdlePanel({ recents, liveSuggestions, onSelect, onClose }) {
         </div>
       </div>
 
-      {/* Browse nav — editorial links */}
-      <div>
-        <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-rain-cloud/25 mb-3">Browse</p>
-        <div className="space-y-px">
-        {[
-          { label: 'Shop', to: '/shop', icon: null },
-          { label: 'Our Roots', to: '/our-roots', icon: BookOpen },
-          { label: 'Contact', to: '/contact', icon: Mail },
-          { label: 'Traceable Journeys', to: '/our-roots#roads', icon: Compass },
-        ].map(({ label, to, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              onClick={onClose}
-              className="flex items-center justify-between py-3.5 border-b border-temple-stone/12 group"
-            >
-              <div className="flex items-center gap-2.5">
-                {Icon && <Icon className="w-3.5 h-3.5 text-rain-cloud/25" strokeWidth={1.5} />}
-                <span className="font-cormorant text-xl text-rain-cloud/55 font-light group-hover:text-rain-cloud transition-colors">
-                  {label}
-                </span>
-              </div>
-              <ArrowRight className="w-3.5 h-3.5 text-rain-cloud/15 group-hover:text-rain-cloud/40 transition-colors" strokeWidth={1.5} />
-            </Link>
-          ))}
+      {categories.length > 0 && (
+        <div className="mb-8">
+          <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-sun-dried-clay">Browse categories</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {categories.slice(0, 6).map((cat) => (
+              <Link
+                key={cat.id}
+                to={`/shop?category=${cat.id}`}
+                onClick={onClose}
+                className="flex items-center gap-2 rounded-xl border border-soft-border bg-warm-cream/60 px-3 py-2.5 font-inter text-xs font-semibold text-deep-forest transition-colors hover:border-neon-paddy/30 hover:bg-white"
+              >
+                <Grid3X3 className="h-3.5 w-3.5 shrink-0 text-neon-paddy" />
+                <span className="line-clamp-2">{cat.emotional_title || cat.name}</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {featuredProducts.length > 0 && (
+        <div>
+          <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-sun-dried-clay">Popular picks</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {featuredProducts.slice(0, 6).map((product) => (
+              <Link
+                key={product.id}
+                to={`/product/${product.id}`}
+                onClick={onClose}
+                className="overflow-hidden rounded-xl border border-soft-border bg-white transition-colors hover:border-neon-paddy/30"
+              >
+                <div className="aspect-square bg-warm-cream">
+                  {product.hero_image ? (
+                    <img src={product.hero_image} alt="" className="h-full w-full object-cover" />
+                  ) : null}
+                </div>
+                <div className="px-2.5 py-2">
+                  <p className="line-clamp-2 font-inter text-[11px] font-semibold leading-snug text-deep-forest">{product.title}</p>
+                  {getProductTeluguName(product) ? (
+                    <p className="mt-0.5 line-clamp-1 font-cormorant text-[11px] text-deep-forest/55">{getProductTeluguName(product)}</p>
+                  ) : null}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -125,11 +143,11 @@ function ResultRow({ to, label, meta, image, tag, roundImage, onClose }) {
         {image && <img src={image} alt={label} className="w-full h-full object-cover" />}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="font-cormorant text-[1.05rem] text-rain-cloud font-light leading-tight truncate">{label}</p>
-        {meta && <p className="font-inter text-[10px] text-rain-cloud/35 mt-0.5 truncate">{meta}</p>}
+        <p className="truncate font-cormorant text-lg font-semibold leading-tight text-deep-forest">{label}</p>
+        {meta && <p className="mt-0.5 truncate font-inter text-[11px] text-deep-forest/45">{meta}</p>}
       </div>
       {tag && (
-        <span className="font-inter text-[9px] tracking-[0.18em] uppercase text-rain-cloud/22 flex-shrink-0">{tag}</span>
+        <span className="flex-shrink-0 font-inter text-[9px] font-bold uppercase tracking-[0.14em] text-sun-dried-clay">{tag}</span>
       )}
     </Link>
   );
@@ -138,7 +156,7 @@ function ResultRow({ to, label, meta, image, tag, roundImage, onClose }) {
 function ResultSection({ title, children }) {
   return (
     <div className="mb-1">
-      <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-rain-cloud/25 px-5 pt-5 pb-2">{title}</p>
+      <p className="px-5 pb-2 pt-5 font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-sun-dried-clay">{title}</p>
       {children}
     </div>
   );
@@ -163,6 +181,15 @@ export default function SmartSearchSheet({ open, onClose }) {
     queryFn: () => appClient.entities.Story.filter({ is_published: true }, '-created_date', 20),
     staleTime: 5 * 60 * 1000,
   });
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => categoriesApi.listActive(12),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const featuredProducts = allProducts.filter((p) => p.is_featured || p.featured_in_hero).slice(0, 6);
+  const popularProducts = featuredProducts.length ? featuredProducts : allProducts.slice(0, 6);
 
   const liveSuggestions = (() => {
     const names = allProducts.map(p => p.title).filter(Boolean);
@@ -267,7 +294,7 @@ export default function SmartSearchSheet({ open, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="absolute inset-0 bg-rain-cloud/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-deep-forest/40 backdrop-blur-sm"
             onClick={handleClose}
           />
 
@@ -277,8 +304,7 @@ export default function SmartSearchSheet({ open, onClose }) {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 32, stiffness: 260 }}
-            className="relative z-10 bg-white rounded-t-3xl shadow-2xl flex flex-col"
-            style={{ maxHeight: '92vh' }}
+            className="relative z-10 flex max-h-[92vh] flex-col rounded-t-3xl bg-warm-cream shadow-2xl"
           >
             {/* Drag handle */}
             <div className="flex justify-center pt-3 pb-0.5 flex-shrink-0">
@@ -286,8 +312,8 @@ export default function SmartSearchSheet({ open, onClose }) {
             </div>
 
             {/* Input row — large, cinematic */}
-            <div className="flex items-center gap-3 px-5 py-4 border-b border-temple-stone/12 flex-shrink-0">
-              <Search className="w-4 h-4 text-rain-cloud/30 flex-shrink-0" strokeWidth={1.5} />
+            <div className="flex flex-shrink-0 items-center gap-3 border-b border-soft-border px-5 py-4">
+              <Search className="h-4 w-4 flex-shrink-0 text-deep-forest/40" strokeWidth={1.5} />
               <div className="flex-1 relative min-h-[1.75rem]">
                 <input
                   ref={inputRef}
@@ -295,7 +321,7 @@ export default function SmartSearchSheet({ open, onClose }) {
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                   onBlur={handleBlur}
-                  className="w-full font-cormorant text-[1.25rem] text-rain-cloud bg-transparent outline-none font-light"
+                  className="w-full bg-transparent font-cormorant text-[1.25rem] font-medium text-deep-forest outline-none"
                 />
                 {/* Animated placeholder when empty */}
                 {!query && (
@@ -306,7 +332,7 @@ export default function SmartSearchSheet({ open, onClose }) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
-                      className="absolute inset-0 font-cormorant text-[1.25rem] text-rain-cloud/22 pointer-events-none flex items-center font-light italic"
+                      className="pointer-events-none absolute inset-0 flex items-center font-cormorant text-[1.25rem] italic text-deep-forest/30"
                     >
                       Try "{liveSuggestions[suggIdx % liveSuggestions.length]}"
                     </motion.span>
@@ -337,6 +363,8 @@ export default function SmartSearchSheet({ open, onClose }) {
                   key="idle"
                   recents={recents}
                   liveSuggestions={liveSuggestions}
+                  categories={categories}
+                  featuredProducts={popularProducts}
                   onSelect={selectSuggestion}
                   onClose={handleClose}
                 />
@@ -367,7 +395,7 @@ export default function SmartSearchSheet({ open, onClose }) {
                           key={p.id}
                           to={`/product/${p.id}`}
                           label={p.title}
-                          meta={`₹${p.price}${p.unit ? ` · ${p.unit}` : ''}`}
+                          meta={[getProductTeluguName(p), `₹${p.price}${p.unit ? ` · ${p.unit}` : ''}`].filter(Boolean).join(' · ')}
                           image={p.hero_image}
                           tag={p.short_description?.slice(0, 30)}
                           onClose={handleClose}

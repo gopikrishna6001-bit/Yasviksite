@@ -1,32 +1,24 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { MessageCircle, Minus, Plus } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 import { usePremiumHapticPulse } from '@/hooks/usePremiumHapticPulse';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import { buildProductAltText } from '@/lib/productSeo';
+import { getProductTeluguName } from '@/lib/teluguProductNames';
+import { resolveVariantComparePrice } from '@/lib/productPricingUtils';
 import { getVariantCartKey, normalizeList, normalizeProductVariant } from '@/lib/productVariantUtils';
+import { isVideoMediaUrl, productPrimaryImageUrl, safeMedia } from '@/lib/mediaUrl';
+import { getProductPath } from '@/lib/productUrls';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
-function isVideoUrl(url) {
-  return /\.(mp4|webm|mov)(\?|$)/i.test(String(url || ''));
-}
-
-function isRandomPlaceholder(url = '') {
-  return /picsum\.photos|source\.unsplash\.com|placehold/i.test(String(url));
-}
-
-function safeMedia(url = '') {
-  const value = String(url || '').trim();
-  return value && !isRandomPlaceholder(value) ? value : '';
-}
-
-function toMediaDescriptor(media) {
+function toMediaDescriptor(media, preset = 'thumb') {
   if (!media) return null;
-  const url = typeof media === 'string' ? safeMedia(media) : safeMedia(media?.url || media?.media_url || media?.image_url || '');
+  const url = typeof media === 'string' ? safeMedia(media, preset) : safeMedia(media?.url || media?.media_url || media?.image_url || '', preset);
   if (!url) return null;
   const explicitType = typeof media === 'object' ? String(media.type || media.media_type || '').toLowerCase() : '';
-  return { url, isVideo: explicitType === 'video' || isVideoUrl(url) };
+  return { url, isVideo: explicitType === 'video' || isVideoMediaUrl(url) };
 }
 
 function getProductTitle(product) {
@@ -70,13 +62,17 @@ function ProductImagePlaceholder({ title }) {
 export default function ProductCard({ product, index = 0, onQuickView, variant = 'default' }) {
   const isCommerce = variant === 'homepage' || variant === 'shop';
   const isShop = variant === 'shop';
-  const { items, addItem, updateQty } = useCart();
+  const { items, addItem, updateQty, storeOffline } = useCart();
   const [imgLoaded, setImgLoaded] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [selectedVariantLabel, setSelectedVariantLabel] = useState('');
   const { isPulseActive, triggerPulse } = usePremiumHapticPulse();
   const title = getProductTitle(product);
+  const teluguName = getProductTeluguName(product);
   const productImageAlt = buildProductAltText(product);
+
+  const imagePreset = isCommerce ? 'thumb' : 'card';
+  const imageEager = isCommerce && index < 4;
 
   const variantOptions = useMemo(() => {
     const cleanVariant = (variant) => {
@@ -84,14 +80,14 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
       if (!normalized) return null;
       return {
         ...normalized,
-        image_url: safeMedia(normalized.image_url || ''),
-        image_urls: normalizeList(normalized.image_urls).map(safeMedia).filter(Boolean),
+        image_url: safeMedia(normalized.image_url || normalized.image_urls?.[0] || '', imagePreset),
+        image_urls: [],
       };
     };
     const fromQuick = normalizeList(product?.quick_variants).map(cleanVariant).filter(Boolean);
     if (fromQuick.length > 0) return fromQuick;
     return normalizeList(product?.variants).map(cleanVariant).filter(Boolean);
-  }, [product?.quick_variants, product?.variants]);
+  }, [product?.quick_variants, product?.variants, imagePreset]);
 
   useEffect(() => {
     if (variantOptions.length > 0) {
@@ -106,21 +102,28 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
   const cartItem = items.find((c) => c.key === cartKey);
   const qty = cartItem?.qty || 0;
   const activePrice = Number(selectedVariant?.price ?? product.price ?? 0);
-  const activeComparePrice = Number(selectedVariant?.compare_price ?? product.compare_price ?? 0);
+  const activeComparePrice = Number(
+    resolveVariantComparePrice(product, selectedVariant, activePrice) ?? 0,
+  );
   const sourceContext = getSourceContext(product);
-  const detailUrl = product.isFallback ? '/shop' : `/product/${product.id}`;
+  const detailUrl = product.isFallback ? '/shop' : getProductPath(product);
   const unitLabel = selectedVariant?.label || product.unit || product.weight || product.pack_size || '';
 
-  const defaultMediaUrl = safeMedia(selectedVariant?.image_url || selectedVariant?.image_urls?.[0] || product.hero_image || product.featured_image_url || product.image_url || '');
-  const primaryMedia = useMemo(() => toMediaDescriptor(defaultMediaUrl), [defaultMediaUrl]);
+  const primaryRawUrl = useMemo(
+    () => productPrimaryImageUrl(product, selectedVariant),
+    [product, selectedVariant],
+  );
+  const defaultMediaUrl = primaryRawUrl;
+  const primaryMedia = useMemo(() => toMediaDescriptor(defaultMediaUrl, imagePreset), [defaultMediaUrl, imagePreset]);
   const hoverMedia = useMemo(() => {
-    const explicitHover = normalizeList(product?.hover_media).map(toMediaDescriptor).find(Boolean);
+    if (!isHovering) return null;
+    const explicitHover = normalizeList(product?.hover_media).map((m) => toMediaDescriptor(m, imagePreset)).find(Boolean);
     if (explicitHover) return explicitHover;
-    const variantGallery = normalizeList(selectedVariant?.image_urls).map(safeMedia).filter(Boolean);
-    const productGallery = normalizeList(product?.images || product?.image_urls).map(safeMedia).filter(Boolean);
-    const galleryCandidate = [...variantGallery, ...productGallery].find((url) => url && url !== defaultMediaUrl);
-    return galleryCandidate ? toMediaDescriptor(galleryCandidate) : toMediaDescriptor(product?.hero_video);
-  }, [defaultMediaUrl, product?.hero_video, product?.hover_media, product?.image_urls, product?.images, selectedVariant?.image_urls]);
+    const galleryCandidate = normalizeList(product?.images || product?.image_urls)
+      .map((u) => safeMedia(u, null))
+      .find((url) => url && url !== defaultMediaUrl);
+    return galleryCandidate ? toMediaDescriptor(galleryCandidate, imagePreset) : toMediaDescriptor(product?.hero_video, imagePreset);
+  }, [defaultMediaUrl, imagePreset, isHovering, product?.hero_video, product?.hover_media, product?.image_urls, product?.images]);
 
   useEffect(() => {
     setImgLoaded(false);
@@ -138,7 +141,7 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
   const handleAdd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (product.isFallback) return;
+    if (product.isFallback || storeOffline) return;
     triggerPulse();
     addItem(addPayload, selectedVariant);
   };
@@ -146,6 +149,7 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
   const handleInc = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (storeOffline) return;
     triggerPulse();
     updateQty(cartKey, qty + 1);
   };
@@ -164,13 +168,11 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
     onQuickView(product);
   };
 
-  const whatsappHref = `https://wa.me/917842938998?text=${encodeURIComponent(`Hi Yasvik, I want to know more about ${title}.`)}`;
-
   const cardClass = isCommerce
     ? 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-soft-border bg-white text-deep-forest shadow-[0_10px_34px_rgba(31,61,43,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-neon-paddy/25 hover:shadow-[0_16px_42px_rgba(31,61,43,0.1)]'
     : 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.45rem] border border-[#1a1814]/10 bg-[#fffaf0] text-[#1a1814] shadow-[0_16px_42px_rgba(26,24,20,.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#8b6914]/30 hover:shadow-[0_24px_62px_rgba(26,24,20,.13)]';
 
-  const imageWrapClass = isCommerce ? 'relative aspect-[1.02/1] overflow-hidden bg-warm-cream' : 'relative aspect-[1.02/1] overflow-hidden bg-[#eee4cf]';
+  const imageWrapClass = isCommerce ? 'relative aspect-square overflow-hidden bg-warm-cream' : 'relative aspect-square overflow-hidden bg-[#eee4cf]';
 
   const titleClass = isCommerce
     ? 'line-clamp-2 min-h-[2.75rem] font-inter text-[15px] font-bold leading-snug text-deep-forest md:min-h-[3rem] md:text-base'
@@ -199,17 +201,14 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
         )}
 
         {primaryMedia?.url && !primaryMedia.isVideo ? (
-          <motion.img
-            src={primaryMedia.url}
+          <OptimizedImage
+            src={defaultMediaUrl}
             alt={productImageAlt}
+            preset={imagePreset}
+            eager={imageEager}
             onLoad={() => setImgLoaded(true)}
-            animate={{ opacity: imgLoaded ? 1 : 0, scale: imgLoaded ? 1 : 1.025 }}
-            transition={{ duration: 0.28 }}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+            className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035] ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
           />
         ) : primaryMedia?.url && primaryMedia.isVideo ? (
           <video src={primaryMedia.url} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" style={{ transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }} autoPlay loop muted playsInline />
@@ -218,15 +217,13 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
         )}
 
         {hoverMedia?.url && !hoverMedia.isVideo && (
-          <img
+          <OptimizedImage
             src={hoverMedia.url}
             alt=""
+            preset={imagePreset}
             aria-hidden="true"
             className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${isHovering ? 'scale-100 opacity-100' : 'scale-[1.025] opacity-0'}`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
           />
         )}
         {hoverMedia?.url && hoverMedia.isVideo && isHovering && (
@@ -242,6 +239,9 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
       <div className={`flex flex-1 flex-col ${isCommerce ? 'p-3.5 md:p-4' : 'p-4'}`}>
         <Link to={detailUrl} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
           <h3 className={titleClass}>{title}</h3>
+          {teluguName ? (
+            <p className="mt-1 line-clamp-2 font-cormorant text-sm leading-snug text-deep-forest/60">{teluguName}</p>
+          ) : null}
         </Link>
         {showSourceSubtitle ? (
           <p className="mt-2 line-clamp-1 font-inter text-[12px] leading-5 text-[#6f675d]">{sourceContext}</p>
@@ -290,9 +290,10 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
           ) : qty === 0 ? (
             <button
               onClick={handleAdd}
-              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.13em] transition-all active:scale-95 ${isCommerce ? 'bg-neon-paddy text-white hover:bg-deep-forest' : 'bg-[#1e1c18] text-[#f5f1e8] hover:bg-[#4a6741]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}
+              disabled={storeOffline}
+              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.13em] transition-all active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 ${isCommerce ? 'bg-neon-paddy text-white hover:bg-deep-forest' : 'bg-[#1e1c18] text-[#f5f1e8] hover:bg-[#4a6741]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}
             >
-              <Plus className="mr-1 h-3.5 w-3.5" /> Add
+              <Plus className="mr-1 h-3.5 w-3.5" /> {storeOffline ? 'Restocking' : 'Add'}
             </button>
           ) : (
             <div className={`flex h-10 items-center overflow-hidden rounded-full ${isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
@@ -304,18 +305,8 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
         </div>
 
         {!product.isFallback && (
-          <div className={`mt-3 flex items-center justify-between gap-3 border-t pt-3 ${isCommerce ? 'border-soft-border' : 'border-[#1a1814]/8'}`}>
+          <div className={`mt-3 border-t pt-3 ${isCommerce ? 'border-soft-border' : 'border-[#1a1814]/8'}`}>
             <Link to={detailUrl} className={`font-inter text-[10px] font-bold uppercase tracking-[0.16em] ${isCommerce ? 'text-deep-forest/60 hover:text-deep-forest' : 'text-[#6f675d] hover:text-[#1a1814]'}`}>View details</Link>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              className={`inline-flex items-center gap-1.5 font-inter font-bold uppercase tracking-[0.14em] ${isShop ? 'text-[11px] text-neon-paddy hover:text-deep-forest sm:text-xs' : isCommerce ? 'text-[10px] text-neon-paddy hover:text-deep-forest' : 'text-[10px] text-[#4a6741] hover:text-[#1a1814]'}`}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <MessageCircle className={isShop ? 'h-4 w-4' : 'h-3.5 w-3.5'} />
-              {isShop ? 'Ask on WhatsApp' : 'Ask'}
-            </a>
           </div>
         )}
       </div>

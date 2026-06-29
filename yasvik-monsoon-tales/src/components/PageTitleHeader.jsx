@@ -8,7 +8,6 @@ const routeToPageKey = {
   '/shop': 'shop',
   '/journeys': 'journeys',
   '/stories': 'stories',
-  '/recipes': 'recipes',
   '/people': 'people',
   '/our-roots': 'our_roots',
   '/about': 'our_roots',
@@ -30,11 +29,6 @@ const pageQuotes = {
     '"Behind every product lies a human story."',
     '"Narratives of resilience, culture, and craft."',
     '"Stories that connect us to the land."',
-  ],
-  recipes: [
-    '"Ancient wisdom meets modern taste."',
-    '"Transform heritage ingredients into moments."',
-    '"Recipes rooted in generations of care."',
   ],
   people: [
     '"The hands that grow. The hearts that nurture."',

@@ -2,20 +2,27 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CalendarDays, ChevronDown, Heart, MapPin, Minus, Plus, ShieldCheck, Star, Truck, UserRound, X } from 'lucide-react';
+import { CalendarDays, ChevronDown, Heart, MapPin, Minus, Plus, ShieldCheck, Star, UserRound, X } from 'lucide-react';
 import { products as productsApi, people as peopleApi, regions as regionsApi, journeys as journeysApi } from '@/services/api';
-import { fetchAllAppSettings, resolveSetting, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
 import { useCart } from '@/lib/CartContext';
 import { useWishlist } from '@/lib/WishlistContext';
 import { useRecentlyViewed } from '@/lib/RecentlyViewedContext';
 import { useTrending } from '@/lib/TrendingContext';
 import { usePremiumHapticPulse } from '@/hooks/usePremiumHapticPulse';
-import ProductCard from '@/components/products/ProductCard';
+import FrequentlyBoughtTogether from '@/components/crosssell/FrequentlyBoughtTogether';
+import CompleteYourBasket from '@/components/crosssell/CompleteYourBasket';
+import BundleStrip from '@/components/crosssell/BundleStrip';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import { buildProductAltText, buildProductSeoMeta } from '@/lib/productSeo';
+import { resolveVariantComparePrice } from '@/lib/productPricingUtils';
 import { normalizeProductVariant } from '@/lib/productVariantUtils';
+import { getProductTeluguName } from '@/lib/teluguProductNames';
+import { getProductCanonicalUrl, getProductPath, isProductUuid } from '@/lib/productUrls';
 
-const CURRENT_ADMIN_LOGO_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png';
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import { BRAND_LOGO_HORIZONTAL } from '@/lib/brandAssets';
+
+const CURRENT_ADMIN_LOGO_URL = BRAND_LOGO_HORIZONTAL;
 
 function getYouTubeId(url) {
   if (!url) return null;
@@ -34,16 +41,10 @@ function normalizeList(value) {
   return [];
 }
 function getTitle(product) { return product?.title || product?.name || 'Yasvik product'; }
-function safeMedia(url = '') { const v = String(url || '').trim(); return /picsum|source\.unsplash|placehold/i.test(v) ? '' : v; }
 function compactText(value = '') { return String(value || '').trim(); }
 function getProcessingMethod(product) {
   return compactText(product?.processing_method || product?.process || product?.method || product?.traditional_process || product?.category_name) || 'Thoughtfully chosen';
 }
-function cleanPublicLicense(value = '') {
-  const text = String(value || '').trim();
-  return /pending|to be confirmed|license number/i.test(text) ? '' : text;
-}
-
 function upsertMeta(name, content) {
   if (!content) return;
   let meta = document.querySelector(`meta[name="${name}"]`);
@@ -94,7 +95,7 @@ function upsertProductJsonLd(product, seo, price, inStock) {
     sku: product.sku || undefined,
     offers: {
       '@type': 'Offer',
-      url: `${window.location.origin}/product/${product.id}`,
+      url: getProductCanonicalUrl(product),
       priceCurrency: 'INR',
       price: Number(price || product.price || 0),
       availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
@@ -110,9 +111,9 @@ function ProductFallback({ title }) {
 function Accordion({ title, children, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-[#D8CCB5]">
-      <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between py-4 text-left"><span className="font-syne text-lg font-bold text-[#1A1814]">{title}</span><ChevronDown className={`h-4 w-4 text-[#6F675D] transition-transform ${open ? 'rotate-180' : ''}`} /></button>
-      <AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22 }} className="overflow-hidden"><div className="pb-5 font-inter text-sm leading-7 text-[#6F675D]">{children}</div></motion.div>}</AnimatePresence>
+    <div className="border-b border-soft-border">
+      <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between py-4 text-left"><span className="font-cormorant text-xl font-semibold text-deep-forest">{title}</span><ChevronDown className={`h-4 w-4 text-deep-forest/50 transition-transform ${open ? 'rotate-180' : ''}`} /></button>
+      <AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22 }} className="overflow-hidden"><div className="pb-5 font-inter text-sm leading-7 text-deep-forest/70">{children}</div></motion.div>}</AnimatePresence>
     </div>
   );
 }
@@ -124,26 +125,34 @@ export default function ProductDetail() {
   const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
   const [traceOpen, setTraceOpen] = useState(false);
-  const { addItem } = useCart();
+  const { addItem, storeOffline } = useCart();
   const { toggle, isWishlisted } = useWishlist();
   const { track } = useRecentlyViewed();
   const { bump } = useTrending();
   const { isPulseActive, triggerPulse } = usePremiumHapticPulse();
 
-  const { data: product, isLoading, error } = useQuery({ queryKey: ['product', id], queryFn: async () => { try { return await productsApi.get(id); } catch { const all = await productsApi.listPublished('-created_date', 300); return all.find((p) => p.id === id) || null; } }, enabled: !!id, retry: 1 });
-  const { data: related = [] } = useQuery({ queryKey: ['related-product-card', product?.category_id, product?.id], queryFn: () => product?.category_id ? productsApi.listByCategory(product.category_id, 8) : productsApi.listPublished('-created_date', 8), enabled: Boolean(product?.id), staleTime: 5 * 60 * 1000 });
+  const { data: product, isLoading, error } = useQuery({
+    queryKey: ['product', id],
+    queryFn: () => productsApi.getBySlugOrId(id),
+    enabled: !!id,
+    retry: 1,
+  });
   const { data: linkedPerson } = useQuery({ queryKey: ['product-trace-person', product?.person_id], queryFn: () => peopleApi.get(product.person_id), enabled: Boolean(product?.person_id), staleTime: 5 * 60 * 1000 });
   const { data: linkedRegion } = useQuery({ queryKey: ['product-trace-region', product?.region_id], queryFn: () => regionsApi.get(product.region_id), enabled: Boolean(product?.region_id), staleTime: 5 * 60 * 1000 });
   const { data: linkedJourney } = useQuery({ queryKey: ['product-trace-journey', product?.journey_id], queryFn: () => journeysApi.get(product.journey_id), enabled: Boolean(product?.journey_id), staleTime: 5 * 60 * 1000 });
-  const { data: settings = [] } = useQuery({ queryKey: SETTINGS_QUERY_KEYS.public, queryFn: fetchAllAppSettings, staleTime: 10 * 60 * 1000 });
-
   useEffect(() => { if (product) { track(product); bump(product.id, 'view'); } }, [product?.id]);
+  useEffect(() => {
+    if (!product?.slug || !id || id === product.slug) return;
+    if (isProductUuid(id)) {
+      window.history.replaceState(null, '', getProductPath(product));
+    }
+  }, [product, id]);
   useEffect(() => {
     if (!product) return;
     const price = Number(selectedVariant?.price || product.price || 0);
     const inStock = product.availability === 'in_stock' || Number(product.stock ?? product.stock_quantity ?? 1) > 0;
     const seo = buildProductSeoMeta(product);
-    const canonicalUrl = `${window.location.origin}/product/${product.id}`;
+    const canonicalUrl = getProductCanonicalUrl(product);
     const seoImage = seo.image || CURRENT_ADMIN_LOGO_URL;
 
     document.title = seo.title;
@@ -197,7 +206,7 @@ export default function ProductDetail() {
       product.hero_image,
       product.featured_image_url,
       product.image_url,
-    ].map(safeMedia).filter(Boolean);
+    ].map((url) => String(url || '').trim()).filter((url) => url && !/picsum|source\.unsplash|placehold/i.test(url));
     return [...new Set(urls)].map((url) => {
       const youtubeId = getYouTubeId(url);
       if (youtubeId) return { type: 'youtube', url, youtubeId };
@@ -211,10 +220,10 @@ export default function ProductDetail() {
 
   const activeMedia = mediaItems[activeImage] || null;
   const title = getTitle(product);
+  const teluguName = getProductTeluguName(product);
   const productImageAlt = buildProductAltText(product);
   const price = Number(selectedVariant?.price || product.price || 0);
-  const comparePrice = Number(selectedVariant?.compare_price || product.compare_price || 0);
-  const fssaiLicense = cleanPublicLicense(product.fssai_license || resolveSetting(settings, 'fssai_license_number', ''));
+  const comparePrice = Number(resolveVariantComparePrice(product, selectedVariant, price) || 0);
   const allergenInfo = product.allergen_info || product.allergens || '';
   const nutritionRows = normalizeList(product.nutrition_table).filter((row) => row && typeof row === 'object');
   const traceLocation = linkedRegion?.name || product.sourcing_location || linkedPerson?.location_label || '';
@@ -224,7 +233,6 @@ export default function ProductDetail() {
   const bestFor = compactText(product.best_for);
   const storageNote = compactText(product.storage_note);
   const yasvikMark = compactText(product.yasvik_mark);
-  const recipeLinks = normalizeList(product.recipe_links).filter((link) => link && typeof link === 'object' && (link.id || link.title));
   const sourceValue = compactText(linkedPerson?.name || product.farm_name || product.producer_name || product.vendor_name || product.supplier_name);
   const regionValue = compactText(traceLocation || product.origin_region || product.region_name);
   const processValue = compactText(product.processing_method || product.process || product.method || product.traditional_process);
@@ -238,11 +246,11 @@ export default function ProductDetail() {
       ].filter((item) => item.value)
     : [];
   const hasSourceContext = tracePills.length > 0;
-  const hasPackComplianceDetails = Boolean(fssaiLicense || allergenInfo || product.front_label_image_url || product.label_image_url);
   const showNutritionSection = Boolean(allergenInfo || nutritionRows.length);
   const inStock = product.availability === 'in_stock' || Number(product.stock ?? product.stock_quantity ?? 1) > 0;
 
   const handleAddToCart = () => {
+    if (storeOffline) return;
     triggerPulse();
     addItem(product, selectedVariant, quantity);
     bump(product.id, 'cart');
@@ -251,27 +259,39 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F1E8] pb-20 text-[#1A1814]">
+    <div className="min-h-screen bg-warm-cream pb-20 text-deep-forest">
       <div className="mx-auto max-w-[1320px] px-4 py-6 md:px-8 md:py-10">
         <div className="grid gap-8 lg:grid-cols-[1.06fr_0.94fr]">
           <div>
-            <div className="overflow-hidden rounded-[34px] border border-[#D8CCB5] bg-[#FFFAF0] shadow-[0_20px_60px_rgba(43,33,24,.08)]">
-              <div className="relative aspect-[4/3] bg-[#F3F3EB] md:aspect-[16/10]">
+            <div className="overflow-hidden rounded-[34px] border border-soft-border bg-white shadow-[0_20px_60px_rgba(31,61,43,0.08)]">
+              <div className="relative aspect-square bg-warm-cream">
                 <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(0deg,rgba(31,23,16,.10),transparent_44%)]" />
                 <AnimatePresence mode="wait">
-                  {activeMedia?.type === 'image' && <motion.img key={activeMedia.url} src={activeMedia.url} alt={productImageAlt} className="h-full w-full object-contain" initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} exit={{ opacity: 0.2 }} transition={{ duration: 0.22 }} loading="eager" decoding="sync" fetchPriority="high" />}
+                  {activeMedia?.type === 'image' && (
+                    <motion.div key={activeMedia.url} className="h-full w-full" initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} exit={{ opacity: 0.2 }} transition={{ duration: 0.22 }}>
+                      <OptimizedImage src={activeMedia.url} alt={productImageAlt} preset="detail" eager className="h-full w-full object-contain" />
+                    </motion.div>
+                  )}
                   {activeMedia?.type === 'video' && <motion.video key={activeMedia.url} src={activeMedia.url} className="h-full w-full object-cover" controls playsInline autoPlay muted loop initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} />}
                   {activeMedia?.type === 'youtube' && <motion.iframe key={activeMedia.url} src={`https://www.youtube-nocookie.com/embed/${activeMedia.youtubeId}?controls=1&rel=0&modestbranding=1`} className="h-full w-full border-0" allow="encrypted-media; picture-in-picture" initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} />}
                   {!activeMedia && <ProductFallback title={title} />}
                 </AnimatePresence>
               </div>
-              {mediaItems.length > 1 && <div className="flex gap-2 overflow-x-auto border-t border-[#D8CCB5] p-3 hide-scrollbar">{mediaItems.map((item, i) => <button key={`${item.url}-${i}`} onClick={() => setActiveImage(i)} className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border ${i === activeImage ? 'border-[#4A6741]' : 'border-[#D8CCB5]'}`}>{item.type === 'image' ? <img src={item.url} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" fetchPriority="low" /> : <div className="flex h-full w-full items-center justify-center bg-[#EAF1D8] font-inter text-[10px] font-bold text-[#4A6741]">{item.type === 'youtube' ? 'YT' : 'VID'}</div>}</button>)}</div>}
+              {mediaItems.length > 1 && <div className="flex gap-2 overflow-x-auto border-t border-soft-border p-3 hide-scrollbar">{mediaItems.map((item, i) => <button key={`${item.url}-${i}`} onClick={() => setActiveImage(i)} className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border ${i === activeImage ? 'border-neon-paddy' : 'border-soft-border'}`}>{item.type === 'image' ? <OptimizedImage src={item.url} alt="" preset="thumb" className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center bg-neon-paddy/10 font-inter text-[10px] font-bold text-neon-paddy">{item.type === 'youtube' ? 'YT' : 'VID'}</div>}</button>)}</div>}
             </div>
           </div>
 
-          <div className="rounded-[34px] border border-[#D8CCB5] bg-[#FFFAF0] p-5 shadow-[0_20px_60px_rgba(43,33,24,.08)] md:p-8">
+          <div className="rounded-[34px] border border-soft-border bg-white p-5 shadow-[0_20px_60px_rgba(31,61,43,0.08)] md:p-8">
             <div className="flex items-start justify-between gap-4">
-              <div><p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-[#8B6914]">{product.vendor_name || 'Yasvik Foods'}</p><h1 className="mt-2 font-cormorant text-5xl font-semibold leading-[0.95] text-[#1A1814] md:text-6xl">{title}</h1></div>
+              <div>
+                <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay">{product.vendor_name || 'Yasvik Foods'}</p>
+                <h1 className="mt-2 font-cormorant text-5xl font-semibold leading-[0.95] text-deep-forest md:text-6xl">{title}</h1>
+                {teluguName ? (
+                  <p className="mt-2 font-cormorant text-2xl font-medium leading-snug text-deep-forest/85">
+                    {teluguName}
+                  </p>
+                ) : null}
+              </div>
               <button onClick={() => toggle(product.id)} className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-[#D8CCB5] hover:bg-[#FFFAF0]"><Heart className={`h-5 w-5 ${isWishlisted(product.id) ? 'fill-[#8B6914] text-[#8B6914]' : 'text-[#6F675D]'}`} /></button>
             </div>
             <div className="mt-4 flex items-center gap-2 font-inter text-sm text-[#6F675D]"><span className="flex text-[#8B6914]"><Star className="h-4 w-4 fill-current" /></span><span>{hasTraceability ? 'Traceable sourcing context available' : 'Yasvik quality assured'}</span>{hasTraceability && <span className="rounded-full bg-[#EAF1D8] px-2 py-1 text-[10px] font-bold uppercase text-[#31582F]">Traceable</span>}</div>
@@ -286,26 +306,42 @@ export default function ProductDetail() {
 
             {productVariants.length > 0 && <div className="mt-5"><p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-[#9A9185]">Select size</p><div className="flex flex-wrap gap-2">{productVariants.map((v, i) => <button key={`${v.sku || v.label}-${i}`} onClick={() => { setSelectedVariant(v); setActiveImage(0); }} className={`rounded-full border px-4 py-2 font-inter text-xs font-bold ${selectedVariant?.label === v.label && (selectedVariant?.sku || '') === (v.sku || '') ? 'border-[#4A6741] bg-[#4A6741] text-white' : 'border-[#D8CCB5] bg-[#F5F1E8] text-[#6F675D] hover:border-[#A8CF45]'}`}>{v.label || v.title}</button>)}</div></div>}
 
+            {storeOffline ? (
+              <div className="mt-6 rounded-2xl border border-neon-paddy/25 bg-gradient-to-br from-neon-paddy/10 to-warm-cream p-5">
+                <p className="font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-sun-dried-clay">Shop is resting</p>
+                <p className="mt-2 font-cormorant text-2xl font-semibold leading-snug text-deep-forest">
+                  Making things ready for your health
+                </p>
+                <p className="mt-2 font-inter text-sm leading-6 text-deep-forest/65">
+                  Browse this product for now — ordering opens again when the shop is back.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link to="/shop" className="rounded-full bg-deep-forest px-4 py-2 font-inter text-xs font-bold text-warm-cream hover:bg-neon-paddy">
+                    Shop status
+                  </Link>
+                  <Link to="/stories" className="rounded-full border border-soft-border px-4 py-2 font-inter text-xs font-bold text-deep-forest hover:border-neon-paddy/35">
+                    Read stories
+                  </Link>
+                </div>
+              </div>
+            ) : (
             <div className={`mt-6 flex items-center gap-3 ${!inStock ? 'pointer-events-none opacity-50' : ''}`}>
-              <div className="flex items-center overflow-hidden rounded-xl border border-[#D8CCB5] bg-[#FFFAF0]"><button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="flex h-12 w-11 items-center justify-center hover:bg-white"><Minus className="h-4 w-4" /></button><span className="min-w-9 text-center font-inter text-sm font-bold">{quantity}</span><button onClick={() => setQuantity((q) => q + 1)} className="flex h-12 w-11 items-center justify-center hover:bg-white"><Plus className="h-4 w-4" /></button></div>
+              <div className="flex items-center overflow-hidden rounded-xl border border-soft-border bg-white"><button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="flex h-12 w-11 items-center justify-center hover:bg-warm-cream"><Minus className="h-4 w-4" /></button><span className="min-w-9 text-center font-inter text-sm font-bold">{quantity}</span><button onClick={() => setQuantity((q) => q + 1)} className="flex h-12 w-11 items-center justify-center hover:bg-warm-cream"><Plus className="h-4 w-4" /></button></div>
               <button onClick={handleAddToCart} className={`yasvik-harvest-cta flex h-12 flex-1 items-center justify-center rounded-xl font-inter text-sm font-bold uppercase tracking-[0.14em] active:scale-[0.98] ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>{added ? 'Added to Harvest Bag' : 'Add to Harvest Bag'}</button>
             </div>
+            )}
 
-            <div className="mt-5 grid gap-3 md:grid-cols-3">
-              <InfoTile icon={Truck} title="Delivery" text={product.delivery_card || 'Delivery details shown at checkout'} />
-              {fssaiLicense ? (
-                <InfoTile icon={ShieldCheck} title="FSSAI" text={fssaiLicense} />
-              ) : (
-                <InfoTile icon={ShieldCheck} title="Pack info" text={product.pack_info_card || 'Veg product • Packed after order'} />
-              )}
-              {hasTraceability ? (
-                <button onClick={() => setTraceOpen(true)} className="rounded-xl border border-[#DAEABA] bg-[#EAF1D8] p-4 text-left"><ShieldCheck className="mb-2 h-5 w-5 text-[#4A6741]" /><p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-[#2D7A3E]">Trace sourcing</p><p className="mt-1 font-inter text-xs leading-5 text-[#4A6741]">Producer or journey details</p></button>
-              ) : (
-                <InfoTile icon={ShieldCheck} title="Sourcing" text={product.sourcing_card || 'Carefully selected vendor-sourced stock'} />
-              )}
-            </div>
+            {!storeOffline && product?.id ? <FrequentlyBoughtTogether productId={product.id} /> : null}
 
-            <div className="mt-6 rounded-2xl border border-[#D8CCB5] px-4">
+            {hasTraceability && (
+              <button onClick={() => setTraceOpen(true)} className="mt-5 w-full rounded-xl border border-neon-paddy/25 bg-neon-paddy/8 p-4 text-left transition-colors hover:bg-neon-paddy/12">
+                <ShieldCheck className="mb-2 h-5 w-5 text-neon-paddy" />
+                <p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-neon-paddy">Trace sourcing</p>
+                <p className="mt-1 font-inter text-xs leading-5 text-deep-forest/65">Producer or journey details</p>
+              </button>
+            )}
+
+            <div className="mt-6 rounded-2xl border border-soft-border px-4">
               <Accordion title="Description" defaultOpen><div className="max-w-[65ch] text-[17px] leading-[1.75]">{product.description || product.short_description || 'Product details are being updated.'}</div></Accordion>
               {(bestFor || storageNote || yasvikMark) && (
                 <Accordion title="Best For & Storage">
@@ -313,20 +349,6 @@ export default function ProductDetail() {
                     {bestFor && <p><strong className="text-[#1A1814]">Best for:</strong> {bestFor}</p>}
                     {storageNote && <p><strong className="text-[#1A1814]">Storage:</strong> {storageNote}</p>}
                     {yasvikMark && <p><strong className="text-[#1A1814]">Yasvik mark:</strong> {yasvikMark}</p>}
-                  </div>
-                </Accordion>
-              )}
-              {recipeLinks.length > 0 && (
-                <Accordion title="Recipe Ideas">
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {recipeLinks.slice(0, 6).map((recipe, index) => {
-                      const href = recipe.id ? `/recipes/${recipe.id}` : '/recipes';
-                      return (
-                        <Link key={`${recipe.external_recipe_id || recipe.title}-${index}`} to={href} className="rounded-xl border border-[#D8CCB5] bg-[#F5F1E8] px-3 py-3 font-inter text-sm font-semibold text-[#2D7A3E] transition-colors hover:bg-[#EAF1D8]">
-                          {recipe.title}
-                        </Link>
-                      );
-                    })}
                   </div>
                 </Accordion>
               )}
@@ -345,35 +367,28 @@ export default function ProductDetail() {
                   )}
                 </Accordion>
               )}
-              <Accordion title="Statutory Label">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 items-center justify-center border border-[#009a44] bg-white">
-                    <span className="h-3 w-3 rounded-full bg-[#009a44]" />
-                  </span>
-                  <span>Vegetarian food product</span>
-                </div>
-                {hasPackComplianceDetails && (
-                  <div className="mt-3 space-y-2">
-                    {fssaiLicense && <p>FSSAI: {fssaiLicense}</p>}
-                    {(product.front_label_image_url || product.label_image_url) && <p>Front label panel is available in the product gallery.</p>}
-                    {allergenInfo && <p>Allergen information: {allergenInfo}</p>}
-                  </div>
-                )}
-              </Accordion>
             </div>
           </div>
         </div>
 
-        {related.filter((item) => item.id !== product.id).length > 0 && <section className="mt-10"><div className="mb-5 flex items-baseline justify-between"><h2 className="font-syne text-2xl font-bold text-[#1A1814]">You may also like</h2><Link to="/shop" className="font-inter text-sm font-bold text-[#2D7A3E]">View all</Link></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">{related.filter((item) => item.id !== product.id).slice(0, 5).map((item, index) => <ProductCard key={item.id} product={item} index={index} />)}</div></section>}
+        {!storeOffline && product?.id ? (
+          <div className="mt-2">
+            <CompleteYourBasket productId={product.id} />
+            <BundleStrip
+              location="product"
+              productId={product.id}
+              title="Goes well as a combo"
+              description="Curated kits that include this product — view and add items individually."
+              className="mt-10"
+              limit={3}
+            />
+          </div>
+        ) : null}
       </div>
 
       <AnimatePresence>{traceOpen && hasTraceability && <TraceDrawer onClose={() => setTraceOpen(false)} linkedPerson={linkedPerson} linkedRegion={linkedRegion} linkedJourney={linkedJourney} location={traceLocation} harvestDate={product.harvest_date} testingDate={product.batch_tested_at} note={traceNote} />}</AnimatePresence>
     </div>
   );
-}
-
-function InfoTile({ icon: Icon, title, text }) {
-  return <div className="rounded-xl border border-[#D8CCB5] bg-[#F5F1E8] p-4"><Icon className="mb-2 h-5 w-5 text-[#2D7A3E]" /><p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-[#9A9185]">{title}</p><p className="mt-1 line-clamp-2 font-inter text-xs leading-5 text-[#6F675D]">{text}</p></div>;
 }
 
 function TraceDrawer({ onClose, linkedPerson, linkedRegion, linkedJourney, location, harvestDate, testingDate, note }) {

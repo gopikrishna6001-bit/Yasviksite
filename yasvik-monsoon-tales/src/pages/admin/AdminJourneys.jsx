@@ -72,7 +72,7 @@ function JourneyForm({ data, onChange }) {
             {fetchingThumb ? 'Generating…' : 'AI Generate'}
           </button>
         </div>
-        <ImageUploadField value={data.cover_image} onChange={(url) => onChange({ ...data, cover_image: url })} aspectClass="aspect-video" />
+        <ImageUploadField value={data.cover_image} onChange={(url) => onChange({ ...data, cover_image: url })} aspectClass="aspect-video" folder="stories" entityId={data.id} />
       </div>
       {[
         { key: 'description', label: 'Short Description', rows: 2 },

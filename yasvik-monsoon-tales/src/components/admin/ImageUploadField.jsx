@@ -1,31 +1,63 @@
-import { useState, useRef } from 'react';
-import { appClient } from '@/api/appClient';
-import { Upload, X, Loader2 } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { files as fileService } from '@/services/api';
+import { normalizeMediaFolder } from '@/lib/mediaFolders';
+import { buildSeoMediaFileName } from '@/lib/mediaSeoNaming';
+import {
+  MEDIA_LIBRARY_QUERY_KEY,
+  mediaLibraryQueryOptions,
+} from '@/lib/mediaLibraryQuery';
+import { Upload, X, Loader2, Images } from 'lucide-react';
+import MediaPickerModal from './MediaPickerModal';
 
-/**
- * Reusable media upload + URL paste + preview field.
- * Props:
- *   label      — field label
- *   value      — current media URL string
- *   onChange   — called with new URL string
- *   aspectClass — tailwind aspect class, defaults to "aspect-video"
- */
 function isVideoUrl(value = '') {
   return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(String(value || ''));
 }
 
-export default function ImageUploadField({ label, value, onChange, aspectClass = 'aspect-video', accept = 'image/*,video/*' }) {
+export default function ImageUploadField({
+  label,
+  value,
+  onChange,
+  aspectClass = 'aspect-video',
+  accept = 'image/*,video/*',
+  folder = 'general',
+  showPicker = true,
+  entityId = null,
+  seoName = '',
+  assetRole = '',
+  entityTitle = '',
+}) {
+  const qc = useQueryClient();
   const [uploading, setUploading] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
   const inputRef = useRef();
+  const mediaFolder = normalizeMediaFolder(folder);
+  const uploadMeta = {
+    folder: mediaFolder,
+    entityId,
+    seoName: seoName || entityTitle,
+    assetRole,
+    entityTitle,
+    label: buildSeoMediaFileName({
+      seoName: seoName || entityTitle,
+      assetRole,
+      folder: mediaFolder,
+      fallbackName: label || 'upload',
+    }),
+  };
 
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
-    const { file_url } = await appClient.integrations.Core.UploadFile({ file });
-    onChange(file_url);
-    setUploading(false);
-    e.target.value = '';
+    try {
+      const { file_url } = await fileService.upload(file, uploadMeta);
+      onChange(file_url);
+      qc.invalidateQueries({ queryKey: MEDIA_LIBRARY_QUERY_KEY });
+    } finally {
+      setUploading(false);
+      e.target.value = '';
+    }
   };
 
   return (
@@ -48,40 +80,70 @@ export default function ImageUploadField({ label, value, onChange, aspectClass =
           >
             <X className="w-3.5 h-3.5" />
           </button>
+          <div className="absolute bottom-2 right-2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+            {showPicker && (
+              <button
+                type="button"
+                onClick={() => setPickerOpen(true)}
+                className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-rain-cloud/70 font-inter text-[11px] rounded-lg border border-border shadow flex items-center gap-1"
+              >
+                <Images className="w-3 h-3" /> Pick
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => inputRef.current?.click()}
+              className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-rain-cloud/70 font-inter text-[11px] rounded-lg border border-border shadow flex items-center gap-1"
+            >
+              <Upload className="w-3 h-3" /> Replace
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="absolute bottom-2 right-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-rain-cloud/70 font-inter text-[11px] rounded-lg border border-border opacity-0 group-hover:opacity-100 transition-opacity shadow flex items-center gap-1"
+            disabled={uploading}
+            className="border-2 border-dashed border-border rounded-xl py-8 flex flex-col items-center gap-2 text-rain-cloud/40 hover:border-forest-canopy hover:text-forest-canopy transition-colors disabled:opacity-50"
           >
-            <Upload className="w-3 h-3" /> Replace
+            {uploading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Upload className="w-6 h-6" />}
+            <span className="font-inter text-xs">{uploading ? 'Uploading…' : 'Upload new'}</span>
           </button>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => inputRef.current?.click()}
-          disabled={uploading}
-          className="w-full border-2 border-dashed border-border rounded-xl py-8 flex flex-col items-center gap-2 text-rain-cloud/40 hover:border-forest-canopy hover:text-forest-canopy transition-colors disabled:opacity-50"
-        >
-          {uploading ? (
-            <Loader2 className="w-6 h-6 animate-spin" />
-          ) : (
-            <Upload className="w-6 h-6" />
+          {showPicker && (
+            <button
+              type="button"
+              onClick={() => setPickerOpen(true)}
+              className="border-2 border-dashed border-border rounded-xl py-8 flex flex-col items-center gap-2 text-rain-cloud/40 hover:border-forest-canopy hover:text-forest-canopy transition-colors"
+            >
+              <Images className="w-6 h-6" />
+              <span className="font-inter text-xs">Pick from library</span>
+            </button>
           )}
-          <span className="font-inter text-xs">{uploading ? 'Uploading…' : 'Click to upload image or video'}</span>
-        </button>
+        </div>
       )}
 
-      {/* URL paste fallback */}
       <input
         type="text"
         value={value || ''}
-        onChange={e => onChange(e.target.value)}
-        placeholder="...or paste image/video URL"
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="…or paste image/video URL"
         className="mt-2 w-full border border-border rounded-xl px-4 py-2 font-inter text-xs text-rain-cloud/70 focus:outline-none focus:border-forest-canopy"
       />
 
       <input ref={inputRef} type="file" accept={accept} className="hidden" onChange={handleFile} />
+
+      {showPicker && (
+        <MediaPickerModal
+          open={pickerOpen}
+          onClose={() => setPickerOpen(false)}
+          onSelect={onChange}
+          folder={mediaFolder}
+          seoName={seoName || entityTitle}
+          assetRole={assetRole}
+          entityTitle={entityTitle}
+        />
+      )}
     </div>
   );
 }

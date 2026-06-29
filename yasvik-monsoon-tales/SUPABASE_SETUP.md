@@ -142,6 +142,49 @@ For **Social Login** (optional):
 1. Click the provider (Google, GitHub, etc.)
 2. Enable and add OAuth credentials
 
+### Google sign-in: show “Yasvik” (not `*.supabase.co`)
+
+When Google says **“Continue to cpksnpuavywbmhrzglyh.supabase.co”**, that is expected with Supabase’s default Google OAuth app. The app code cannot change that screen — you need **your own Google OAuth app** wired into Supabase.
+
+#### 1. Google Cloud Console
+
+1. Open [Google Cloud Console](https://console.cloud.google.com/) → **APIs & Services** → **OAuth consent screen**
+2. Set **App name** to `Yasvik` (or `Yasvik Natural Foods`)
+3. Upload the **Yasvik logo**
+4. Add **User support email**, **Privacy policy** (`https://www.yasvik.com/privacy` or your page), and **Terms** if you have one
+5. Under **Authorized domains**, add: `yasvik.com` and `supabase.co`
+6. Go to **Credentials** → **Create credentials** → **OAuth client ID** → **Web application**
+7. **Authorized JavaScript origins:**
+   - `https://www.yasvik.com`
+   - `https://yasvik.com`
+   - `http://localhost:5173` (for local dev)
+8. **Authorized redirect URIs:**
+   - `https://cpksnpuavywbmhrzglyh.supabase.co/auth/v1/callback`
+9. Copy the **Client ID** and **Client Secret**
+
+#### 2. Submit for Google brand verification (required for name + logo)
+
+Google only shows your app **name and logo** after light **brand verification** (not full sensitive-scope review for basic profile/email).
+
+1. In OAuth consent screen → **Branding** → confirm app name `Yasvik` and logo
+2. Submit for **brand verification** when prompted
+3. Until verified, Google may still show the domain instead of the name
+
+#### 3. Supabase Dashboard
+
+1. **Authentication** → **Providers** → **Google** → Enable
+2. Paste your **Client ID** and **Client Secret** (do not rely on Supabase’s built-in Google app)
+3. **Authentication** → **URL Configuration**:
+   - **Site URL:** `https://www.yasvik.com`
+   - **Redirect URLs:** `https://www.yasvik.com/**`, `http://localhost:5173/**`
+
+#### 4. Optional (best trust): custom auth domain
+
+On a paid Supabase plan you can set a custom auth domain such as `auth.yasvik.com` so users never see `.supabase.co` in the flow. See [Supabase custom domains](https://supabase.com/docs/guides/platform/custom-domains).
+
+After steps 1–3, Google should show **“Continue to Yasvik”** with your logo once brand verification is approved (usually a few business days).
+
+
 ### Step 2: Configure Auth Settings
 
  Settings**:

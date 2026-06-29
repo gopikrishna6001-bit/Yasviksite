@@ -24,7 +24,7 @@ function PersonForm({ data, onChange }) {
           <input type={type} value={data[key] || ''} onChange={f(key)} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none focus:border-forest-canopy" />
         </div>
       ))}
-      <ImageUploadField label="Portrait Image" value={data.portrait_image} onChange={(url) => onChange({ ...data, portrait_image: url })} aspectClass="aspect-square" />
+      <ImageUploadField label="Portrait Image" value={data.portrait_image} onChange={(url) => onChange({ ...data, portrait_image: url })} aspectClass="aspect-square" folder="people" entityId={data.id} seoName={data.slug || data.name} assetRole="portrait" entityTitle={data.name} />
       {[{ key: 'short_bio', label: 'Short Bio', rows: 2 }, { key: 'long_story', label: 'Long Story', rows: 4 }].map(({ key, label, rows }) => (
         <div key={key}>
           <label className="font-inter text-xs text-rain-cloud/55 block mb-1">{label}</label>

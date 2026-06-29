@@ -7,9 +7,12 @@ import {
   resolveSetting,
   SETTINGS_QUERY_KEYS,
 } from '@/services/settingsService';
+import { BRAND_LOGO_HORIZONTAL, BRAND_LOGO_SYMBOL } from '@/lib/brandAssets';
+import { optimizeMediaUrl } from '@/lib/mediaUrl';
+import { buildLocalBusinessJsonLd } from '@/lib/storeLocation';
 
-const CURRENT_ADMIN_LOGO_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png';
-const CURRENT_ADMIN_SYMBOL_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781518040543-6c7i3giwirb.png';
+const CURRENT_ADMIN_LOGO_URL = BRAND_LOGO_HORIZONTAL;
+const CURRENT_ADMIN_SYMBOL_URL = BRAND_LOGO_SYMBOL;
 
 const BRAND_KEYWORDS =
   'yasvik, yasvik foods, yasvik natural foods, grocery store lingampally, grocery store ashok nagar hyderabad, natural foods lingampally, millets lingampally, wood pressed oils lingampally, jaggery lingampally, dry fruits lingampally, native rice hyderabad, natural foods hyderabad, everyday essentials';
@@ -17,7 +20,7 @@ const BRAND_KEYWORDS =
 const META_BY_ROUTE = [
   {
     match: (pathname) => pathname === '/',
-    title: 'Yasvik | Natural Foods & Everyday Essentials in Lingampally, Hyderabad',
+    title: 'Yasvik | Natural Foods & Everyday Essentials | Hyderabad',
     description: 'Better choices for everyday living. Shop millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday groceries at Yasvik.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
@@ -72,9 +75,9 @@ const META_BY_ROUTE = [
     keywords: BRAND_KEYWORDS,
   },
   {
-    match: (pathname) => pathname.startsWith('/people'),
-    title: 'Yasvik Producers | People Behind Selected Foods',
-    description: 'Meet the producers, regional specialists and partners behind selected Yasvik foods.',
+    match: (pathname) => pathname.startsWith('/farmers') || pathname.startsWith('/people') || pathname.startsWith('/producers'),
+    title: 'Yasvik Our Farmers | People Behind the Harvest',
+    description: 'Meet the farmers, families and regional partners behind Yasvik millets, staples, oils and everyday essentials.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
@@ -156,9 +159,9 @@ export default function SeoMetaManager() {
   useEffect(() => {
     const routeMeta = META_BY_ROUTE.find((item) => item.match(pathname)) || META_BY_ROUTE[0];
     const canonicalUrl = `${window.location.origin}${pathname}${search || ''}`;
-    const faviconUrl = String(resolveSetting(settings, 'brand_favicon_url', getCachedSetting('brand_favicon_url', CURRENT_ADMIN_SYMBOL_URL)));
-    const orgLogoUrl = String(resolveSetting(settings, 'brand_organization_logo_url', getCachedSetting('brand_organization_logo_url', CURRENT_ADMIN_LOGO_URL)));
-    const ogImageUrl = String(resolveSetting(settings, 'brand_og_image_url', getCachedSetting('brand_og_image_url', CURRENT_ADMIN_LOGO_URL)));
+    const faviconUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_favicon_url', getCachedSetting('brand_favicon_url', CURRENT_ADMIN_SYMBOL_URL))), 'logo');
+    const orgLogoUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_organization_logo_url', getCachedSetting('brand_organization_logo_url', CURRENT_ADMIN_LOGO_URL))), 'logo');
+    const ogImageUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_og_image_url', getCachedSetting('brand_og_image_url', CURRENT_ADMIN_LOGO_URL))), 'banner');
     const absoluteOgImageUrl = ogImageUrl.startsWith('http') ? ogImageUrl : `${window.location.origin}${ogImageUrl}`;
 
     document.title = routeMeta.title;
@@ -197,6 +200,11 @@ export default function SeoMetaManager() {
           'query-input': 'required name=search_term_string',
         },
       });
+      upsertJsonLd('yasvik-store-jsonld', buildLocalBusinessJsonLd(window.location.origin));
+    }
+
+    if (pathname.startsWith('/contact')) {
+      upsertJsonLd('yasvik-store-jsonld', buildLocalBusinessJsonLd(window.location.origin));
     }
   }, [pathname, search, settings]);
 

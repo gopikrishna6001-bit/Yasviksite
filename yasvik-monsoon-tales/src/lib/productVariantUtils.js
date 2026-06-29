@@ -1,3 +1,5 @@
+import { isPricingMetaVariant } from '@/lib/productPricingMeta';
+
 export function normalizeList(value) {
   if (Array.isArray(value)) return value;
   if (typeof value === 'string') {
@@ -39,6 +41,8 @@ function cleanString(value) {
 }
 
 export function normalizeProductVariant(variant = {}) {
+  if (isPricingMetaVariant(variant)) return null;
+
   const label = cleanString(variant.label || variant.title || variant.name || variant.pack_size);
   if (!label) return null;
 

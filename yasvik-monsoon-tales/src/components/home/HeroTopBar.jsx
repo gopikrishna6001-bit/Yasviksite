@@ -7,17 +7,18 @@ import { useCart } from '@/lib/CartContext';
 import { useAuth } from '@/lib/AuthContext';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import { fetchAllAppSettings, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
+import { YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
 
 const NAV_LINKS = [
   { label: 'Shop', path: '/shop' },
   { label: 'Our Roots', path: '/our-roots' },
-  { label: 'Producers', path: '/producers' },
-  { label: 'Recipes', path: '/recipes' },
+  { label: 'Our Farmers', path: '/farmers' },
+  { label: 'Stories', path: '/stories' },
 ];
 
 function normalizePhone(value = '') {
   const digits = String(value || '').replace(/\D/g, '');
-  if (!digits) return '917842938998';
+  if (!digits) return YASVIK_WHATSAPP_NUMBER;
   if (digits.length === 10) return `91${digits}`;
   return digits;
 }
@@ -28,10 +29,13 @@ function clampNumber(value, fallback, min, max) {
   return Math.min(Math.max(numeric, min), max);
 }
 
-function IconButton({ as: Component = 'button', children, className = '', ...props }) {
+function IconButton({ as: Component = 'button', children, className = '', glass = false, ...props }) {
+  const base = glass
+    ? 'border-white/25 bg-white/12 text-white shadow-[0_8px_28px_rgba(0,0,0,0.18)] backdrop-blur-md hover:border-white/40 hover:bg-white/20'
+    : 'border-deep-forest/12 bg-white/85 text-deep-forest shadow-[0_10px_28px_rgba(31,61,43,0.08)] hover:border-neon-paddy/30 hover:bg-white';
   return (
     <Component
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-deep-forest/12 bg-white/85 text-deep-forest shadow-[0_10px_28px_rgba(31,61,43,0.08)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-neon-paddy/30 hover:bg-white active:scale-95 ${className}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur transition-all duration-200 hover:-translate-y-0.5 active:scale-95 ${base} ${className}`}
       {...props}
     >
       {children}
@@ -56,6 +60,7 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
   );
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I need help choosing better everyday foods.')}`;
   const isHome = location.pathname === '/';
+  const homeTopNav = isHome && !scrolled;
   const accountHref = isAuthenticated ? '/profile' : '/login?next=/profile';
   const logoScale = clampNumber(settingsMap.brand_logo_header_scale, 1, 0.55, 1.55);
   const desktopLogoWidth = Math.round(clampNumber(clampNumber(settingsMap.brand_logo_header_width_desktop, 230, 140, 340) * logoScale, 230, 140, 320));
@@ -88,10 +93,11 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
     document.documentElement.style.setProperty('--yasvik-content-top-no-nav', `${headerPx}px`);
     document.documentElement.dataset.yasvikHeaderCompact = scrolled ? '1' : '0';
     document.documentElement.dataset.yasvikHeaderHidden = '0';
+    document.documentElement.dataset.yasvikHeaderGlass = '0';
   }, [scrolled]);
 
-  const shellClass = isHome && !scrolled
-    ? 'border-transparent bg-warm-cream/80 shadow-none backdrop-blur-md'
+  const shellClass = homeTopNav
+    ? 'border-b border-soft-border/35 bg-warm-cream/92 shadow-[0_4px_28px_rgba(31,61,43,0.07)] backdrop-blur-xl backdrop-saturate-150'
     : 'border-soft-border bg-warm-cream/95 shadow-[0_14px_38px_rgba(31,61,43,0.08)] backdrop-blur-xl';
 
   return (
@@ -102,39 +108,51 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
       className={`fixed inset-x-0 top-0 z-40 border-b text-deep-forest transition-all duration-300 ${shellClass}`}
     >
       <div className="mx-auto flex h-[76px] max-w-[1480px] items-center justify-between gap-4 px-4 md:h-[84px] md:px-8">
+
+        {/* Left: hamburger + nav links on desktop */}
         <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-5">
           <IconButton type="button" onClick={onMenuOpen} aria-label="Open menu" className="md:h-12 md:w-12">
             <Menu className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.7} />
           </IconButton>
 
-          <Link to="/" aria-label="Yasvik Home" className="hidden shrink-0 items-center md:inline-flex">
+          <nav aria-label="Primary navigation" className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `rounded-full px-4 py-2 font-inter text-[12px] font-bold uppercase tracking-[0.17em] transition-colors ${
+                    isActive
+                      ? 'bg-deep-forest text-warm-cream'
+                      : 'text-deep-forest/72 hover:bg-deep-forest/7 hover:text-deep-forest'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+
+        {/* Center: logo — absolutely centered on both mobile and desktop */}
+        <Link to="/" aria-label="Yasvik Home" className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center">
+          {/* Desktop logo — slightly larger */}
+          <span className="hidden md:inline-flex">
             <YasvikLogo
               variant="horizontal"
               imageClassName="h-auto w-auto"
-              imageStyle={{ width: `${desktopLogoWidth}px`, maxHeight: `${desktopLogoMaxHeight}px`, objectFit: 'contain' }}
+              imageStyle={{ width: `${Math.round(desktopLogoWidth * 1.18)}px`, maxHeight: `${Math.round(desktopLogoMaxHeight * 1.18)}px`, objectFit: 'contain' }}
             />
-          </Link>
-        </div>
-
-        <Link to="/" aria-label="Yasvik Home" className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center md:hidden">
-          <YasvikLogo
-            variant="horizontal"
-            imageClassName="h-auto w-auto"
-            imageStyle={{ width: `${mobileLogoWidth}px`, maxHeight: `${mobileLogoMaxHeight}px`, objectFit: 'contain' }}
-          />
+          </span>
+          {/* Mobile logo */}
+          <span className="inline-flex md:hidden">
+            <YasvikLogo
+              variant="horizontal"
+              imageClassName="h-auto w-auto"
+              imageStyle={{ width: `${mobileLogoWidth}px`, maxHeight: `${mobileLogoMaxHeight}px`, objectFit: 'contain' }}
+            />
+          </span>
         </Link>
-
-        <nav aria-label="Primary navigation" className="hidden items-center justify-center gap-2 md:flex">
-          {NAV_LINKS.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) => `rounded-full px-4 py-2 font-inter text-[12px] font-bold uppercase tracking-[0.17em] transition-colors ${isActive ? 'bg-deep-forest text-warm-cream' : 'text-deep-forest/72 hover:bg-deep-forest/7 hover:text-deep-forest'}`}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
 
         <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-3">
           {onSearchOpen && (
@@ -142,24 +160,6 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
               <Search className="h-5 w-5" strokeWidth={1.7} />
             </IconButton>
           )}
-          <IconButton
-            as="a"
-            href={whatsappHref}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Order on WhatsApp"
-            className="inline-flex text-neon-paddy lg:hidden"
-          >
-            <MessageCircle className="h-5 w-5" strokeWidth={1.7} />
-          </IconButton>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden h-11 items-center gap-2 rounded-full border border-neon-paddy/20 bg-white/80 px-4 font-inter text-[12px] font-bold uppercase tracking-[0.14em] text-neon-paddy shadow-[0_10px_28px_rgba(31,61,43,0.06)] transition-all hover:-translate-y-0.5 hover:bg-white lg:inline-flex"
-          >
-            <MessageCircle className="h-4 w-4" /> WhatsApp
-          </a>
           <IconButton as={Link} to={accountHref} aria-label={isAuthenticated ? 'Profile' : 'Login or sign up'}>
             <User className="h-5 w-5" strokeWidth={1.7} />
           </IconButton>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import {
   Bean,
   Cookie,
@@ -43,12 +44,12 @@ export default function CategoryTile({ label, href, imageUrl, index = 0 }) {
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-warm-cream">
         {imageUrl ? (
-          <img
+          <OptimizedImage
             src={imageUrl}
             alt=""
+            preset="category"
+            eager={index < 4}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-            loading={index < 4 ? 'eager' : 'lazy'}
-            decoding="async"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-warm-cream via-white to-[#F3EDE0] p-4">

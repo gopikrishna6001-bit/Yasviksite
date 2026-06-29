@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-const WHATSAPP_NUMBER = '917842938998';
+import { YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+import { trackWhatsAppClick } from '@/lib/analytics';
+
+const WHATSAPP_NUMBER = YASVIK_WHATSAPP_NUMBER;
 const DEFAULT_MESSAGE = encodeURIComponent('Hi! I found your products on Yasvik and would love to know more.');
 
 export default function WhatsAppButton({ productTitle = null }) {
@@ -48,6 +51,7 @@ export default function WhatsAppButton({ productTitle = null }) {
        href={href}
        target="_blank"
        rel="noopener noreferrer"
+       onClick={() => trackWhatsAppClick('floating_button')}
        initial={{ scale: 0, opacity: 0 }}
        animate={{ scale: visible ? 1 : 0, opacity: visible ? 1 : 0 }}
        transition={{ duration: 0.4, ease: 'easeOut' }}

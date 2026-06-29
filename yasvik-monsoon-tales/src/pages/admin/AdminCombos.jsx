@@ -1,9 +1,51 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { appClient } from '@/api/appClient';
-import { X, Loader2, Plus, Trash2 } from 'lucide-react';
+import { Plus, Loader2, Trash2 } from 'lucide-react';
 import ImageUploadField from '../../components/admin/ImageUploadField';
+import { toast } from '@/components/ui/use-toast';
+
+function slugifyComboTitle(title = '') {
+  return String(title)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80);
+}
+
+function normalizeProductIds(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'string' && value.trim()) {
+    try {
+      const parsed = JSON.parse(value);
+      return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+function buildComboPayload(formData, originalPrice, discountPct) {
+  const title = String(formData.title || '').trim();
+  const slug = String(formData.slug || '').trim() || slugifyComboTitle(title) || `combo-${Date.now().toString(36)}`;
+
+  return {
+    title,
+    name: title,
+    slug,
+    description: String(formData.description || '').trim(),
+    product_ids: normalizeProductIds(formData.product_ids),
+    combo_price: Number(formData.combo_price),
+    regular_price: originalPrice,
+    original_price: originalPrice,
+    hero_image: formData.hero_image || '',
+    is_published: Boolean(formData.is_published),
+    discount_percentage: discountPct,
+  };
+}
 
 export default function AdminCombos() {
   const queryClient = useQueryClient();
@@ -35,32 +77,56 @@ export default function AdminCombos() {
   const discountPct = originalPrice > 0 ? Math.round(((originalPrice - formData.combo_price) / originalPrice) * 100) : 0;
 
   const createMutation = useMutation({
-    mutationFn: (data) => appClient.entities.Combo.create({
-      ...data,
-      original_price: originalPrice,
-      discount_percentage: discountPct,
-    }),
+    mutationFn: (data) => appClient.entities.Combo.create(buildComboPayload(data, originalPrice, discountPct)),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['shop-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['home-featured-combos'] });
+      toast({ title: 'Combo created', description: 'Your bundle is saved.' });
       resetForm();
+    },
+    onError: (error) => {
+      toast({
+        variant: 'destructive',
+        title: 'Could not create combo',
+        description: error?.message || 'Please check required fields and try again.',
+      });
     },
   });
 
   const updateMutation = useMutation({
-    mutationFn: (data) => appClient.entities.Combo.update(editingId, {
-      ...data,
-      original_price: originalPrice,
-      discount_percentage: discountPct,
-    }),
+    mutationFn: (data) => appClient.entities.Combo.update(editingId, buildComboPayload(data, originalPrice, discountPct)),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['shop-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['home-featured-combos'] });
+      toast({ title: 'Combo updated', description: 'Your changes are saved.' });
       resetForm();
+    },
+    onError: (error) => {
+      toast({
+        variant: 'destructive',
+        title: 'Could not update combo',
+        description: error?.message || 'Please try again.',
+      });
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id) => appClient.entities.Combo.delete(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['admin-combos'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['shop-combos'] });
+      queryClient.invalidateQueries({ queryKey: ['home-featured-combos'] });
+      toast({ title: 'Combo deleted' });
+    },
+    onError: (error) => {
+      toast({
+        variant: 'destructive',
+        title: 'Could not delete combo',
+        description: error?.message || 'Please try again.',
+      });
+    },
   });
 
   const resetForm = () => {
@@ -78,14 +144,28 @@ export default function AdminCombos() {
   };
 
   const handleEdit = (combo) => {
-    setFormData(combo);
+    setFormData({
+      ...combo,
+      title: combo.title || combo.name || '',
+      product_ids: normalizeProductIds(combo.product_ids),
+      combo_price: Number(combo.combo_price) || 0,
+    });
     setEditingId(combo.id);
     setShowForm(true);
   };
 
   const handleSubmit = () => {
-    if (!formData.title || formData.product_ids.length === 0 || !formData.combo_price) {
-      alert('Fill all required fields');
+    const price = Number(formData.combo_price);
+    if (!String(formData.title || '').trim()) {
+      toast({ variant: 'destructive', title: 'Combo title is required' });
+      return;
+    }
+    if (!normalizeProductIds(formData.product_ids).length) {
+      toast({ variant: 'destructive', title: 'Select at least one product' });
+      return;
+    }
+    if (!Number.isFinite(price) || price <= 0) {
+      toast({ variant: 'destructive', title: 'Enter a valid combo price' });
       return;
     }
     if (editingId) {
@@ -199,6 +279,11 @@ export default function AdminCombos() {
               value={formData.hero_image}
               onChange={(url) => setFormData({ ...formData, hero_image: url })}
               aspectClass="aspect-video"
+              folder="combos"
+              entityId={formData.id}
+              seoName={formData.slug || formData.title}
+              assetRole="hero"
+              entityTitle={formData.title}
             />
 
             <div className="flex items-center gap-3">
@@ -265,7 +350,7 @@ export default function AdminCombos() {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <h3 className="font-cormorant text-lg text-rain-cloud font-light">{combo.title}</h3>
-                    <p className="font-inter text-xs text-rain-cloud/50 mt-0.5">{combo.product_ids.length} products</p>
+                    <p className="font-inter text-xs text-rain-cloud/50 mt-0.5">{normalizeProductIds(combo.product_ids).length} products</p>
                   </div>
                   <div className="text-right flex-shrink-0">
                     <p className="font-cormorant text-lg text-rain-cloud">₹{combo.combo_price}</p>
@@ -302,6 +387,6 @@ export default function AdminCombos() {
           ))
         )}
       </div>
-      </div>
-      );
-      }
+    </div>
+  );
+}

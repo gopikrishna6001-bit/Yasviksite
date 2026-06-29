@@ -15,6 +15,7 @@ export default function AdminOrders() {
   const { user } = useAuth();
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [channelFilter, setChannelFilter] = useState('all');
   const [selectedOrder, setSelectedOrder] = useState(null);
 
   const { data: orderList = [], isLoading } = useQuery({
@@ -31,9 +32,10 @@ export default function AdminOrders() {
         || o.razorpay_order_id?.toLowerCase().includes(q)
         || o.receipt_id?.toLowerCase().includes(q);
       const matchStatus = statusFilter === 'all' || o.status === statusFilter;
-      return matchSearch && matchStatus;
+      const matchChannel = channelFilter === 'all' || (o.order_channel || 'web') === channelFilter;
+      return matchSearch && matchStatus && matchChannel;
     });
-  }, [orderList, search, statusFilter]);
+  }, [orderList, search, statusFilter, channelFilter]);
 
   const totalRevenue = orderList
     .filter(o => ['payment_received', 'confirmed', 'packing', 'ready_for_dispatch', 'shipped', 'out_for_delivery', 'delivered'].includes(o.status))
@@ -86,6 +88,18 @@ export default function AdminOrders() {
             placeholder="Search by name, email, or order ID…"
             className="w-full pl-9 pr-4 py-2 border border-border rounded-xl font-inter text-sm text-rain-cloud focus:outline-none focus:border-forest-canopy"
           />
+        </div>
+        <div className="relative">
+          <select
+            value={channelFilter}
+            onChange={e => setChannelFilter(e.target.value)}
+            className="border border-border rounded-xl px-3 py-2 pr-8 font-inter text-sm text-rain-cloud focus:outline-none bg-white appearance-none"
+          >
+            <option value="all">All channels</option>
+            <option value="web">Web</option>
+            <option value="pos">POS</option>
+          </select>
+          <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-rain-cloud/35 pointer-events-none" />
         </div>
         <div className="relative">
           <select

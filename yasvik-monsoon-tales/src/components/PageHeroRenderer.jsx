@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { safeMedia } from '@/lib/mediaUrl';
 
 export default function PageHeroRenderer({ hero, isLoading = false }) {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -22,11 +22,13 @@ export default function PageHeroRenderer({ hero, isLoading = false }) {
     return <div className="h-40 bg-rain-mist" />;
   }
 
-  const mediaUrl = hero.hero_mode === 'slideshow'
+  const rawMedia = hero.hero_mode === 'slideshow'
     ? hero.slide_urls?.[activeSlide]
     : (hero.hero_video || hero.media_url);
+  const heroMediaSrc = safeMedia(rawMedia, 'banner');
+  const heroPosterSrc = safeMedia(hero.hero_video_poster || rawMedia, 'banner');
 
-  const isVideo = mediaUrl?.includes('.mp4') || mediaUrl?.includes('.webm') || hero.media_type === 'video';
+  const isVideo = heroMediaSrc?.includes('.mp4') || heroMediaSrc?.includes('.webm') || hero.media_type === 'video';
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -35,9 +37,9 @@ export default function PageHeroRenderer({ hero, isLoading = false }) {
         <AnimatePresence mode="wait">
           {isVideo ? (
             <motion.video
-              key={mediaUrl}
-              src={mediaUrl}
-              poster={hero.hero_video_poster || mediaUrl}
+              key={heroMediaSrc}
+              src={heroMediaSrc}
+              poster={heroPosterSrc || undefined}
               autoPlay
               loop
               muted
@@ -50,8 +52,8 @@ export default function PageHeroRenderer({ hero, isLoading = false }) {
             />
           ) : (
             <motion.img
-              key={mediaUrl}
-              src={mediaUrl}
+              key={heroMediaSrc}
+              src={heroMediaSrc}
               alt={hero.title}
               className="absolute inset-0 w-full h-full object-cover"
               initial={{ opacity: 0, scale: 1.02 }}

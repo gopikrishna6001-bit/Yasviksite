@@ -132,14 +132,14 @@ function warnProductionStaticOverride(reason, details = []) {
 }
 
 async function buildSitemapEntries() {
-  const supabaseUrl = getEnv('VITE_SUPABASE_URL');
+  const supabaseUrl = getEnv('VITE_SUPABASE_URL') || getEnv('SUPABASE_URL') || 'https://cpksnpuavywbmhrzglyh.supabase.co';
   const anonKey = getEnv('VITE_SUPABASE_ANON_KEY');
 
   const staticEntries = [
     { loc: `${canonicalOrigin}/`, changefreq: 'daily', priority: '1.0' },
     { loc: `${canonicalOrigin}/shop`, changefreq: 'daily', priority: '0.9' },
     { loc: `${canonicalOrigin}/our-roots`, changefreq: 'weekly', priority: '0.85' },
-    { loc: `${canonicalOrigin}/contact`, changefreq: 'monthly', priority: '0.5' },
+    { loc: `${canonicalOrigin}/contact`, changefreq: 'monthly', priority: '0.8' },
   ];
 
   if (!supabaseUrl || !anonKey) {
@@ -162,9 +162,9 @@ async function buildSitemapEntries() {
   const catalogSources = [
     {
       table: 'products',
-      select: 'id,updated_at,created_at,is_published',
+      select: 'id,slug,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-      toPath: (r) => `/product/${r.id}`,
+      toPath: (r) => `/product/${r.slug || r.id}`,
       priority: '0.9',
       changefreq: 'daily',
     },
@@ -188,7 +188,7 @@ async function buildSitemapEntries() {
       table: 'people',
       select: 'id,updated_at,created_at,is_published',
       filter: 'is_published=eq.true',
-      toPath: (r) => `/people/${r.id}`,
+      toPath: (r) => `/farmers/${r.id}`,
       priority: '0.8',
       changefreq: 'weekly',
     },
@@ -197,14 +197,6 @@ async function buildSitemapEntries() {
       select: 'id,updated_at,created_at,is_active',
       filter: 'is_active=eq.true',
       toPath: (r) => `/shop?category=${r.id}`,
-      priority: '0.7',
-      changefreq: 'weekly',
-    },
-    {
-      table: 'recipes',
-      select: 'id,updated_at,created_at,is_published',
-      filter: 'is_published=eq.true',
-      toPath: (r) => `/recipes/${r.id}`,
       priority: '0.7',
       changefreq: 'weekly',
     },

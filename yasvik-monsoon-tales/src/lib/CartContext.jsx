@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { getLineItemStockKg, getVariantCartKey, normalizeProductVariant } from '@/lib/productVariantUtils';
+import { useStoreOffline } from '@/hooks/useStoreOffline';
 
 const CartContext = createContext(null);
 
@@ -7,12 +8,14 @@ export function CartProvider({ children }) {
   const [items, setItems] = useState(() => {
     try { return JSON.parse(localStorage.getItem('yasvik_cart') || '[]'); } catch { return []; }
   });
+  const { enabled: storeOffline } = useStoreOffline();
 
   useEffect(() => {
     localStorage.setItem('yasvik_cart', JSON.stringify(items));
   }, [items]);
 
-  const addItem = (product, variant = null, qty = 1, comboKey = null) => {
+  const addItem = useCallback((product, variant = null, qty = 1, comboKey = null) => {
+    if (storeOffline) return;
     const normalizedVariant = normalizeProductVariant(variant || {}) || null;
     const key = getVariantCartKey(product.id, normalizedVariant, comboKey);
     setItems(prev => {
@@ -44,9 +47,10 @@ export function CartProvider({ children }) {
         comboKey: comboKey || null,
       }];
     });
-  };
+  }, [storeOffline]);
 
-  const addCombo = (combo, products) => {
+  const addCombo = useCallback((combo, products) => {
+    if (storeOffline) return;
     const key = `combo__${combo.id}`;
     setItems(prev => {
       const existing = prev.find(i => i.key === key);
@@ -69,7 +73,7 @@ export function CartProvider({ children }) {
         })),
       }];
     });
-  };
+  }, [storeOffline]);
 
   const removeItem = (key) => setItems(prev => prev.filter(i => i.key !== key));
 
@@ -96,7 +100,7 @@ export function CartProvider({ children }) {
   const totalStockKg = items.reduce((s, i) => s + getLineItemStockKg(i), 0);
 
   return (
-    <CartContext.Provider value={{ items, addItem, addCombo, removeItem, updateQty, clearCart, totalItems, totalPrice, totalStockKg }}>
+    <CartContext.Provider value={{ items, addItem, addCombo, removeItem, updateQty, clearCart, totalItems, totalPrice, totalStockKg, storeOffline }}>
       {children}
     </CartContext.Provider>
   );

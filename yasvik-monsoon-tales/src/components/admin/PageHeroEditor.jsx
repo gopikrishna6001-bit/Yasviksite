@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, Plus, Trash2, Loader2, Images } from 'lucide-react';
 import PageHeroRenderer from '../PageHeroRenderer';
 
-const PAGE_KEYS = ['journeys', 'stories', 'shop', 'recipes', 'people', 'about', 'contact', 'farming_cycle', 'wishlist'];
+const PAGE_KEYS = ['journeys', 'stories', 'shop', 'people', 'about', 'contact', 'farming_cycle', 'wishlist'];
 
 function Input({ label, value, onChange, type = 'text', placeholder = '' }) {
   return (

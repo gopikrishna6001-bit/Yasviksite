@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { appClient } from '@/api/appClient';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Lock, Mail, Loader2 } from 'lucide-react';
-import AuthLayout from '@/components/AuthLayout';
+import { Loader2 } from 'lucide-react';
+import AuthLayout, { AuthField, AuthInput, AuthNotice } from '@/components/AuthLayout';
 import GoogleIcon from '@/components/GoogleIcon';
+import YasvikButton from '@/components/brand/YasvikButton';
+import { isGoogleAuthEnabled } from '@/lib/googleAuth';
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -14,11 +13,12 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const expectedUsername = import.meta.env.VITE_ADMIN_USERNAME || 'admin';
   const expectedPassword = import.meta.env.VITE_ADMIN_PASSWORD || '';
   const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || '';
-  const googleEnabled = import.meta.env.VITE_ENABLE_GOOGLE_AUTH === 'true';
+  const googleEnabled = isGoogleAuthEnabled();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,85 +50,84 @@ export default function AdminLogin() {
     }
   };
 
+  const handleGoogle = async () => {
+    setError('');
+    setGoogleLoading(true);
+    try {
+      await appClient.auth.loginWithProvider('google', '/admin');
+    } catch (err) {
+      setError(err.message || 'Could not start Google sign-in');
+      setGoogleLoading(false);
+    }
+  };
+
   return (
     <AuthLayout
-      icon={Lock}
-      title="Admin Login"
-      subtitle="Restricted access for administrators"
+      eyebrow="Admin access"
+      title="Yasvik console"
+      subtitle="Restricted access for administrators and staff."
     >
-      {googleEnabled && (
+      {googleEnabled ? (
         <>
-          <Button
-            variant="outline"
-            className="w-full h-12 text-sm font-medium mb-6"
-            onClick={() => appClient.auth.loginWithProvider('google', '/admin')}
+          <button
             type="button"
+            onClick={handleGoogle}
+            disabled={googleLoading || loading}
+            className="yasvik-btn-outline mb-6 flex w-full items-center justify-center gap-2 disabled:opacity-60"
           >
-            <GoogleIcon className="w-5 h-5 mr-2" />
+            {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <GoogleIcon className="h-5 w-5" />}
             Continue with Google (Admin)
-          </Button>
+          </button>
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border" />
+              <div className="w-full border-t border-[var(--theme-border)]" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-3 text-muted-foreground">or</span>
+            <div className="relative flex justify-center">
+              <span className="bg-white px-3 font-inter text-[11px] font-semibold uppercase tracking-[0.14em] text-deep-forest/40">
+                or use admin credentials
+              </span>
             </div>
           </div>
         </>
-      )}
+      ) : null}
 
-      {error && (
-        <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
-          {error}
-        </div>
-      )}
+      {error ? <div className="mb-4"><AuthNotice tone="error">{error}</AuthNotice></div> : null}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="username">Admin Username</Label>
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-            <Input
-              id="username"
-              type="text"
-              autoComplete="username"
-              placeholder="admin"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="pl-10 h-12"
-              required
-            />
-          </div>
-        </div>
+        <AuthField id="username" label="Admin username">
+          <AuthInput
+            id="username"
+            type="text"
+            autoComplete="username"
+            placeholder="admin"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </AuthField>
 
-        <div className="space-y-2">
-          <Label htmlFor="password">Admin Password</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-            <Input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="pl-10 h-12"
-              required
-            />
-          </div>
-        </div>
+        <AuthField id="password" label="Admin password">
+          <AuthInput
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="Your admin password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </AuthField>
 
-        <Button type="submit" className="w-full h-12 font-medium" disabled={loading}>
+        <YasvikButton type="submit" className="w-full disabled:opacity-60" disabled={loading || googleLoading}>
           {loading ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
               Signing in...
-            </>
+            </span>
           ) : (
-            'Enter Admin Console'
+            'Enter admin console'
           )}
-        </Button>
+        </YasvikButton>
       </form>
     </AuthLayout>
   );

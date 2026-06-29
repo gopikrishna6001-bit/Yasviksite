@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useCart } from '@/lib/CartContext';
 import { useQuery } from '@tanstack/react-query';
+import { useCart } from '@/lib/CartContext';
 import { appClient } from '@/api/appClient';
 import { ShoppingBag, Zap, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ComboCard({ combo }) {
-  const { addCombo } = useCart();
+  const { addCombo, storeOffline } = useCart();
   const [added, setAdded] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
@@ -21,22 +21,20 @@ export default function ComboCard({ combo }) {
     enabled: !!combo.product_ids?.length,
   });
 
-  // Bundle is unavailable if any included product is out of stock
-  const isUnavailable = comboProducts.length > 0 && comboProducts.some(p =>
-    p.availability === 'out_of_stock' || p.stock <= 0
-  );
-
-  const handleAddCombo = () => {
-    if (isUnavailable) return;
-    addCombo(combo, comboProducts);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
-
-  // Store product details in combo for checkout flexibility
   const comboWithProductData = {
     ...combo,
     product_details: comboProducts,
+  };
+
+  const isUnavailable = storeOffline || (comboProducts.length > 0 && comboProducts.some(p =>
+    p.availability === 'out_of_stock' || p.stock <= 0
+  ));
+
+  const handleAddCombo = () => {
+    if (isUnavailable) return;
+    addCombo(comboWithProductData, comboProducts);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
@@ -127,11 +125,7 @@ export default function ComboCard({ combo }) {
         </AnimatePresence>
 
         <button
-          onClick={() => {
-            handleAddCombo();
-            // Pass enriched combo with product data
-            addCombo(comboWithProductData, comboProducts);
-          }}
+          onClick={handleAddCombo}
           disabled={isUnavailable}
           className={`w-full py-2.5 rounded-full font-inter text-sm transition-all flex items-center justify-center gap-2 ${
             isUnavailable
@@ -141,7 +135,7 @@ export default function ComboCard({ combo }) {
               : 'bg-wet-earth text-white hover:bg-wet-earth/90'
           }`}
         >
-          {isUnavailable ? 'Unavailable' : added ? (
+          {storeOffline ? 'Restocking' : isUnavailable ? 'Unavailable' : added ? (
             '✓ Added to Cart'
           ) : (
             <>

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { appClient } from '@/api/appClient';
@@ -8,7 +8,18 @@ import {
   DollarSign, BookOpen, Globe, Loader2
 } from 'lucide-react';
 import ImageUploadField from './ImageUploadField';
+import {
+  compareFromInflate,
+  comparePerKgFromInflate,
+  variantComparePrice,
+  variantSellingPrice,
+} from '@/lib/productPricingUtils';
 import { buildProductSeoMeta } from '@/lib/productSeo';
+import { suggestProductSku, collectExistingProductSkus } from '@/lib/productSku';
+import { STOCK_MEASURE_TYPE_OPTIONS } from '@/lib/stockMeasureTypes';
+import { getStockInputMeta } from '@/lib/stockMeasureTypes';
+import { resolveProductMeasureType } from '@/lib/productStockUtils';
+import { slugifyMediaName } from '@/lib/mediaSeoNaming';
 
 const TABS = [
   { id: 'basic', label: 'Basic Info', icon: Package },
@@ -65,7 +76,7 @@ function Textarea({ label, value, onChange, rows = 3, placeholder = '' }) {
   );
 }
 
-function Select({ label, value, onChange, options, placeholder = '— Select —' }) {
+function Select({ label, value, onChange, options, placeholder = '— Select —', hint }) {
   return (
     <div>
       <label className="font-inter text-xs text-rain-cloud/55 block mb-1">{label}</label>
@@ -79,6 +90,7 @@ function Select({ label, value, onChange, options, placeholder = '— Select —
           <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
+      {hint ? <p className="mt-1 font-inter text-[10px] text-rain-cloud/40">{hint}</p> : null}
     </div>
   );
 }
@@ -166,7 +178,7 @@ function ImageURLField({ label, value, onChange, onPickFromLibrary }) {
 
 // ─── VARIANT IMAGES UPLOAD ────────────────────────────────────────────────────
 
-function VariantImagesField({ values = [], onChange }) {
+function VariantImagesField({ values = [], onChange, seoName = '', variantLabel = '' }) {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef();
   const safeValues = asArray(values).filter(Boolean);
@@ -175,7 +187,13 @@ function VariantImagesField({ values = [], onChange }) {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
-    const { file_url } = await appClient.integrations.Core.UploadFile({ file });
+    const { file_url } = await appClient.integrations.Core.UploadFile({
+      file,
+      folder: 'products',
+      seoName,
+      assetRole: slugifyMediaName(variantLabel) || `variant-${safeValues.length + 1}`,
+      entityTitle: seoName,
+    });
     onChange([...safeValues, file_url]);
     setUploading(false);
     e.target.value = '';
@@ -213,8 +231,77 @@ function VariantImagesField({ values = [], onChange }) {
 
 // ─── TAB PANELS ──────────────────────────────────────────────────────────────
 
-function BasicTab({ data, onChange, categories }) {
+function DuplicateQuickTab({ data, onChange, categories }) {
   const f = (key) => (val) => onChange({ ...data, [key]: val });
+  const variants = asArray(data.variants).filter((variant) => variant && typeof variant === 'object');
+
+  const updateVariantPrice = (index, value) => {
+    const next = [...variants];
+    next[index] = { ...next[index], price: value };
+    onChange({ ...data, variants: next });
+  };
+
+  return (
+    <div className="space-y-5">
+      <div className="rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3">
+        <p className="font-inter text-sm text-rain-cloud/80">
+          Quick duplicate — change the name and price. Slug, SKU, SEO and other details are copied from the source product and set automatically on save.
+        </p>
+      </div>
+
+      <Input label="Product name *" value={data.title} onChange={f('title')} placeholder="e.g. Homemade Chilli Powder" />
+      <Input label="Telugu name (optional)" value={data.local_name} onChange={f('local_name')} placeholder="ఉదా. కారం పొడి" />
+      <Select
+        label="Category"
+        value={data.category_id}
+        onChange={f('category_id')}
+        options={categories.map((c) => ({ value: c.id, label: c.emotional_title || c.name }))}
+      />
+
+      <div className="rounded-2xl border border-border/60 bg-white p-5 space-y-4">
+        <h4 className="font-inter text-sm font-medium text-rain-cloud/80">Price</h4>
+        <div>
+          <label className="font-inter text-xs text-rain-cloud/55 block mb-2 uppercase tracking-wider">Selling price (₹) *</label>
+          <input
+            type="number"
+            value={data.price || ''}
+            onChange={(e) => f('price')(e.target.value)}
+            placeholder="0"
+            className="w-full text-3xl font-cormorant font-medium text-rain-cloud border-b-2 border-wet-earth/50 bg-transparent focus:outline-none focus:border-wet-earth pb-2"
+          />
+        </div>
+
+        {variants.length > 0 ? (
+          <div className="space-y-3 border-t border-border/50 pt-4">
+            <p className="font-inter text-xs text-rain-cloud/55">Pack prices (optional — leave as copied or adjust)</p>
+            {variants.map((variant, index) => (
+              <div key={`${variant.label || 'pack'}-${index}`} className="flex items-center gap-3">
+                <span className="min-w-[72px] font-inter text-sm text-rain-cloud/70">{variant.label || `Pack ${index + 1}`}</span>
+                <input
+                  type="number"
+                  value={variant.price ?? ''}
+                  onChange={(e) => updateVariantPrice(index, e.target.value)}
+                  placeholder="₹"
+                  className="flex-1 rounded-xl border border-border px-3 py-2 font-inter text-sm text-rain-cloud focus:border-forest-canopy focus:outline-none"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      <Input label="Stock quantity" value={data.stock} onChange={f('stock')} type="number" placeholder="0" />
+      <Toggle label="Published" checked={!!data.is_published} onChange={f('is_published')} hint="Show on shop and in price labels" />
+    </div>
+  );
+}
+
+function BasicTab({ data, onChange, categories, existingSkus }) {
+  const f = (key) => (val) => onChange({ ...data, [key]: val });
+  const generateSku = () => {
+    const sku = suggestProductSku(data.title || data.name, existingSkus);
+    onChange({ ...data, sku });
+  };
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
@@ -223,9 +310,35 @@ function BasicTab({ data, onChange, categories }) {
         </div>
         <Input label="Product Code" value={data.product_code} onChange={f('product_code')} placeholder="e.g. YAS-PUL-001" />
         <Input label="Slug" value={data.slug} onChange={f('slug')} placeholder="e.g. kurmagram-red-rice" hint="Auto-generated from title if blank" />
-        <Input label="Local / Indian Name" value={data.local_name} onChange={f('local_name')} placeholder="e.g. Pesarlu Raw" />
-        <Input label="SKU" value={data.sku} onChange={f('sku')} placeholder="e.g. YAS-RICE-001" />
+        <Input label="Telugu name (తెలుగు)" value={data.local_name} onChange={f('local_name')} placeholder="ఉదా. ఉప్మా రవ్వ · బొంబాయి రవ్వ" />
+        <div>
+          <label className="font-inter text-xs text-rain-cloud/55 block mb-1">SKU (counter barcode)</label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={data.sku || ''}
+              onChange={(e) => onChange({ ...data, sku: e.target.value })}
+              placeholder="e.g. TOOR-DAL"
+              className="flex-1 border border-border rounded-xl px-4 py-2.5 font-inter text-sm text-rain-cloud focus:outline-none focus:border-forest-canopy transition-colors bg-white"
+            />
+            <button
+              type="button"
+              onClick={generateSku}
+              className="shrink-0 rounded-xl border border-border px-3 py-2.5 font-inter text-xs font-medium text-forest-canopy hover:bg-forest-canopy/5 transition-colors"
+            >
+              Generate
+            </button>
+          </div>
+          <p className="mt-1 font-inter text-[10px] text-rain-cloud/35">One SKU per product — printed on shelf labels for USB scanner</p>
+        </div>
       </div>
+      <Select
+        label="Measure type"
+        value={data.stock_measure_type || 'kg'}
+        onChange={f('stock_measure_type')}
+        options={STOCK_MEASURE_TYPE_OPTIONS.map((t) => ({ value: t.id, label: t.label }))}
+        hint={STOCK_MEASURE_TYPE_OPTIONS.find((t) => t.id === (data.stock_measure_type || 'kg'))?.hint}
+      />
       <Select
         label="Category"
         value={data.category_id}
@@ -255,7 +368,32 @@ function BasicTab({ data, onChange, categories }) {
       <div className="space-y-3 pt-2 border-t border-border/50">
         <Toggle label="Published" checked={!!data.is_published} onChange={f('is_published')} hint="Make this product visible to customers" />
         <Toggle label="Featured" checked={!!data.is_featured} onChange={f('is_featured')} />
-        <Toggle label="⭐ Show in Hero Strip" checked={!!data.featured_in_hero} onChange={f('featured_in_hero')} hint="Pins this product in the homepage 'Selling Now' strip (up to 4 shown)" />
+        <Toggle label="⭐ Homepage featured carousel" checked={!!data.featured_in_hero} onChange={f('featured_in_hero')} hint="Shows in the homepage featured carousel (up to 6). Use Short Description for the pitch line and Quality Badges for the label." />
+      </div>
+      <div className="grid grid-cols-1 gap-4 border-t border-border/50 pt-4 md:grid-cols-3">
+        <Input
+          label="Sort order"
+          value={data.sort_order ?? 0}
+          onChange={f('sort_order')}
+          type="number"
+          placeholder="0"
+          hint="Order within a group (lower = first)"
+        />
+        <Input
+          label="Group name"
+          value={data.product_group || ''}
+          onChange={f('product_group')}
+          placeholder="e.g. Oils, Ghee, Rice, Millets"
+          hint="Optional label to cluster products in a category"
+        />
+        <Input
+          label="Group order"
+          value={data.group_sort_order ?? 0}
+          onChange={f('group_sort_order')}
+          type="number"
+          placeholder="0"
+          hint="Order of this group in the category (lower = first). Use the same number for all products in a group."
+        />
       </div>
     </div>
   );
@@ -263,46 +401,93 @@ function BasicTab({ data, onChange, categories }) {
 
 function PricingTab({ data, onChange }) {
   const f = (key) => (val) => onChange({ ...data, [key]: val });
-  const comparePrice = parseFloat(data.compare_price) || 0;
   const price = parseFloat(data.price) || 0;
-  const discount = comparePrice && comparePrice > price ? Math.round(((comparePrice - price) / comparePrice) * 100) : null;
+  const inflate = parseFloat(data.price_inflate_percent) || 0;
   const variants = asArray(data.variants).filter((variant) => variant && typeof variant === 'object');
+  const usesPerKg = Boolean(String(data.selling_price_per_kg || '').trim());
+  const sellPerKg = parseFloat(data.selling_price_per_kg) || 0;
+  const comparePreview = usesPerKg
+    ? comparePerKgFromInflate(sellPerKg, inflate)
+    : compareFromInflate(price, inflate);
+  const smallPackMargin = parseFloat(data.small_pack_margin_rs) || 0;
+  const measureType = data.stock_measure_type || resolveProductMeasureType({ quick_variants: variants });
+  const stockInputMeta = getStockInputMeta(measureType);
 
   return (
     <div className="space-y-6">
-      <div className="bg-rain-mist/40 rounded-2xl p-5 border border-temple-stone/20">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="bg-rain-mist/40 rounded-2xl p-5 border border-temple-stone/20 space-y-4">
+        <h4 className="font-inter text-sm font-medium text-rain-cloud/80">Selling price</h4>
+        <p className="font-inter text-[11px] text-rain-cloud/45">
+          This is the shop price for the default pack. Only use ₹/kg below when you want pack prices calculated automatically.
+        </p>
+        <div>
+          <label className="font-inter text-xs text-rain-cloud/55 block mb-2 uppercase tracking-wider">Selling Price (₹) *</label>
+          <input
+            type="number"
+            value={data.price || ''}
+            onChange={(e) => onChange({ ...data, price: e.target.value, selling_price_per_kg: '' })}
+            placeholder="0"
+            className="w-full text-3xl font-cormorant font-medium text-rain-cloud border-b-2 border-wet-earth/50 bg-transparent focus:outline-none focus:border-wet-earth pb-2"
+          />
+        </div>
+      </div>
+
+      {!usesPerKg ? (
+        <div className="rounded-2xl border border-border/60 bg-white p-5 space-y-4">
           <div>
-            <label className="font-inter text-xs text-rain-cloud/55 block mb-2 uppercase tracking-wider">Selling Price (₹) *</label>
-            <input
-              type="number"
-              value={data.price || ''}
-              onChange={e => f('price')(e.target.value)}
-              placeholder="0"
-              className="w-full text-3xl font-cormorant font-medium text-rain-cloud border-b-2 border-wet-earth/50 bg-transparent focus:outline-none focus:border-wet-earth pb-2"
-            />
+            <h4 className="font-inter text-sm font-medium text-rain-cloud/80">Optional: show MRP / compare</h4>
+            <p className="mt-1 font-inter text-[11px] text-rain-cloud/45">
+              Inflate % on this pack price. Leave blank for no strikethrough on shop.
+            </p>
           </div>
-          <div>
-            <label className="font-inter text-xs text-rain-cloud/55 block mb-2 uppercase tracking-wider">Compare Price (₹)</label>
-            <input
-              type="number"
-              value={data.compare_price || ''}
-              onChange={e => f('compare_price')(e.target.value)}
-              placeholder="0"
-              className="w-full text-3xl font-cormorant font-medium text-rain-cloud/40 line-through border-b-2 border-temple-stone/30 bg-transparent focus:outline-none focus:border-temple-stone pb-2"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <Input label="Inflate % (optional)" value={data.price_inflate_percent} onChange={f('price_inflate_percent')} type="number" placeholder="e.g. 10 or 30" />
+            <div className="flex flex-col justify-end pb-1">
+              {comparePreview ? (
+                <p className="font-inter text-sm text-rain-cloud/70">
+                  Compare will show as{' '}
+                  <span className="font-semibold line-through text-rain-cloud/50">₹{comparePreview}</span>
+                  {price ? (
+                    <span className="text-rain-cloud/45"> · {Math.round(((comparePreview - price) / comparePreview) * 100)}% off</span>
+                  ) : null}
+                </p>
+              ) : (
+                <p className="font-inter text-xs text-rain-cloud/40">No compare price on shop</p>
+              )}
+            </div>
           </div>
         </div>
-        {discount && (
-          <div className="mt-4 flex items-center justify-between">
-            <span className="font-inter text-xs text-rain-cloud/50">Discount</span>
-            <span className="font-inter text-lg font-semibold text-warm-turmeric">{discount}% OFF</span>
-          </div>
-        )}
+      ) : null}
+
+      <div className="rounded-2xl border border-border/60 bg-white p-5 space-y-4">
+        <div>
+          <h4 className="font-inter text-sm font-medium text-rain-cloud/80">Multi-pack pricing (optional)</h4>
+          <p className="mt-1 font-inter text-[11px] text-rain-cloud/45">
+            Set ₹/kg and pack kg on each variant. Inflate % applies to the kg rate — that becomes compare/MRP for discount on shop.
+            Add small-pack margin (₹5–10) for packs under 1kg if needed.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+          <Input label="Selling (₹/kg)" value={data.selling_price_per_kg} onChange={f('selling_price_per_kg')} type="number" placeholder="e.g. 80" />
+          <Input label="Inflate % on kg rate" value={data.price_inflate_percent} onChange={f('price_inflate_percent')} type="number" placeholder="e.g. 10 or 30" />
+          <Input label="Small-pack margin (₹)" value={data.small_pack_margin_rs} onChange={f('small_pack_margin_rs')} type="number" placeholder="e.g. 5 or 10" hint="Added to packs under 1kg" />
+        </div>
+        {usesPerKg && comparePreview ? (
+          <p className="font-inter text-sm text-rain-cloud/70">
+            Compare rate:{' '}
+            <span className="font-semibold line-through text-rain-cloud/50">₹{comparePreview}/kg</span>
+            {sellPerKg ? (
+              <span className="text-rain-cloud/45"> · {Math.round(((comparePreview - sellPerKg) / comparePreview) * 100)}% off vs sell rate</span>
+            ) : null}
+          </p>
+        ) : usesPerKg ? (
+          <p className="font-inter text-xs text-rain-cloud/40">No compare price on shop</p>
+        ) : null}
       </div>
+
       <div className="border-t border-border/50 pt-4 space-y-4">
         <h4 className="font-inter text-sm font-medium text-rain-cloud/70">Inventory</h4>
-        <Input label="Stock Quantity" value={data.stock} onChange={f('stock')} type="number" placeholder="0" />
+        <Input label={stockInputMeta.label} value={data.stock} onChange={f('stock')} type="number" placeholder="0" hint={stockInputMeta.hint} />
       </div>
       <div className="border-t border-border/50 pt-4 space-y-3">
         <h4 className="font-inter text-sm font-medium text-rain-cloud/70">Variants (optional)</h4>
@@ -312,10 +497,14 @@ function PricingTab({ data, onChange }) {
             nv[i] = { ...nv[i], [field]: value };
             onChange({ ...data, variants: nv });
           };
-          const vPrice = parseFloat(v.price) || 0;
-          const vComparePrice = parseFloat(v.compare_price) || 0;
-          const vDiscount = vComparePrice && vComparePrice > vPrice ? Math.round(((vComparePrice - vPrice) / vComparePrice) * 100) : null;
-          
+          const packKg = v.pack_kg;
+          const packPreviewSell = usesPerKg
+            ? variantSellingPrice(data.selling_price_per_kg, packKg, smallPackMargin)
+            : parseFloat(v.price) || null;
+          const packPreviewCompare = usesPerKg
+            ? variantComparePrice(data.selling_price_per_kg, packKg, inflate, smallPackMargin)
+            : compareFromInflate(packPreviewSell, inflate);
+
           return (
             <div key={i} className="border border-border/50 rounded-xl p-4 space-y-3">
               <div className="flex gap-2 items-center justify-between">
@@ -324,7 +513,18 @@ function PricingTab({ data, onChange }) {
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+              {packPreviewSell ? (
+                <p className="font-inter text-xs text-rain-cloud/60">
+                  Sell ₹{packPreviewSell}
+                  {packPreviewCompare ? (
+                    <span className="text-rain-cloud/45"> · Compare ₹{packPreviewCompare}</span>
+                  ) : null}
+                  {usesPerKg && smallPackMargin > 0 && parseFloat(packKg) < 1 ? (
+                    <span className="text-rain-cloud/40"> (incl. ₹{smallPackMargin} small-pack margin)</span>
+                  ) : null}
+                </p>
+              ) : null}
+              <div className={`grid gap-3 ${usesPerKg ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-5'}`}>
                 <div>
                   <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">SKU</label>
                   <input value={v.sku || ''} onChange={e => updateVariant('sku', e.target.value)} placeholder="SKU" className="w-full text-sm font-inter font-medium text-rain-cloud border-b-2 border-temple-stone/30 bg-transparent focus:outline-none focus:border-temple-stone" />
@@ -333,33 +533,27 @@ function PricingTab({ data, onChange }) {
                   <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">Pack kg</label>
                   <input value={v.pack_kg || ''} onChange={e => updateVariant('pack_kg', e.target.value)} type="number" step="0.001" placeholder="0.5" className="w-full text-lg font-cormorant font-medium text-rain-cloud border-b-2 border-temple-stone/30 bg-transparent focus:outline-none focus:border-temple-stone" />
                 </div>
-                <div>
-                  <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">Price (₹)</label>
-                  <input value={v.price || ''} onChange={e => updateVariant('price', e.target.value)} type="number" placeholder="0" className="w-full text-lg font-cormorant font-medium text-rain-cloud border-b-2 border-wet-earth/50 bg-transparent focus:outline-none focus:border-wet-earth" />
-                </div>
-                <div>
-                  <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">Compare (₹)</label>
-                  <input value={v.compare_price || ''} onChange={e => updateVariant('compare_price', e.target.value)} type="number" placeholder="0" className="w-full text-lg font-cormorant font-medium text-rain-cloud/40 line-through border-b-2 border-temple-stone/30 bg-transparent focus:outline-none focus:border-temple-stone" />
-                </div>
+                {!usesPerKg ? (
+                  <div>
+                    <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">Price (₹)</label>
+                    <input value={v.price || ''} onChange={e => updateVariant('price', e.target.value)} type="number" placeholder="0" className="w-full text-lg font-cormorant font-medium text-rain-cloud border-b-2 border-wet-earth/50 bg-transparent focus:outline-none focus:border-wet-earth" />
+                  </div>
+                ) : null}
                 <div>
                   <label className="font-inter text-[10px] text-rain-cloud/55 block mb-1 uppercase tracking-wider">Stock</label>
                   <input value={v.stock || ''} onChange={e => updateVariant('stock', e.target.value)} type="number" placeholder="0" className="w-full text-lg font-cormorant font-medium text-rain-cloud border-b-2 border-forest-canopy/50 bg-transparent focus:outline-none focus:border-forest-canopy" />
                 </div>
               </div>
-              {vDiscount && (
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-rain-cloud/50">Discount</span>
-                  <span className="font-semibold text-warm-turmeric">{vDiscount}% OFF</span>
-                </div>
-              )}
               <VariantImagesField
                 values={v.image_urls || []}
                 onChange={urls => updateVariant('image_urls', urls)}
+                seoName={data.slug || data.title}
+                variantLabel={v.label || `variant-${index + 1}`}
               />
             </div>
           );
         })}
-        <button type="button" onClick={() => onChange({ ...data, variants: [...variants, { label: '', sku: '', pack_kg: '', price: '', compare_price: '', stock: '', image_urls: [] }] })} className="flex items-center gap-1.5 font-inter text-xs text-forest-canopy hover:text-forest-canopy/80 transition-colors">
+        <button type="button" onClick={() => onChange({ ...data, variants: [...variants, { label: '', sku: '', pack_kg: '', price: '', stock: '', image_urls: [] }] })} className="flex items-center gap-1.5 font-inter text-xs text-forest-canopy hover:text-forest-canopy/80 transition-colors">
           <Plus className="w-3.5 h-3.5" /> Add Variant
         </button>
       </div>
@@ -371,13 +565,26 @@ function MediaTab({ data, onChange, onOpenPicker, onOpenMultiPicker }) {
   const f = (key) => (val) => onChange({ ...data, [key]: val });
   const hoverMediaText = Array.isArray(data.hover_media) ? data.hover_media.join('\n') : '';
   const images = asArray(data.images).filter(Boolean);
+
+  const handleHeroChange = (url) => {
+    const hero = String(url || '').trim();
+    const withoutOldHero = images.filter((item) => item !== data.hero_image);
+    const nextImages = hero ? [hero, ...withoutOldHero.filter((item) => item !== hero)] : withoutOldHero;
+    onChange({ ...data, hero_image: url, images: nextImages });
+  };
+
   return (
     <div className="space-y-5">
       <ImageUploadField
         label="Hero Image"
         value={data.hero_image}
-        onChange={f('hero_image')}
+        onChange={handleHeroChange}
         aspectClass="aspect-video"
+        folder="products"
+        entityId={data.id}
+        seoName={data.slug || data.title}
+        assetRole="hero"
+        entityTitle={data.title}
       />
       <div>
         <label className="font-inter text-xs text-rain-cloud/55 block mb-1">Hero Video URL</label>
@@ -459,13 +666,12 @@ function StoryTab({ data, onChange }) {
   );
 }
 
-function LinksTab({ data, onChange, journeys, people, regions }) {
+function LinksTab({ data, onChange, journeys, people }) {
   const f = (key) => (val) => onChange({ ...data, [key]: val });
   return (
     <div className="space-y-4">
       <Select label="Linked Journey" value={data.journey_id} onChange={f('journey_id')} options={journeys.map(j => ({ value: j.id, label: j.title }))} placeholder="— No journey —" />
       <Select label="Linked Person (Farmer/Artisan)" value={data.person_id} onChange={f('person_id')} options={people.map(p => ({ value: p.id, label: `${p.name} — ${p.role}` }))} placeholder="— No person —" />
-      <Select label="Linked Region" value={data.region_id} onChange={f('region_id')} options={regions.map(r => ({ value: r.id, label: `${r.name}${r.state ? `, ${r.state}` : ''}` }))} placeholder="— No region —" />
     </div>
   );
 }
@@ -498,7 +704,7 @@ function SEOTab({ data, onChange }) {
 
 // ─── MAIN DRAWER ─────────────────────────────────────────────────────────────
 
-export default function ProductFormDrawer({ open, onClose, data, onChange, onSave, isSaving, isEditing }) {
+export default function ProductFormDrawer({ open, onClose, data, onChange, onSave, isSaving, isEditing, isDuplicating = false }) {
   const [activeTab, setActiveTab] = useState('basic');
   const [pickerTarget, setPickerTarget] = useState(null); // key name for single pick
   const [multiPicker, setMultiPicker] = useState(false);
@@ -518,11 +724,15 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
     queryFn: () => appClient.entities.Person.filter({ is_published: true }, '-created_date', 50),
     enabled: open,
   });
-  const { data: regions = [] } = useQuery({
-    queryKey: ['regions-all'],
-    queryFn: () => appClient.entities.Region.list('name', 50),
+  const { data: allProducts = [] } = useQuery({
+    queryKey: ['admin-products'],
+    queryFn: () => appClient.entities.Product.list('-created_date', 500),
     enabled: open,
   });
+  const existingSkus = useMemo(() => {
+    const others = allProducts.filter((p) => p.id !== data?.id);
+    return collectExistingProductSkus(others);
+  }, [allProducts, data?.id]);
 
   const handleSinglePick = (url) => {
     if (pickerTarget) onChange({ ...data, [pickerTarget]: url });
@@ -554,8 +764,13 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
               <div className="flex items-center justify-between px-6 py-5 border-b border-border flex-shrink-0">
                 <div>
                   <h2 className="font-cormorant text-2xl text-rain-cloud font-medium">
-                    {isEditing ? 'Edit Product' : 'New Product'}
+                    {isEditing ? 'Edit Product' : isDuplicating ? 'Duplicate Product' : 'New Product'}
                   </h2>
+                  {isDuplicating && !isEditing && (
+                    <p className="font-inter text-[11px] text-amber-700 mt-1">
+                      Change name and price — slug, SKU and labels update automatically on save.
+                    </p>
+                  )}
                   {data.title && <p className="font-inter text-xs text-rain-cloud/40 mt-0.5">{data.title}</p>}
                 </div>
                 <button onClick={onClose} className="text-rain-cloud/35 hover:text-rain-cloud/70 transition-colors p-1">
@@ -564,6 +779,7 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
               </div>
 
               {/* Tabs */}
+              {!isDuplicating ? (
               <div className="flex border-b border-border flex-shrink-0 overflow-x-auto hide-scrollbar">
                 {TABS.map(tab => {
                   const Icon = tab.icon;
@@ -583,10 +799,15 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
                   );
                 })}
               </div>
+              ) : null}
 
               {/* Content */}
               <div className="flex-1 overflow-y-auto px-6 py-5">
-                {activeTab === 'basic' && <BasicTab data={data} onChange={onChange} categories={categories} />}
+                {isDuplicating && !isEditing ? (
+                  <DuplicateQuickTab data={data} onChange={onChange} categories={categories} />
+                ) : (
+                <>
+                {activeTab === 'basic' && <BasicTab data={data} onChange={onChange} categories={categories} existingSkus={existingSkus} />}
                 {activeTab === 'pricing' && <PricingTab data={data} onChange={onChange} />}
                 {activeTab === 'media' && (
                   <MediaTab
@@ -597,8 +818,10 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
                   />
                 )}
                 {activeTab === 'story' && <StoryTab data={data} onChange={onChange} />}
-                {activeTab === 'links' && <LinksTab data={data} onChange={onChange} journeys={journeys} people={people} regions={regions} />}
+                {activeTab === 'links' && <LinksTab data={data} onChange={onChange} journeys={journeys} people={people} />}
                 {activeTab === 'seo' && <SEOTab data={data} onChange={onChange} />}
+                </>
+                )}
               </div>
 
               {/* Footer */}
@@ -614,7 +837,7 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
                   disabled={isSaving}
                   className="flex-1 py-2.5 rounded-full bg-wet-earth text-white font-inter text-sm disabled:opacity-50 hover:bg-wet-earth/90 transition-all"
                 >
-                  {isSaving ? 'Saving…' : isEditing ? 'Save Changes' : 'Create Product'}
+                  {isSaving ? 'Saving…' : isEditing ? 'Save Changes' : isDuplicating ? 'Save Duplicate' : 'Create Product'}
                 </button>
               </div>
             </motion.div>
@@ -628,6 +851,10 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
         onClose={() => setPickerTarget(null)}
         onSelect={handleSinglePick}
         multi={false}
+        folder="products"
+        seoName={data.slug || data.title}
+        assetRole={pickerTarget === 'hero_image' ? 'hero' : 'gallery'}
+        entityTitle={data.title}
       />
 
       {/* Multi-image picker */}
@@ -636,6 +863,10 @@ export default function ProductFormDrawer({ open, onClose, data, onChange, onSav
         onClose={() => setMultiPicker(false)}
         onSelect={handleMultiPick}
         multi={true}
+        folder="products"
+        seoName={data.slug || data.title}
+        assetRole="gallery"
+        entityTitle={data.title}
       />
     </>
   );

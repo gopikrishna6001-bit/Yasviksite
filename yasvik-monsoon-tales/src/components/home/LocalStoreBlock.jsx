@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
-import { MapPin, MessageCircle, Phone, Truck } from 'lucide-react';
+import { ExternalLink, MapPin, MessageCircle, Phone, Truck } from 'lucide-react';
 import YasvikButton from '@/components/brand/YasvikButton';
-import { resolveSetting } from '@/services/settingsService';
+import { formatFreeDeliveryNote, resolveFreeDeliveryThreshold } from '@/lib/commerceCopy';
+import { YASVIK_GOOGLE_MAPS_URL } from '@/lib/storeLocation';
+
+import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+
+function getSetting(settingsMap, key, fallback) {
+  const value = settingsMap?.[key];
+  return value === undefined || value === null || value === '' ? fallback : value;
+}
 
 function normalizePhone(value = '') {
   const digits = String(value || '').replace(/\D/g, '');
-  if (!digits) return '917842938998';
+  if (!digits) return YASVIK_WHATSAPP_NUMBER;
   if (digits.length === 10) return `91${digits}`;
   return digits;
 }
@@ -20,17 +28,14 @@ const STORE_CATEGORIES = [
 
 export default function LocalStoreBlock({ settingsMap = {} }) {
   const whatsappNumber = normalizePhone(
-    resolveSetting(settingsMap, 'whatsapp_number', resolveSetting(settingsMap, 'support_whatsapp_number', '')),
+    getSetting(settingsMap, 'whatsapp_number', getSetting(settingsMap, 'support_whatsapp_number', '')),
   );
   const supportPhone = String(
-    resolveSetting(settingsMap, 'support_phone', '088011 96998'),
+    getSetting(settingsMap, 'support_phone', YASVIK_SUPPORT_PHONE_DISPLAY),
   ).trim();
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I want to order for home delivery.')}`;
-  const freeDeliveryThreshold = Number(resolveSetting(settingsMap, 'free_delivery_threshold', 999));
-  const deliveryLine =
-    freeDeliveryThreshold > 0
-      ? `Free delivery above ₹${freeDeliveryThreshold} in Ashok Nagar, colony and nearby Hyderabad areas.`
-      : 'Home delivery available in Ashok Nagar, colony and nearby Hyderabad areas.';
+  const freeDeliveryThreshold = resolveFreeDeliveryThreshold(settingsMap);
+  const deliveryLine = formatFreeDeliveryNote(freeDeliveryThreshold, 'store');
 
   return (
     <section className="bg-white px-4 py-12 md:px-8 md:py-16">
@@ -44,7 +49,7 @@ export default function LocalStoreBlock({ settingsMap = {} }) {
               Your local natural foods store
             </h2>
             <p className="mt-4 font-inter text-sm leading-7 text-deep-forest/75 md:text-base">
-              Order on the website, or message us on WhatsApp for quick help with staples, millets, oils and everyday essentials.
+              Order on the website, message us on WhatsApp, or visit our store in Ashok Nagar — serving customers across Hyderabad and beyond.
             </p>
 
             <ul className="mt-5 space-y-3">
@@ -53,6 +58,15 @@ export default function LocalStoreBlock({ settingsMap = {} }) {
                 <span>
                   Ashok Nagar, Chanda Nagar, Hyderabad
                   <span className="block text-deep-forest/60">Bavanipuram Colony Road no 4 area</span>
+                  <a
+                    href={YASVIK_GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex items-center gap-1 font-inter text-xs font-bold text-neon-paddy hover:text-deep-forest"
+                  >
+                    Open in Google Maps
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3 font-inter text-sm text-deep-forest/80">

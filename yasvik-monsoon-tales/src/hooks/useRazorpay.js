@@ -18,8 +18,14 @@ export function useRazorpay() {
 
   const initiatePayment = useCallback(async ({
     amountPaise,
+    subtotalPaise,
+    deliveryFeePaise = 0,
     items = [],
     customer = {},
+    shipping_address,
+    delivery_instructions,
+    pincode,
+    eta_label,
     onSuccess,
     onFailure,
     onDismiss,
@@ -36,13 +42,19 @@ export function useRazorpay() {
       return;
     }
 
-    // 1. Create order on backend
     let orderData;
     try {
       const createRes = await appClient.functions.invoke('razorpayCreateOrder', {
         amount: amountPaise,
+        subtotal_paise: subtotalPaise ?? amountPaise,
+        delivery_fee_paise: deliveryFeePaise,
         currency: 'INR',
         items,
+        customer,
+        shipping_address,
+        delivery_instructions,
+        pincode,
+        eta_label,
       });
       orderData = createRes.data;
     } catch (err) {
@@ -63,7 +75,6 @@ export function useRazorpay() {
 
     setLoading(false);
 
-    // 2. Open Razorpay modal
     const options = {
       key: orderData.key_id,
       amount: orderData.amount,
@@ -79,7 +90,6 @@ export function useRazorpay() {
       },
       theme: { color: '#6E5846' },
       handler: async (response) => {
-        // 3. Verify payment on backend
         setLoading(true);
         try {
           const verifyRes = await appClient.functions.invoke('razorpayVerifyPayment', {
@@ -91,7 +101,11 @@ export function useRazorpay() {
           setLoading(false);
 
           if (verifyRes.data?.success) {
-            onSuccess?.({ ...response, db_order_id: orderData.db_order_id });
+            onSuccess?.({
+              ...response,
+              db_order_id: orderData.db_order_id,
+              order_number: verifyRes.data?.order_number,
+            });
           } else {
             const msg = 'Payment verification failed. Contact support if amount was debited.';
             setError(msg);

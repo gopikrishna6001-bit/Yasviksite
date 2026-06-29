@@ -25,7 +25,17 @@ function CategoryForm({ data, onChange }) {
           <input type={type} value={data[key] || ''} onChange={f(key)} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none focus:border-forest-canopy" />
         </div>
       ))}
-      <ImageUploadField label="Cover Image" value={data.cover_image} onChange={(url) => onChange({ ...data, cover_image: url })} aspectClass="aspect-video" />
+      <ImageUploadField
+        label="Cover Image"
+        value={data.cover_image}
+        onChange={(url) => onChange({ ...data, cover_image: url })}
+        aspectClass="aspect-video"
+        folder="categories"
+        entityId={data.id}
+        seoName={data.slug || data.name}
+        assetRole="cover"
+        entityTitle={data.name || data.emotional_title}
+      />
       <div>
         <label className="font-inter text-xs text-rain-cloud/55 block mb-1">Short Intro</label>
         <textarea value={data.short_intro || ''} onChange={f('short_intro')} rows={2} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none resize-none" />

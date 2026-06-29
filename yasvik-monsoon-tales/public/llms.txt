@@ -13,6 +13,7 @@ Canonical website: https://www.yasvik.com/
 - About: https://www.yasvik.com/about
 - Contact: https://www.yasvik.com/contact
 - Sitemap: https://www.yasvik.com/sitemap.xml
+- Meta / WhatsApp catalog feed: https://www.yasvik.com/api/catalog/meta-feed.csv
 
 ## Brand/Entity Notes
 - Brand name: Yasvik
@@ -20,7 +21,8 @@ Canonical website: https://www.yasvik.com/
 - Core offerings: millets, native rice, wood-pressed oils, pulses, whole spices, traditional jaggery, dry fruits, and thoughtfully curated everyday groceries
 - Positioning: helping families transition toward better everyday foods through trusted quality, traditional wisdom, and practical choices
 - Audience: families seeking healthier everyday alternatives without the complexity or premium positioning often associated with organic-only stores
-- Local relevance: Lingampally, Ashok Nagar, Bavanipuram Colony, NSL Colony, Vemanreddy Colony, Beeramguda, Ameenpur, Patancheru and surrounding communities
+- Based in Hyderabad, Telangana. Home delivery across Hyderabad and surrounding areas. Walk-in store: Ashok Nagar, Chanda Nagar.
+- Google Maps: https://maps.app.goo.gl/5ED9n4iZ3tQZKzGb6
 - Brand philosophy: authentic food experiences inspired by India's people, places, and traditions
 
 ## Crawl Scope

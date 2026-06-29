@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { orders } from '@/services/api';
 import { ShoppingBag, Calendar, MapPin } from 'lucide-react';
 
-export default function OrderHistory({ userEmail }) {
-  const { data: orders = [], isLoading } = useQuery({
-    queryKey: ['user-orders', userEmail],
-    queryFn: () => orders.listByUser(userEmail, 20),
-    enabled: !!userEmail,
+export default function OrderHistory({ userEmail, userId }) {
+  const { data: orderList = [], isLoading } = useQuery({
+    queryKey: ['user-orders', userId || userEmail],
+    queryFn: () => orders.listByUser(userId || userEmail, 20),
+    enabled: !!(userId || userEmail),
   });
 
   if (isLoading) {
@@ -20,7 +20,7 @@ export default function OrderHistory({ userEmail }) {
     );
   }
 
-  if (orders.length === 0) {
+  if (orderList.length === 0) {
     return (
       <div className="text-center py-12">
         <ShoppingBag className="w-8 h-8 text-rain-cloud/20 mx-auto mb-3" />
@@ -32,7 +32,7 @@ export default function OrderHistory({ userEmail }) {
 
   return (
     <div className="space-y-4">
-      {orders.map((order, i) => (
+      {orderList.map((order, i) => (
         <motion.div
           key={order.id}
           initial={{ opacity: 0, y: 12 }}

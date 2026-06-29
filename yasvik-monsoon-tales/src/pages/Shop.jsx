@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -7,15 +7,23 @@ import { categories as categoriesApi, products as productsApi } from '@/services
 import { appClient } from '@/api/appClient';
 import ComboCard from '@/components/products/ComboCard';
 import ProductCard from '@/components/products/ProductCard';
+import BundleStrip from '@/components/crosssell/BundleStrip';
+import { BUNDLES_SHOP_CATEGORY_KEY, sortCombosFeaturedFirst } from '@/lib/comboUtils';
 import { fetchAllAppSettings, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
+import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
+import StoreOfflineExperience from '@/components/shop/StoreOfflineExperience';
+import { useStoreOffline } from '@/hooks/useStoreOffline';
+import { sortCatalogProducts } from '@/lib/productSortUtils';
+import { YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
 
-const BUNDLES_KEY = '__bundles__';
+const BUNDLES_KEY = BUNDLES_SHOP_CATEGORY_KEY;
 /** Region filter UI disabled for now; logic kept for future use. */
 const SHOW_REGION_FILTER = false;
+const SHOP_PAGE_SIZE = 24;
 
 function normalizePhone(value = '') {
   const digits = String(value || '').replace(/\D/g, '');
-  if (!digits) return '917842938998';
+  if (!digits) return YASVIK_WHATSAPP_NUMBER;
   if (digits.length === 10) return `91${digits}`;
   return digits;
 }
@@ -33,7 +41,7 @@ function sortProducts(items, sort) {
   if (sort === 'price-low') return list.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
   if (sort === 'price-high') return list.sort((a, b) => Number(b.price || 0) - Number(a.price || 0));
   if (sort === 'name') return list.sort((a, b) => String(a.title || a.name || '').localeCompare(String(b.title || b.name || '')));
-  return list;
+  return sortCatalogProducts(list);
 }
 
 function ProductSkeletonGrid() {
@@ -65,7 +73,9 @@ export default function Shop() {
   const [search, setSearch] = useState('');
   const [activeRegion, setActiveRegion] = useState('');
   const [sort, setSort] = useState('latest');
+  const [visibleCount, setVisibleCount] = useState(SHOP_PAGE_SIZE);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { enabled: storeOffline, message: offlineMessage } = useStoreOffline();
 
   const activeCategory = searchParams.get('category') || null;
   const showBundles = activeCategory === BUNDLES_KEY;
@@ -94,8 +104,8 @@ export default function Shop() {
     queryKey: ['shop-products', activeCategory],
     queryFn: () =>
       activeCategory && activeCategory !== BUNDLES_KEY
-        ? productsApi.listByCategory(activeCategory, 80)
-        : productsApi.listPublished('-created_date', 120),
+        ? productsApi.listByCategory(activeCategory, 200)
+        : productsApi.listPublished('sort_order', 150),
     staleTime: 3 * 60 * 1000,
     enabled: activeCategory !== BUNDLES_KEY,
   });
@@ -105,6 +115,8 @@ export default function Shop() {
     queryFn: () => appClient.entities.Combo.filter({ is_published: true }, '-created_date', 20),
     staleTime: 5 * 60 * 1000,
   });
+
+  const sortedCombos = useMemo(() => sortCombosFeaturedFirst(combos), [combos]);
 
   const regions = [...new Set(products.map(getRegionLabel).filter(Boolean))].slice(0, 12);
   const filtered = sortProducts(
@@ -117,6 +129,13 @@ export default function Shop() {
       }),
     sort,
   );
+
+  useEffect(() => {
+    setVisibleCount(SHOP_PAGE_SIZE);
+  }, [activeCategory, search, sort, activeRegion]);
+
+  const visibleProducts = filtered.slice(0, visibleCount);
+  const hasMoreProducts = visibleCount < filtered.length;
 
   const activeCategoryLabel = useMemo(() => {
     if (!activeCategory) return null;
@@ -140,10 +159,15 @@ export default function Shop() {
     setSearchParams({}, { replace: true });
   };
 
-  const resultCount = showBundles ? combos.length : filtered.length;
+  const resultCount = showBundles ? sortedCombos.length : filtered.length;
+
+  if (storeOffline) {
+    return <StoreOfflineExperience message={offlineMessage} whatsappHref={whatsappHref} />;
+  }
 
   return (
     <div className="min-h-screen bg-warm-cream pb-24 text-deep-forest transition-colors duration-300">
+      <PageHeaderBanner page="shop" />
       <section className="mx-auto max-w-[1400px] px-4 pt-6 md:px-8 md:pt-8">
         <div className="rounded-[1.75rem] border border-soft-border bg-white px-5 py-7 shadow-[0_12px_36px_rgba(31,61,43,0.05)] md:px-8 md:py-9">
           <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay">Shop</p>
@@ -197,7 +221,7 @@ export default function Shop() {
                   {getCategoryLabel(cat)}
                 </button>
               ))}
-              {combos.length > 0 && (
+              {sortedCombos.length > 0 && (
                 <button
                   type="button"
                   onClick={() => setCategory(BUNDLES_KEY)}
@@ -295,7 +319,7 @@ export default function Shop() {
                 <div key={i} className="h-48 animate-pulse rounded-2xl bg-white" />
               ))}
             </div>
-          ) : combos.length === 0 ? (
+          ) : sortedCombos.length === 0 ? (
             <ShopEmptyState title="No bundles available right now.">
               <button type="button" onClick={() => setCategory(null)} className="mt-4 font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest">
                 Browse all products
@@ -303,7 +327,7 @@ export default function Shop() {
             </ShopEmptyState>
           ) : (
             <div className="grid grid-cols-1 gap-4">
-              {combos.map((combo) => (
+              {sortedCombos.map((combo) => (
                 <ComboCard key={combo.id} combo={combo} />
               ))}
             </div>
@@ -341,20 +365,57 @@ export default function Shop() {
             </div>
           </ShopEmptyState>
         ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.25 }}
-            className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
-          >
-            {filtered.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} variant="shop" />
-            ))}
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+            >
+              {visibleProducts.slice(0, 10).map((product, i) => (
+                <ProductCard key={product.id} product={product} index={i} variant="shop" />
+              ))}
+            </motion.div>
+
+            {filtered.length >= 8 ? (
+              <BundleStrip
+                location="category"
+                title="Shop by combo"
+                description="Starter kits and monthly baskets — view items and add individually."
+                className="my-8"
+                limit={3}
+              />
+            ) : null}
+
+            {visibleProducts.length > 10 ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+              >
+                {visibleProducts.slice(10).map((product, i) => (
+                  <ProductCard key={product.id} product={product} index={i + 10} variant="shop" />
+                ))}
+              </motion.div>
+            ) : null}
+
+            {hasMoreProducts ? (
+              <div className="mt-8 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((count) => count + SHOP_PAGE_SIZE)}
+                  className="rounded-full border border-soft-border bg-white px-6 py-3 font-inter text-sm font-bold text-deep-forest transition-colors hover:border-neon-paddy/40 hover:text-neon-paddy"
+                >
+                  Load more products ({filtered.length - visibleCount} remaining)
+                </button>
+              </div>
+            ) : null}
+          </>
         )}
       </section>
 
-      {!isLoading && !isError && (showBundles ? combos.length > 0 : filtered.length > 0) && (
+      {!isLoading && !isError && (showBundles ? sortedCombos.length > 0 : filtered.length > 0) && (
         <div className="mx-auto max-w-[1400px] px-4 pb-8 md:px-8">
           <div className="flex flex-col gap-3 rounded-2xl border border-soft-border bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-inter text-sm text-deep-forest/75">

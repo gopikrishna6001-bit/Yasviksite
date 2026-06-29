@@ -1,20 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useQuery } from '@tanstack/react-query';
+import { Clock, ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
+import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
+import PublicPageHeader from '@/components/brand/PublicPageHeader';
 import { appClient } from '@/api/appClient';
-import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
-import PageHeroRenderer from '@/components/PageHeroRenderer';
+import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_SUPPORT_PHONE_TEL } from '@/lib/storeLocation';
 
 const STORE_HOURS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export default function Contact() {
-  const { data: hero, isLoading: heroLoading } = useQuery({
-    queryKey: ['page-hero', 'contact'],
-    queryFn: async () => {
-      const results = await appClient.entities.PageHero.filter({ page_key: 'contact' }, '-updated_date', 1);
-      return results[0];
-    },
-  });
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -32,14 +26,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-canvas)] pb-24 text-[var(--text-main)] transition-colors duration-300">
-      {hero && <PageHeroRenderer hero={hero} isLoading={heroLoading} />}
-      <div className="mx-auto mb-8 max-w-3xl px-6 pt-8 text-center">
-        <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--theme-accent)]">Reach Out</p>
-        <h1 className="mb-3 font-syne text-4xl font-extrabold tracking-[-0.04em] text-[var(--text-main)] md:text-5xl">Contact Yasvik</h1>
-        <p className="mx-auto max-w-xl font-inter text-sm leading-7 text-[var(--theme-muted)]">Questions, local orders, store feedback or sourcing suggestions - send it here and we'll read it carefully.</p>
-      </div>
-      <div className="mx-auto grid max-w-5xl gap-6 px-6 md:grid-cols-[0.9fr_1.1fr]">
+    <div className="min-h-screen bg-warm-cream pb-24 text-deep-forest transition-colors duration-300">
+      <PageHeaderBanner page="contact" />
+      <PublicPageHeader
+        eyebrow="Reach out"
+        title="Contact Yasvik"
+        description="Questions, local orders, store feedback or sourcing suggestions — send them here and we will read them carefully."
+      />
+      <div className="relative z-10 mx-auto grid max-w-5xl gap-6 px-6 md:grid-cols-[0.9fr_1.1fr]">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,14 +47,25 @@ export default function Contact() {
           <div className="mt-6 space-y-3">
             <div className="flex gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
               <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
-              <p className="font-inter text-sm font-semibold leading-7 text-[var(--text-main)]">
-                Yasvik Store, Bavanipuram Colony Road no4,<br />
-                Ashok Nagar, Chanda Nagar, Hyderabad,<br />
-                Telangana, 500050, IN
-              </p>
+              <div>
+                <p className="font-inter text-sm font-semibold leading-7 text-[var(--text-main)]">
+                  Yasvik Store, Bavanipuram Colony Road no4,<br />
+                  Ashok Nagar, Chanda Nagar, Hyderabad,<br />
+                  Telangana, 500050, IN
+                </p>
+                <a
+                  href={YASVIK_GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-1.5 font-inter text-xs font-bold text-[var(--theme-accent)] hover:underline"
+                >
+                  Get directions on Google Maps
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
             </div>
-            <a href="tel:+918801196998" className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4 font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]">
-              <Phone className="h-4 w-4 text-[var(--theme-accent)]" /> 088011 96998
+            <a href={`tel:${YASVIK_SUPPORT_PHONE_TEL}`} className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4 font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]">
+              <Phone className="h-4 w-4 text-[var(--theme-accent)]" /> {YASVIK_SUPPORT_PHONE_DISPLAY}
             </a>
             <a href="mailto:yasvikfoods@gmail.com" className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4 font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]">
               <Mail className="h-4 w-4 text-[var(--theme-accent)]" /> yasvikfoods@gmail.com

@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 
-const CURRENT_ADMIN_LOGO_URL = 'https://cpksnpuavywbmhrzglyh.supabase.co/storage/v1/object/public/media-assets/1781516610532-xylu0hqz5a.png';
+import { BRAND_LOGO_HORIZONTAL } from '@/lib/brandAssets';
+import { optimizeMediaUrl } from '@/lib/mediaUrl';
+
+const CURRENT_ADMIN_LOGO_URL = BRAND_LOGO_HORIZONTAL;
 
 export default function SplashLoader({ logoUrl, logoWidth = 220, logoHeight = 78 }) {
-  const resolvedLogoUrl = logoUrl || CURRENT_ADMIN_LOGO_URL;
+  const resolvedLogoUrl = optimizeMediaUrl(logoUrl || CURRENT_ADMIN_LOGO_URL, 'logo');
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[999] flex items-center justify-center bg-[#f5f1e8]"
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-warm-cream"
     >
       <motion.div
         initial={{ scale: 0.85, opacity: 0, filter: 'blur(8px)' }}
@@ -53,9 +56,9 @@ export default function SplashLoader({ logoUrl, logoWidth = 220, logoHeight = 78
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="absolute bottom-20 font-inter text-[10px] font-bold uppercase tracking-[0.28em] text-[#1a1814]/40"
+        className="absolute bottom-20 font-inter text-xs font-semibold text-deep-forest/55"
       >
-        Loading
+        Loading Yasvik
       </motion.p>
     </motion.div>
   );

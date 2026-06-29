@@ -43,9 +43,10 @@ export default function SubscriptionCheckout() {
       return res.data;
     },
     onSuccess: (data) => {
-      if (data.order_id) {
-        // Open Razorpay checkout
+      if (data?.subscription_id && data?.key_id) {
         initializeRazorpay(data);
+      } else {
+        alert('Could not start Razorpay checkout. Check payment configuration in Admin → Settings.');
       }
     },
     onError: (error) => {
@@ -60,10 +61,8 @@ export default function SubscriptionCheckout() {
     }
 
     const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-      order_id: orderData.order_id,
-      amount: orderData.amount,
-      currency: orderData.currency,
+      key: orderData.key_id,
+      subscription_id: orderData.subscription_id,
       name: 'Yasvik Monthly Essentials',
       description: subscription.title,
       prefill: {

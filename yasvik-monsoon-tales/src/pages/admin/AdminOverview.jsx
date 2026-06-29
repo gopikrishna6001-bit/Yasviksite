@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { products as productsApi, journeys as journeysApi, stories as storiesApi, people as peopleApi, mediaAssets, categories as categoriesApi } from '@/services/api';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Package, Map, BookOpen, Users, Image, Tag } from 'lucide-react';
+import { Package, Map, BookOpen, Users, Image, Tag, Store } from 'lucide-react';
 
 function StatCard({ label, count, icon: Icon, to, color }) {
   return (
@@ -49,6 +49,23 @@ export default function AdminOverview() {
       <div className="mb-8">
         <h1 className="font-cormorant text-3xl text-rain-cloud font-medium">Overview</h1>
         <p className="font-inter text-sm text-rain-cloud/45 mt-1">Your Yasvik content at a glance.</p>
+      </div>
+
+      <div className="mb-8 bg-wet-earth rounded-2xl p-6 text-white shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p className="font-inter text-[10px] uppercase tracking-[0.2em] text-white/50">Store counter</p>
+            <h2 className="font-cormorant text-2xl mt-1">Bill walk-in customers</h2>
+            <p className="font-inter text-sm text-white/65 mt-1">Search products, take cash/UPI/card, print receipt. Sales sync to Orders & inventory.</p>
+          </div>
+          <Link
+            to="/admin/pos"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-wet-earth rounded-full font-inter text-sm font-semibold hover:bg-white/90 shrink-0"
+          >
+            <Store className="w-4 h-4" />
+            Open Counter POS
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
 const VARIANTS = {
   primary: 'yasvik-harvest-cta yasvik-pressable px-6 py-3 text-sm',
@@ -27,8 +28,15 @@ export default function YasvikButton({
   }
 
   if (href) {
+    const handleClick = (event) => {
+      if (variant === 'whatsapp' || String(href).includes('wa.me')) {
+        trackWhatsAppClick(props['data-analytics-source'] || variant || 'link');
+      }
+      props.onClick?.(event);
+    };
+    const { onClick, ...anchorProps } = props;
     return (
-      <a href={href} className={classes} {...props}>
+      <a href={href} className={classes} onClick={handleClick} {...anchorProps}>
         {children}
       </a>
     );

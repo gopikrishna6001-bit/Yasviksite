@@ -3,6 +3,8 @@
   "short_name": "Yasvik",
   "description": "Millets, native rice, wood-pressed oils and thoughtfully chosen everyday essentials.",
   "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
   "background_color": "#f6f1e8",
   "theme_color": "#f6f1e8",

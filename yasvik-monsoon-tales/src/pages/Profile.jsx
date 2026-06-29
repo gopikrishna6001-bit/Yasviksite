@@ -1,23 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { appClient } from '@/api/appClient';
-import { ChevronLeft, LogOut, Heart, Compass, UtensilsCrossed, Mail } from 'lucide-react';
+import { Camera, ChevronLeft, Heart, LogOut, Package } from 'lucide-react';
 import OrderHistory from '@/components/profile/OrderHistory';
 import AddressManager from '@/components/profile/AddressManager';
 
 export default function Profile() {
   const navigate = useNavigate();
+  const fileRef = useRef(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
-  // Fetch current user
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const me = await appClient.auth.me();
         setUser(me);
-      } catch (err) {
+      } catch {
         navigate('/login?next=/profile', { replace: true });
       } finally {
         setLoading(false);
@@ -31,111 +32,127 @@ export default function Profile() {
     navigate('/');
   };
 
+  const handleAvatarChange = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
+    setUploadingAvatar(true);
+    try {
+      const { file_url: avatarUrl } = await appClient.integrations.Core.UploadFile({
+        file,
+        folder: 'customers',
+      });
+      await appClient.auth.updateMe({ avatar_url: avatarUrl });
+      setUser((prev) => ({ ...prev, avatar_url: avatarUrl }));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUploadingAvatar(false);
+      if (fileRef.current) fileRef.current.value = '';
+    }
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-rain-mist flex items-center justify-center pb-24">
-        <div className="w-8 h-8 border-2 border-temple-stone border-t-wet-earth rounded-full animate-spin" />
+      <div className="flex min-h-screen items-center justify-center bg-warm-cream pb-24">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-neon-paddy border-t-transparent" />
       </div>
     );
   }
 
   if (!user) return null;
 
-
+  const displayName = user.full_name || user.display_name || user.email?.split('@')[0] || 'Yasvik member';
+  const avatarUrl = user.avatar_url || user.profile_image_url || '';
 
   return (
-    <div className="min-h-screen bg-rain-mist pb-24">
-      {/* Header */}
-      <div className="px-6 py-6 bg-white border-b border-border/20 sticky top-0 z-20">
+    <div className="min-h-screen bg-warm-cream pb-24 text-deep-forest">
+      <div className="sticky top-0 z-20 border-b border-soft-border bg-warm-cream/95 px-4 py-5 backdrop-blur-md md:px-8">
         <button
+          type="button"
           onClick={() => navigate(-1)}
-          className="flex items-center gap-1 text-rain-cloud/60 font-inter text-sm mb-4"
+          className="mb-3 flex items-center gap-1 font-inter text-sm text-deep-forest/55"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
           Back
         </button>
-        <h1 className="font-cormorant text-3xl text-rain-cloud font-medium">My Profile</h1>
+        <h1 className="font-cormorant text-3xl font-semibold text-deep-forest">My account</h1>
       </div>
 
-      <div className="px-6 py-8 max-w-2xl mx-auto">
-        {/* User info card */}
+      <div className="mx-auto max-w-2xl px-4 py-8 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl p-8 mb-8 border border-border/20 text-center"
+          className="mb-8 rounded-2xl border border-soft-border bg-white p-6 text-center shadow-[0_8px_24px_rgba(31,61,43,0.05)]"
         >
-          <div className="w-16 h-16 rounded-full bg-temple-stone/20 flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl font-cormorant text-rain-cloud font-light">
-              {user.full_name?.charAt(0).toUpperCase()}
-            </span>
+          <div className="relative mx-auto mb-4 h-24 w-24">
+            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-soft-border bg-warm-cream">
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <span className="font-cormorant text-3xl font-semibold text-deep-forest/70">
+                  {displayName.charAt(0).toUpperCase()}
+                </span>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={uploadingAvatar}
+              className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full border border-soft-border bg-white text-neon-paddy shadow-sm transition-colors hover:bg-warm-cream disabled:opacity-50"
+              aria-label="Upload profile photo"
+            >
+              <Camera className="h-4 w-4" />
+            </button>
+            <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
           </div>
-          <h2 className="font-cormorant text-2xl text-rain-cloud font-light">{user.full_name}</h2>
-          <p className="font-inter text-sm text-rain-cloud/50 mt-1">{user.email}</p>
+          <h2 className="font-cormorant text-2xl font-semibold text-deep-forest">{displayName}</h2>
+          <p className="mt-1 font-inter text-sm text-deep-forest/55">{user.email}</p>
+          {user.phone || user.phone_number ? (
+            <p className="mt-1 font-inter text-sm text-deep-forest/45">{user.phone || user.phone_number}</p>
+          ) : null}
         </motion.div>
 
-        {/* Address Manager */}
+        <div className="mb-6 grid grid-cols-2 gap-3">
+          <Link
+            to="/wishlist"
+            className="flex items-center gap-3 rounded-2xl border border-soft-border bg-white px-4 py-3.5 transition-colors hover:border-neon-paddy/30"
+          >
+            <Heart className="h-5 w-5 text-neon-paddy" />
+            <span className="font-inter text-sm font-semibold text-deep-forest">Wishlist</span>
+          </Link>
+          <Link
+            to="/shop"
+            className="flex items-center gap-3 rounded-2xl border border-soft-border bg-white px-4 py-3.5 transition-colors hover:border-neon-paddy/30"
+          >
+            <Package className="h-5 w-5 text-neon-paddy" />
+            <span className="font-inter text-sm font-semibold text-deep-forest">Shop again</span>
+          </Link>
+        </div>
+
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
+          <AddressManager user={user} />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <AddressManager userEmail={user.email} />
-        </motion.div>
-
-        {/* Order History */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.25 }}
           className="mb-8"
         >
-          <h3 className="font-cormorant text-xl text-rain-cloud font-light mb-6">Order History</h3>
-          <OrderHistory userEmail={user.email} />
+          <h3 className="mb-5 font-cormorant text-2xl font-semibold text-deep-forest">Order history</h3>
+          <OrderHistory userEmail={user.email} userId={user.id} />
         </motion.div>
 
-        {/* Navigation Hub */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mb-8"
-        >
-          <h3 className="font-cormorant text-xl text-rain-cloud font-light mb-6">Explore Yasvik</h3>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { label: 'Shop', path: '/shop', icon: UtensilsCrossed },
-              { label: 'Our Roots', path: '/our-roots', icon: Compass },
-              { label: 'Wishlist', path: '/wishlist', icon: Heart },
-              { label: 'Contact', path: '/contact', icon: Mail },
-            ].map(({ label, path, icon: Icon }, i) => (
-              <motion.div
-                key={path}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.42 + i * 0.03 }}
-              >
-                <Link
-                  to={path}
-                  className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white border border-border/20 hover:border-wet-earth/40 hover:shadow-md transition-all"
-                >
-                  <Icon className="w-5 h-5 text-rain-cloud/60" />
-                  <span className="font-inter text-xs text-rain-cloud/70 text-center">{label}</span>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Logout */}
         <motion.button
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.35 }}
+          type="button"
           onClick={handleLogout}
-          className="w-full flex items-center justify-center gap-2 py-3 bg-red-50 text-red-600 font-inter text-sm rounded-full hover:bg-red-100 transition-all"
+          className="flex w-full items-center justify-center gap-2 rounded-full border border-red-200 bg-red-50 py-3 font-inter text-sm font-semibold text-red-600 transition-colors hover:bg-red-100"
         >
-          <LogOut className="w-4 h-4" />
-          Logout
+          <LogOut className="h-4 w-4" />
+          Log out
         </motion.button>
       </div>
     </div>
