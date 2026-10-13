@@ -6,22 +6,23 @@ import {
   resolveSetting,
   SETTINGS_QUERY_KEYS,
 } from '@/services/settingsService';
+import { STORE } from '@/brand/storeContact';
 
 const BRAND_KEYWORDS =
-  'yasvik, yasvik foods, yasvik natural foods, grocery store lingampally, grocery store ashok nagar hyderabad, natural foods lingampally, millets lingampally, wood pressed oils lingampally, jaggery lingampally, dry fruits lingampally, native rice hyderabad, natural foods hyderabad, everyday essentials';
+  'yasvik, yasvik foods, yasvik natural foods, organic store chanda nagar, grocery store ashok nagar hyderabad, natural foods chanda nagar, millets chanda nagar, wood pressed oils hyderabad, jaggery chanda nagar, dry fruits lingampally, cold pressed oils hyderabad, native rice hyderabad, natural foods hyderabad, everyday essentials';
 
 const META_BY_ROUTE = [
   {
     match: (pathname) => pathname === '/',
-    title: 'Yasvik | Natural Foods & Everyday Essentials in Lingampally, Hyderabad',
-    description: 'Better choices for everyday living. Shop millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday groceries at Yasvik.',
+    title: 'Yasvik | Organic & Natural Foods in Ashok Nagar, Chanda Nagar',
+    description: 'Shop millets, native rice, wood-pressed oils, ghee, pickles, jaggery and everyday staples at Yasvik, Ashok Nagar, Chanda Nagar. Call or WhatsApp to order across Hyderabad.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
     match: (pathname) => pathname.startsWith('/shop'),
-    title: 'Yasvik Shop | Millets, Native Rice, Oils, Spices & Groceries',
-    description: 'Buy better everyday foods from Yasvik: millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday essentials.',
+    title: 'Yasvik Shop | Millets, Oils, Ghee & Groceries | Chanda Nagar',
+    description: 'Buy better everyday foods from Yasvik Chanda Nagar: millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday essentials.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
@@ -76,8 +77,8 @@ const META_BY_ROUTE = [
   },
   {
     match: (pathname) => pathname.startsWith('/contact'),
-    title: 'Contact Yasvik',
-    description: 'Contact Yasvik for orders, support and information about natural foods, everyday essentials and local grocery delivery.',
+    title: 'Contact Yasvik | Call, WhatsApp & Store in Chanda Nagar',
+    description: `Call ${STORE.phoneDisplay}, WhatsApp order, or visit Yasvik at ${STORE.addressLine}. Natural foods and Hyderabad delivery.`,
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
@@ -175,17 +176,42 @@ export default function SeoMetaManager() {
     upsertMeta('twitter:image', absoluteOgImageUrl);
 
     if (pathname === '/') {
+      const absoluteLogo = orgLogoUrl.startsWith('http') ? orgLogoUrl : `${window.location.origin}${orgLogoUrl}`;
       upsertJsonLd('yasvik-org-jsonld', {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'Yasvik',
+        name: STORE.brandName,
         url: window.location.origin,
-        logo: orgLogoUrl.startsWith('http') ? orgLogoUrl : `${window.location.origin}${orgLogoUrl}`,
+        logo: absoluteLogo,
+        telephone: STORE.phoneE164,
+        email: STORE.email,
+        sameAs: [],
+      });
+      upsertJsonLd('yasvik-localbusiness-jsonld', {
+        '@context': 'https://schema.org',
+        '@type': 'GroceryStore',
+        name: STORE.brandName,
+        image: absoluteOgImageUrl,
+        url: window.location.origin,
+        telephone: STORE.phoneE164,
+        email: STORE.email,
+        priceRange: '₹₹',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: STORE.streetAddress,
+          addressLocality: STORE.area,
+          addressRegion: STORE.state,
+          postalCode: STORE.postalCode,
+          addressCountry: STORE.country,
+        },
+        areaServed: STORE.serviceArea.map((name) => ({ '@type': 'City', name })),
+        description:
+          'Natural and traditional foods store in Ashok Nagar, Chanda Nagar — millets, wood-pressed oils, ghee, pickles, jaggery and everyday staples. Order online, WhatsApp, or visit the store.',
       });
       upsertJsonLd('yasvik-website-jsonld', {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'Yasvik',
+        name: STORE.brandName,
         url: window.location.origin,
         potentialAction: {
           '@type': 'SearchAction',

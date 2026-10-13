@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Mail, MapPinned, ShieldCheck, Sprout } from 'lucide-react';
+import { Mail, MapPinned, MessageCircle, Phone, ShieldCheck, Sprout } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import { fetchAllAppSettings, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
+import { STORE, whatsappHref } from '@/brand/storeContact';
 
 const NAV_GROUPS = [
   { title: 'Shop', links: [{ label: 'All Products', path: '/shop' }, { label: 'Our Roots', path: '/our-roots' }, { label: 'Contact', path: '/contact' }] },
@@ -54,8 +55,12 @@ export default function FooterSection() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-[var(--theme-border)] pt-6 font-inter text-xs text-[color-mix(in_srgb,var(--theme-header-text)_54%,transparent)] md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Yasvik. All rights reserved.</p>
-          <a href="mailto:hello@yasvik.com" className="inline-flex items-center gap-2 hover:text-[var(--action-primary)]"><Mail className="h-3.5 w-3.5" /> hello@yasvik.com</a>
+          <p>© 2026 Yasvik. {STORE.area}, {STORE.city}.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href={STORE.phoneTel} className="inline-flex items-center gap-2 hover:text-[var(--action-primary)]"><Phone className="h-3.5 w-3.5" /> {STORE.phoneDisplay}</a>
+            <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-[var(--action-primary)]"><MessageCircle className="h-3.5 w-3.5" /> WhatsApp</a>
+            <a href={`mailto:${STORE.email}`} className="inline-flex items-center gap-2 hover:text-[var(--action-primary)]"><Mail className="h-3.5 w-3.5" /> {STORE.email}</a>
+          </div>
           <div className="flex gap-2"><span className="rounded bg-[color-mix(in_srgb,var(--action-primary)_14%,transparent)] px-2 py-1 text-[10px] font-bold">UPI</span><span className="rounded bg-[color-mix(in_srgb,var(--action-primary)_14%,transparent)] px-2 py-1 text-[10px] font-bold">Razorpay</span><span className="rounded bg-[color-mix(in_srgb,var(--action-primary)_14%,transparent)] px-2 py-1 text-[10px] font-bold">Cards</span></div>
         </div>
       </div>

@@ -1,13 +1,14 @@
 import { useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowRight, BadgeCheck, Home as HomeIcon, MapPin, ShieldCheck, Sparkles, Wheat } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Home as HomeIcon, MapPin, MessageCircle, Phone, ShieldCheck, Sparkles, Wheat } from 'lucide-react';
 import { categories as categoriesApi, products as productsApi, recipes as recipesApi } from '@/services/api';
 import FooterSection from '@/components/home/FooterSection';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import ProductCard from '@/components/products/ProductCard';
 import CategoryArtwork from '@/components/categories/CategoryArtwork';
 import { fetchAllAppSettings, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
+import { STORE, whatsappHref } from '@/brand/storeContact';
 
 const FALLBACK_PRODUCTS = [
   { id: 'yasvik-ragi-placeholder', title: 'Yasvik Ragi Flour', price: 99, isFallback: true, unit: '500g', sourcing_location: 'Traditional grains', processing_method: 'Stone-ground' },
@@ -170,8 +171,37 @@ function CinematicHero({ slide, desktopMedia, mobileMedia }) {
         <div className="max-w-3xl text-[#FFFDF3]">
           <p className="font-inter text-[11px] font-bold uppercase tracking-[0.28em] text-[#F4D9A4]">Traditional Foods • Fair Prices • Trusted Quality</p>
           <h1 className="mt-5 font-cormorant text-6xl font-bold leading-[0.92] tracking-[-0.02em] text-[#FFFDF3] md:text-7xl lg:text-8xl">Taste What Was Lost</h1>
-          <p className="mt-6 max-w-2xl font-inter text-base leading-8 text-[#FFFDF3]/82 md:text-lg">Food should not become anonymous. Yasvik reconnects everyday staples with soil, seasons, hands and heritage.</p>
-          <Link to={href} className="yasvik-harvest-cta yasvik-pressable mt-8 min-w-[14rem] px-7 py-3 text-sm font-bold">{cta}<ArrowRight className="ml-3 h-4 w-4" /></Link>
+          <p className="mt-6 max-w-2xl font-inter text-base leading-8 text-[#FFFDF3]/82 md:text-lg">Food should not become anonymous. Yasvik reconnects everyday staples with soil, seasons, hands and heritage — from our Ashok Nagar, Chanda Nagar store.</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link to={href} className="yasvik-harvest-cta yasvik-pressable min-w-[12rem] px-7 py-3 text-sm font-bold">{cta}<ArrowRight className="ml-3 h-4 w-4" /></Link>
+            <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex min-w-[12rem] items-center justify-center gap-2 rounded-full border border-[#FFFDF3]/45 bg-[#FFFDF3]/10 px-6 py-3 font-inter text-sm font-bold text-[#FFFDF3] backdrop-blur-sm transition-colors hover:bg-[#FFFDF3]/18">
+              <MessageCircle className="h-4 w-4" /> Order on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisitStoreStrip() {
+  return (
+    <section className="bg-[#1F1710] px-5 py-14 text-[#FFFDF3] md:px-8 md:py-16">
+      <div className="mx-auto grid max-w-[1400px] gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-end">
+        <div>
+          <p className="font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#F4D9A4]">Visit Yasvik</p>
+          <h2 className="mt-3 font-cormorant text-4xl font-semibold leading-tight md:text-5xl">Ashok Nagar, Chanda Nagar.</h2>
+          <p className="mt-4 max-w-xl font-inter text-sm leading-7 text-[#FFFDF3]/72">
+            {STORE.streetAddress}. Free store pickup, Hyderabad delivery, and WhatsApp ordering for millets, oils, ghee, pickles and everyday staples.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
+          <a href={STORE.phoneTel} className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#FFFDF3] px-5 py-3 font-inter text-sm font-bold text-[#1F1710]">
+            <Phone className="h-4 w-4" /> Call {STORE.phoneDisplay}
+          </a>
+          <a href={STORE.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-[#FFFDF3]/35 px-5 py-3 font-inter text-sm font-bold text-[#FFFDF3]">
+            <MapPin className="h-4 w-4" /> Open Maps
+          </a>
         </div>
       </div>
     </section>
@@ -347,8 +377,8 @@ export default function Home() {
   const firstProductImage = getProductImage(visibleProducts[0]);
   const heroSlide = configuredHeroSlides[0] || {
     title: String(getSetting('home_hero_headline', 'Taste What Was Lost')),
-    cta: String(getSetting('home_hero_cta_label', 'Begin the Journey')),
-    href: normalizeSlideHref(getSetting('home_hero_cta_url', '/our-roots')),
+    cta: String(getSetting('home_hero_cta_label', 'Shop staples')),
+    href: normalizeSlideHref(getSetting('home_hero_cta_url', '/shop')),
     media: heroMobileMedia || heroDesktopMedia || firstProductImage,
   };
 
@@ -391,6 +421,7 @@ export default function Home() {
       <StoryTeaser cards={storyCards} media={storyMedia} />
       <RecipesPreview recipes={recipes} />
       <WhyYasvik cards={trustCards} />
+      <VisitStoreStrip />
       <TrustSignalBand />
       <FooterSection />
     </div>
