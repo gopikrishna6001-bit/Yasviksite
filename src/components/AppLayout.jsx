@@ -5,6 +5,7 @@ import SideDrawerNav from './SideDrawerNav';
 import SmartSearchSheet from './search/SmartSearchSheet';
 import CartDrawer from './CartDrawer';
 import FloatingCart from './FloatingCart';
+import WhatsAppButton from './WhatsAppButton';
 import HeroTopBar from './home/HeroTopBar';
 import PageTransition from './PageTransition';
 import PrimaryNavRow from './PrimaryNavRow';
@@ -60,6 +61,7 @@ export default function AppLayout() {
       <div className="md:hidden">
         <FloatingCart onOpen={() => setCartOpen(true)} />
       </div>
+      {!location.pathname.startsWith('/admin') && <WhatsAppButton />}
       <SmartSearchSheet open={searchOpen} onClose={() => setSearchOpen(false)} />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </div>

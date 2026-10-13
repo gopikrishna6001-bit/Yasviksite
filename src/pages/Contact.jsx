@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { appClient } from '@/api/appClient';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import PageHeroRenderer from '@/components/PageHeroRenderer';
+import { STORE, whatsappHref } from '@/brand/storeContact';
 
 export default function Contact() {
   const { data: hero, isLoading: heroLoading } = useQuery({
@@ -21,7 +22,7 @@ export default function Contact() {
     e.preventDefault();
     setSending(true);
     await appClient.integrations.Core.SendEmail({
-      to: 'hello@yasvik.com',
+      to: STORE.email,
       subject: `Message from ${form.name} via Yasvik`,
       body: `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
     });
@@ -35,37 +36,81 @@ export default function Contact() {
       <div className="mx-auto mb-8 max-w-3xl px-6 pt-8 text-center">
         <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--theme-accent)]">Reach Out</p>
         <h1 className="mb-3 font-syne text-4xl font-extrabold tracking-[-0.04em] text-[var(--text-main)] md:text-5xl">Contact Yasvik</h1>
-        <p className="mx-auto max-w-xl font-inter text-sm leading-7 text-[var(--theme-muted)]">Questions, local orders, store feedback or sourcing suggestions — send it here and we’ll read it carefully.</p>
+        <p className="mx-auto max-w-xl font-inter text-sm leading-7 text-[var(--theme-muted)]">
+          Call, WhatsApp, visit the Chanda Nagar store, or send a note — for orders, pickup, and sourcing questions.
+        </p>
       </div>
+
       <div className="mx-auto max-w-2xl px-6">
+        <div className="mb-6 grid gap-3 sm:grid-cols-2">
+          <a
+            href={STORE.phoneTel}
+            className="flex items-center gap-3 rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-card)] p-4 shadow-[0_12px_36px_rgba(6,53,31,.06)] transition-transform hover:-translate-y-0.5"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--theme-soft)] text-[var(--theme-accent)]">
+              <Phone className="h-4 w-4" />
+            </span>
+            <span>
+              <span className="block font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">Call</span>
+              <span className="font-inter text-sm font-semibold text-[var(--text-main)]">{STORE.phoneDisplay}</span>
+            </span>
+          </a>
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-card)] p-4 shadow-[0_12px_36px_rgba(6,53,31,.06)] transition-transform hover:-translate-y-0.5"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8F8EE] text-[#128C7E]">
+              <MessageCircle className="h-4 w-4" />
+            </span>
+            <span>
+              <span className="block font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">WhatsApp order</span>
+              <span className="font-inter text-sm font-semibold text-[var(--text-main)]">Chat now</span>
+            </span>
+          </a>
+          <a
+            href={STORE.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-card)] p-4 shadow-[0_12px_36px_rgba(6,53,31,.06)] transition-transform hover:-translate-y-0.5 sm:col-span-2"
+          >
+            <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--theme-soft)] text-[var(--theme-accent)]">
+              <MapPin className="h-4 w-4" />
+            </span>
+            <span>
+              <span className="block font-inter text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">Visit store</span>
+              <span className="font-inter text-sm font-semibold text-[var(--text-main)]">{STORE.addressLine}</span>
+            </span>
+          </a>
+        </div>
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="rounded-[2rem] border border-[var(--theme-border)] bg-[var(--bg-card)] p-5 shadow-[0_22px_70px_rgba(6,53,31,.09)] md:p-8"
         >
-          {/* Contact details */}
           <div className="grid gap-3 md:grid-cols-2">
             <div className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
               <Mail className="h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
               <a
-                href="mailto:hello@yasvik.com"
+                href={`mailto:${STORE.email}`}
                 className="font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]"
               >
-                hello@yasvik.com
+                {STORE.email}
               </a>
             </div>
             <div className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
               <MapPin className="h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
               <span className="font-inter text-sm font-semibold text-[var(--text-main)]">
-                Lingampally, Hyderabad
+                {STORE.area}, {STORE.city}
               </span>
             </div>
           </div>
 
           <div className="my-7 h-px w-full bg-[var(--theme-border)]" />
 
-          {/* Contact form */}
           {sent ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -76,7 +121,7 @@ export default function Contact() {
                 Thank you. We'll be in touch.
               </p>
               <p className="mt-3 font-inter text-xs text-[var(--theme-muted)]">
-                We read every message carefully.
+                For faster help, call or WhatsApp {STORE.phoneDisplay}.
               </p>
             </motion.div>
           ) : (
@@ -89,7 +134,7 @@ export default function Contact() {
                   type="text"
                   required
                   value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   className="w-full rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
                   placeholder="How should we address you?"
                 />
@@ -103,7 +148,7 @@ export default function Contact() {
                   type="email"
                   required
                   value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   className="w-full rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
                   placeholder="your@email.com"
                 />
@@ -117,7 +162,7 @@ export default function Contact() {
                   required
                   rows={5}
                   value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   className="w-full resize-none rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
                   placeholder="Tell us what's on your mind…"
                 />

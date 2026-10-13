@@ -80,3 +80,13 @@ Every public surface should answer at least one of these Yasvik promises:
 - Is it reasonably priced and practical, not luxury for luxury's sake?
 
 Commerce copy should prefer `harvest bag`, `sourced through journeys`, `traditional foods`, `fair prices`, and `trusted quality` over generic e-commerce language.
+
+## Local lead channels (do not drift)
+
+Keep Name / Address / Phone identical across the website, Google Business Profile, WhatsApp Business, and Instagram bio.
+
+- Source of truth: `src/brand/storeContact.js`
+- Phone / WhatsApp: `78429 38998` (`+917842938998`)
+- Store: Ashok Nagar, Chanda Nagar — Bavanipuram Colony, Road No. 4
+- Primary CTA for Hyderabad shoppers: Call or WhatsApp order (not email)
+- Floating WhatsApp control is mounted in `AppLayout` on all public pages
