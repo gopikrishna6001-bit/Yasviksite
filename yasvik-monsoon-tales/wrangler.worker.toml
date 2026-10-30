@@ -1,0 +1,25 @@
+# Worker API — use with: npm run deploy:worker
+# Pages config lives in wrangler.pages.toml (deploy:pages swaps it in temporarily).
+name = "yasvik-app-api"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-03-24"
+compatibility_flags = ["nodejs_compat"]
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "yasvik-media"
+
+[browser]
+binding = "BROWSER"
+
+[triggers]
+crons = ["30 2 * * *"]
+
+[vars]
+APP_ENV = "development"
+SUPABASE_URL = "https://cpksnpuavywbmhrzglyh.supabase.co"
+MEDIA_PUBLIC_BASE = "https://media.yasvik.com"
+
+[[routes]]
+pattern = "www.yasvik.com/api/*"
+zone_name = "yasvik.com"

@@ -29,6 +29,12 @@ export default function SlideCropImage({ slide, className = '', imgStyle = {} })
       const cH = el.offsetHeight;
       if (!cW || !cH) return;
 
+      // On narrow viewports, center the artwork — admin crop offsets clip baked-in banner text.
+      if (cW < 768) {
+        setTransform(null);
+        return;
+      }
+
       // crop values are percentages of the image's natural dimensions
       const { x: cx, y: cy, width: cw, height: ch } = crop;
 
@@ -66,6 +72,9 @@ export default function SlideCropImage({ slide, className = '', imgStyle = {} })
   );
 
   const hasCrop = Boolean(slide.crop && slide.crop.width);
+  const objectPosition = hasCrop && transform
+    ? '50% 50%'
+    : `${Math.min(Math.max(slide.x ?? 50, 35), 65)}% ${slide.y ?? 50}%`;
 
   return (
     <div ref={containerRef} className={`absolute inset-0 overflow-hidden ${className}`}>
@@ -75,9 +84,9 @@ export default function SlideCropImage({ slide, className = '', imgStyle = {} })
         preset="banner"
         draggable={false}
         onLoad={handleLoad}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover max-md:object-[center_42%]"
         style={{
-          objectPosition: hasCrop && transform ? '50% 50%' : `${slide.x ?? 50}% ${slide.y ?? 50}%`,
+          objectPosition: hasCrop && transform ? '50% 50%' : objectPosition,
           transformOrigin: 'center center',
           transform: transform
             ? `translate(${transform.tx}px, ${transform.ty}px) scale(${transform.scale})`

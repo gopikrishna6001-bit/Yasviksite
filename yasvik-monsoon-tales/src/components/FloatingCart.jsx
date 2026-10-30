@@ -2,32 +2,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useStoreOffline } from '@/hooks/useStoreOffline';
-import { resolveFreeDeliveryThreshold } from '@/lib/commerceCopy';
-import {
-  fetchAllAppSettings,
-  resolveSettingsMap,
-  SETTINGS_QUERY_KEYS,
-} from '@/services/settingsService';
 
 export default function FloatingCart({ onOpen }) {
-  const { items, totalItems, totalPrice } = useCart();
+  const { totalItems, totalPrice } = useCart();
   const location = useLocation();
   const { enabled: storeOffline } = useStoreOffline();
   const [dismissed, setDismissed] = useState(false);
-
-  const { data: settings = [] } = useQuery({
-    queryKey: SETTINGS_QUERY_KEYS.public,
-    queryFn: fetchAllAppSettings,
-    staleTime: 10 * 60 * 1000,
-  });
-
-  const threshold = resolveFreeDeliveryThreshold(resolveSettingsMap(settings));
-  const remaining = threshold - totalPrice;
-  const nearFreeDelivery = remaining > 0 && remaining <= 300;
-  const hasFreeDelivery = totalPrice >= threshold;
 
   useEffect(() => {
     setDismissed(false);
@@ -35,14 +17,7 @@ export default function FloatingCart({ onOpen }) {
 
   const canShowOnThisPage = location.pathname === '/shop' || location.pathname.startsWith('/product/');
 
-  // Keep the shortcut focused on active shopping flows only.
   if (totalItems === 0 || !canShowOnThisPage || dismissed || storeOffline) return null;
-
-  const deliveryMessage = hasFreeDelivery
-    ? 'Free delivery unlocked'
-    : nearFreeDelivery
-      ? `₹${Math.ceil(remaining)} to free delivery`
-      : 'Review cart';
 
   return (
     <AnimatePresence>
@@ -53,14 +28,17 @@ export default function FloatingCart({ onOpen }) {
         transition={{ type: 'spring', damping: 20, stiffness: 320 }}
         className="fixed bottom-5 right-4 z-40 flex items-end gap-2"
       >
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          aria-label="Hide cart shortcut"
-          className="mb-1 flex h-8 w-8 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--bg-card)] text-[var(--text-main)] shadow-lg active:scale-95"
-        >
-          <X className="h-3.5 w-3.5" />
-        </button>
+        {/* Dismiss only on shop — on PDP it reads as a close control for “What’s inside”. */}
+        {location.pathname === '/shop' ? (
+          <button
+            type="button"
+            onClick={() => setDismissed(true)}
+            aria-label="Hide cart shortcut"
+            className="mb-1 flex h-8 w-8 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--bg-card)] text-[var(--text-main)] shadow-lg active:scale-95"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+        ) : null}
         <button
           onClick={onOpen}
           aria-label={`Open cart, ${totalItems} items, total ₹${totalPrice}`}
@@ -79,7 +57,7 @@ export default function FloatingCart({ onOpen }) {
             </span>
           </div>
           <span className="pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-full bg-[var(--bg-card)] px-3 py-1.5 font-inter text-[10px] font-bold text-[var(--text-main)] opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-            ₹{totalPrice} · {deliveryMessage}
+            ₹{totalPrice} · Review cart
           </span>
         </button>
       </motion.div>

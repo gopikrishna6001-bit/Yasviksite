@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, BookOpen, Leaf, MessageCircle, Sprout } from 'lucide-react';
-import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
 import IndianFarmingLandscape from '@/components/brand/atmosphere/IndianFarmingLandscape';
 import { DEFAULT_STORE_OFFLINE_MESSAGE } from '@/lib/storeOffline';
 
@@ -32,8 +31,6 @@ export default function StoreOfflineExperience({ message = DEFAULT_STORE_OFFLINE
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-warm-cream pb-24 text-deep-forest">
-      <PageHeaderBanner page="shop" />
-
       <section className="relative mx-auto max-w-[720px] px-4 pt-8 md:px-8 md:pt-12">
         <div className="relative overflow-hidden rounded-[2rem] border border-soft-border bg-white px-6 py-10 shadow-[0_20px_60px_rgba(31,61,43,0.07)] md:px-10 md:py-14">
           {/* Soft ambient glow */}

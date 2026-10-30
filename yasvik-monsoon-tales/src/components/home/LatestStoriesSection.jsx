@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { stories as storiesApi } from '@/services/api';
 import { ArrowRight } from 'lucide-react';
+import ImageSlideshow, { storyCoverSlides } from '@/components/ui/ImageSlideshow';
 
 function StoryTypeTag({ type }) {
   if (!type) return null;
@@ -14,18 +15,24 @@ function StoryTypeTag({ type }) {
 }
 
 function FeaturedStoryCard({ story }) {
+  const slides = storyCoverSlides(story);
+  const fallback = 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&q=75';
   return (
     <Link to={`/stories/${story.id}`} className="block group">
       <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
-        <img
-          src={story.cover_image || 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&q=75'}
-          alt={story.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
+        {slides.length > 1 ? (
+          <ImageSlideshow slides={slides} alt={story.title} showDots intervalMs={4500} />
+        ) : (
+          <img
+            src={slides[0] || story.cover_image || fallback}
+            alt={story.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
           <StoryTypeTag type={story.story_type} />
-          <h3 className="font-cormorant text-xl text-white font-light mt-1 leading-snug">
+          <h3 className="font-cormorant text-xl text-white font-semibold mt-1 leading-snug">
             {story.title}
           </h3>
           {story.excerpt && (
@@ -51,7 +58,7 @@ function SmallStoryCard({ story }) {
       </div>
       <div className="flex-1 min-w-0 pt-0.5">
         <StoryTypeTag type={story.story_type} />
-        <h4 className="font-cormorant text-base text-rain-cloud font-light leading-snug mt-0.5 line-clamp-2">
+        <h4 className="font-cormorant text-base text-rain-cloud font-semibold leading-snug mt-0.5 line-clamp-2">
           {story.title}
         </h4>
         {story.read_time_minutes && (

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
-import { categories as categoriesApi, products as productsApi } from '@/services/api';
+import { products as productsApi } from '@/services/api';
+import { useStorefrontCategories } from '@/hooks/useStorefrontCategories';
 import ProductDisplayCard from '../products/ProductDisplayCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -12,11 +13,7 @@ export default function ProductWorld() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => categoriesApi.listActive(20),
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: categories = [] } = useStorefrontCategories();
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products-world', activeCategory],

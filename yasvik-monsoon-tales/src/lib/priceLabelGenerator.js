@@ -81,8 +81,8 @@ export function getProductNetWt(product = {}) {
   ).trim() || '—';
 }
 
-export function resolveProductLabelData(product, variant, { mfgDate, batchNo } = {}) {
-  const pricing = resolveVariantPricing(product, variant);
+export function resolveProductLabelData(product, variant, { mfgDate, batchNo, priceChannel = 'web' } = {}) {
+  const pricing = resolveVariantPricing(product, variant, priceChannel);
   return {
     productId: product.id,
     productName: String(product.title || product.name || 'Product').trim(),
@@ -163,7 +163,7 @@ export function buildSelectedRows(products = [], selections = {}) {
 export function buildLegacyRowsFromPrintLines(
   printLines = [],
   productsById = {},
-  { mfgDate, batchNumbers = {} } = {}
+  { mfgDate, batchNumbers = {}, priceChannel = 'web' } = {}
 ) {
   let sequence = 0;
 
@@ -174,7 +174,7 @@ export function buildLegacyRowsFromPrintLines(
     const variants = buildVariantOptions(product);
     const variant = variants[line.variantIndex] || variants[0] || null;
     const batchNo = batchNumbers[line.productId] || generateBatchNo(mfgDate, (sequence += 1));
-    const labelData = resolveProductLabelData(product, variant, { mfgDate, batchNo });
+    const labelData = resolveProductLabelData(product, variant, { mfgDate, batchNo, priceChannel });
 
     return {
       productId: line.productId,

@@ -1,150 +1,146 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
+import { Plus } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 import { appClient } from '@/api/appClient';
-import { ShoppingBag, Zap, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import ComboMosaic from '@/components/products/ComboMosaic';
+import {
+  buildComboLineItems,
+  isComboLineUnavailable,
+  sumComboLineTotals,
+} from '@/lib/comboDisplayUtils';
 
-export default function ComboCard({ combo }) {
+/**
+ * Legacy marketing Combo entity card — compact product-card rhythm.
+ * Does not expand What’s Inside on shop surfaces.
+ */
+export default function ComboCard({ combo, defaultExpandedProducts = false, compact = true }) {
   const { addCombo, storeOffline } = useCart();
   const [added, setAdded] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
-  const { data: comboProducts = [] } = useQuery({
-    queryKey: ['combo-products', combo.id],
+  const productIds = combo?.product_ids || [];
+
+  const { data: comboProducts = [], isLoading } = useQuery({
+    queryKey: ['combo-products', combo?.id, productIds.join(',')],
     queryFn: async () => {
-      if (!combo.product_ids?.length) return [];
-      // De-duplicate: fetch each unique product once
-      const uniqueIds = [...new Set(combo.product_ids)];
-      return Promise.all(uniqueIds.map(id => appClient.entities.Product.get(id)));
+      if (!productIds.length) return [];
+      const uniqueIds = [...new Set(productIds)];
+      return appClient.entities.Product.filter(
+        { id: uniqueIds, is_published: true, sell_online: true },
+        'sort_order',
+        uniqueIds.length,
+      );
     },
-    enabled: !!combo.product_ids?.length,
+    enabled: Boolean(combo?.id && productIds.length),
+    staleTime: 5 * 60 * 1000,
   });
 
-  const comboWithProductData = {
-    ...combo,
-    product_details: comboProducts,
-  };
+  const lineItems = useMemo(
+    () => buildComboLineItems(productIds, comboProducts),
+    [productIds, comboProducts],
+  );
 
-  const isUnavailable = storeOffline || (comboProducts.length > 0 && comboProducts.some(p =>
-    p.availability === 'out_of_stock' || p.stock <= 0
-  ));
+  const comboWithProductData = useMemo(
+    () => ({ ...combo, product_details: comboProducts }),
+    [combo, comboProducts],
+  );
 
-  const handleAddCombo = () => {
+  const individualTotal = useMemo(() => sumComboLineTotals(lineItems), [lineItems]);
+  const bundlePrice = Number(combo?.combo_price || 0);
+  const comparePrice = Number(combo?.original_price || combo?.regular_price || individualTotal || 0);
+  const savings = comparePrice > bundlePrice ? comparePrice - bundlePrice : 0;
+
+  const isUnavailable = storeOffline
+    || lineItems.some((line) => isComboLineUnavailable(line.product))
+    || lineItems.length === 0;
+
+  const title = combo?.title || combo?.name || 'Yasvik Combo';
+  const blurb = String(combo?.description || '').split('\n')[0].trim().slice(0, 72);
+  const itemCount = lineItems.length || productIds.length;
+  const heroImage = combo?.hero_image || '';
+
+  const handleAddCombo = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
     if (isUnavailable) return;
     addCombo(comboWithProductData, comboProducts);
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+    window.setTimeout(() => setAdded(false), 2000);
   };
 
+  void defaultExpandedProducts;
+  void compact;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className={`rounded-2xl overflow-hidden border-2 transition-all ${
-        combo.is_featured ? 'border-warm-turmeric bg-warm-turmeric/5' : 'border-border bg-white'
-      }`}
+    <motion.article
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-soft-border bg-white text-deep-forest shadow-[0_10px_34px_rgba(31,61,43,0.06)]"
     >
-      {combo.hero_image && (
-        <div className="aspect-[16/9] overflow-hidden relative">
-          <img src={combo.hero_image} alt={combo.title} className="w-full h-full object-cover" />
-          {combo.discount_percentage > 0 && (
-            <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-wet-earth text-white font-inter text-sm font-medium flex items-center gap-1">
-              <Zap className="w-4 h-4" />
-              {combo.discount_percentage}% OFF
-            </div>
-          )}
-          {isUnavailable && (
-            <div className="absolute inset-0 bg-rain-cloud/40 flex items-center justify-center">
-              <span className="font-inter text-sm text-white bg-rain-cloud/70 px-3 py-1 rounded-full">
-                Currently Unavailable
-              </span>
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="p-4">
-        <h3 className="font-cormorant text-xl text-rain-cloud font-light line-clamp-1">{combo.title}</h3>
-        {combo.description && (
-          <p className="font-inter text-xs text-rain-cloud/50 mt-1 line-clamp-2">{combo.description}</p>
+      <div className="relative aspect-square overflow-hidden bg-warm-cream">
+        {heroImage ? (
+          <OptimizedImage src={heroImage} alt={title} preset="card" className="h-full w-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 p-2.5">
+            <ComboMosaic
+              products={lineItems.map((line) => ({
+                id: line.productId,
+                hero_image: line.imageUrl,
+              }))}
+              alt={title}
+              totalCount={itemCount}
+              className="h-full w-full overflow-hidden rounded-xl"
+            />
+          </div>
         )}
-
-        <div className="flex items-baseline gap-1 mt-3">
-          <span className="font-cormorant text-2xl text-rain-cloud font-medium">₹{combo.combo_price}</span>
-          {combo.original_price > combo.combo_price && (
-            <span className="font-inter text-xs text-rain-cloud/40 line-through">₹{combo.original_price}</span>
-          )}
-        </div>
-
-        {/* Collapsible products list */}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 mt-2 mb-1 font-inter text-[11px] text-rain-cloud/50 hover:text-rain-cloud/70 transition-colors"
-        >
-          <motion.span animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
-            <ChevronDown className="w-3.5 h-3.5" />
-          </motion.span>
-          {combo.product_ids?.length || 0} products included
-        </button>
-
-        <AnimatePresence>
-          {expanded && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.22 }}
-              className="overflow-hidden"
-            >
-              <div className="flex flex-wrap gap-1.5 pt-1 pb-3">
-                {comboProducts.map(p => {
-                  const qty = combo.product_ids.filter(id => id === p.id).length;
-                  const outOfStock = p.availability === 'out_of_stock' || p.stock <= 0;
-                  return (
-                    <span
-                      key={p.id}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 border rounded-full font-inter text-[10px] ${
-                        outOfStock
-                          ? 'bg-red-50 border-red-200 text-red-400'
-                          : 'bg-rain-mist border-temple-stone/20 text-rain-cloud/70'
-                      }`}
-                    >
-                      {p.hero_image && (
-                        <img src={p.hero_image} alt="" className="w-3.5 h-3.5 rounded-full object-cover" />
-                      )}
-                      {p.title}
-                      <span className="ml-0.5 opacity-60">×{qty}</span>
-                      {outOfStock && <span className="ml-0.5 text-red-400">· Out of stock</span>}
-                    </span>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <button
-          onClick={handleAddCombo}
-          disabled={isUnavailable}
-          className={`w-full py-2.5 rounded-full font-inter text-sm transition-all flex items-center justify-center gap-2 ${
-            isUnavailable
-              ? 'bg-border text-rain-cloud/40 cursor-not-allowed'
-              : added
-              ? 'bg-forest-canopy text-white'
-              : 'bg-wet-earth text-white hover:bg-wet-earth/90'
-          }`}
-        >
-          {storeOffline ? 'Restocking' : isUnavailable ? 'Unavailable' : added ? (
-            '✓ Added to Cart'
-          ) : (
-            <>
-              <ShoppingBag className="w-4 h-4" />
-              Add Bundle
-            </>
-          )}
-        </button>
+        <span className="absolute left-2.5 top-2.5 rounded-full bg-white/95 px-2.5 py-1 font-inter text-[10px] font-bold uppercase tracking-[0.12em] text-sun-dried-clay shadow-sm">
+          Yasvik Combo
+        </span>
       </div>
-    </motion.div>
+
+      <div className="flex flex-1 flex-col p-3.5 md:p-4">
+        <h3 className="line-clamp-2 min-h-[2.75rem] font-inter text-[15px] font-bold leading-snug text-deep-forest md:text-base">
+          {title}
+        </h3>
+        {blurb ? (
+          <p className="mt-1 hidden line-clamp-1 font-inter text-xs text-deep-forest/55 sm:block">{blurb}</p>
+        ) : null}
+        {itemCount ? (
+          <p className="mt-1.5 font-inter text-xs font-medium text-deep-forest/55">
+            {itemCount} product{itemCount === 1 ? '' : 's'}
+          </p>
+        ) : null}
+
+        <div className="mt-auto flex items-end justify-between gap-2 pt-3">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+              <span className="font-cormorant text-[1.65rem] font-semibold leading-none text-deep-forest">
+                ₹{Math.round(bundlePrice).toLocaleString('en-IN')}
+              </span>
+              {comparePrice > bundlePrice ? (
+                <span className="font-inter text-xs text-deep-forest/40 line-through">
+                  Worth ₹{Math.round(comparePrice).toLocaleString('en-IN')}
+                </span>
+              ) : null}
+            </div>
+            {savings > 0 ? (
+              <p className="mt-0.5 font-inter text-xs font-bold text-deep-forest/75">
+                Save ₹{Math.round(savings).toLocaleString('en-IN')}
+              </p>
+            ) : null}
+          </div>
+          <button
+            type="button"
+            onClick={handleAddCombo}
+            disabled={isUnavailable || isLoading}
+            className="flex h-10 min-w-20 items-center justify-center rounded-md bg-deep-forest px-3 font-inter text-[11px] font-bold uppercase tracking-[0.1em] text-warm-cream disabled:opacity-40"
+          >
+            {added ? 'Added' : (<><Plus className="mr-1 h-3.5 w-3.5" /> Add</>)}
+          </button>
+        </div>
+      </div>
+    </motion.article>
   );
 }

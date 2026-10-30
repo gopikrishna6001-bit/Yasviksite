@@ -26,6 +26,8 @@ export default function AdminMedia() {
   const qc = useQueryClient();
   const fileRef = useRef(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState('');
+  const [uploadError, setUploadError] = useState('');
   const [activeFolder, setActiveFolder] = useState('all');
   const [filterType, setFilterType] = useState('all');
   const [previewItem, setPreviewItem] = useState(null);
@@ -64,12 +66,22 @@ export default function AdminMedia() {
     const uploadFiles = Array.from(e.target.files || []);
     if (!uploadFiles.length) return;
     setUploading(true);
+    setUploadMessage('');
+    setUploadError('');
     try {
       const folder = activeFolder === 'all' ? 'general' : normalizeMediaFolder(activeFolder);
+      let uploaded = 0;
       for (const file of uploadFiles) {
         await fileService.upload(file, { folder, label: file.name });
+        uploaded += 1;
       }
-      qc.invalidateQueries({ queryKey: MEDIA_LIBRARY_QUERY_KEY });
+      await qc.invalidateQueries({ queryKey: MEDIA_LIBRARY_QUERY_KEY });
+      setUploadMessage(`Uploaded ${uploaded} file${uploaded === 1 ? '' : 's'} to ${getMediaFolderLabel(folder)}.`);
+      if (activeFolder === 'all') setActiveFolder(folder);
+    } catch (err) {
+      const message = err?.message || 'Upload failed. Check connection and try again.';
+      setUploadError(message);
+      alert(message);
     } finally {
       setUploading(false);
       e.target.value = '';
@@ -109,6 +121,17 @@ export default function AdminMedia() {
           </>
         )}
       />
+
+      {uploadError ? (
+        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3">
+          <p className="font-inter text-sm text-red-700">{uploadError}</p>
+        </div>
+      ) : null}
+      {uploadMessage ? (
+        <div className="mb-4 rounded-xl border border-forest-canopy/25 bg-forest-canopy/5 px-4 py-3">
+          <p className="font-inter text-sm text-forest-canopy">{uploadMessage}</p>
+        </div>
+      ) : null}
 
       <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)]">
         <aside className="space-y-2">

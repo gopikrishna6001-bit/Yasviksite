@@ -1,24 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { ChevronRight } from 'lucide-react';
-import { categories as categoriesApi } from '@/services/api';
+import { getCategoryDisplayName, getCategoryShopHref } from '@/lib/categoryDisplay';
+import { useStorefrontCategories } from '@/hooks/useStorefrontCategories';
 import CategoryTile from '@/components/brand/CategoryTile';
 import SectionHeader from '@/components/brand/SectionHeader';
 import { getCategoryImageUrl } from '@/brand/monsoonTokens';
 
 export default function CategoryDiscoverySection() {
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => categoriesApi.listActive(24),
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: categories = [] } = useStorefrontCategories();
 
   const categoryLinks = useMemo(
     () =>
       categories.map((cat) => ({
-        label: cat.emotional_title || cat.name,
-        href: `/shop?category=${cat.id}`,
+        label: getCategoryDisplayName(cat),
+        href: getCategoryShopHref(cat),
         imageUrl: getCategoryImageUrl(cat),
         categoryId: cat.id,
       })),

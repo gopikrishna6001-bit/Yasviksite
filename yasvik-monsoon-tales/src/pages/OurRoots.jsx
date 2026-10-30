@@ -8,7 +8,7 @@ import {
   resolveSettingsMap,
   SETTINGS_QUERY_KEYS,
 } from '@/services/settingsService';
-import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
+import RetailPageShell from '@/components/retail/RetailPageShell';
 
 const FOUNDER_INSTAGRAM = 'https://www.instagram.com/gopikrishna_bhuvanam/?hl=en';
 const FOUNDER_YOUTUBE = 'https://www.youtube.com/@GopikrishnaBhuvanam';
@@ -105,9 +105,26 @@ export default function OurRoots() {
   const founderNoteBody = String(settings.roots_founder_note_body || DEFAULT_FOUNDER_NOTE_BODY);
 
   return (
-    <div className="min-h-screen bg-warm-cream pb-16 text-deep-forest transition-colors duration-300">
-      <PageHeaderBanner page="our_roots" />
+    <RetailPageShell>
       <div>
+
+        <section id="philosophy" className="scroll-mt-28 md:scroll-mt-44 mx-auto w-full max-w-6xl px-6 pt-14 md:pt-20">
+          <div className="max-w-3xl">
+            <p className="font-inter text-[10px] uppercase tracking-[0.28em] text-sun-dried-clay/80">Yasvik</p>
+            <h1 className="mt-3 font-cormorant text-4xl font-semibold leading-tight text-deep-forest md:text-5xl">
+              Better Food. Found.
+            </h1>
+            <p className="mt-5 font-inter text-sm leading-8 text-rain-cloud/70 md:text-base">
+              We travel, meet makers and choose everyday foods we can stand behind — homemade snacks, pickles,
+              oils, honey, jaggery, heritage rice, millets and essentials — then make them easier to bring into
+              modern homes in Hyderabad.
+            </p>
+            <p className="mt-4 font-inter text-sm leading-8 text-rain-cloud/70 md:text-base">
+              Not everything we discover becomes a Yasvik product. Shop online, visit the Ashok Nagar store, or
+              order through WhatsApp — with pickup, local delivery and selected courier shipping.
+            </p>
+          </div>
+        </section>
 
         {/* Founder Note */}
         <section id="founder-note" className="scroll-mt-28 md:scroll-mt-44 mx-auto w-full max-w-6xl px-6 pt-14 md:pt-20">
@@ -120,7 +137,7 @@ export default function OurRoots() {
           >
             <div className="mx-auto max-w-4xl">
               <p className="font-inter text-[10px] uppercase tracking-[0.28em] text-sun-dried-clay/80">A Note from Yasvik</p>
-              <h2 className="mt-4 font-cormorant text-4xl leading-[0.95] text-rain-cloud md:text-6xl">{founderNoteTitle}</h2>
+              <h2 className="mt-4 font-cormorant text-4xl font-semibold leading-[0.95] text-deep-forest md:text-6xl">{founderNoteTitle}</h2>
               <FounderNoteContent body={founderNoteBody} />
 
               <div className="mt-10 flex flex-col items-start gap-5 border-t border-temple-stone/30 pt-8 sm:flex-row sm:items-center sm:gap-7">
@@ -174,7 +191,7 @@ export default function OurRoots() {
             className="overflow-hidden rounded-[2rem] border border-temple-stone/35 bg-white/70 p-6 shadow-[0_12px_40px_rgba(42,38,32,.06)] md:p-10"
           >
             <p className="font-inter text-[10px] uppercase tracking-[0.28em] text-sun-dried-clay/80">Our Stories</p>
-            <h2 className="mt-3 font-cormorant text-4xl leading-[0.95] text-rain-cloud md:text-5xl">The roads we travel, the people we meet.</h2>
+            <h2 className="mt-3 font-cormorant text-4xl font-semibold leading-[0.95] text-deep-forest md:text-5xl">The roads we travel, the people we meet.</h2>
             <p className="mt-5 max-w-2xl font-inter text-sm leading-8 text-rain-cloud/70">
               Every product on Yasvik has a story — a journey to the source, a producer who cares, a reason it exists. Read about what drives us, where we go, and why it matters.
             </p>
@@ -189,6 +206,6 @@ export default function OurRoots() {
         </section>
 
       </div>
-    </div>
+    </RetailPageShell>
   );
 }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { categories as categoriesApi } from '@/services/api';
+import { useStorefrontCategories } from '@/hooks/useStorefrontCategories';
 import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CategoryArtwork from '@/components/categories/CategoryArtwork';
-import OptimizedImage from '@/components/ui/OptimizedImage';
+import { getCategoryShopHref } from '@/lib/categoryDisplay';
+import { BUNDLES_SHOP_PATH } from '@/lib/comboUtils';
 
 const PRIMARY_LINKS = [
   { label: 'SHOP', path: '/shop', hasMenu: true },
@@ -23,7 +23,7 @@ export default function PrimaryNavRow() {
     return () => window.removeEventListener('yasvik-header-compact', onCompactEvent);
   }, []);
 
-  const { data: categories = [] } = useQuery({ queryKey: ['categories-nav'], queryFn: () => categoriesApi.listActive(12), staleTime: 5 * 60 * 1000 });
+  const { data: categories = [] } = useStorefrontCategories();
 
   return (
     <motion.div
@@ -57,23 +57,23 @@ export default function PrimaryNavRow() {
               <div>
                 <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">Shop By</p>
                 <Link className="block py-1.5 font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to="/shop">All Products</Link>
-                <Link className="block py-1.5 font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to="/shop?category=__bundles__">Bundles</Link>
+                <Link className="block py-1.5 font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to={BUNDLES_SHOP_PATH}>Bundles</Link>
                 <div className="mt-5 rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] p-3">
-                  <p className="font-syne text-lg font-bold leading-tight text-[var(--text-main)]">Foods sourced through journeys.</p>
+                  <p className="font-cormorant text-lg font-bold leading-tight text-[var(--text-main)]">Foods sourced through journeys.</p>
                   <p className="mt-1 font-inter text-[11px] leading-relaxed text-[var(--theme-muted)]">Conscious food, responsible sourcing, honest quality.</p>
                 </div>
               </div>
               <div className="col-span-2">
                 <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">Categories</p>
                 <div className="grid grid-cols-3 gap-x-8 gap-y-2">
-                  {categories.map((cat) => <Link key={cat.id} className="font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to={`/shop?category=${cat.id}`}>{cat.emotional_title || cat.name}</Link>)}
+                  {categories.map((cat) => <Link key={cat.id} className="font-inter text-sm text-[var(--text-main)] hover:text-[var(--action-primary)]" to={getCategoryShopHref(cat)}>{cat.emotional_title || cat.name}</Link>)}
                 </div>
               </div>
               <div className="col-span-2">
                 <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--theme-muted)]">Featured Categories</p>
                 <div className="grid grid-cols-3 gap-3">
                   {categories.slice(0, 3).map((cat) => (
-                    <Link key={`feature-${cat.id}`} to={`/shop?category=${cat.id}`} className="group block overflow-hidden rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-canvas)]">
+                    <Link key={`feature-${cat.id}`} to={getCategoryShopHref(cat)} className="group block overflow-hidden rounded-2xl border border-[var(--theme-border)] bg-[var(--bg-canvas)]">
                       <div className="flex aspect-[4/5] items-center justify-center bg-[color-mix(in_srgb,var(--action-primary)_10%,var(--bg-card))]">
                         {cat.image_url || cat.media_url ? <OptimizedImage src={cat.image_url || cat.media_url} alt={cat.name} preset="category" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" /> : <CategoryArtwork title={cat.emotional_title || cat.name} />}
                       </div>

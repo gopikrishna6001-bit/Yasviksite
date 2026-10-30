@@ -10,86 +10,94 @@ import {
 import { BRAND_LOGO_HORIZONTAL, BRAND_LOGO_SYMBOL } from '@/lib/brandAssets';
 import { optimizeMediaUrl } from '@/lib/mediaUrl';
 import { buildLocalBusinessJsonLd } from '@/lib/storeLocation';
+import {
+  BRAND_KEYWORDS,
+  ENTITY_DESCRIPTION,
+  HOME_SEO,
+  ORG_ENTITY_ID,
+  SHOP_INDEX_SEO,
+  STORE_PAGE_SEO,
+  STORE_ENTITY_ID,
+  WEBSITE_ENTITY_ID,
+} from '@/lib/seoEntity';
 
 const CURRENT_ADMIN_LOGO_URL = BRAND_LOGO_HORIZONTAL;
 const CURRENT_ADMIN_SYMBOL_URL = BRAND_LOGO_SYMBOL;
 
-const BRAND_KEYWORDS =
-  'yasvik, yasvik foods, yasvik natural foods, grocery store lingampally, grocery store ashok nagar hyderabad, natural foods lingampally, millets lingampally, wood pressed oils lingampally, jaggery lingampally, dry fruits lingampally, native rice hyderabad, natural foods hyderabad, everyday essentials';
-
 const META_BY_ROUTE = [
   {
     match: (pathname) => pathname === '/',
-    title: 'Yasvik | Natural Foods & Everyday Essentials | Hyderabad',
-    description: 'Better choices for everyday living. Shop millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday groceries at Yasvik.',
+    title: HOME_SEO.title,
+    description: HOME_SEO.description,
+    ogTitle: HOME_SEO.ogTitle,
+    ogDescription: HOME_SEO.ogDescription,
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
-    match: (pathname) => pathname.startsWith('/shop'),
-    title: 'Yasvik Shop | Millets, Native Rice, Oils, Spices & Groceries',
-    description: 'Buy better everyday foods from Yasvik: millets, native rice, wood-pressed oils, pulses, spices, jaggery, dry fruits and everyday essentials.',
-    robots: 'index,follow',
-    keywords: BRAND_KEYWORDS,
-  },
-  {
-    match: (pathname) => pathname.startsWith('/product/'),
-    title: 'Yasvik Product',
-    description: 'Explore Yasvik product details, variants, nutrition, sourcing notes and traceability where applicable.',
+    match: (pathname) => pathname === '/store',
+    title: STORE_PAGE_SEO.title,
+    description: STORE_PAGE_SEO.description,
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
     match: (pathname) => pathname.startsWith('/our-roots'),
-    title: 'Our Roots | Yasvik Food Stories & Traditional Wisdom',
-    description: 'Discover the stories, journeys, people and traditional food wisdom behind Yasvik’s better everyday foods.',
-    robots: 'index,follow',
-    keywords: BRAND_KEYWORDS,
-  },
-  {
-    match: (pathname) => pathname === '/about',
-    title: 'About Yasvik | Natural Foods & Everyday Essentials',
-    description: 'Yasvik is a neighborhood food brand offering better everyday foods, trusted essentials and traditional food choices for modern families.',
-    robots: 'index,follow',
-    keywords: BRAND_KEYWORDS,
-  },
-  {
-    match: (pathname) => pathname === '/journeys' || pathname === '/stories' || pathname === '/people',
-    title: 'Yasvik | Better Everyday Foods',
-    description: 'Yasvik Natural Foods & Everyday Essentials.',
-    robots: 'noindex,nofollow',
-    keywords: BRAND_KEYWORDS,
-  },
-  {
-    match: (pathname) => pathname.startsWith('/journeys/'),
-    title: 'Yasvik Journey | Food Origins & Traditional Wisdom',
-    description: 'Discover a Yasvik sourcing journey linked to producers, regional partners, places and traditional food practices.',
+    title: 'Our Roots | Yasvik | Better Food. Found.',
+    description:
+      'How Yasvik travels, learns and chooses — homemade snacks, pickles, oils, honey, jaggery, heritage rice, millets and everyday foods we can stand behind for Hyderabad homes.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
     match: (pathname) => pathname.startsWith('/stories'),
-    title: 'Yasvik Stories | Traditional Food Knowledge',
-    description: 'Read Yasvik stories on better everyday foods, traditions, villages and practical family choices.',
+    title: 'Yasvik Stories | Food Guides & Journeys',
+    description:
+      'Read Yasvik stories on homemade snacks, pickles, oils, heritage rice, millets, storage tips and the people behind the foods we choose in Hyderabad.',
+    robots: 'index,follow',
+    keywords: BRAND_KEYWORDS,
+  },
+  {
+    match: (pathname) => pathname.startsWith('/journeys/'),
+    title: 'Yasvik Journey | Food Origins & Regional Partners',
+    description:
+      'Discover a Yasvik sourcing journey linked to regional partners, places and traditional food practices.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
     match: (pathname) => pathname.startsWith('/farmers') || pathname.startsWith('/people') || pathname.startsWith('/producers'),
-    title: 'Yasvik Our Farmers | People Behind the Harvest',
-    description: 'Meet the farmers, families and regional partners behind Yasvik millets, staples, oils and everyday essentials.',
+    title: 'People Behind Yasvik | Makers & Partners',
+    description:
+      'Meet the makers, families and regional partners behind the foods Yasvik chooses for Hyderabad homes.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
     match: (pathname) => pathname.startsWith('/contact'),
-    title: 'Contact Yasvik',
-    description: 'Contact Yasvik for orders, support and information about natural foods, everyday essentials and local grocery delivery.',
+    title: 'Contact Yasvik | Ashok Nagar, Hyderabad',
+    description:
+      'Contact Yasvik for orders, store directions, delivery help and WhatsApp ordering in Ashok Nagar, Hyderabad.',
     robots: 'index,follow',
     keywords: BRAND_KEYWORDS,
   },
   {
-    match: (pathname) => pathname.startsWith('/admin') || pathname.startsWith('/login') || pathname.startsWith('/register'),
+    match: (pathname) => pathname.startsWith('/delivery-policy'),
+    title: 'Delivery Policy | Yasvik Hyderabad',
+    description:
+      'Yasvik delivery, store pickup and shipping policy for orders across Hyderabad.',
+    robots: 'index,follow',
+    keywords: BRAND_KEYWORDS,
+  },
+  {
+    match: (pathname) => pathname.startsWith('/checkout') || pathname.startsWith('/cart') || pathname.startsWith('/wishlist') || pathname.startsWith('/profile'),
+    title: 'Yasvik',
+    description: 'Yasvik — Better Food. Found. Hyderabad.',
+    robots: 'noindex,nofollow',
+    keywords: 'yasvik',
+  },
+  {
+    match: (pathname) => pathname.startsWith('/admin') || pathname.startsWith('/login') || pathname.startsWith('/register') || pathname.startsWith('/invoice'),
     title: 'Yasvik',
     description: 'Yasvik',
     robots: 'noindex,nofollow',
@@ -148,6 +156,17 @@ function upsertJsonLd(id, payload) {
   document.head.appendChild(script);
 }
 
+function removeJsonLd(id) {
+  document.getElementById(id)?.remove();
+}
+
+function isShopRouteHandledByPage(pathname, search) {
+  if (pathname.startsWith('/product/')) return true;
+  if (/^\/shop\/[^/]+/.test(pathname)) return true;
+  if (pathname === '/shop' && (search.includes('category=') || search.includes('search='))) return true;
+  return false;
+}
+
 export default function SeoMetaManager() {
   const { pathname, search } = useLocation();
   const { data: settings = [] } = useQuery({
@@ -157,12 +176,29 @@ export default function SeoMetaManager() {
   });
 
   useEffect(() => {
-    const routeMeta = META_BY_ROUTE.find((item) => item.match(pathname)) || META_BY_ROUTE[0];
-    const canonicalUrl = `${window.location.origin}${pathname}${search || ''}`;
+    if (isShopRouteHandledByPage(pathname, search)) return;
+
+    const routeMeta = META_BY_ROUTE.find((item) => item.match(pathname)) || {
+      title: SHOP_INDEX_SEO.title,
+      description: SHOP_INDEX_SEO.description,
+      robots: pathname.startsWith('/shop') ? 'index,follow' : 'index,follow',
+      keywords: BRAND_KEYWORDS,
+    };
+
+    const origin = window.location.origin;
+    const canonicalUrl = `${origin}${pathname}`;
     const faviconUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_favicon_url', getCachedSetting('brand_favicon_url', CURRENT_ADMIN_SYMBOL_URL))), 'logo');
-    const orgLogoUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_organization_logo_url', getCachedSetting('brand_organization_logo_url', CURRENT_ADMIN_LOGO_URL))), 'logo');
-    const ogImageUrl = optimizeMediaUrl(String(resolveSetting(settings, 'brand_og_image_url', getCachedSetting('brand_og_image_url', CURRENT_ADMIN_LOGO_URL))), 'banner');
-    const absoluteOgImageUrl = ogImageUrl.startsWith('http') ? ogImageUrl : `${window.location.origin}${ogImageUrl}`;
+    const ogImageUrl = optimizeMediaUrl(String(
+      resolveSetting(
+        settings,
+        'social_share_image_url',
+        resolveSetting(settings, 'brand_og_image_url', getCachedSetting('social_share_image_url', CURRENT_ADMIN_LOGO_URL)),
+      ),
+    ), 'banner');
+    const absoluteOgImageUrl = ogImageUrl.startsWith('http') ? ogImageUrl : `${origin}${ogImageUrl}`;
+
+    const ogTitle = routeMeta.ogTitle || routeMeta.title;
+    const ogDescription = routeMeta.ogDescription || routeMeta.description;
 
     document.title = routeMeta.title;
     upsertMeta('description', routeMeta.description);
@@ -170,43 +206,99 @@ export default function SeoMetaManager() {
     upsertMeta('keywords', routeMeta.keywords || BRAND_KEYWORDS);
     upsertFavicon(faviconUrl);
     upsertCanonical(canonicalUrl);
-    upsertPropertyMeta('og:title', routeMeta.title);
-    upsertPropertyMeta('og:description', routeMeta.description);
-    upsertPropertyMeta('og:type', pathname.startsWith('/product/') ? 'product' : 'website');
+    upsertPropertyMeta('og:title', ogTitle);
+    upsertPropertyMeta('og:description', ogDescription);
+    upsertPropertyMeta('og:type', 'website');
     upsertPropertyMeta('og:url', canonicalUrl);
-    upsertPropertyMeta('og:site_name', 'Yasvik');
+    upsertPropertyMeta('og:site_name', 'Yasvik Foods');
     upsertPropertyMeta('og:image', absoluteOgImageUrl);
-    upsertMeta('twitter:card', 'summary');
-    upsertMeta('twitter:title', routeMeta.title);
-    upsertMeta('twitter:description', routeMeta.description);
+    upsertMeta('twitter:card', 'summary_large_image');
+    upsertMeta('twitter:title', ogTitle);
+    upsertMeta('twitter:description', ogDescription);
     upsertMeta('twitter:image', absoluteOgImageUrl);
 
+    const gscVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
+    if (gscVerification) {
+      upsertMeta('google-site-verification', gscVerification);
+    }
+
+    removeJsonLd('yasvik-org-jsonld');
+    removeJsonLd('yasvik-shop-breadcrumb-jsonld');
+    removeJsonLd('yasvik-shop-collection-jsonld');
+    removeJsonLd('yasvik-shop-faq-jsonld');
+
+    const businessDescription = String(
+      resolveSetting(settings, 'business_seo_description', getCachedSetting('business_seo_description', ENTITY_DESCRIPTION)),
+    ).trim() || ENTITY_DESCRIPTION;
+    const sameAs = (() => {
+      try {
+        const parsed = JSON.parse(resolveSetting(settings, 'social_same_as_json', '[]') || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    })();
+    const storeSchema = buildLocalBusinessJsonLd(origin, {
+      description: businessDescription,
+      instagramUrl: resolveSetting(settings, 'instagram_url', ''),
+      facebookUrl: resolveSetting(settings, 'facebook_url', ''),
+      youtubeUrl: resolveSetting(settings, 'youtube_url', ''),
+      googleMapsUrl: resolveSetting(settings, 'store_google_maps_url', ''),
+      latitude: resolveSetting(settings, 'store_geo_lat', ''),
+      longitude: resolveSetting(settings, 'store_geo_lng', ''),
+      sameAs,
+    });
+
     if (pathname === '/') {
-      upsertJsonLd('yasvik-org-jsonld', {
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'Yasvik',
-        url: window.location.origin,
-        logo: orgLogoUrl.startsWith('http') ? orgLogoUrl : `${window.location.origin}${orgLogoUrl}`,
-      });
       upsertJsonLd('yasvik-website-jsonld', {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': WEBSITE_ENTITY_ID,
         name: 'Yasvik',
-        url: window.location.origin,
+        alternateName: 'Yasvik Foods',
+        url: origin,
+        description: businessDescription,
+        publisher: { '@id': ORG_ENTITY_ID },
         potentialAction: {
           '@type': 'SearchAction',
-          target: `${window.location.origin}/shop?search={search_term_string}`,
+          target: `${origin}/shop?search={search_term_string}`,
           'query-input': 'required name=search_term_string',
         },
       });
-      upsertJsonLd('yasvik-store-jsonld', buildLocalBusinessJsonLd(window.location.origin));
-    }
-
-    if (pathname.startsWith('/contact')) {
-      upsertJsonLd('yasvik-store-jsonld', buildLocalBusinessJsonLd(window.location.origin));
+      upsertJsonLd('yasvik-org-jsonld', {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': ORG_ENTITY_ID,
+        name: 'Yasvik Foods',
+        alternateName: 'Yasvik',
+        url: origin,
+        description: businessDescription,
+        sameAs: storeSchema.sameAs,
+        logo: absoluteOgImageUrl,
+      });
+      upsertJsonLd('yasvik-store-jsonld', storeSchema);
+    } else if (pathname === '/store' || pathname.startsWith('/contact')) {
+      removeJsonLd('yasvik-website-jsonld');
+      upsertJsonLd('yasvik-org-jsonld', {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': ORG_ENTITY_ID,
+        name: 'Yasvik Foods',
+        alternateName: 'Yasvik',
+        url: origin,
+        description: businessDescription,
+        sameAs: storeSchema.sameAs,
+        logo: absoluteOgImageUrl,
+      });
+      upsertJsonLd('yasvik-store-jsonld', storeSchema);
+    } else {
+      removeJsonLd('yasvik-store-jsonld');
+      removeJsonLd('yasvik-website-jsonld');
+      removeJsonLd('yasvik-org-jsonld');
     }
   }, [pathname, search, settings]);
 
   return null;
 }
+
+export { STORE_ENTITY_ID };

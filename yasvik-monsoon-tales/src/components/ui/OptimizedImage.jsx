@@ -1,51 +1,78 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { buildResponsiveImage, originalMediaUrl } from '@/lib/mediaUrl';
+import { useStableImageLoad } from '@/hooks/useStableImageLoad';
 
 /**
- * Responsive, WebP-optimized image with lazy loading defaults.
- * Falls back to the original CDN URL if Cloudflare resize is unavailable.
- * @param {string} preset - thumb | card | category | detail | hero | banner | logo
- * @param {boolean} eager - above-the-fold (disables lazy load)
+ * Responsive product/media image with cache-aware load detection.
+ * Recovers when returning from a background browser tab (stalled lazy loads).
  */
 export default function OptimizedImage({
   src,
   alt = '',
   preset = 'card',
   eager = false,
+  fadeOnLoad = true,
   className = '',
+  wrapperClassName = '',
+  placeholder = null,
   onLoad,
   onError,
   ...rest
 }) {
   const [useOriginal, setUseOriginal] = useState(false);
+  const [failed, setFailed] = useState(false);
   const image = useMemo(() => buildResponsiveImage(src, preset), [src, preset]);
   const fallbackSrc = useMemo(() => originalMediaUrl(src), [src]);
 
-  if (!image.src && !fallbackSrc) return null;
+  const displaySrc = useOriginal || !image.src ? fallbackSrc : image.src;
+  const { imgRef, loaded, handleLoad } = useStableImageLoad(displaySrc);
 
-  const displaySrc = useOriginal ? fallbackSrc : image.src;
+  useEffect(() => {
+    setUseOriginal(false);
+    setFailed(false);
+  }, [src, preset]);
+
+  if ((!image.src && !fallbackSrc) || failed) {
+    return placeholder || null;
+  }
+
+  const fadeClass = fadeOnLoad
+    ? `transition-opacity duration-200 ${loaded ? 'opacity-100' : 'opacity-0'}`
+    : 'opacity-100';
 
   return (
-    <img
-      src={displaySrc}
-      srcSet={useOriginal ? undefined : image.srcSet || undefined}
-      sizes={useOriginal ? undefined : image.sizes || undefined}
-      width={image.width}
-      height={image.height}
-      alt={alt}
-      className={className}
-      loading={eager ? 'eager' : 'lazy'}
-      decoding="async"
-      fetchPriority={eager ? 'high' : 'low'}
-      onLoad={onLoad}
-      onError={(event) => {
-        if (!useOriginal && fallbackSrc && displaySrc !== fallbackSrc) {
-          setUseOriginal(true);
-          return;
-        }
-        onError?.(event);
-      }}
-      {...rest}
-    />
+    <div className={`relative h-full w-full overflow-hidden bg-[#f5f1e8] ${wrapperClassName}`.trim()}>
+      {!loaded && placeholder ? (
+        <div className="absolute inset-0" aria-hidden="true">
+          {placeholder}
+        </div>
+      ) : null}
+      <img
+        ref={imgRef}
+        src={displaySrc}
+        srcSet={useOriginal ? undefined : image.srcSet || undefined}
+        sizes={useOriginal ? undefined : image.sizes || undefined}
+        width={image.width}
+        height={image.height}
+        alt={alt}
+        className={`${className} ${fadeClass}`.trim()}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchPriority={eager ? 'high' : 'low'}
+        onLoad={(event) => {
+          handleLoad();
+          onLoad?.(event);
+        }}
+        onError={(event) => {
+          if (!useOriginal && fallbackSrc && displaySrc !== fallbackSrc) {
+            setUseOriginal(true);
+            return;
+          }
+          setFailed(true);
+          onError?.(event);
+        }}
+        {...rest}
+      />
+    </div>
   );
 }

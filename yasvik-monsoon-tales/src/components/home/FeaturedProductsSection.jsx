@@ -22,7 +22,7 @@ export default function FeaturedProductsSection() {
         className="mb-6"
       >
         <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-rain-cloud/35">New Here?</p>
-        <h2 className="font-cormorant text-2xl text-rain-cloud font-light mt-0.5">Featured Selections</h2>
+        <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold mt-0.5">Featured Selections</h2>
       </motion.div>
 
       {isLoading ? (

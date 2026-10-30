@@ -11,7 +11,9 @@ import { X, Search, Clock, Grid3X3 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { appClient } from '@/api/appClient';
-import { categories as categoriesApi } from '@/services/api';
+import { filterOnlineProducts } from '@/lib/productVisibility';
+import { getCategoryDisplayName, getCategoryShopHref } from '@/lib/categoryDisplay';
+import { useStorefrontCategories } from '@/hooks/useStorefrontCategories';
 import { getProductTeluguName } from '@/lib/teluguProductNames';
 import { useDebounce } from '@/hooks/useDebounce';
 import { resolveIntentTerms } from '@/lib/searchIntentMap';
@@ -88,12 +90,12 @@ function IdlePanel({ recents, liveSuggestions, categories, featuredProducts, onS
             {categories.slice(0, 6).map((cat) => (
               <Link
                 key={cat.id}
-                to={`/shop?category=${cat.id}`}
+                to={getCategoryShopHref(cat)}
                 onClick={onClose}
                 className="flex items-center gap-2 rounded-xl border border-soft-border bg-warm-cream/60 px-3 py-2.5 font-inter text-xs font-semibold text-deep-forest transition-colors hover:border-neon-paddy/30 hover:bg-white"
               >
                 <Grid3X3 className="h-3.5 w-3.5 shrink-0 text-neon-paddy" />
-                <span className="line-clamp-2">{cat.emotional_title || cat.name}</span>
+                <span className="line-clamp-2">{getCategoryDisplayName(cat)}</span>
               </Link>
             ))}
           </div>
@@ -173,7 +175,7 @@ export default function SmartSearchSheet({ open, onClose }) {
   // Prefetch real titles for suggestion chips
   const { data: allProducts = [] } = useQuery({
     queryKey: ['ss-all-products'],
-    queryFn: () => appClient.entities.Product.filter({ is_published: true }, '-created_date', 50),
+    queryFn: async () => filterOnlineProducts(await appClient.entities.Product.filter({ is_published: true, sell_online: true }, '-created_date', 50)),
     staleTime: 5 * 60 * 1000,
   });
   const { data: allStories = [] } = useQuery({
@@ -182,11 +184,7 @@ export default function SmartSearchSheet({ open, onClose }) {
     staleTime: 5 * 60 * 1000,
   });
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => categoriesApi.listActive(12),
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: categories = [] } = useStorefrontCategories();
 
   const featuredProducts = allProducts.filter((p) => p.is_featured || p.featured_in_hero).slice(0, 6);
   const popularProducts = featuredProducts.length ? featuredProducts : allProducts.slice(0, 6);
@@ -246,7 +244,7 @@ export default function SmartSearchSheet({ open, onClose }) {
   // Live results
   const { data: products = [] } = useQuery({
     queryKey: ['ss-products', debouncedQuery],
-    queryFn: () => appClient.entities.Product.filter({ is_published: true }, '-created_date', 30),
+    queryFn: async () => filterOnlineProducts(await appClient.entities.Product.filter({ is_published: true, sell_online: true }, '-created_date', 30)),
     enabled,
     select: d => d.filter(p =>
       matchesAnyToken(p.title) ||

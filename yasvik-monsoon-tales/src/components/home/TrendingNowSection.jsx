@@ -44,7 +44,7 @@ export default function TrendingNowSection() {
               Trending Now
             </span>
           </div>
-          <h2 className="font-cormorant text-2xl text-rain-cloud font-light">
+          <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold">
             What Others Are Choosing
           </h2>
         </div>

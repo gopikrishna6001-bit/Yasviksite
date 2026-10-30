@@ -70,7 +70,7 @@ export default function SinglePersonMoment() {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.38 }}
             className="mt-8 pl-4 border-l-2 border-wet-earth/25"
           >
-            <p className="font-cormorant text-[1.35rem] text-rain-cloud font-light italic leading-relaxed">
+            <p className="font-cormorant text-[1.35rem] text-rain-cloud font-semibold italic leading-relaxed">
               "{person.quote}"
             </p>
           </motion.blockquote>

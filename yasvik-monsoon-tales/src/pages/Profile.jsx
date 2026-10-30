@@ -18,6 +18,10 @@ export default function Profile() {
       try {
         const me = await appClient.auth.me();
         setUser(me);
+        const phone = me?.phone || me?.phone_number;
+        if (phone) {
+          appClient.functions.invoke('linkCustomerToUser', { phone }).catch(() => {});
+        }
       } catch {
         navigate('/login?next=/profile', { replace: true });
       } finally {

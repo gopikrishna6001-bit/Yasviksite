@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { stories as storiesApi } from '@/services/api';
 import { ArrowRight } from 'lucide-react';
+import ImageSlideshow, { storyCoverSlides } from '@/components/ui/ImageSlideshow';
 
 // One story — given full editorial space. Not a list. Not a carousel.
 export default function SingleStoryFeature() {
@@ -15,7 +16,9 @@ export default function SingleStoryFeature() {
   const story = stories.find(s => s.is_featured) || stories[0];
   if (!story) return null;
 
-  const coverImage = story.cover_image
+  const slides = storyCoverSlides(story);
+  const coverImage = slides[0]
+    || story.cover_image
     || 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&q=75';
 
   return (
@@ -34,13 +37,17 @@ export default function SingleStoryFeature() {
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
         className="relative aspect-[4/3] overflow-hidden"
       >
-        <img
-          src={coverImage}
-          alt={story.title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-rain-cloud/70" />
+        {slides.length > 1 ? (
+          <ImageSlideshow slides={slides} alt={story.title} showDots intervalMs={5000} />
+        ) : (
+          <img
+            src={coverImage}
+            alt={story.title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-rain-cloud/70 pointer-events-none" />
       </motion.div>
 
       {/* Text block — staggered reveal */}
@@ -61,7 +68,7 @@ export default function SingleStoryFeature() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="font-cormorant text-[2rem] text-rain-cloud font-light leading-tight max-w-[280px]"
+          className="font-cormorant text-[2rem] text-rain-cloud font-semibold leading-tight max-w-[280px]"
         >
           {story.title}
         </motion.h2>

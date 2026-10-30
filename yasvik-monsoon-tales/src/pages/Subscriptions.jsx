@@ -68,7 +68,7 @@ export default function Subscriptions() {
                   </div>
                 )}
 
-                <h3 className="font-cormorant text-2xl text-rain-cloud font-light mb-1">{sub.title}</h3>
+                <h3 className="font-cormorant text-2xl text-rain-cloud font-semibold mb-1">{sub.title}</h3>
                 <p className="font-inter text-xs text-rain-cloud/50 mb-3">{sub.description}</p>
 
                 <div className="flex items-baseline gap-1 mb-4">

@@ -1,6 +1,7 @@
 import JsBarcode from 'jsbarcode';
 import { jsPDF } from 'jspdf';
 import { LABEL_HEIGHT_MM, LABEL_WIDTH_MM, mmToPx } from '@/lib/priceLabelGenerator';
+import { normalizeProductSku } from '@/lib/productSku';
 import { getProductTeluguName } from '@/lib/teluguProductNames';
 import { ensureLabelTemplateFontsLoaded } from '@/lib/labelTemplate/renderLabelTemplate';
 
@@ -81,7 +82,7 @@ function drawCenteredLine(ctx, text, centerX, y, maxWidthPx, startSizePx, minSiz
  * Telugu name up top; English SKU prints under the barcode.
  */
 export async function renderSkuBarcodeCanvas(product, dpi = SKU_BARCODE_LABEL_DPI) {
-  const sku = String(product?.sku || '').trim();
+  const sku = normalizeProductSku(product?.sku);
   if (!sku) throw new Error('Assign a product SKU before generating the barcode label.');
 
   await ensureLabelTemplateFontsLoaded();
@@ -125,7 +126,7 @@ export async function renderSkuBarcodeCanvas(product, dpi = SKU_BARCODE_LABEL_DP
       format: 'CODE128',
       displayValue: true,
       font: FONT_LATIN,
-      fontSize: Math.max(8, mm(dpi, 1.85)),
+      fontSize: Math.max(10, mm(dpi, 2.5)),
       textMargin: Math.max(1, mm(dpi, 0.35)),
       height: Math.max(24, mm(dpi, 8.5)),
       margin: 0,

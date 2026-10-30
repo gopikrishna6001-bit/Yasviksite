@@ -127,7 +127,7 @@ export default function FromTheFieldsCarousel() {
                     onClick={(e) => { e.stopPropagation(); goToProduct(product.id); }}
                     className="text-left"
                   >
-                    <h3 className="font-cormorant text-3xl text-rain-cloud font-light leading-tight hover:text-rain-cloud/80 transition-colors">
+                    <h3 className="font-cormorant text-3xl text-rain-cloud font-semibold leading-tight hover:text-rain-cloud/80 transition-colors">
                       {product.title}
                     </h3>
                   </button>

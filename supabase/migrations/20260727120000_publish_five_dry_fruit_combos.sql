@@ -1,0 +1,12 @@
+-- Publish five approved Yasvik dry-fruit combos (2026-07-27).
+-- Applied via Supabase MCP execute_sql against production.
+-- Keeps other dry-fruit combo parents as unpublished drafts.
+-- Adds missing exact pack variants at price 0 only (no overwrite of existing pack prices/stock).
+
+-- See also: yasvik-monsoon-tales/scripts/publish-five-dry-fruit-combos.mjs
+-- Published slugs:
+--   yasvik-17-item-discovery-box (featured, ₹999, 1550g, 17 items)
+--   yasvik-everyday-seeds-pack (₹550, 1000g, 5)
+--   yasvik-dry-fruit-essentials-box (₹1199, 1100g, 8)
+--   yasvik-family-pantry-box (₹1399, 2100g, 10)
+--   yasvik-premium-family-selection (₹2199, 2500g, 12)

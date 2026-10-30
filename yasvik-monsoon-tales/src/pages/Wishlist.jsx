@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { useWishlist } from '@/lib/WishlistContext';
 import { useQuery } from '@tanstack/react-query';
 import { products as productsApi } from '@/services/api';
-import ProductCard from '@/components/products/ProductCard';
-import PublicPageHeader from '@/components/brand/PublicPageHeader';
-import PublicPageShell from '@/components/brand/PublicPageShell';
-import YasvikButton from '@/components/brand/YasvikButton';
+import ProductListRow from '@/components/products/ProductListRow';
+import RetailPageShell from '@/components/retail/RetailPageShell';
+import RetailPageHeader from '@/components/retail/RetailPageHeader';
+import { retailClasses } from '@/brand/retailTheme';
 import { Bookmark } from 'lucide-react';
 
 export default function Wishlist() {
@@ -22,48 +22,37 @@ export default function Wishlist() {
   });
 
   return (
-    <PublicPageShell illustration="wishlist">
-      <PublicPageHeader
-        eyebrow="Bookmarks"
-        title="Saved items"
-        description="Products you bookmarked while browsing the shop."
-      />
+    <RetailPageShell>
+      <RetailPageHeader title="Saved items" backTo="/shop" backLabel="Shop" />
 
-      <div className="mx-auto max-w-2xl px-5 pb-8">
+      <div className={`${retailClasses.container} py-6`}>
         {ids.length === 0 ? (
-          <div className="rounded-2xl border border-soft-border bg-white px-6 py-16 text-center">
-            <Bookmark className="mx-auto mb-4 h-8 w-8 text-deep-forest/25" />
-            <p className="font-cormorant text-2xl text-deep-forest">Nothing saved yet</p>
-            <p className="mt-2 font-inter text-sm text-deep-forest/60">Tap the bookmark on any product to save it here.</p>
-            <div className="mt-6">
-              <YasvikButton to="/shop" variant="primary">
-                Browse the shop
-              </YasvikButton>
-            </div>
+          <div className={`${retailClasses.card} px-6 py-14 text-center`}>
+            <Bookmark className="mx-auto mb-3 h-8 w-8 text-deep-forest/25" />
+            <p className="font-cormorant text-xl text-deep-forest">Nothing saved yet</p>
+            <Link to="/shop" className={`mt-4 inline-flex ${retailClasses.btnPrimary}`}>Browse shop</Link>
           </div>
         ) : isLoading ? (
-          <div className="space-y-5">
+          <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-40 animate-pulse rounded-2xl bg-white/80" />
+              <div key={i} className="h-24 animate-pulse rounded-xl bg-white/80" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4">
             {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} variant="shop" />
+              <ProductListRow key={product.id} product={product} index={index} />
             ))}
           </div>
         )}
 
         {ids.length > 0 && !isLoading && products.length === 0 ? (
-          <p className="py-12 text-center font-inter text-sm text-deep-forest/55">
-            Saved items are no longer available.{' '}
-            <Link to="/shop" className="font-bold text-neon-paddy hover:text-deep-forest">
-              Browse the shop
-            </Link>
+          <p className="py-10 text-center font-inter text-sm text-deep-forest/55">
+            Saved items unavailable.{' '}
+            <Link to="/shop" className="font-bold text-neon-paddy">Browse shop</Link>
           </p>
         ) : null}
       </div>
-    </PublicPageShell>
+    </RetailPageShell>
   );
 }

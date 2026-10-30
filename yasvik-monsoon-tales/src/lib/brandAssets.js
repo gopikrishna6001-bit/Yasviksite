@@ -1,5 +1,6 @@
 /** Brand assets served from Cloudflare Pages — zero Supabase egress. */
 export const BRAND_LOGO_HORIZONTAL = '/media/brand/logo-horizontal.png';
+export const BRAND_LOGO_HORIZONTAL_WHITE = '/media/brand/logo-horizontal-white.png';
 export const BRAND_LOGO_SYMBOL = '/media/brand/logo-symbol.png';
 
 /** Legacy Supabase object paths → local static files (15 MB PNG → ~80 KB). */

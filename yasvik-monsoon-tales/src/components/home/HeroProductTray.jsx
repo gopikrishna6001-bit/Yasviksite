@@ -108,7 +108,7 @@ export default function HeroProductTray({ product, onClose }) {
                 {/* Title + price row */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-cormorant text-2xl text-rain-cloud font-light leading-tight">
+                    <h3 className="font-cormorant text-2xl text-rain-cloud font-semibold leading-tight">
                       {product.title}
                     </h3>
                     {product.unit && (

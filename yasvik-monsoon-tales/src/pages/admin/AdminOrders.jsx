@@ -189,6 +189,7 @@ export default function AdminOrders() {
           order={selectedOrder}
           onClose={() => setSelectedOrder(null)}
           currentUser={user}
+          onOrderUpdated={(next) => setSelectedOrder(next)}
         />
       )}
     </div>

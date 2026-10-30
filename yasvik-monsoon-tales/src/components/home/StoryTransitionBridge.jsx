@@ -14,7 +14,7 @@ export default function StoryTransitionBridge() {
       <p className="font-inter text-xs uppercase tracking-[0.3em] text-rain-cloud/40 mb-3">
         Curated from the field
       </p>
-      <h2 className="font-cormorant text-2xl text-rain-cloud font-light mb-2">
+      <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold mb-2">
         Begin Your Journey
       </h2>
       <p className="font-inter text-sm text-rain-cloud/50 max-w-sm mx-auto mb-6 leading-relaxed">

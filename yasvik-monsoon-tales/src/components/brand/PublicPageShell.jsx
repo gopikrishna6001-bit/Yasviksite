@@ -1,10 +1,10 @@
-import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
+import RetailPageShell from '@/components/retail/RetailPageShell';
 
-export default function PublicPageShell({ illustration, children, className = '' }) {
+/** Customer-facing page wrapper — no AI illustration banners. */
+export default function PublicPageShell({ children, className = '', showDeliveryBar = false }) {
   return (
-    <div className={`min-h-screen bg-warm-cream pb-24 text-deep-forest transition-colors duration-300 ${className}`}>
-      {illustration ? <PageHeaderBanner page={illustration} /> : null}
-      <div>{children}</div>
-    </div>
+    <RetailPageShell showDeliveryBar={showDeliveryBar} className={className}>
+      {children}
+    </RetailPageShell>
   );
 }

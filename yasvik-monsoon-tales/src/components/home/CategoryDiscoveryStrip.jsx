@@ -2,7 +2,9 @@ import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { categories as categoriesApi, products as productsApi } from '@/services/api';
+import { products as productsApi } from '@/services/api';
+import { useStorefrontCategories } from '@/hooks/useStorefrontCategories';
+import { getCategoryDisplayName, getCategoryShopHref } from '@/lib/categoryDisplay';
 import { ChevronRight } from 'lucide-react';
 import { useUserAffinity } from '@/lib/UserAffinityContext';
 import ProductPeekTray from '@/components/products/ProductPeekTray';
@@ -16,10 +18,7 @@ export default function CategoryDiscoveryStrip() {
   const { recordEngagement } = useUserAffinity();
   const [peekProduct, setPeekProduct] = useState(null);
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories-strip'],
-    queryFn: () => categoriesApi.listActive(10),
-  });
+  const { data: categories = [] } = useStorefrontCategories();
 
   // Fetch one featured product per category for peek preview
   const { data: categoryProducts = [] } = useQuery({
@@ -33,7 +32,7 @@ export default function CategoryDiscoveryStrip() {
 
   const handleCategoryTap = (cat, e) => {
     // Record engagement for personalization
-    recordEngagement({ categoryId: cat.id, categoryName: cat.emotional_title || cat.name });
+    recordEngagement({ categoryId: cat.id, categoryName: getCategoryDisplayName(cat) });
   };
 
   if (categories.length === 0) return null;
@@ -43,7 +42,7 @@ export default function CategoryDiscoveryStrip() {
       <div className="flex items-center justify-between px-5 mb-4">
         <div>
           <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-rain-cloud/35">Discover</p>
-          <h2 className="font-cormorant text-2xl text-rain-cloud font-light mt-0.5">By Origin</h2>
+          <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold mt-0.5">By Origin</h2>
         </div>
         <Link to="/shop" className="flex items-center gap-1 font-inter text-xs text-wet-earth">
           All <ChevronRight className="w-3 h-3" />
@@ -64,7 +63,7 @@ export default function CategoryDiscoveryStrip() {
             className="flex-shrink-0 snap-start"
           >
             <Link
-              to={`/shop?category=${cat.id}`}
+              to={getCategoryShopHref(cat)}
               onClick={(e) => handleCategoryTap(cat, e)}
               className="block w-36 rounded-2xl overflow-hidden relative group active:scale-95 transition-transform duration-150"
             >
@@ -77,8 +76,8 @@ export default function CategoryDiscoveryStrip() {
                 <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-3">
-                <p className="font-cormorant text-white text-base font-light leading-tight">
-                  {STORY_LABELS.default[i] || cat.emotional_title || cat.name}
+                <p className="font-cormorant text-white text-base font-semibold leading-tight">
+                  {STORY_LABELS.default[i] || getCategoryDisplayName(cat)}
                 </p>
                 {cat.short_intro && (
                   <p className="font-inter text-[9px] text-white/55 mt-0.5 line-clamp-2 leading-relaxed">

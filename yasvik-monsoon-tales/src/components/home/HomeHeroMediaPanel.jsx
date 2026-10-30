@@ -96,20 +96,30 @@ export default function HomeHeroMediaPanel({ mediaPlan, aspectClass, variant = '
   }
 
   if (mediaPlan.mode === 'slideshow') {
+    const resolvedVariant =
+      variant !== 'auto' ? variant : isMobile ? 'mobile' : 'desktop';
     return (
       <div className={`relative w-full overflow-hidden ${aspectClass ?? 'aspect-video md:aspect-[5/4]'}`}>
-        {mediaPlan.urls.map((url, index) => (
-          <HeroSlide
-            key={`${url}-${index}`}
-            url={url}
-            poster={mediaPlan.slides[index]?.poster}
-            active={index === slideIndex}
-          />
-        ))}
+        {(mediaPlan.slides || []).map((slide, index) => {
+          const desktop = slide.media || slide.mobileMedia;
+          const mobile = slide.mobileMedia || slide.media;
+          const url = resolvedVariant === 'mobile' ? mobile : desktop;
+          return (
+            <HeroSlide
+              key={`${url}-${index}`}
+              url={url}
+              desktop={desktop}
+              mobile={mobile}
+              poster={slide.poster}
+              variant={resolvedVariant}
+              active={index === slideIndex}
+            />
+          );
+        })}
         <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-1.5">
-          {mediaPlan.urls.map((url, index) => (
+          {(mediaPlan.slides || mediaPlan.urls || []).map((_, index) => (
             <button
-              key={url}
+              key={index}
               type="button"
               aria-label={`Show slide ${index + 1}`}
               onClick={() => setSlideIndex(index)}

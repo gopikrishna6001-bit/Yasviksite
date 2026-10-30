@@ -5,6 +5,7 @@ import {
   getProductNameTe,
   getProductVariants,
   getVariantWeightLabel,
+  resolveVariantPricing,
 } from '@/lib/labelProductOptions';
 import { resolveLabelFieldValues } from '@/lib/labelTemplate/resolveLabelFieldValues';
 import {
@@ -36,10 +37,11 @@ export function buildBarcodeValue(batchNo, serialNo) {
   return buildBatchBarcodeValue(batchNo, serialNo);
 }
 
-export function resolveSeznikFieldValues(product, variant, { packedDate, batchNo, serialNo } = {}, template) {
+export function resolveSeznikFieldValues(product, variant, { packedDate, batchNo, serialNo, priceChannel = 'web' } = {}, template) {
   const serial = formatSerialNo(serialNo || 1);
   const batch = String(batchNo || '').trim() || generateBatchNo(packedDate, 1);
-  const fieldValues = resolveLabelFieldValues(product, variant, { packedDate, batchNo: batch, serialNo: serial }, template);
+  const fieldValues = resolveLabelFieldValues(product, variant, { packedDate, batchNo: batch, serialNo: serial, priceChannel }, template);
+  const pricing = resolveVariantPricing(product, variant, priceChannel);
 
   return {
     ...fieldValues,
@@ -47,8 +49,8 @@ export function resolveSeznikFieldValues(product, variant, { packedDate, batchNo
     variantId: variant?.sku || variant?.label || null,
     serialNo: serial,
     barcodeValue: buildBatchBarcodeValue(batch, serial),
-    posScanCode: fieldValues.posScanCode || buildPosScanQrPayload(product, variant, variant?.price ?? product?.price),
-    posScanInner: fieldValues.posScanInner || buildPosScanCode(product, variant, variant?.price ?? product?.price),
+    posScanCode: fieldValues.posScanCode || buildPosScanQrPayload(product, variant, pricing.sellingPrice),
+    posScanInner: fieldValues.posScanInner || buildPosScanCode(product, variant, pricing.sellingPrice),
   };
 }
 
@@ -57,13 +59,13 @@ export function resolveSeznikLabelData(product, variant, options = {}, template)
   return resolveSeznikFieldValues(product, variant, options, template);
 }
 
-export function buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity = 1 }, template) {
+export function buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity = 1, priceChannel = 'web' }, template) {
   const qty = Math.max(1, Number(quantity) || 1);
   const batch = String(batchNo || '').trim() || generateBatchNo(packedDate, 1);
   const queue = [];
 
   for (let i = 1; i <= qty; i += 1) {
-    queue.push(resolveSeznikFieldValues(product, variant, { packedDate, batchNo: batch, serialNo: i }, template));
+    queue.push(resolveSeznikFieldValues(product, variant, { packedDate, batchNo: batch, serialNo: i, priceChannel }, template));
   }
   return queue;
 }

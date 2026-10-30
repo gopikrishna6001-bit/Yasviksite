@@ -8,6 +8,7 @@ import StoryProductSuggestions from '@/components/stories/StoryProductSuggestion
 import StoryReadingProgress from '@/components/stories/StoryReadingProgress';
 import StoryComments from '@/components/stories/StoryComments';
 import RelatedJourneyCard from '@/components/stories/RelatedJourneyCard';
+import ImageSlideshow, { storyCoverSlides } from '@/components/ui/ImageSlideshow';
 
 export default function StoryDetail() {
   const { id } = useParams();
@@ -47,6 +48,8 @@ export default function StoryDetail() {
 
   if (!story) return null;
 
+  const coverSlides = storyCoverSlides(story);
+
   return (
     <div className="min-h-screen bg-rain-mist pb-16">
 
@@ -60,13 +63,23 @@ export default function StoryDetail() {
       />
 
       {/* Hero */}
-      <div className="relative h-[55vh] overflow-hidden">
-        <img
-          src={story.cover_image}
-          alt={story.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/80 via-rain-cloud/20 to-transparent" />
+      <div className="relative h-[min(55vh,520px)] md:h-[55vh] overflow-hidden">
+        {coverSlides.length > 1 ? (
+          <ImageSlideshow
+            slides={coverSlides}
+            alt={story.title}
+            showDots
+            intervalMs={5000}
+            imageClassName="object-cover"
+          />
+        ) : (
+          <img
+            src={coverSlides[0] || story.cover_image}
+            alt={story.title}
+            className="w-full h-full object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/80 via-rain-cloud/20 to-transparent pointer-events-none" />
         <Link
           to="/stories"
           className="absolute top-14 left-5 z-10 flex items-center gap-1 text-white/80 font-inter text-sm"
@@ -74,7 +87,7 @@ export default function StoryDetail() {
           <ChevronLeft className="w-4 h-4" />
           Stories
         </Link>
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-10">
           {story.read_time_minutes && (
             <span className="font-inter text-xs text-white/55">{story.read_time_minutes} min read</span>
           )}

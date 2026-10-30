@@ -16,7 +16,7 @@ export default function DynamicPeopleSection() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="text-center font-cormorant text-3xl md:text-4xl text-rain-cloud font-light italic mb-12"
+        className="mb-12 text-center font-cormorant text-3xl font-semibold italic text-deep-forest md:text-4xl"
       >
         The People
       </motion.h2>

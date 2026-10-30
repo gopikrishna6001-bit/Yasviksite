@@ -292,6 +292,13 @@ export function productPrimaryImageUrl(product = {}, variant = null) {
   return safeMedia(primary, null);
 }
 
+/** URL to preload for shop grid (matches OptimizedImage thumb preset). */
+export function productShopThumbPreloadUrl(product = {}, variant = null) {
+  const raw = productPrimaryImageUrl(product, variant);
+  const built = buildResponsiveImage(raw, 'thumb');
+  return built.src || raw || '';
+}
+
 /** First visible image with optional preset resize (for plain img tags). */
 export function productCardImageUrl(product = {}, variant = null, preset = 'thumb') {
   const primary =

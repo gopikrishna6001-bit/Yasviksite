@@ -91,7 +91,7 @@ export default function YasvikLogo({
         decoding="async"
         onError={() => setFailedSrc(preferredSrc)}
         style={imageStyle}
-        className={clsx(activeVariant.sizeClass, imageClassName)}
+        className={clsx(!imageStyle && activeVariant.sizeClass, imageClassName)}
       />
     </span>
   );

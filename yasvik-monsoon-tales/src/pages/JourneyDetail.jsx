@@ -105,7 +105,7 @@ export default function JourneyDetail() {
 
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <StoryTag>{journey.location_label}</StoryTag>
-          <h1 className="font-cormorant text-4xl text-white font-light mt-2 leading-tight">
+          <h1 className="font-cormorant text-4xl text-white font-semibold mt-2 leading-tight">
             {journey.tagline}
           </h1>
           <div className="mt-3 text-white/70">

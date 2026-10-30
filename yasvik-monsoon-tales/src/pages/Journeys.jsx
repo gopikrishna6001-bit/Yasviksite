@@ -23,7 +23,7 @@ export default function Journeys() {
       {hero && <PageHeroRenderer hero={hero} isLoading={heroLoading} />}
       <div className="text-center mb-8 px-6 pt-8">
         <p className="font-inter text-[10px] tracking-[0.2em] uppercase text-rain-cloud/40 mb-2">Explore</p>
-        <h1 className="font-cormorant text-4xl text-rain-cloud font-light mb-2">Journeys</h1>
+        <h1 className="font-cormorant text-4xl text-rain-cloud font-semibold mb-2">Journeys</h1>
         <p className="font-inter text-xs text-rain-cloud/50">Stories from the farm to your table</p>
       </div>
       <div className="px-5 space-y-12 max-w-lg mx-auto">

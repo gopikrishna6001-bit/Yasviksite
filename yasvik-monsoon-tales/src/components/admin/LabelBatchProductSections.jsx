@@ -2,7 +2,7 @@ import { Loader2, Search } from 'lucide-react';
 import LabelProductPickerRow from '@/components/admin/LabelProductPickerRow';
 import LabelPrintQueueRow from '@/components/admin/LabelPrintQueueRow';
 import LabelProductNameCell from '@/components/admin/LabelProductNameCell';
-import { formatVariantOptionLabel } from '@/lib/labelProductOptions';
+import { formatVariantOptionLabel, formatLabelPriceSummary } from '@/lib/labelProductOptions';
 
 export function LabelBatchAddProductSection({
   search,
@@ -14,6 +14,7 @@ export function LabelBatchAddProductSection({
   updatePickerDraft,
   addProductRow,
   onEditProduct,
+  priceChannel = 'web',
   searchPlaceholder = 'e.g. 250 besan, 500g groundnut, or SKU…',
 }) {
   return (
@@ -21,7 +22,7 @@ export function LabelBatchAddProductSection({
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <h2 className="font-inter text-sm font-semibold text-rain-cloud">Add product</h2>
         <p className="font-inter text-[10px] uppercase tracking-wide text-rain-cloud/40 hidden sm:block">
-          Product · Pack · Qty · Add
+          Product · Price · Pack · Qty · Add
         </p>
       </div>
       <div className="relative">
@@ -53,10 +54,11 @@ export function LabelBatchAddProductSection({
             const draft = getPickerDraft(product.id, suggestedVariantIndex);
             return (
               <LabelProductPickerRow
-                key={product.id}
+                key={`${product.id}-${priceChannel}`}
                 product={product}
                 variantIndex={draft.variantIndex}
                 quantity={draft.quantity}
+                priceChannel={priceChannel}
                 onVariantChange={(variantIndex) => updatePickerDraft(product.id, { variantIndex })}
                 onQuantityChange={(quantity) => updatePickerDraft(product.id, { quantity })}
                 onAdd={() => addProductRow(product.id, draft.variantIndex, draft.quantity)}
@@ -81,6 +83,8 @@ export function LabelBatchQueueSection({
   removeRow,
   duplicateRow,
   onEditProduct,
+  onRefreshProduct,
+  priceChannel = 'web',
   packedDateLabel = 'Packed date',
 }) {
   return (
@@ -93,7 +97,7 @@ export function LabelBatchQueueSection({
           ) : null}
         </h2>
         <p className="font-inter text-[10px] uppercase tracking-wide text-rain-cloud/40 hidden sm:block">
-          Product · Pack · Qty
+          Product · Price · Pack · Qty
         </p>
       </div>
 
@@ -107,16 +111,18 @@ export function LabelBatchQueueSection({
             const product = productsById[row.productId];
             if (!product) return null;
             return (
-              <div key={row.id} className="group">
+              <div key={`${row.id}-${priceChannel}`} className="group">
                 <LabelPrintQueueRow
                   rowId={row.id}
                   product={product}
                   variantIndex={row.variantIndex}
                   quantity={row.quantity}
+                  priceChannel={priceChannel}
                   onVariantChange={(variantIndex) => updateRow(row.id, { variantIndex })}
                   onQuantityChange={(quantity) => updateRow(row.id, { quantity })}
                   onRemove={() => removeRow(row.id)}
                   onEditProduct={onEditProduct}
+                  onRefreshProduct={onRefreshProduct}
                 />
                 <button
                   type="button"
@@ -156,18 +162,21 @@ export function LabelBatchQueueSection({
   );
 }
 
-export function LabelBatchPrintManifest({ printLines, productsById, onEditProduct }) {
+export function LabelBatchPrintManifest({ printLines, productsById, onEditProduct, priceChannel = 'web' }) {
   if (!printLines.length) return null;
 
   return (
     <section className="rounded-2xl border border-border/60 bg-white p-5 shadow-sm">
-      <h2 className="font-inter text-sm font-semibold text-rain-cloud">What will print</h2>
+      <h2 className="font-inter text-sm font-semibold text-rain-cloud">
+        What will print
+      </h2>
       <ul className="mt-3 max-h-48 space-y-1.5 overflow-y-auto">
         {printLines.map((line) => {
           const product = productsById[line.productId];
+          const priceSummary = formatLabelPriceSummary(product, line.variant, priceChannel);
           return (
             <li
-              key={`${line.productId}-${line.variantIndex}`}
+              key={`${line.productId}-${line.variantIndex}-${priceChannel}`}
               className="flex justify-between gap-2 font-inter text-xs text-rain-cloud/75"
             >
               <span className="flex items-center gap-1 truncate min-w-0">
@@ -178,10 +187,10 @@ export function LabelBatchPrintManifest({ printLines, productsById, onEditProduc
                 />
                 <span className="shrink-0">
                   {' · '}
-                  {formatVariantOptionLabel(line.variant, product)}
+                  {formatVariantOptionLabel(line.variant, product, priceChannel)}
                 </span>
               </span>
-              <span className="shrink-0 font-semibold">×{line.quantity}</span>
+              <span className="shrink-0 font-semibold tabular-nums">{priceSummary} ×{line.quantity}</span>
             </li>
           );
         })}

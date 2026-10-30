@@ -1,0 +1,41 @@
+---
+description: Lock pre-launch website scope — content & ops only; no storefront redesign
+alwaysApply: true
+---
+
+# Yasvik pre-launch scope lock
+
+**Yasvik does not need more storefront development before launch.** It needs content completion and operating discipline.
+
+## Hard stops (until owner finishes the sequence below)
+
+- Keep `editorial_storefront_public = false` unless the owner explicitly activates via `/admin/editorial-storefront` after gates pass.
+- Do **not** commission another redesign, homepage rewrite, or new marketing layout.
+- Do **not** add new categories, homepage sections, or storefront features.
+- Do **not** run another readiness audit, architecture review, or planning loop unprompted.
+- Do **not** let Peanut Chutney Powder, Chegodilu, or the wider catalogue delay the **six-product** Hero launch.
+
+## Final pre-launch sequence (owner + ops; not new UI)
+
+1. Complete the six Hero PDP fact sheets.
+2. Upload real Hero and gallery photography.
+3. Complete and approve the four campaign assets.
+4. Upload, caption and publish the six Story videos.
+5. Confirm delivery fees and serviceability messaging.
+6. Verify cancellation, refund and delivery policies.
+7. Confirm FSSAI and applicable food-label information.
+8. Test order confirmation, invoice, payment and refund handling.
+9. Run the existing launch QA once.
+10. One real mobile checkout, then activate via `/admin/editorial-storefront`.
+
+Owner workspaces: `/admin/editorial-storefront`, Products admin, `/admin/storefront-stories`. Prefer fixing content through existing admin — not SQL, not code.
+
+## After launch — separate phase
+
+Pricing/margin controls, batch/expiry, physical labels, fulfilment workflows, and profit reporting are **Yasvik Operations Phase** (`/admin/operations`). Important, but must not reopen the editorial storefront as a development loop.
+
+Operations Phase work **may proceed in parallel** with pre-launch content work. It must not change public homepage, editorial flag, or storefront presentation.
+
+## Allowed engineering before launch
+
+Only P0/P1 fixes that unblock purchase, identity, checkout, flag wiring, or admin content editing already in the sequence. No speculative features.

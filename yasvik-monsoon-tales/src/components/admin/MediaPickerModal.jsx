@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { files as fileService, mediaAssets } from '@/services/api';
@@ -34,9 +35,12 @@ export default function MediaPickerModal({
   onSelect,
   multi = false,
   folder = 'all',
+  /** Where new uploads are stored. Defaults to `folder` when that is a concrete folder. */
+  uploadFolder = null,
   seoName = '',
   assetRole = '',
   entityTitle = '',
+  entityId = null,
 }) {
   const qc = useQueryClient();
   const uploadRef = useRef(null);
@@ -45,8 +49,25 @@ export default function MediaPickerModal({
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    // Prefer showing all media so combos can pick existing product photos.
+    // New uploads still go to uploadFolder (e.g. combos).
+    setFolderFilter(folder === 'all' ? 'all' : normalizeMediaFolder(folder));
+    setUploadError('');
+  }, [folder, open]);
 
   const activeFolder = folder === 'all' ? folderFilter : normalizeMediaFolder(folder);
+  const resolvedUploadFolder = normalizeMediaFolder(
+    uploadFolder || (folder !== 'all' ? folder : (activeFolder === 'all' ? 'general' : activeFolder)),
+  );
 
   const { data: assets = [], isLoading } = useQuery({
     ...mediaLibraryQueryOptions(),
@@ -65,24 +86,34 @@ export default function MediaPickerModal({
     return matchFolder && matchType && matchSearch;
   });
 
+  const applySelection = (url) => {
+    const next = String(url || '').trim();
+    if (!next) {
+      setUploadError('That media item has no usable URL. Upload a new image instead.');
+      return false;
+    }
+    onSelect?.(next);
+    return true;
+  };
+
   const handleUpload = async (event) => {
     const file = event.target.files?.[0];
     event.target.value = '';
     if (!file) return;
 
     setUploading(true);
+    setUploadError('');
     try {
-      const uploadFolder = activeFolder === 'all' ? normalizeMediaFolder(folder) : activeFolder;
-      const resolvedFolder = uploadFolder === 'all' ? 'general' : uploadFolder;
       const { file_url } = await fileService.upload(file, {
-        folder: resolvedFolder,
+        folder: resolvedUploadFolder,
+        entityId,
         seoName: seoName || entityTitle,
         assetRole: assetRole || 'gallery',
         entityTitle,
         label: buildSeoMediaFileName({
           seoName: seoName || entityTitle,
           assetRole: assetRole || 'gallery',
-          folder: resolvedFolder,
+          folder: resolvedUploadFolder,
           fallbackName: file.name,
         }),
       });
@@ -90,22 +121,36 @@ export default function MediaPickerModal({
 
       if (multi) {
         setSelected((prev) => (prev.includes(file_url) ? prev : [...prev, file_url]));
-      } else {
-        onSelect(file_url);
+      } else if (applySelection(file_url)) {
         handleClose();
       }
+    } catch (err) {
+      if (err?.file_url) {
+        if (multi) {
+          setSelected((prev) => (prev.includes(err.file_url) ? prev : [...prev, err.file_url]));
+        } else if (applySelection(err.file_url)) {
+          handleClose();
+        }
+        qc.invalidateQueries({ queryKey: MEDIA_LIBRARY_QUERY_KEY });
+      }
+      const message = err?.message || 'Upload failed. Check connection and try again.';
+      setUploadError(message);
+      alert(message);
     } finally {
       setUploading(false);
     }
   };
 
   const toggle = (asset) => {
+    const assetUrl = getAssetUrl(asset);
     if (!multi) {
-      onSelect(getAssetUrl(asset));
-      handleClose();
+      if (applySelection(assetUrl)) handleClose();
       return;
     }
-    const assetUrl = getAssetUrl(asset);
+    if (!assetUrl) {
+      setUploadError('That media item has no usable URL.');
+      return;
+    }
     setSelected((prev) => (
       prev.includes(assetUrl) ? prev.filter((url) => url !== assetUrl) : [...prev, assetUrl]
     ));
@@ -121,15 +166,19 @@ export default function MediaPickerModal({
     setSearch('');
     setFilter('all');
     setFolderFilter(folder === 'all' ? 'all' : normalizeMediaFolder(folder));
+    setUploadError('');
     onClose();
   };
 
-  const canChangeFolder = folder === 'all';
+  // Always allow browsing other folders; upload still goes to resolvedUploadFolder.
+  const canChangeFolder = true;
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center">
+        <div className="fixed inset-0 z-[220] flex items-end sm:items-center justify-center">
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="absolute inset-0 bg-rain-cloud/60 backdrop-blur-sm"
@@ -139,18 +188,17 @@ export default function MediaPickerModal({
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="relative bg-white w-full max-w-4xl max-h-[85vh] rounded-t-3xl sm:rounded-2xl overflow-hidden flex flex-col z-10"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-border flex-shrink-0">
               <div>
                 <h2 className="font-cormorant text-xl text-rain-cloud font-medium">Media Library</h2>
                 <p className="font-inter text-xs text-rain-cloud/45 mt-0.5">
-                  {canChangeFolder
-                    ? 'Browse folders or upload into the selected folder'
-                    : `${getMediaFolderLabel(activeFolder)} folder`}
+                  Browse any folder · new uploads go to {getMediaFolderLabel(resolvedUploadFolder)}
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <input ref={uploadRef} type="file" accept="image/*,video/*" className="hidden" onChange={handleUpload} />
+                <input ref={uploadRef} type="file" accept="image/*,video/*,.heic,.heif" className="hidden" onChange={handleUpload} />
                 <button
                   type="button"
                   onClick={() => uploadRef.current?.click()}
@@ -158,9 +206,9 @@ export default function MediaPickerModal({
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border font-inter text-xs text-rain-cloud/70 hover:bg-rain-mist/40 disabled:opacity-50"
                 >
                   {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-                  Upload
+                  {uploading ? 'Uploading…' : 'Upload'}
                 </button>
-                <button onClick={handleClose} className="text-rain-cloud/35 hover:text-rain-cloud/70 transition-colors">
+                <button type="button" onClick={handleClose} className="text-rain-cloud/35 hover:text-rain-cloud/70 transition-colors">
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -221,13 +269,19 @@ export default function MediaPickerModal({
               ) : filtered.length === 0 ? (
                 <div className="text-center py-16">
                   <Image className="w-8 h-8 text-rain-cloud/20 mx-auto mb-3" />
-                  <p className="font-inter text-sm text-rain-cloud/40">No media in this folder yet.</p>
+                  <p className="font-inter text-sm text-rain-cloud/40">
+                    {activeFolder === 'combos'
+                      ? 'No combo images yet. Upload one, or switch to Products and pick an existing photo.'
+                      : 'No media in this folder yet.'}
+                  </p>
                   <button
                     type="button"
                     onClick={() => uploadRef.current?.click()}
-                    className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-wet-earth text-white font-inter text-xs"
+                    disabled={uploading}
+                    className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-wet-earth text-white font-inter text-xs disabled:opacity-50"
                   >
-                    <Upload className="w-3.5 h-3.5" /> Upload here
+                    {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+                    {uploading ? 'Uploading…' : `Upload to ${getMediaFolderLabel(resolvedUploadFolder)}`}
                   </button>
                 </div>
               ) : (
@@ -252,7 +306,7 @@ export default function MediaPickerModal({
                             </div>
                           )
                         ) : (
-                          <img src={assetUrl} alt={asset.alt_text || ''} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                          <img src={assetUrl || undefined} alt={asset.alt_text || ''} className="w-full h-full object-cover bg-muted/30" loading="lazy" decoding="async" />
                         )}
                         {isSelected && (
                           <div className="absolute inset-0 bg-forest-canopy/30 flex items-center justify-center">
@@ -272,6 +326,12 @@ export default function MediaPickerModal({
               )}
             </div>
 
+            {uploadError ? (
+              <div className="flex-shrink-0 border-t border-red-100 bg-red-50 px-6 py-2">
+                <p className="font-inter text-xs text-red-600">{uploadError}</p>
+              </div>
+            ) : null}
+
             {multi && selected.length > 0 && (
               <div className="flex-shrink-0 px-6 py-4 border-t border-border bg-white">
                 <button
@@ -286,6 +346,7 @@ export default function MediaPickerModal({
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

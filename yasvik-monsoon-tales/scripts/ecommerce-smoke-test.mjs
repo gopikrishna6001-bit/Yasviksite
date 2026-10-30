@@ -165,12 +165,12 @@ async function main() {
     ['Customer profiles + addresses', true],
     ['Order tracking page', true],
     ['CMS (stories, people, settings)', true],
-    ['COD orders', false],
-    ['Driver delivery app', false],
-    ['Barcode POS scan', false],
+    ['COD orders', true],
+    ['Driver delivery app', true],
+    ['Barcode POS scan', true],
     ['Automated courier integration', false],
-    ['Inventory admin ledger UI', false],
-    ['Bhavanipuram tiered delivery rules', false],
+    ['Inventory admin ledger UI', true],
+    ['Bhavanipuram tiered delivery rules', true],
   ];
   for (const [name, ready] of features) {
     if (ready) pass('features', `${name} — implemented`);

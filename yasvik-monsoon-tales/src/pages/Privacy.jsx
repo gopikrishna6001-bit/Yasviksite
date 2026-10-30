@@ -29,7 +29,7 @@ export default function Privacy() {
         <section>
           <h2 className="font-cormorant text-2xl font-semibold text-deep-forest">What this application does</h2>
           <p className="mt-3">
-            Yasvik is an online grocery and natural foods store. The application lets you browse products, manage a
+            Yasvik is an online store for carefully chosen everyday foods. The application lets you browse products, manage a
             cart and wishlist, create an account, and place orders for delivery or local pickup.
           </p>
         </section>

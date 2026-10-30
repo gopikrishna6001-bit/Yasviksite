@@ -50,7 +50,7 @@ export default function QuietUtilityZone() {
           <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-rain-cloud/30">
             {sublabel}
           </p>
-          <h3 className="font-cormorant text-xl text-rain-cloud/70 font-light mt-0.5">
+          <h3 className="font-cormorant text-xl text-rain-cloud/70 font-semibold mt-0.5">
             {label}
           </h3>
         </div>

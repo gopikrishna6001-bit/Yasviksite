@@ -86,11 +86,14 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
   }, []);
 
   useEffect(() => {
+    const utilityPx = typeof window !== 'undefined' && window.innerWidth >= 768 ? 36 : 0;
     const headerPx = typeof window !== 'undefined' && window.innerWidth >= 768 ? 84 : 76;
     const breathingPx = typeof window !== 'undefined' && window.innerWidth >= 768 ? 18 : 14;
-    document.documentElement.style.setProperty('--yasvik-nav-top', `${headerPx}px`);
-    document.documentElement.style.setProperty('--yasvik-content-top', `${headerPx + breathingPx}px`);
-    document.documentElement.style.setProperty('--yasvik-content-top-no-nav', `${headerPx}px`);
+    const totalTop = utilityPx + headerPx;
+    document.documentElement.style.setProperty('--yasvik-header-top', `${utilityPx}px`);
+    document.documentElement.style.setProperty('--yasvik-nav-top', `${totalTop}px`);
+    document.documentElement.style.setProperty('--yasvik-content-top', `${totalTop + breathingPx}px`);
+    document.documentElement.style.setProperty('--yasvik-content-top-no-nav', `${totalTop}px`);
     document.documentElement.dataset.yasvikHeaderCompact = scrolled ? '1' : '0';
     document.documentElement.dataset.yasvikHeaderHidden = '0';
     document.documentElement.dataset.yasvikHeaderGlass = '0';
@@ -105,7 +108,8 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-40 border-b text-deep-forest transition-all duration-300 ${shellClass}`}
+      className={`fixed inset-x-0 z-40 border-b text-deep-forest transition-all duration-300 md:top-9 ${shellClass}`}
+      style={{ top: 'var(--yasvik-header-top, 0px)' }}
     >
       <div className="mx-auto flex h-[76px] max-w-[1480px] items-center justify-between gap-4 px-4 md:h-[84px] md:px-8">
 
@@ -156,7 +160,7 @@ export default function HeroTopBar({ onMenuOpen, onCartOpen, onSearchOpen }) {
 
         <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-3">
           {onSearchOpen && (
-            <IconButton type="button" onClick={onSearchOpen} aria-label="Search Yasvik" className="hidden md:inline-flex">
+            <IconButton type="button" onClick={onSearchOpen} aria-label="Search Yasvik">
               <Search className="h-5 w-5" strokeWidth={1.7} />
             </IconButton>
           )}

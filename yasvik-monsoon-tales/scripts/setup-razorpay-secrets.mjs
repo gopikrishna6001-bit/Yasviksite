@@ -45,7 +45,9 @@ putSecret('RAZORPAY_KEY_SECRET', keySecret);
 if (webhookSecret) {
   putSecret('RAZORPAY_WEBHOOK_SECRET', webhookSecret);
 } else {
-  console.log('\nTip: set RAZORPAY_WEBHOOK_SECRET for payment webhooks (Razorpay Dashboard → Webhooks).');
+  console.log('\n⚠ RAZORPAY_WEBHOOK_SECRET not set — webhook auto-confirm will return 503 until configured.');
+  console.log('  Razorpay Dashboard → Webhooks → create secret → re-run:');
+  console.log('  RAZORPAY_WEBHOOK_SECRET=whsec_xxx npm run setup:razorpay\n');
 }
 console.log('Webhook URL (after deploy): https://www.yasvik.com/api/webhooks/razorpay');
 console.log('Subscribe to: payment.captured, order.paid\n');

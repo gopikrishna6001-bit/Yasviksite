@@ -23,7 +23,7 @@ export default function SeasonalBanner() {
         <motion.span variants={fadeUp} className="block font-inter text-[9px] tracking-[0.35em] uppercase text-warm-turmeric">
           In Season Now
         </motion.span>
-        <motion.h2 variants={fadeUp} className="font-cormorant text-3xl text-rain-cloud font-light italic leading-snug">
+        <motion.h2 variants={fadeUp} className="font-cormorant text-3xl text-rain-cloud font-semibold italic leading-snug">
           The forests are yielding their first rains
         </motion.h2>
         <motion.p variants={fadeUp} className="font-inter text-xs text-rain-cloud/45 leading-relaxed">

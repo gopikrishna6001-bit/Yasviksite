@@ -4,9 +4,6 @@
 const PRODUCT_LIST_OMIT_KEYS = [
   'story_description',
   'description',
-  'seo_title',
-  'seo_description',
-  'seo_keywords',
   'recipe_ids',
   'recipe_titles',
   'recipe_links',

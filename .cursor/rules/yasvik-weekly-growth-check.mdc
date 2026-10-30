@@ -1,0 +1,19 @@
+---
+description: Yasvik weekly 30-min growth measurement — GBP, GSC, Merchant, WhatsApp
+alwaysApply: false
+---
+
+# Yasvik weekly growth check (30 min)
+
+When asked for a weekly growth check, pull numbers and propose at most **3** fixes. Do not redesign the storefront.
+
+## Sources
+
+1. **GBP Insights:** calls, direction requests, website clicks
+2. **Google Search Console:** impressions/clicks for `cold pressed oil Hyderabad`, `dry fruits Chanda Nagar`, brand `Yasvik`
+3. **Merchant Center** free listings: impressions/clicks (feed `https://www.yasvik.com/catalog/meta-feed.csv`)
+4. **Site analytics:** sessions + WhatsApp click events
+
+## Output
+
+Compare to last week. List next 3 actions only (prefer GBP photos/reviews/posts and Hero PDP content over code).

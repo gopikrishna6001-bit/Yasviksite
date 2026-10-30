@@ -28,7 +28,7 @@ export const A4_PREVIEW_DPI = 180;
 export function buildPrintLinesLabelQueue(
   productsById,
   printLines = [],
-  { template, packedDate, batchNumbers = {} } = {}
+  { template, packedDate, batchNumbers = {}, priceChannel = 'web' } = {}
 ) {
   const safeTemplate = template || createDefaultGroceryTemplate();
   const queue = [];
@@ -49,7 +49,7 @@ export function buildPrintLinesLabelQueue(
       generateBatchNo(packedDate, (batchSeq += 1));
 
     queue.push(
-      ...buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity: qty }, safeTemplate)
+      ...buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity: qty, priceChannel }, safeTemplate)
     );
   });
 
@@ -87,7 +87,7 @@ export function buildBatchTemplateLabelQueue(
     const qty = Math.max(1, Number(quantities[product.id]) || 1);
     const batchNo = batchNumbers[product.id] || generateBatchNo(packedDate, index + 1);
     queue.push(
-      ...buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity: qty }, safeTemplate)
+      ...buildSeznikLabelQueue(product, variant, { packedDate, batchNo, quantity: qty, priceChannel }, safeTemplate)
     );
   });
 

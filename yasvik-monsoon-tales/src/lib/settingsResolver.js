@@ -13,7 +13,8 @@ function getItemTimestamp(item) {
 export function getLatestSettingRecord(settings = [], key) {
   let best = null;
   for (const item of settings) {
-    if (!item || item.key !== key) continue;
+    const itemKey = item?.key || item?.setting_key || '';
+    if (!itemKey || itemKey !== key) continue;
     if (!best) {
       best = item;
       continue;
@@ -29,7 +30,7 @@ export function getLatestSettingRecord(settings = [], key) {
 
 export function getLatestSettingValue(settings = [], key, fallback = undefined) {
   const record = getLatestSettingRecord(settings, key);
-  const value = record?.value;
+  const value = record?.value ?? record?.setting_value;
   if (value === undefined || value === null || value === '') return fallback;
   return value;
 }
@@ -37,18 +38,19 @@ export function getLatestSettingValue(settings = [], key, fallback = undefined) 
 export function buildLatestSettingsValueMap(settings = []) {
   const bestByKey = {};
   for (const item of settings) {
-    if (!item?.key) continue;
-    const existing = bestByKey[item.key];
+    const itemKey = item?.key || item?.setting_key || '';
+    if (!itemKey) continue;
+    const existing = bestByKey[itemKey];
     if (!existing) {
-      bestByKey[item.key] = item;
+      bestByKey[itemKey] = item;
       continue;
     }
     const currentTs = getItemTimestamp(item);
     const bestTs = getItemTimestamp(existing);
     if (currentTs >= bestTs) {
-      bestByKey[item.key] = item;
+      bestByKey[itemKey] = item;
     }
   }
-  return Object.fromEntries(Object.entries(bestByKey).map(([key, value]) => [key, value?.value]));
+  return Object.fromEntries(Object.entries(bestByKey).map(([key, value]) => [key, value?.value ?? value?.setting_value]));
 }
 

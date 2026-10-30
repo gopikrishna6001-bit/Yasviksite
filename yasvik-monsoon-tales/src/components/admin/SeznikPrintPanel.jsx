@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Download, LayoutTemplate, Loader2, Printer } from 'lucide-react';
 import { appClient } from '@/api/appClient';
@@ -24,9 +24,15 @@ import { createSeznikPrintJob } from '@/services/labelPrintService';
 import { fetchAllAppSettings, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
 import { buildVariantOptions } from '@/lib/labelProductOptions';
 
-export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
+export default function SeznikPrintPanel({
+  priceChannel = 'web',
+  onOpenTemplateBuilder,
+  initialProductId,
+  onQueueReady,
+  reviewMode = false,
+}) {
   const { openProductEditor, productEditorDrawer } = useInlineProductEditor();
-  const batch = useLabelBatchQueue();
+  const batch = useLabelBatchQueue({ initialProductId });
   const [exporting, setExporting] = useState('');
 
   const { data: settings = [] } = useQuery({
@@ -36,14 +42,19 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
 
   const activeTemplate = useMemo(() => getActiveLabelTemplate(settings), [settings]);
 
+  useEffect(() => {
+    if (batch.activeRowCount > 0) onQueueReady?.();
+  }, [batch.activeRowCount, onQueueReady]);
+
   const labelQueue = useMemo(
     () =>
       buildPrintLinesLabelQueue(batch.productsById, batch.printLines, {
         template: activeTemplate,
         packedDate: batch.packedDate,
         batchNumbers: batch.batchNumbers,
+        priceChannel,
       }),
-    [batch.productsById, batch.printLines, activeTemplate, batch.packedDate, batch.batchNumbers]
+    [batch.productsById, batch.printLines, activeTemplate, batch.packedDate, batch.batchNumbers, priceChannel]
   );
 
   const previewFieldValues = labelQueue[0] || null;
@@ -129,10 +140,13 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
           <section className="rounded-2xl border border-border/60 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <h2 className="font-inter text-sm font-semibold text-rain-cloud">Seznik roll print job</h2>
+                <h2 className="font-inter text-sm font-semibold text-rain-cloud">
+                  {reviewMode ? 'Review & print' : 'Seznik roll print job'}
+                </h2>
                 <p className="mt-1 font-inter text-xs text-rain-cloud/45">
-                  Same batch workflow as Epson — search <strong>250 besan</strong>, pick pack & qty, add lines.
-                  Template: <strong>{activeTemplate.name}</strong>
+                  {reviewMode
+                    ? 'Check prices and quantities, then export JPEG / PDF / PNG for the Seznik roll printer.'
+                    : <>Search products, pick pack & qty, then add lines. Template: <strong>{activeTemplate.name}</strong></>}
                 </p>
               </div>
               {onOpenTemplateBuilder ? (
@@ -151,25 +165,28 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
           {totalLabels > 0 ? (
             <section className="rounded-2xl border border-warm-turmeric/30 bg-warm-turmeric/10 px-4 py-3">
               <p className="font-inter text-sm font-semibold text-rain-cloud">
-                {totalLabels} label{totalLabels === 1 ? '' : 's'} in roll file
+                {totalLabels} label{totalLabels === 1 ? '' : 's'} on Seznik roll
               </p>
               <p className="font-inter text-xs text-rain-cloud/60 mt-0.5">
-                {activeTemplate.widthMm} × {activeTemplate.heightMm} mm · 300 DPI
+                Continuous roll · {activeTemplate.widthMm} × {activeTemplate.heightMm} mm · 300 DPI
               </p>
             </section>
           ) : null}
 
-          <LabelBatchAddProductSection
-            search={batch.search}
-            onSearchChange={batch.handleSearchChange}
-            onSearchEnter={batch.addFirstSearchResult}
-            isLoading={batch.isLoading}
-            searchResults={batch.searchResults}
-            getPickerDraft={batch.getPickerDraft}
-            updatePickerDraft={batch.updatePickerDraft}
-            addProductRow={batch.addProductRow}
-            onEditProduct={openProductEditor}
-          />
+          {!reviewMode ? (
+            <LabelBatchAddProductSection
+              search={batch.search}
+              onSearchChange={batch.handleSearchChange}
+              onSearchEnter={batch.addFirstSearchResult}
+              isLoading={batch.isLoading}
+              searchResults={batch.searchResults}
+              getPickerDraft={batch.getPickerDraft}
+              updatePickerDraft={batch.updatePickerDraft}
+              addProductRow={batch.addProductRow}
+              onEditProduct={openProductEditor}
+              priceChannel={priceChannel}
+            />
+          ) : null}
 
           <LabelBatchQueueSection
             queueRows={batch.queueRows}
@@ -182,6 +199,7 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
             removeRow={batch.removeRow}
             duplicateRow={batch.duplicateRow}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
         </div>
 
@@ -190,6 +208,7 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
             printLines={batch.printLines}
             productsById={batch.productsById}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
 
           <section className="rounded-2xl border border-border/60 bg-white p-5 shadow-sm">
@@ -208,7 +227,7 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
                 <p className="font-inter text-sm text-rain-cloud/50">Add products to preview</p>
               </div>
             ) : (
-              <div className="mt-5 flex justify-center rounded-xl border border-border/50 bg-[#ececec] p-6">
+              <div className="mt-5 flex justify-center rounded-xl border border-border/50 bg-[#ececec] p-6" key={priceChannel}>
                 <LabelTemplatePreview
                   template={activeTemplate}
                   fieldValues={previewFieldValues}
@@ -220,7 +239,7 @@ export default function SeznikPrintPanel({ onOpenTemplateBuilder }) {
             {totalLabels > 0 ? (
               <div className="mt-4 rounded-xl bg-rain-mist/50 p-4 font-inter text-xs text-rain-cloud/70 space-y-1">
                 <p>
-                  <strong>{totalLabels}</strong> labels in this print file
+                  <strong>{totalLabels}</strong> label{totalLabels === 1 ? '' : 's'} on continuous Seznik roll
                 </p>
                 <p>
                   Template: <strong>{activeTemplate.name}</strong>

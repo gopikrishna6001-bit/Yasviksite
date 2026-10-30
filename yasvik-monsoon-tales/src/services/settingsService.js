@@ -62,9 +62,26 @@ export function optimizeSupabasePublicImageUrl(url = '', _width = 480) {
   return raw.replace('/storage/v1/render/image/public/', '/storage/v1/object/public/');
 }
 
+function pickSettingValue(row = {}) {
+  const primary = row.setting_value;
+  const mirror = row.value;
+  if (primary == null || primary === '') return mirror ?? null;
+  if (mirror == null || mirror === '') return primary ?? null;
+  if (primary === mirror) return primary;
+  const primaryHero = String(primary).includes('/media-assets/hero/');
+  const mirrorHero = String(mirror).includes('/media-assets/hero/');
+  if (mirrorHero && !primaryHero) return mirror;
+  if (primaryHero && !mirrorHero) return primary;
+  const primaryGeneral = String(primary).includes('/media-assets/general/');
+  const mirrorGeneral = String(mirror).includes('/media-assets/general/');
+  if (!primaryGeneral && mirrorGeneral) return primary;
+  if (primaryGeneral && !mirrorGeneral) return mirror;
+  return primary;
+}
+
 function normalizeSettingRow(row = {}) {
   const key = row.setting_key ?? row.key ?? '';
-  const value = row.setting_value ?? row.value ?? null;
+  const value = pickSettingValue(row);
   return {
     id: row.id,
     key,
@@ -140,6 +157,7 @@ export async function upsertAppSetting(settings = [], key, value, meta = {}) {
   const payload = {
     setting_key: key,
     setting_value: value,
+    value,
     description: meta.description ?? existing?.description ?? cachedExisting?.description ?? '',
     data_type: meta.data_type === 'theme-preset' ? 'string' : meta.data_type || inferSettingDataType(value),
   };

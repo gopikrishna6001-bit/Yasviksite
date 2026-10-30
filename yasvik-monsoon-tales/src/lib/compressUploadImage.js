@@ -1,12 +1,18 @@
 /**
  * Client-side image compression before R2 upload.
  * Skips SVG/GIF/video; converts large raster images to WebP.
+ * Hero folder uploads skip compression — use full-res banners.
  */
 const DEFAULTS = {
   maxWidth: 1400,
   maxHeight: 1400,
   quality: 0.78,
   minBytesToCompress: 200 * 1024,
+};
+
+export const UPLOAD_COMPRESS_PRESETS = {
+  hero: { skipCompress: true },
+  heroes: { skipCompress: true },
 };
 
 function scaledDimensions(width, height, maxWidth, maxHeight) {
@@ -37,11 +43,14 @@ function canvasToBlob(canvas, type, quality) {
  */
 export async function prepareUploadFile(file, options = {}) {
   if (!(file instanceof File)) return file;
+  if (options.skipCompress) return file;
 
   const opts = { ...DEFAULTS, ...options };
   const type = file.type || '';
+  const lowerName = file.name.toLowerCase();
+  const isHeic = type === 'image/heic' || type === 'image/heif' || /\.heic$|\.heif$/.test(lowerName);
 
-  if (!type.startsWith('image/')) return file;
+  if (!type.startsWith('image/') && !isHeic) return file;
   if (type === 'image/svg+xml' || type === 'image/gif' || type === 'image/webp') return file;
   if (file.size < opts.minBytesToCompress) return file;
 

@@ -168,11 +168,11 @@ export default function SubscriptionCheckout() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Order summary */}
           <div className="md:col-span-2 bg-white rounded-2xl p-6 border border-border/20">
-            <h2 className="font-cormorant text-xl text-rain-cloud font-light mb-6">Order Summary</h2>
+            <h2 className="font-cormorant text-xl text-rain-cloud font-semibold mb-6">Order Summary</h2>
 
             {/* Plan details */}
             <div className="mb-6 pb-6 border-b border-border/20">
-              <h3 className="font-cormorant text-lg text-rain-cloud font-light mb-2">{subscription.title}</h3>
+              <h3 className="font-cormorant text-lg text-rain-cloud font-semibold mb-2">{subscription.title}</h3>
               <p className="font-inter text-sm text-rain-cloud/60 mb-4">{subscription.description}</p>
 
               {subscription.highlights?.length > 0 && (
@@ -240,7 +240,7 @@ export default function SubscriptionCheckout() {
 
           {/* Price breakdown */}
           <div className="bg-white rounded-2xl p-6 border border-border/20 h-fit">
-            <h3 className="font-cormorant text-lg text-rain-cloud font-light mb-4">Price Breakdown</h3>
+            <h3 className="font-cormorant text-lg text-rain-cloud font-semibold mb-4">Price Breakdown</h3>
             <div className="space-y-3 mb-6 pb-6 border-b border-border/20">
               <div className="flex items-center justify-between">
                 <span className="font-inter text-sm text-rain-cloud/60">Plan Price</span>

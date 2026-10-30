@@ -23,7 +23,7 @@ import {
   slugifyFileName,
 } from '@/lib/priceLabelGenerator';
 
-export default function A4LegacyPrintPanel() {
+export default function A4LegacyPrintPanel({ priceChannel = 'web' }) {
   const { openProductEditor, productEditorDrawer } = useInlineProductEditor();
   const batch = useLabelBatchQueue();
   const [marginMm, setMarginMm] = useState(DEFAULT_MARGIN_MM);
@@ -35,8 +35,9 @@ export default function A4LegacyPrintPanel() {
       buildLegacyRowsFromPrintLines(batch.printLines, batch.productsById, {
         mfgDate: batch.packedDate,
         batchNumbers: batch.batchNumbers,
+        priceChannel,
       }),
-    [batch.printLines, batch.productsById, batch.packedDate, batch.batchNumbers]
+    [batch.printLines, batch.productsById, batch.packedDate, batch.batchNumbers, priceChannel]
   );
 
   const labelQueue = useMemo(() => buildLabelQueue(selectedRows), [selectedRows]);
@@ -145,6 +146,7 @@ export default function A4LegacyPrintPanel() {
             updatePickerDraft={batch.updatePickerDraft}
             addProductRow={batch.addProductRow}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
 
           <LabelBatchQueueSection
@@ -158,6 +160,7 @@ export default function A4LegacyPrintPanel() {
             removeRow={batch.removeRow}
             duplicateRow={batch.duplicateRow}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
             packedDateLabel="Mfg date"
           />
         </div>
@@ -167,6 +170,7 @@ export default function A4LegacyPrintPanel() {
             printLines={batch.printLines}
             productsById={batch.productsById}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
 
           <section className="rounded-2xl border border-border/60 bg-white p-5 shadow-sm">
@@ -185,7 +189,7 @@ export default function A4LegacyPrintPanel() {
                 <p className="font-inter text-sm text-rain-cloud/50">Add products to preview stickers</p>
               </div>
             ) : (
-              <div className="mt-5 space-y-5">
+              <div className="mt-5 space-y-5" key={priceChannel}>
                 <div className="rounded-xl border border-border/50 bg-[#f3f3f3] p-4">
                   <p className="mb-3 font-inter text-[11px] uppercase tracking-[0.14em] text-rain-cloud/45">
                     Single label (50 × 25 mm)

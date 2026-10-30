@@ -1,0 +1,4 @@
+# Pages-only config — use with: npm run deploy:pages
+# Keeps Worker settings in wrangler.toml separate.
+name = "yasvik"
+pages_build_output_dir = "dist"

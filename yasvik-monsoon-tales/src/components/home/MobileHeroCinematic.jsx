@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Leaf, Tag, Truck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import HomeAnchorLink from '@/components/home/HomeAnchorLink';
 import HeroBackgroundBanner from '@/components/brand/atmosphere/HeroBackgroundBanner';
 import HeroYouTubeBackground from '@/components/home/HeroYouTubeBackground';
 import HeroBackgroundVideo from '@/components/home/HeroBackgroundVideo';
@@ -12,7 +13,7 @@ const container = {
   show: {
     transition: {
       staggerChildren: 0.42,
-      delayChildren: 1.1, // let video breathe before text arrives
+      delayChildren: 0.35,
     },
   },
 };
@@ -34,6 +35,35 @@ const fadeIn = {
   },
 };
 
+const HERO_TRUST_ITEMS = [
+  { icon: Leaf, label: 'Pure & Natural Ingredients' },
+  { icon: Tag, label: 'Fair Prices Everyday' },
+  { icon: Truck, label: 'Delivered to Your Home' },
+];
+
+function HeroHeadline({ lines = [] }) {
+  if (!lines.length) return null;
+  const accentLine = lines.length > 1 ? lines[lines.length - 1] : '';
+  const leadLines = lines.length > 1 ? lines.slice(0, -1) : lines;
+
+  return (
+    <h1 className="mt-2 max-w-[22rem] font-cormorant text-[2.35rem] font-semibold leading-[1.06] text-white drop-shadow-sm">
+      {leadLines.map((line, index) => (
+        <span key={`${line}-${index}`}>
+          {index > 0 ? <br /> : null}
+          {line}
+        </span>
+      ))}
+      {accentLine ? (
+        <>
+          <br />
+          <span className="font-cormorant text-[2.5rem] font-semibold italic text-neon-paddy">{accentLine}</span>
+        </>
+      ) : null}
+    </h1>
+  );
+}
+
 /* ── Component ── */
 export default function MobileHeroCinematic({
   mediaPlan,
@@ -43,8 +73,10 @@ export default function MobileHeroCinematic({
   subheadline,
   primaryCta,
   secondaryCta,
+  secondaryCtaPath,
 }) {
   const lines = headlineLines?.length ? headlineLines : [headline].filter(Boolean);
+  const secondaryHref = secondaryCtaPath || '/#featured';
   const streamUrl =
     mediaPlan?.mode === 'video' && isStreamableHeroUrl(mediaPlan?.url)
       ? mediaPlan.url
@@ -53,7 +85,7 @@ export default function MobileHeroCinematic({
   const mp4Url = streamUrl && !youtubeId && isVideoUrl(streamUrl) ? streamUrl : null;
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[#0a170d] pb-12 pt-0">
+    <section className="relative flex min-h-[min(78svh,720px)] flex-col justify-end overflow-hidden bg-[#0a170d] pb-8 pt-0">
 
       {/* ── Background ── */}
       {youtubeId ? (
@@ -104,17 +136,9 @@ export default function MobileHeroCinematic({
         </motion.p>
 
         {/* Headline */}
-        <motion.h1
-          variants={fadeSlideUp}
-          className="mt-2 max-w-[22rem] font-cormorant text-[2.35rem] font-semibold leading-[1.06] text-white drop-shadow-sm"
-        >
-          {lines.map((line, index) => (
-            <span key={`${line}-${index}`}>
-              {index > 0 ? <br /> : null}
-              {line}
-            </span>
-          ))}
-        </motion.h1>
+        <motion.div variants={fadeSlideUp}>
+          <HeroHeadline lines={lines} />
+        </motion.div>
 
         {subheadline ? (
           <motion.p
@@ -125,6 +149,15 @@ export default function MobileHeroCinematic({
           </motion.p>
         ) : null}
 
+        <motion.div variants={fadeIn} className="mt-5 flex gap-5 overflow-x-auto hide-scrollbar">
+          {HERO_TRUST_ITEMS.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex w-[5.5rem] flex-shrink-0 flex-col items-center gap-1.5 text-center">
+              <Icon className="h-5 w-5 text-white/85" strokeWidth={1.5} aria-hidden="true" />
+              <span className="font-inter text-[10px] font-semibold leading-tight text-white/80">{label}</span>
+            </div>
+          ))}
+        </motion.div>
+
         {/* CTA buttons */}
         <motion.div variants={fadeIn} className="mt-6 flex gap-3">
           <Link
@@ -133,12 +166,12 @@ export default function MobileHeroCinematic({
           >
             {primaryCta}
           </Link>
-          <Link
-            to="/#home-categories-heading"
+          <HomeAnchorLink
+            to={secondaryHref}
             className="flex-1 rounded-full border-2 border-white/35 py-3.5 text-center font-inter text-sm font-bold text-white backdrop-blur-sm transition-colors hover:border-white/65 active:scale-95"
           >
             {secondaryCta}
-          </Link>
+          </HomeAnchorLink>
         </motion.div>
       </motion.div>
 

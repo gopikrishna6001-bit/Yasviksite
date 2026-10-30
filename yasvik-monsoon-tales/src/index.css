@@ -8,14 +8,14 @@
     --font-cormorant: 'Cormorant Garamond', Georgia, serif;
     --font-inter: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
 
-    --ysv-text-xs: 0.75rem;
-    --ysv-text-sm: 0.875rem;
-    --ysv-text-base: 1rem;
-    --ysv-text-lg: 1.125rem;
-    --ysv-text-xl: 1.25rem;
-    --ysv-text-2xl: 1.5rem;
-    --ysv-text-3xl: 1.875rem;
-    --ysv-text-4xl: 2.25rem;
+    --ysv-text-xs: 0.8125rem;
+    --ysv-text-sm: 0.9375rem;
+    --ysv-text-base: 1.0625rem;
+    --ysv-text-lg: 1.1875rem;
+    --ysv-text-xl: 1.375rem;
+    --ysv-text-2xl: 1.625rem;
+    --ysv-text-3xl: 2rem;
+    --ysv-text-4xl: 2.375rem;
     --ysv-leading-body: 1.65;
     --ysv-leading-heading: 1.15;
     --ysv-leading-tight: 1.25;
@@ -187,8 +187,14 @@
 
 @layer base {
   html {
-    font-size: 16px;
+    font-size: 17px;
     -webkit-text-size-adjust: 100%;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+    }
   }
 
   html,
@@ -203,7 +209,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter);
     background-color: var(--bg-canvas, var(--yasvik-dynamic-bg, var(--ysv-monsoon)));
     color: var(--text-main, var(--ysv-text-primary));
     font-size: var(--ysv-text-base);
@@ -218,8 +225,24 @@
   }
 
   h1, h2, h3, h4 {
+    font-family: var(--font-cormorant);
+    font-weight: 600;
+    letter-spacing: var(--ysv-tracking-display);
     line-height: var(--ysv-leading-heading);
     color: var(--text-main, var(--ysv-text-primary));
+  }
+
+  .font-cormorant,
+  .font-syne {
+    font-family: var(--font-cormorant) !important;
+  }
+
+  .font-inter {
+    font-family: var(--font-inter) !important;
+  }
+
+  p, li, label, input, textarea, select, button {
+    font-family: var(--font-inter);
   }
 
   ::selection {
@@ -604,4 +627,15 @@
     color: #000 !important;
     background: #fff !important;
   }
+}
+
+/* Admin stock/qty: plain entry box — hide browser spin buttons */
+.admin-number-box::-webkit-outer-spin-button,
+.admin-number-box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.admin-number-box[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

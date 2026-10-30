@@ -1,17 +1,17 @@
 /**
- * Assign readable product-level SKUs (TOOR-DAL style) for counter barcodes.
+ * Renumber every product to short counter barcodes: YAS-001, YAS-002, …
  *
  * Run: SUPABASE_DB_PASSWORD=… node scripts/assign_product_barcodes.mjs
- * Dry run: node scripts/assign_product_barcodes.mjs --dry-run
+ * Dry run: SUPABASE_DB_PASSWORD=… node scripts/assign_product_barcodes.mjs --dry-run
  */
 import { Client } from 'pg';
-import { assignMissingProductSkus } from '../src/lib/productSku.js';
+import { reassignAllProductSkus } from '../src/lib/productSku.js';
 
 const dbPassword = process.env.SUPABASE_DB_PASSWORD;
 const dryRun = process.argv.includes('--dry-run');
 
-if (!dryRun && !dbPassword) {
-  console.error('Missing SUPABASE_DB_PASSWORD (or pass --dry-run)');
+if (!dbPassword) {
+  console.error('Missing SUPABASE_DB_PASSWORD');
   process.exit(1);
 }
 
@@ -25,40 +25,35 @@ const client = new Client({
 });
 
 async function main() {
-  if (!dryRun) await client.connect();
+  await client.connect();
 
-  const { rows } = dryRun
-    ? { rows: [] }
-    : await client.query(
-        `SELECT id, title, name, sku FROM products ORDER BY created_date DESC NULLS LAST`
-      );
+  const { rows } = await client.query(
+    `SELECT id, title, name, sku, product_code FROM products ORDER BY title ASC NULLS LAST, id ASC`,
+  );
 
-  let products = rows;
-  if (dryRun) {
-    console.log('Dry run — no database connection. Pass SUPABASE_DB_PASSWORD to apply updates.');
-    process.exit(0);
-  }
-
-  const updates = assignMissingProductSkus(
-    products.map((p) => ({ ...p, title: p.title || p.name }))
+  const updates = reassignAllProductSkus(
+    rows.map((p) => ({ ...p, title: p.title || p.name })),
   );
 
   if (!updates.length) {
-    console.log('All products already have SKUs.');
+    console.log('No products found.');
     await client.end();
     return;
   }
 
-  console.log(`Assigning SKUs to ${updates.length} products…`);
+  console.log(`${dryRun ? 'Would renumber' : 'Renumbering'} ${updates.length} products…`);
   for (const item of updates) {
-    console.log(`  ${item.title} → ${item.sku}`);
-    await client.query(`UPDATE products SET sku = $1, updated_at = now() WHERE id = $2`, [
-      item.sku,
-      item.id,
-    ]);
+    const from = item.previousSku ? `${item.previousSku} → ` : '';
+    console.log(`  ${from}${item.sku}  (${item.title})`);
+    if (!dryRun) {
+      await client.query(
+        `UPDATE products SET sku = $1, product_code = $2, updated_at = now() WHERE id = $3`,
+        [item.sku, item.product_code, item.id],
+      );
+    }
   }
 
-  console.log('Done.');
+  console.log(dryRun ? 'Dry run complete — no changes written.' : 'Done.');
   await client.end();
 }
 

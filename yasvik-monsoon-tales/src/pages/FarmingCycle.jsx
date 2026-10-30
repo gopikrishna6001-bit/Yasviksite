@@ -83,7 +83,7 @@ export default function FarmingCycle() {
               {/* Season header */}
               <div className="flex items-start justify-between mb-5">
                 <div>
-                  <h2 className="font-cormorant text-2xl text-rain-cloud font-light">
+                  <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold">
                     {season.label}
                   </h2>
                   <p className="font-inter text-xs text-rain-cloud/40 mt-1">{season.months}</p>
@@ -131,7 +131,7 @@ export default function FarmingCycle() {
             transition={{ duration: 0.5 }}
             className="bg-gradient-to-br from-temple-stone/10 to-wet-earth/5 border border-temple-stone/30 rounded-2xl p-6"
           >
-            <h3 className="font-cormorant text-lg text-rain-cloud font-light mb-3">
+            <h3 className="font-cormorant text-lg text-rain-cloud font-semibold mb-3">
               A Living Reference
             </h3>
             <div className="space-y-2 text-sm">

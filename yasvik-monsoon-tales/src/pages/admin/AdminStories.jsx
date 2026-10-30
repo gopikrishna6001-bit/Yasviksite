@@ -6,10 +6,23 @@ import EntityTable from '../../components/admin/EntityTable';
 import EntityFormModal from '../../components/admin/EntityFormModal';
 import { Plus } from 'lucide-react';
 import ImageUploadField from '../../components/admin/ImageUploadField';
+import StoryCoverGalleryEditor from '../../components/admin/StoryCoverGalleryEditor';
 import { listCoreValueStoryTemplates } from '@/brand/coreValueStoryTemplates';
 import { YASVIK_CORE_VALUES } from '@/brand/monsoonTokens';
 
-const EMPTY = { title: '', slug: '', excerpt: '', body: '', cover_image: '', read_time_minutes: '', is_featured: false, is_published: false };
+const EMPTY = {
+  title: '',
+  slug: '',
+  excerpt: '',
+  body: '',
+  cover_image: '',
+  cover_images: [],
+  read_time_minutes: '',
+  content_category: 'story',
+  show_on_home: false,
+  is_featured: false,
+  is_published: false,
+};
 
 const PILLAR_TEMPLATES = listCoreValueStoryTemplates();
 
@@ -41,7 +54,17 @@ function StoryForm({ data, onChange }) {
           </p>
         ) : null}
       </div>
-      <ImageUploadField label="Cover Image" value={data.cover_image} onChange={(url) => onChange({ ...data, cover_image: url })} aspectClass="aspect-video" folder="stories" entityId={data.id} seoName={data.slug || data.title} assetRole="cover" entityTitle={data.title} />
+      <div>
+        <label className="font-inter text-xs text-rain-cloud/55 block mb-2">Cover images (slideshow)</label>
+        <StoryCoverGalleryEditor
+          coverImage={data.cover_image}
+          coverImages={data.cover_images}
+          entityId={data.id}
+          seoName={data.slug || data.title}
+          title={data.title}
+          onChange={(patch) => onChange({ ...data, ...patch })}
+        />
+      </div>
       <div>
         <label className="font-inter text-xs text-rain-cloud/55 block mb-1">Read Time (minutes)</label>
         <input type="number" value={data.read_time_minutes || ''} onChange={f('read_time_minutes')} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none focus:border-forest-canopy" />
@@ -52,8 +75,23 @@ function StoryForm({ data, onChange }) {
           <textarea value={data[key] || ''} onChange={f(key)} rows={rows} className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none resize-none" />
         </div>
       ))}
-      <div className="flex gap-6">
-        {[{ key: 'is_featured', label: 'Featured' }, { key: 'is_published', label: 'Published' }].map(({ key, label }) => (
+      <div>
+        <label className="font-inter text-xs text-rain-cloud/55 block mb-1">Content category</label>
+        <select
+          value={data.content_category || 'story'}
+          onChange={f('content_category')}
+          className="w-full border border-border rounded-xl px-4 py-2.5 font-inter text-sm focus:outline-none focus:border-forest-canopy"
+        >
+          <option value="story">Story</option>
+          <option value="learn">Learn / educational</option>
+        </select>
+      </div>
+      <div className="flex flex-wrap gap-6">
+        {[
+          { key: 'show_on_home', label: 'Show on home' },
+          { key: 'is_featured', label: 'Featured' },
+          { key: 'is_published', label: 'Published' },
+        ].map(({ key, label }) => (
           <label key={key} className="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" checked={!!data[key]} onChange={f(key)} className="w-4 h-4 accent-forest-canopy" />
             <span className="font-inter text-sm text-rain-cloud/70">{label}</span>
@@ -77,6 +115,7 @@ export default function AdminStories() {
       qc.invalidateQueries(['admin-stories']);
       qc.invalidateQueries(['core-value-stories-published']);
       qc.invalidateQueries(['stories-all']);
+      qc.invalidateQueries(['home-learn-stories']);
       closeModal();
     },
   });
@@ -86,6 +125,7 @@ export default function AdminStories() {
       qc.invalidateQueries(['admin-stories']);
       qc.invalidateQueries(['core-value-stories-published']);
       qc.invalidateQueries(['stories-all']);
+      qc.invalidateQueries(['home-learn-stories']);
       closeModal();
     },
   });
@@ -95,6 +135,7 @@ export default function AdminStories() {
       qc.invalidateQueries(['admin-stories']);
       qc.invalidateQueries(['core-value-stories-published']);
       qc.invalidateQueries(['stories-all']);
+      qc.invalidateQueries(['home-learn-stories']);
     },
   });
 

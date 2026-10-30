@@ -32,6 +32,10 @@ export async function syncPendingPosSales({ onProgress } = {}) {
         client_sale_id: sale.id,
         sold_at: sale.soldAt,
         notes: 'Offline counter sale',
+        order_channel: sale.order_channel || 'pos',
+        coupon_code: sale.discount_mode === 'coupon' ? sale.coupon_code : null,
+        manual_discount_percent: sale.discount_mode === 'percent' ? sale.manual_discount_percent : null,
+        manual_discount_paise: sale.discount_mode === 'fixed' ? sale.manual_discount_paise : null,
       });
       const data = res.data;
       if (!data?.success) throw new Error(data?.error || 'Sync failed');
@@ -65,6 +69,14 @@ export function buildOfflineSaleRecord({
   cashReceived,
   changeDue,
   total,
+  subtotalPaise,
+  discountPaise,
+  discountMode,
+  discountLabel,
+  couponCode,
+  manualPercent,
+  manualFixedPaise,
+  orderChannel,
 }) {
   return {
     id,
@@ -76,6 +88,15 @@ export function buildOfflineSaleRecord({
     cash_received: paymentMethod === 'cash' && cashReceived ? Number(cashReceived) : null,
     change_due: paymentMethod === 'cash' && cashReceived ? changeDue : null,
     total,
+    amount_paise: Math.round(total * 100),
+    subtotal_paise: subtotalPaise,
+    discount_paise: discountPaise || 0,
+    discount_mode: discountMode || 'none',
+    discount_label: discountLabel || '',
+    coupon_code: couponCode || null,
+    manual_discount_percent: manualPercent,
+    manual_discount_paise: manualFixedPaise,
+    order_channel: orderChannel === 'whatsapp' ? 'whatsapp' : 'pos',
     items: cart.map((i) => ({
       productId: i.productId,
       product_id: i.productId,
@@ -85,6 +106,7 @@ export function buildOfflineSaleRecord({
       pack_kg: i.pack_kg,
       qty: i.qty,
       price: i.price,
+      original_price: i.originalPrice,
       type: i.type || 'product',
     })),
     cart: [...cart],

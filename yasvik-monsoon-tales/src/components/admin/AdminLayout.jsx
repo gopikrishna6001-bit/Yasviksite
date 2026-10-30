@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import AdminSidebar from './AdminSidebar';
 import AdminInstallPrompt from './AdminInstallPrompt';
-import { Menu, PanelLeftOpen } from 'lucide-react';
+import AdminRouteErrorBoundary, { adminRouteLabel } from './AdminRouteErrorBoundary';
+import { Menu, PanelLeftOpen, Search } from 'lucide-react';
 import { setPosSidebarHidden, usePosSidebarHidden } from '@/lib/posSidebarStore';
 import { applyAdminPwaHead } from '@/lib/pwaUtils';
+import { useAuth } from '@/lib/AuthContext';
+import { canAccessAdminPath } from '@/lib/adminAccess';
 
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [globalQ, setGlobalQ] = useState('');
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const isPosRoute = pathname.startsWith('/admin/pos');
   const { hidden: posSidebarHidden } = usePosSidebarHidden();
   const collapseSidebar = isPosRoute && posSidebarHidden;
@@ -34,6 +40,14 @@ export default function AdminLayout() {
       body.style.overflow = prev.overflow;
     };
   }, []);
+
+  const runGlobalSearch = (e) => {
+    e.preventDefault();
+    const q = globalQ.trim();
+    if (!q) return;
+    navigate(`/admin/customers?q=${encodeURIComponent(q)}`);
+    setGlobalQ('');
+  };
 
   return (
     <div className="flex h-[100dvh] bg-rain-mist overflow-hidden">
@@ -87,8 +101,26 @@ export default function AdminLayout() {
           </div>
         </div>
 
-        <main className={`flex-1 min-h-0 ${isPosRoute ? 'overflow-hidden' : 'overflow-y-auto'}`}>
-          <Outlet />
+        <main className={`flex-1 min-h-0 flex flex-col ${isPosRoute ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+          {!isPosRoute && canAccessAdminPath(user?.role, '/admin/customers') && (
+            <form
+              onSubmit={runGlobalSearch}
+              className="hidden lg:flex items-center gap-2 px-6 py-3 border-b border-border/40 bg-white/70"
+            >
+              <Search className="w-4 h-4 text-rain-cloud/35" />
+              <input
+                value={globalQ}
+                onChange={(e) => setGlobalQ(e.target.value)}
+                placeholder="Search customers by name, mobile, or invoice…"
+                className="flex-1 bg-transparent font-inter text-sm outline-none placeholder:text-rain-cloud/35"
+              />
+            </form>
+          )}
+          <div className="flex flex-1 flex-col min-h-0">
+            <AdminRouteErrorBoundary routeLabel={adminRouteLabel(pathname)} resetKey={pathname}>
+              <Outlet />
+            </AdminRouteErrorBoundary>
+          </div>
         </main>
       </div>
     </div>

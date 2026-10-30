@@ -136,7 +136,7 @@ export default function ManageSubscriptions() {
         ) : userSubscriptions.length === 0 ? (
           <div className="bg-white rounded-2xl p-8 text-center border border-border/20">
             <AlertCircle className="w-12 h-12 text-rain-cloud/20 mx-auto mb-3" />
-            <h3 className="font-cormorant text-lg text-rain-cloud font-light mb-2">No Active Subscriptions</h3>
+            <h3 className="font-cormorant text-lg text-rain-cloud font-semibold mb-2">No Active Subscriptions</h3>
             <p className="font-inter text-sm text-rain-cloud/60 mb-4">
               Subscribe to a monthly plan to get regular deliveries of your favorite products.
             </p>
@@ -170,7 +170,7 @@ export default function ManageSubscriptions() {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="font-cormorant text-xl text-rain-cloud font-light">{plan?.title || 'Plan'}</h3>
+                      <h3 className="font-cormorant text-xl text-rain-cloud font-semibold">{plan?.title || 'Plan'}</h3>
                       <p className="font-inter text-xs text-rain-cloud/50 mt-0.5">
                         {sub.billing_cycle.charAt(0).toUpperCase() + sub.billing_cycle.slice(1)} Plan
                       </p>

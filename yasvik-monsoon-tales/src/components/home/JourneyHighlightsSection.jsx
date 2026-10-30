@@ -33,7 +33,7 @@ function JourneyTile({ journey, index }) {
           )}
 
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="font-cormorant text-xl text-white font-light leading-snug">
+            <h3 className="font-cormorant text-xl text-white font-semibold leading-snug">
               {journey.title}
             </h3>
             {journey.tagline && (

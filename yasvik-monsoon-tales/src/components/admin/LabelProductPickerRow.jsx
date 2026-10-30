@@ -1,11 +1,12 @@
 import { Plus } from 'lucide-react';
 import LabelProductNameCell from '@/components/admin/LabelProductNameCell';
-import { buildVariantOptions, formatVariantOptionLabel } from '@/lib/labelProductOptions';
+import { buildVariantOptions, formatVariantOptionLabel, formatLabelPriceSummary } from '@/lib/labelProductOptions';
 
 export default function LabelProductPickerRow({
   product,
   variantIndex,
   quantity,
+  priceChannel = 'web',
   onVariantChange,
   onQuantityChange,
   onAdd,
@@ -16,14 +17,23 @@ export default function LabelProductPickerRow({
   const variants = buildVariantOptions(product);
   const name = product.title || product.name || 'Product';
   const qty = Math.max(1, Number(quantity) || 1);
+  const selectedVariant = variants[variantIndex ?? 0] || variants[0];
+  const priceSummary = formatLabelPriceSummary(product, selectedVariant, priceChannel);
 
   return (
     <div className="flex flex-wrap items-center gap-2 px-3 py-2.5 sm:flex-nowrap hover:bg-rain-mist/40">
       <LabelProductNameCell
         product={product}
         onEditProduct={onEditProduct}
-        className="flex-1 basis-full sm:basis-auto sm:max-w-[34%]"
+        className="flex-1 basis-full sm:basis-auto sm:max-w-[30%]"
       />
+
+      <span
+        className="shrink-0 rounded-md bg-forest-canopy/10 px-2 py-1 font-inter text-xs font-semibold tabular-nums text-forest-canopy"
+        title="Label price"
+      >
+        {priceSummary}
+      </span>
 
       <select
         value={variantIndex ?? 0}
@@ -33,7 +43,7 @@ export default function LabelProductPickerRow({
       >
         {variants.map((variant, index) => (
           <option key={variant.optionKey || `${variant.label}-${index}`} value={index}>
-            {formatVariantOptionLabel(variant, product)}
+            {formatVariantOptionLabel(variant, product, priceChannel)}
           </option>
         ))}
       </select>

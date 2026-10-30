@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ExternalLink, MapPin, MessageCircle, Phone, Truck } from 'lucide-react';
 import YasvikButton from '@/components/brand/YasvikButton';
-import { formatFreeDeliveryNote, resolveFreeDeliveryThreshold } from '@/lib/commerceCopy';
-import { YASVIK_GOOGLE_MAPS_URL } from '@/lib/storeLocation';
-
-import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+import { formatFreeDeliveryNote } from '@/lib/commerceCopy';
+import { YASVIK_BRAND } from '@/brand/yasvikManifesto';
+import {
+  YASVIK_GOOGLE_MAPS_URL,
+  YASVIK_SUPPORT_PHONE_DISPLAY,
+  YASVIK_WHATSAPP_NUMBER,
+} from '@/lib/storeLocation';
 
 function getSetting(settingsMap, key, fallback) {
   const value = settingsMap?.[key];
@@ -19,11 +22,11 @@ function normalizePhone(value = '') {
 }
 
 const STORE_CATEGORIES = [
-  'Millets & staples',
-  'Oils & ghee',
-  'Spices & masalas',
-  'Dry fruits & snacks',
-  'Pooja essentials',
+  'Homemade snacks & sweets',
+  'Pickles & spice powders',
+  'Cold-pressed oils, ghee & honey',
+  'Jaggery & dry fruits',
+  'Rice, millets & everyday staples',
 ];
 
 export default function LocalStoreBlock({ settingsMap = {} }) {
@@ -34,22 +37,21 @@ export default function LocalStoreBlock({ settingsMap = {} }) {
     getSetting(settingsMap, 'support_phone', YASVIK_SUPPORT_PHONE_DISPLAY),
   ).trim();
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I want to order for home delivery.')}`;
-  const freeDeliveryThreshold = resolveFreeDeliveryThreshold(settingsMap);
-  const deliveryLine = formatFreeDeliveryNote(freeDeliveryThreshold, 'store');
+  const deliveryLine = formatFreeDeliveryNote();
 
   return (
-    <section className="bg-white px-4 py-12 md:px-8 md:py-16">
+    <section className="border-b border-soft-border/40 bg-white px-4 py-8 md:px-8 md:py-12">
       <div className="mx-auto max-w-[1400px] overflow-hidden rounded-[1.75rem] border border-soft-border bg-warm-cream shadow-[0_12px_36px_rgba(31,61,43,0.06)]">
         <div className="grid gap-8 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-10">
           <div>
-            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay">
-              Visit Yasvik
+            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-deep-forest/45">
+              Our store
             </p>
-            <h2 className="mt-3 font-cormorant text-3xl font-semibold leading-tight text-deep-forest md:text-4xl">
-              Your local natural foods store
+            <h2 className="font-cormorant text-2xl font-semibold leading-tight text-deep-forest md:text-3xl">
+              Visit Yasvik
             </h2>
             <p className="mt-4 font-inter text-sm leading-7 text-deep-forest/75 md:text-base">
-              Order on the website, message us on WhatsApp, or visit our store in Ashok Nagar — serving customers across Hyderabad and beyond.
+              {YASVIK_BRAND.localStoreBody}
             </p>
 
             <ul className="mt-5 space-y-3">
@@ -86,14 +88,14 @@ export default function LocalStoreBlock({ settingsMap = {} }) {
                 <MessageCircle className="h-4 w-4" />
                 Order on WhatsApp
               </YasvikButton>
-              <YasvikButton to="/contact" variant="outline" className="justify-center">
-                Store &amp; delivery help
+              <YasvikButton to="/store" variant="outline" className="justify-center">
+                Visit our store
               </YasvikButton>
             </div>
           </div>
 
           <div className="rounded-2xl border border-soft-border bg-white p-5 md:p-6">
-            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-deep-forest/50">
+            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-deep-forest/45">
               What families shop here
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -106,7 +108,7 @@ export default function LocalStoreBlock({ settingsMap = {} }) {
             </ul>
             <Link
               to="/shop"
-              className="mt-6 inline-flex font-inter text-sm font-bold text-neon-paddy hover:text-deep-forest"
+              className="mt-6 inline-flex font-inter text-xs font-bold text-neon-paddy hover:text-deep-forest"
             >
               Browse the full shop →
             </Link>

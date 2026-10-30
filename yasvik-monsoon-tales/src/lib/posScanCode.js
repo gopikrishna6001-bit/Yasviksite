@@ -1,9 +1,11 @@
 /** POS QR / scan payload helpers — shared by labels and counter POS. */
 
+import { normalizeProductSku } from '@/lib/productSku';
+
 export const POS_SCAN_LANDING_URL = 'https://www.yasvik.com/pos-scan';
 
 export function buildPosScanCode(product, variant, price) {
-  const sku = String(variant?.sku || product?.sku || '').trim();
+  const sku = normalizeProductSku(variant?.sku || product?.sku);
   const token = sku || (product?.id ? `pid.${product.id}` : '');
   if (!token) return null;
   const p = Number(price ?? variant?.price ?? product?.price);

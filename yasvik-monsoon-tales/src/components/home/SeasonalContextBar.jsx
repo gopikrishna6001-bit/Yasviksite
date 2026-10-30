@@ -29,7 +29,7 @@ export default function SeasonalContextBar() {
           <Leaf className="w-4 h-4 text-rain-cloud/60 group-hover:text-forest-canopy transition-colors" />
           <div>
             <p className="font-inter text-xs text-rain-cloud/50">We're in the</p>
-            <p className="font-cormorant text-base text-rain-cloud font-light">{season.label}</p>
+            <p className="font-cormorant text-base text-rain-cloud font-semibold">{season.label}</p>
           </div>
         </div>
         <span className="font-inter text-xs text-rain-cloud/40 group-hover:text-rain-cloud/60">Explore →</span>

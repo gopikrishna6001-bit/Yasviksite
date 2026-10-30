@@ -1,6 +1,12 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { getLineItemStockKg, getVariantCartKey, normalizeProductVariant } from '@/lib/productVariantUtils';
+import { parseProductVariants } from '@/lib/productStockUtils';
+import { computePackBulkSavings } from '@/lib/variantBulkSavings';
 import { useStoreOffline } from '@/hooks/useStoreOffline';
+import { isSellableOnline } from '@/lib/productVisibility';
+import { isSellableBundleProduct } from '@/lib/productBundleUtils';
+import { buildBundleCartSnapshot } from '@/lib/comboVisualUtils';
+import { buildComboV2CartSnapshot, bundleHasCustomerOptions, findOptionChoice, getComboCartKey } from '@/lib/comboV2Utils';
 
 const CartContext = createContext(null);
 
@@ -14,24 +20,63 @@ export function CartProvider({ children }) {
     localStorage.setItem('yasvik_cart', JSON.stringify(items));
   }, [items]);
 
-  const addItem = useCallback((product, variant = null, qty = 1, comboKey = null) => {
-    if (storeOffline) return;
+  const addItem = useCallback((product, variant = null, qty = 1, comboKey = null, extras = {}) => {
+    if (storeOffline || !isSellableOnline(product)) return;
     const normalizedVariant = normalizeProductVariant(variant || {}) || null;
-    const key = getVariantCartKey(product.id, normalizedVariant, comboKey);
+    const bundle = extras.bundle || null;
+    const selectedChoice = extras.choice
+      || (bundle && bundleHasCustomerOptions(bundle)
+        ? findOptionChoice(bundle, extras.choiceId, extras.choiceSlug)
+        : null);
+    const resolvedComboKey = comboKey
+      || (selectedChoice ? getComboCartKey(product.id, selectedChoice) : null);
+    const key = getVariantCartKey(product.id, normalizedVariant, resolvedComboKey);
     setItems(prev => {
       const existing = prev.find(i => i.key === key);
       if (existing) {
         return prev.map(i => i.key === key ? { ...i, qty: i.qty + qty } : i);
       }
       const packKg = normalizedVariant?.pack_kg ?? null;
+      const sellPrice = selectedChoice?.price_override_paise != null
+        ? Number(selectedChoice.price_override_paise) / 100
+        : (normalizedVariant?.price || product.price);
+      const comparePrice = normalizedVariant?.compare_price ?? product.discount_price ?? product.compare_price ?? null;
+      const productVariants = parseProductVariants(product);
+      const bulkSavings = normalizedVariant
+        ? computePackBulkSavings(productVariants, normalizedVariant)
+        : null;
+      const bundleSnap = isSellableBundleProduct(product)
+        ? (
+          bundleHasCustomerOptions(bundle)
+            ? buildComboV2CartSnapshot({ parentProduct: product, bundle, choice: selectedChoice })
+            : buildBundleCartSnapshot(
+              product,
+              bundle,
+              bundle?.items || extras.bundleItems || null,
+              bundle?.products || extras.products || null,
+            )
+        )
+        : null;
+      const resolvedTitle = bundleSnap?.title
+        || product.title
+        || product.name
+        || 'Yasvik product';
+      const resolvedImage = bundleSnap?.imageUrl
+        || normalizedVariant?.image_url
+        || product.hero_image
+        || product.featured_image_url
+        || product.image_url
+        || (bundleSnap?.mosaicUrls || [])[0]
+        || null;
       return [...prev, {
         key,
         productId: product.id,
-        productSlug: product.slug || null,
-        title: product.title || product.name || 'Yasvik product',
+        productSlug: bundleSnap?.productSlug || product.slug || null,
+        title: resolvedTitle,
         sku: normalizedVariant?.sku || product.sku || null,
-        price: normalizedVariant?.price || product.price,
-        hero_image: normalizedVariant?.image_url || product.hero_image,
+        price: sellPrice,
+        compare_price: comparePrice,
+        hero_image: resolvedImage,
         unit: normalizedVariant?.label || product.unit,
         variant: normalizedVariant?.label || null,
         variantSku: normalizedVariant?.sku || null,
@@ -42,9 +87,30 @@ export function CartProvider({ children }) {
           weight_grams: normalizedVariant.weight_grams || null,
         } : null,
         pack_kg: packKg,
+        bulk_savings: bulkSavings,
         stock_deduction_kg: packKg ? Number((packKg * qty).toFixed(3)) : null,
         qty,
-        comboKey: comboKey || null,
+        comboKey: resolvedComboKey || null,
+        ...(bundleSnap ? {
+          isBundle: true,
+          isComboV2: bundleSnap.isComboV2 === true,
+          productKind: bundleSnap.productKind,
+          productGroup: bundleSnap.productGroup,
+          inventoryMode: bundleSnap.inventoryMode,
+          yasvikMark: bundleSnap.yasvikMark,
+          bundleItemCount: bundleSnap.bundleItemCount,
+          bundlePackCount: bundleSnap.bundlePackCount,
+          bundleNetWeightG: bundleSnap.bundleNetWeightG,
+          bundleMetaLine: bundleSnap.bundleMetaLine,
+          bundleContents: bundleSnap.bundleContents,
+          mosaicUrls: bundleSnap.mosaicUrls,
+          comboOption: bundleSnap.comboOption || null,
+          freeGifts: bundleSnap.freeGifts || [],
+          purposeLabel: bundleSnap.purposeLabel || null,
+          merchCategory: bundleSnap.merchCategory || null,
+          worthLabel: bundleSnap.worthLabel || null,
+          saveLabel: bundleSnap.saveLabel || null,
+        } : {}),
       }];
     });
   }, [storeOffline]);

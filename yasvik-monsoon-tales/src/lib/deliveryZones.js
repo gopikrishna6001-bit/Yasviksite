@@ -124,8 +124,11 @@ export function resolveDeliveryQuote({
 
   return {
     feePaise: computeDeliveryFeePaise(subtotalPaise, zone, resolveFreeThreshold(settingsMap)),
-    eta_label: zone?.eta_label,
-    notes: [],
+    eta_label: zone?.zone_tier === 'express' && zone?.express_eta_label
+      ? zone.express_eta_label
+      : zone?.eta_label,
+    zone_tier: zone?.zone_tier || 'standard',
+    notes: zone?.zone_tier === 'express' ? ['Express delivery available in your area'] : [],
     warnings: [],
     pickupRecommended: false,
     mode: 'delivery',

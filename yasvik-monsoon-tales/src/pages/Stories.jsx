@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowUpRight } from 'lucide-react';
 import { stories as storiesApi } from '@/services/api';
 import StoryCard from '../components/stories/StoryCard';
-import PublicPageHeader from '@/components/brand/PublicPageHeader';
+import RetailPageHeader from '@/components/retail/RetailPageHeader';
 import PublicPageShell from '@/components/brand/PublicPageShell';
 import { CORE_VALUE_NARRATIVE_FRAMES } from '@/brand/monsoonTokens';
 import { useCoreValueStories } from '@/lib/coreValueProofs';
@@ -62,23 +62,12 @@ export default function Stories() {
   });
 
   return (
-    <PublicPageShell illustration="stories">
-      <PublicPageHeader
-        eyebrow="Narratives"
-        title="Stories"
-        description="What is the problem, where the solution lives, and why Yasvik exists — three reads that frame how we choose food."
-      />
+    <PublicPageShell>
+      <RetailPageHeader title="Stories" backTo="/" backLabel="Home" />
 
       <div className="mx-auto max-w-5xl px-5 pb-8">
-        <section className="mb-12" aria-label="Core value stories">
-          <div className="mb-6 text-center md:text-left">
-            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-sun-dried-clay">What · Where · Why</p>
-            <h2 className="mt-2 font-cormorant text-3xl font-semibold text-deep-forest md:text-4xl">The story behind our values</h2>
-            <p className="mt-2 max-w-2xl font-inter text-sm leading-7 text-deep-forest/65">
-              Conscious Food names the problem. Responsible Sourcing points to where good food still lives. Honest Quality is why Yasvik exists to connect the two.
-            </p>
-          </div>
-
+        <section className="mb-10" aria-label="Core value stories">
+          <h2 className="mb-4 font-cormorant text-2xl font-semibold text-deep-forest">From our kitchen philosophy</h2>
           <div className="grid gap-5 md:grid-cols-3">
             {pillarStories.map(({ value, story, link }) => (
               <PillarStoryCard key={value.id} value={value} story={story} link={link} />

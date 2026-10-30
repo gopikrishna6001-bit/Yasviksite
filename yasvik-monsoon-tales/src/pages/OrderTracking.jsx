@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { appClient } from '@/api/appClient';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Package, MapPin, Truck, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Package, MapPin, Truck, CheckCircle2, Clock, AlertCircle, FileDown } from 'lucide-react';
+import { canDownloadOrderInvoice, downloadOrderInvoicePdf } from '@/lib/orderInvoicePdf';
 
 // Narrative status map
 const STATUS_NARRATIVE = {
@@ -43,18 +44,22 @@ function formatAmount(paise) {
 
 export default function OrderTracking() {
   const { orderId } = useParams();
+  const [searchParams] = useSearchParams();
   const [contact, setContact] = useState('');
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [invoiceBusy, setInvoiceBusy] = useState(false);
+  const [invoiceError, setInvoiceError] = useState('');
 
-  const handleVerify = async (e) => {
-    e.preventDefault();
+  const verifyOrder = useCallback(async (contactValue) => {
+    const trimmed = String(contactValue || '').trim();
+    if (!trimmed || !orderId) return;
     setError('');
     setLoading(true);
     try {
-      const isEmail = contact.includes('@');
-      const payload = { orderId, [isEmail ? 'email' : 'phone']: contact };
+      const isEmail = trimmed.includes('@');
+      const payload = { orderId, [isEmail ? 'email' : 'phone']: trimmed };
       const res = await appClient.functions.invoke('getOrderTrackingDetails', payload);
       if (res.data?.order) {
         setOrder(res.data.order);
@@ -62,14 +67,41 @@ export default function OrderTracking() {
         setError(res.data?.error || 'Verification failed. Please check your details.');
       }
     } catch (err) {
-      setError(err?.response?.data?.error || 'Something went wrong. Please try again.');
+      setError(err?.message || 'Something went wrong. Please try again.');
     }
     setLoading(false);
+  }, [orderId]);
+
+  useEffect(() => {
+    const preset = searchParams.get('contact') || searchParams.get('email') || searchParams.get('phone') || '';
+    if (preset) {
+      setContact(preset);
+      verifyOrder(preset);
+    }
+  }, [searchParams, verifyOrder]);
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    await verifyOrder(contact);
   };
 
   const statusInfo = order ? (STATUS_NARRATIVE[order.status] || STATUS_NARRATIVE.pending) : null;
   const progressIdx = order ? getProgressIndex(order.status) : -1;
   const cancelled = order ? isCancelled(order.status) : false;
+  const showInvoice = order ? canDownloadOrderInvoice(order) : false;
+
+  const handleDownloadInvoice = async () => {
+    if (!order) return;
+    setInvoiceError('');
+    setInvoiceBusy(true);
+    try {
+      await downloadOrderInvoicePdf(order);
+    } catch (err) {
+      setInvoiceError(err?.message || 'Could not download invoice. Try again.');
+    } finally {
+      setInvoiceBusy(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-rain-mist font-inter">
@@ -85,7 +117,7 @@ export default function OrderTracking() {
 
         {/* Header */}
         <div className="mb-8 mt-2">
-          <h1 className="font-cormorant text-3xl text-rain-cloud font-light leading-tight">
+          <h1 className="font-cormorant text-3xl text-rain-cloud font-semibold leading-tight">
             Track Your Order
           </h1>
           <p className="font-inter text-sm text-rain-cloud/50 mt-1.5 leading-relaxed">
@@ -232,17 +264,23 @@ export default function OrderTracking() {
                   <p className="font-inter text-xs text-rain-cloud/40 uppercase tracking-wider mb-4">What's Travelling</p>
                   <div className="space-y-3">
                     {order.items_snapshot.map((item, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <div>
+                      <div key={i} className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
                           <p className="font-inter text-sm text-rain-cloud">{item.title}</p>
-                          {(item.unit || item.variant) && (
+                          {item.isBundle || item.type === 'combo' ? (
+                            <p className="mt-0.5 font-inter text-xs text-rain-cloud/45">
+                              {item.bundleMetaLine
+                                ? `Includes ${item.bundleMetaLine}`
+                                : 'Combo / value pack'}
+                            </p>
+                          ) : (item.unit || item.variant) ? (
                             <p className="font-inter text-xs text-rain-cloud/40 mt-0.5">
                               {[item.unit, item.variant].filter(Boolean).join(' · ')}
                             </p>
-                          )}
+                          ) : null}
                         </div>
-                        <div className="text-right">
-                          <p className="font-inter text-sm text-rain-cloud/70">×{item.qty}</p>
+                        <div className="text-right flex-shrink-0">
+                          <p className="font-inter text-sm text-rain-cloud/70">Qty {item.qty}</p>
                           <p className="font-inter text-xs text-rain-cloud/40">₹{(item.price * item.qty).toFixed(0)}</p>
                         </div>
                       </div>
@@ -252,6 +290,22 @@ export default function OrderTracking() {
                     <p className="font-inter text-sm text-rain-cloud/50">Total</p>
                     <p className="font-inter text-sm font-medium text-rain-cloud">{formatAmount(order.amount_paise)}</p>
                   </div>
+                  {showInvoice ? (
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        onClick={handleDownloadInvoice}
+                        disabled={invoiceBusy}
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-rain-mist/50 px-4 py-3 font-inter text-sm text-rain-cloud hover:border-forest-canopy/40 disabled:opacity-50"
+                      >
+                        <FileDown className="w-4 h-4" />
+                        {invoiceBusy ? 'Preparing PDF…' : 'Download invoice PDF'}
+                      </button>
+                      {invoiceError ? (
+                        <p className="mt-2 font-inter text-xs text-amber-700">{invoiceError}</p>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               )}
 

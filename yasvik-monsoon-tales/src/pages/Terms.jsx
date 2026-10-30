@@ -26,7 +26,7 @@ export default function Terms() {
           <h2 className="font-cormorant text-2xl font-semibold text-deep-forest">About Yasvik</h2>
           <p className="mt-3">
             Yasvik Natural Foods (&quot;Yasvik&quot;, &quot;we&quot;, &quot;us&quot;) operates an online store and web application
-            for natural foods and everyday groceries in Hyderabad, India. You may browse products, create an account,
+            for carefully chosen everyday foods in Hyderabad, India. You may browse products, create an account,
             and place orders for delivery or local pickup.
           </p>
         </section>

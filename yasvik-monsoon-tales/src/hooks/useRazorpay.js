@@ -20,12 +20,14 @@ export function useRazorpay() {
     amountPaise,
     subtotalPaise,
     deliveryFeePaise = 0,
+    coupon_code = null,
     items = [],
     customer = {},
     shipping_address,
     delivery_instructions,
     pincode,
     eta_label,
+    delivery_slot,
     onSuccess,
     onFailure,
     onDismiss,
@@ -48,6 +50,7 @@ export function useRazorpay() {
         amount: amountPaise,
         subtotal_paise: subtotalPaise ?? amountPaise,
         delivery_fee_paise: deliveryFeePaise,
+        coupon_code: coupon_code || null,
         currency: 'INR',
         items,
         customer,
@@ -55,6 +58,7 @@ export function useRazorpay() {
         delivery_instructions,
         pincode,
         eta_label,
+        delivery_slot,
       });
       orderData = createRes.data;
     } catch (err) {
@@ -105,6 +109,8 @@ export function useRazorpay() {
               ...response,
               db_order_id: orderData.db_order_id,
               order_number: verifyRes.data?.order_number,
+              email_sent: verifyRes.data?.email_sent,
+              email_error: verifyRes.data?.email_error,
             });
           } else {
             const msg = 'Payment verification failed. Contact support if amount was debited.';

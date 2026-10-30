@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Download, LayoutTemplate, Loader2, Printer } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import LabelTemplatePreview from '@/components/admin/LabelTemplatePreview';
@@ -22,9 +22,15 @@ import { getActiveLabelTemplate } from '@/lib/labelTemplate/templateStorage';
 import { DEFAULT_GAP_MM, DEFAULT_MARGIN_MM, formatMfgDate } from '@/lib/priceLabelGenerator';
 import { fetchAllAppSettings, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
 
-export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
+export default function A4EpsonPrintPanel({ priceChannel = 'web', onOpenTemplateBuilder, initialProductId, onQueueReady }) {
+  const qc = useQueryClient();
   const { openProductEditor, productEditorDrawer } = useInlineProductEditor();
-  const batch = useLabelBatchQueue();
+  const batch = useLabelBatchQueue({ initialProductId });
+
+  const refreshQueueProduct = useCallback((productId) => {
+    qc.invalidateQueries({ queryKey: ['admin-label-products'] });
+    qc.invalidateQueries({ queryKey: ['admin-products'] });
+  }, [qc]);
   const [marginMm, setMarginMm] = useState(DEFAULT_MARGIN_MM);
   const [gapMm, setGapMm] = useState(DEFAULT_GAP_MM);
   const [exporting, setExporting] = useState('');
@@ -42,8 +48,9 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
         template: activeTemplate,
         packedDate: batch.packedDate,
         batchNumbers: batch.batchNumbers,
+        priceChannel,
       }),
-    [batch.productsById, batch.printLines, activeTemplate, batch.packedDate, batch.batchNumbers]
+    [batch.productsById, batch.printLines, activeTemplate, batch.packedDate, batch.batchNumbers, priceChannel]
   );
 
   const grid = useMemo(
@@ -67,6 +74,10 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
   );
 
   const previewFieldValues = previewLabels[0] || null;
+
+  useEffect(() => {
+    if (batch.activeRowCount > 0) onQueueReady?.();
+  }, [batch.activeRowCount, onQueueReady]);
 
   const runExport = async (type) => {
     if (labelQueue.length === 0) {
@@ -141,13 +152,10 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
           {sheetStats.total > 0 ? (
             <section className="rounded-2xl border border-warm-turmeric/30 bg-warm-turmeric/10 px-4 py-3">
               <p className="font-inter text-sm font-semibold text-rain-cloud">
-                {sheetStats.total} labels → {sheetStats.pages} A4 sheet{sheetStats.pages === 1 ? '' : 's'}
+                {sheetStats.total} label{sheetStats.total === 1 ? '' : 's'} · {sheetStats.pages} A4 sheet{sheetStats.pages === 1 ? '' : 's'}
               </p>
               <p className="font-inter text-xs text-rain-cloud/60 mt-0.5">
-                {grid.perPage}/sheet
-                {sheetStats.emptyOnLastPage > 0
-                  ? ` · last sheet: ${sheetStats.usedOnLastPage} used, ${sheetStats.emptyOnLastPage} empty`
-                  : ' · exact fit'}
+                {grid.perPage} labels per A4 sheet (Epson layout)
               </p>
             </section>
           ) : null}
@@ -162,6 +170,7 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
             updatePickerDraft={batch.updatePickerDraft}
             addProductRow={batch.addProductRow}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
 
           <LabelBatchQueueSection
@@ -175,6 +184,8 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
             removeRow={batch.removeRow}
             duplicateRow={batch.duplicateRow}
             onEditProduct={openProductEditor}
+            onRefreshProduct={refreshQueueProduct}
+            priceChannel={priceChannel}
           />
         </div>
 
@@ -183,6 +194,7 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
             printLines={batch.printLines}
             productsById={batch.productsById}
             onEditProduct={openProductEditor}
+            priceChannel={priceChannel}
           />
 
           <section className="rounded-2xl border border-border/60 bg-white p-5 shadow-sm">
@@ -192,7 +204,7 @@ export default function A4EpsonPrintPanel({ onOpenTemplateBuilder }) {
                 <p className="font-inter text-sm text-rain-cloud/50">Add lines to preview</p>
               </div>
             ) : (
-              <div className="mt-4 space-y-4">
+              <div className="mt-4 space-y-4" key={priceChannel}>
                 <LabelTemplatePreview
                   template={activeTemplate}
                   fieldValues={previewFieldValues}

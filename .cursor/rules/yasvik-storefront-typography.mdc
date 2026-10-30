@@ -1,0 +1,55 @@
+---
+description: Yasvik storefront typography and layout — Shop/PDP are the source of truth for all customer pages
+alwaysApply: true
+---
+
+# Yasvik storefront type & layout
+
+Shop and Product Detail are the **canonical** customer UI. Home, About, Our Roots, Contact, Stories, Checkout, and combos must match them — do not invent a second type system per page.
+
+## Fonts (only these two)
+
+| Role | Face | Tailwind |
+|------|------|----------|
+| Titles / display | **Cormorant Garamond** | `font-cormorant` |
+| Body / UI / buttons / labels | **DM Sans** | `font-inter` (legacy class name; face is DM Sans) |
+
+- Do **not** use Syne, Inter, Playfair, Roboto, or bare `system-ui` for storefront UI.
+- `font-syne` is aliased to Cormorant for safety — prefer rewriting to `font-cormorant`.
+- Title weight: **`font-semibold` (600)**. Avoid `font-light` / `font-thin` on headings.
+- Body: `font-inter` with `text-sm` / `text-base` and muted ink `text-deep-forest/70`.
+
+## Ink & surfaces
+
+Prefer theme tokens, not one-off hex:
+
+- Page: `bg-warm-cream` / `text-deep-forest`
+- Cards: `bg-white` + `border-soft-border`
+- Labels: `retailClasses.label` (uppercase, tracked, `font-inter`)
+
+`text-rain-cloud` equals deep forest — prefer **`text-deep-forest`** on new work.
+
+## Layout alignment
+
+Use shared bundles from `@/brand/retailTheme`:
+
+```js
+import { retailClasses } from '@/brand/retailTheme';
+
+// page shell
+retailClasses.page
+retailClasses.container        // max-w-[1400px] px-4 md:px-8  — same as Shop/PDP
+retailClasses.containerNarrow  // long-form (About)
+retailClasses.titlePage | titleLg | titleMd
+retailClasses.body | bodyLg
+retailClasses.btnPrimary | btnOutline
+```
+
+- Do not invent a different max-width or horizontal padding per marketing page.
+- Section rhythm: one purpose, one heading (`titleLg` / `titleMd`), short supporting `body` line.
+
+## When building UI
+
+1. Start from `retailClasses` / existing Shop or PDP patterns.
+2. If a new heading style is needed, add it to `retailTheme.js` — do not hard-code a third font.
+3. Admin (`/admin`) may keep denser Inter/admin patterns; this rule is for **customer-facing** surfaces.

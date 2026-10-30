@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Barcode, Check, Copy, Eye, EyeOff, Loader2, Pencil, Save } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Barcode, Check, Copy, Eye, EyeOff, Loader2, Pencil, Save, Star, Tag, Trash2, Calculator } from 'lucide-react';
 import {
-  buildQuickOpsPayload,
+  getAdminPackPriceSummary,
   isQuickOpsDirty,
   productToQuickOpsDraft,
 } from '@/lib/productQuickOpsUtils';
@@ -9,6 +10,8 @@ import OptimizedImage from '@/components/ui/OptimizedImage';
 import { productPrimaryImageUrl } from '@/lib/mediaUrl';
 import { downloadSkuBarcodeJpeg } from '@/lib/skuBarcodeLabel';
 import { STOCK_MEASURE_TYPE_OPTIONS, getStockInputMeta, usesBulkMeasureType } from '@/lib/stockMeasureTypes';
+import { buildCategorySelectOptions } from '@/lib/categoryTree';
+import AdminNumberBox from '@/components/admin/AdminNumberBox';
 
 const inputClass =
   'w-full rounded-lg border border-border px-2 py-1.5 font-inter text-xs text-rain-cloud focus:border-forest-canopy focus:outline-none bg-white';
@@ -17,6 +20,8 @@ const selectClass =
 const numInputClass =
   'rounded-lg border border-border bg-white px-1.5 py-1.5 font-inter text-sm tabular-nums text-rain-cloud text-right focus:border-forest-canopy focus:outline-none';
 const cellClass = 'px-2 py-2.5 align-middle';
+const hubLinkClass =
+  'inline-flex items-center gap-0.5 font-inter text-[10px] font-medium text-wet-earth hover:underline';
 
 export default function ProductQuickOpsRow({
   product,
@@ -24,15 +29,19 @@ export default function ProductQuickOpsRow({
   onSave,
   onEdit,
   onDuplicate,
+  onDelete,
   onDraftChange,
   isSaving = false,
+  isDeleting = false,
   saveStatus = null,
 }) {
   const baseline = useMemo(() => productToQuickOpsDraft(product), [product]);
   const [draft, setDraft] = useState(baseline);
   const [barcodeBusy, setBarcodeBusy] = useState(false);
 
+  const categoryOptions = useMemo(() => buildCategorySelectOptions(categories), [categories]);
   const skuForBarcode = String(draft.sku || product.sku || '').trim();
+  const packPrices = useMemo(() => getAdminPackPriceSummary(product), [product]);
 
   useEffect(() => {
     if (!isQuickOpsDirty(product, draft)) {
@@ -51,11 +60,11 @@ export default function ProductQuickOpsRow({
     try {
       onDraftChange(product.id, {
         dirty,
-        payload: dirty ? buildQuickOpsPayload(product, draft) : null,
+        draft: dirty ? draft : null,
       });
     } catch (error) {
       console.error('Quick ops draft error:', product.id, error);
-      onDraftChange(product.id, { dirty: true, payload: null });
+      onDraftChange(product.id, { dirty: true, draft: null });
     }
   }, [product, draft, dirty, onDraftChange]);
 
@@ -63,7 +72,7 @@ export default function ProductQuickOpsRow({
 
   const handleSave = () => {
     if (!dirty) return;
-    onSave(buildQuickOpsPayload(product, draft));
+    onSave(draft);
   };
 
   const handleBarcodeDownload = async () => {
@@ -108,6 +117,19 @@ export default function ProductQuickOpsRow({
         <p className="font-inter text-sm font-medium leading-snug text-rain-cloud line-clamp-2">
           {product.title}
         </p>
+        <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
+          <Link to={`/admin/pricing?product=${product.id}`} className={hubLinkClass}>
+            <Calculator className="h-3 w-3" /> Prices
+          </Link>
+          <Link to={`/admin/labels?product=${product.id}`} className={hubLinkClass}>
+            <Tag className="h-3 w-3" /> Labels
+          </Link>
+        </div>
+        {product.sell_online === false ? (
+          <p className="mt-0.5 inline-flex rounded bg-wet-earth/10 px-1.5 py-0.5 font-inter text-[10px] font-semibold text-wet-earth">
+            Store only
+          </p>
+        ) : null}
         {dirty ? (
           <p className="mt-0.5 font-inter text-[10px] font-medium text-amber-700">Unsaved</p>
         ) : null}
@@ -136,9 +158,9 @@ export default function ProductQuickOpsRow({
           aria-label="Category"
         >
           <option value="">—</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.emotional_title || c.name}
+          {categoryOptions.map((c) => (
+            <option key={c.value} value={c.value}>
+              {c.label}
             </option>
           ))}
         </select>
@@ -161,12 +183,10 @@ export default function ProductQuickOpsRow({
           {showBulkStock ? (
             <>
               <div className="flex items-center justify-end gap-1">
-                <input
-                  type="number"
-                  min="0"
-                  step={stockMeta.step}
+                <AdminNumberBox
+                  allowDecimal={Boolean(stockMeta.step && String(stockMeta.step).includes('.'))}
                   value={draft.bulkStock}
-                  onChange={(e) => patch({ bulkStock: e.target.value })}
+                  onChange={(val) => patch({ bulkStock: val })}
                   className={`${numInputClass} w-[4.25rem]`}
                   aria-label={stockMeta.label}
                 />
@@ -195,20 +215,19 @@ export default function ProductQuickOpsRow({
                   >
                     {variant.packLabel || variant.label}
                   </span>
-                  <input
-                    type="number"
-                    min="0"
-                    step="1"
+                  <AdminNumberBox
+                    allowDecimal={false}
                     value={draft.variantStocks[variant.key] ?? ''}
-                    onChange={(e) =>
+                    onChange={(val) =>
                       patch({
                         variantStocks: {
                           ...draft.variantStocks,
-                          [variant.key]: e.target.value,
+                          [variant.key]: val,
                         },
                       })
                     }
                     className={`${numInputClass} w-[2.75rem] text-xs`}
+                    aria-label={`Stock for ${variant.packLabel || variant.label}`}
                   />
                 </div>
               ))}
@@ -233,19 +252,23 @@ export default function ProductQuickOpsRow({
       </td>
 
       <td className={`${cellClass} text-right`}>
-        <div className="relative ml-auto w-full max-w-[6.5rem]">
-          <span className="pointer-events-none absolute left-1.5 top-1/2 -translate-y-1/2 font-inter text-xs text-rain-cloud/45">
-            ₹
-          </span>
-          <input
-            type="number"
-            min="0"
-            step="1"
-            value={draft.price}
-            onChange={(e) => patch({ price: e.target.value })}
-            className={`${numInputClass} w-full pl-4 pr-1 font-medium`}
-            aria-label="Price in rupees"
-          />
+        <div className="space-y-0.5 text-right">
+          {packPrices.length > 0 ? (
+            packPrices.slice(0, 3).map((pack) => (
+              <p key={pack.label} className="font-inter text-[9px] leading-tight text-rain-cloud/55">
+                <span className="text-rain-cloud/40">{pack.label}</span>{' '}
+                {pack.price || pack.web}
+              </p>
+            ))
+          ) : (
+            <p className="font-inter text-[10px] text-rain-cloud/35">No prices</p>
+          )}
+          <Link
+            to={`/admin/pricing?product=${product.id}`}
+            className="inline-block font-inter text-[10px] font-medium text-wet-earth hover:underline"
+          >
+            Set prices →
+          </Link>
         </div>
       </td>
 
@@ -273,6 +296,21 @@ export default function ProductQuickOpsRow({
           title={draft.is_published ? 'Published — click to draft' : 'Draft — click to publish'}
         >
           {draft.is_published ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+        </button>
+      </td>
+
+      <td className={`${cellClass} text-center`}>
+        <button
+          type="button"
+          onClick={() => patch({ is_featured: !draft.is_featured })}
+          className={`rounded-lg p-1.5 transition-colors ${
+            draft.is_featured
+              ? 'text-amber-500 hover:bg-amber-50'
+              : 'text-rain-cloud/25 hover:bg-muted/50'
+          }`}
+          title={draft.is_featured ? 'Best Seller — click to remove from homepage' : 'Click to show on homepage Best Sellers'}
+        >
+          <Star className={`h-4 w-4 ${draft.is_featured ? 'fill-amber-400' : ''}`} />
         </button>
       </td>
 
@@ -341,6 +379,18 @@ export default function ProductQuickOpsRow({
           >
             <Pencil className="h-4 w-4" />
           </button>
+          {onDelete ? (
+            <button
+              type="button"
+              onClick={() => onDelete(product)}
+              disabled={isDeleting}
+              className="rounded-lg p-1.5 text-rain-cloud/35 transition-colors hover:bg-red-50 hover:text-red-500 disabled:opacity-40"
+              title="Delete product"
+              aria-label="Delete product"
+            >
+              {isDeleting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+            </button>
+          ) : null}
         </div>
       </td>
     </tr>

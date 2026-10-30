@@ -84,12 +84,13 @@ export const PRODUCT_SPREADSHEET_COLUMNS = [
   { key: 'stock_measure_type', label: 'stock_measure_type', hint: 'kg | L | units' },
   { key: 'stock', label: 'stock', hint: 'Bulk stock (kg / L / units)' },
   { key: 'variant_stocks', label: 'variant_stocks', hint: 'Quick stock: 500g=12; 1kg=8' },
-  { key: 'variants_json', label: 'variants_json', hint: 'Pack sizes JSON — label, sku, pack_kg, price, stock' },
-  { key: 'price', label: 'price', hint: 'Default selling price (₹)' },
-  { key: 'compare_price', label: 'compare_price', hint: 'MRP / compare-at (₹)' },
-  { key: 'selling_price_per_kg', label: 'selling_price_per_kg', hint: '₹/kg rate for pack pricing' },
-  { key: 'price_inflate_percent', label: 'price_inflate_percent', hint: 'MRP inflate % over sell rate' },
-  { key: 'small_pack_margin_rs', label: 'small_pack_margin_rs', hint: 'Extra ₹ on sub-1kg packs' },
+  { key: 'variants_json', label: 'variants_json', hint: 'Pack sizes JSON — label, sku, pack_kg, stock (prices via Pricing Strategy)' },
+  { key: 'price', label: 'price', hint: 'Ignored — set via Pricing Strategy' },
+  { key: 'compare_price', label: 'compare_price', hint: 'Ignored — set via Pricing Strategy' },
+  { key: 'selling_price_per_kg', label: 'selling_price_per_kg', hint: 'Ignored — set via Pricing Strategy' },
+  { key: 'price_inflate_percent', label: 'price_inflate_percent', hint: 'Per-product web MRP % — blank uses Pricing Strategy global' },
+  { key: 'store_price_inflate_percent', label: 'store_price_inflate_percent', hint: 'Per-product store MRP % — blank uses global' },
+  { key: 'small_pack_margin_rs', label: 'small_pack_margin_rs', hint: 'Extra ₹ on sub-1kg packs — blank uses global' },
   { key: 'low_stock_threshold', label: 'low_stock_threshold', hint: 'Low-stock alert threshold' },
   { key: 'weight_grams', label: 'weight_grams', hint: 'Default pack weight (grams)' },
   { key: 'short_description', label: 'short_description', hint: 'Short blurb' },
@@ -113,6 +114,7 @@ export const PRODUCT_SPREADSHEET_COLUMNS = [
   { key: 'recipe_titles', label: 'recipe_titles', hint: 'Recipe titles — newline or comma' },
   { key: 'recipe_links_json', label: 'recipe_links_json', hint: 'JSON array of recipe link objects' },
   { key: 'is_published', label: 'is_published', hint: 'yes | no' },
+  { key: 'sell_online', label: 'sell_online', hint: 'yes | no — store-only when no' },
   { key: 'is_featured', label: 'is_featured', hint: 'yes | no' },
   { key: 'featured_in_hero', label: 'featured_in_hero', hint: 'yes | no' },
   { key: 'sort_order', label: 'sort_order', hint: 'Lower = shown first within group' },
@@ -444,6 +446,7 @@ export function productToSpreadsheetRow(product = {}, categories = []) {
     compare_price: product.compare_price ?? product.discount_price ?? '',
     selling_price_per_kg: form.selling_price_per_kg ?? '',
     price_inflate_percent: form.price_inflate_percent ?? '',
+    store_price_inflate_percent: form.store_price_inflate_percent ?? '',
     small_pack_margin_rs: form.small_pack_margin_rs ?? '',
     low_stock_threshold: form.low_stock_threshold ?? 10,
     weight_grams: product.weight_grams ?? '',
@@ -468,6 +471,7 @@ export function productToSpreadsheetRow(product = {}, categories = []) {
     recipe_titles: serializeMultilineText(form.recipe_titles),
     recipe_links_json: form.recipe_links?.length ? JSON.stringify(form.recipe_links) : '',
     is_published: form.is_published ? 'yes' : 'no',
+    sell_online: form.sell_online !== false ? 'yes' : 'no',
     is_featured: form.is_featured ? 'yes' : 'no',
     featured_in_hero: form.featured_in_hero ? 'yes' : 'no',
     sort_order: form.sort_order ?? 0,
@@ -517,10 +521,11 @@ export function buildSpreadsheetImportPayload(product = {}, row = {}, categories
 
   if (hasRowField(row, 'stock')) form.stock = String(row.stock ?? '');
 
-  if (hasRowField(row, 'price')) form.price = row.price;
-  if (hasRowField(row, 'selling_price_per_kg')) form.selling_price_per_kg = row.selling_price_per_kg;
-  if (hasRowField(row, 'price_inflate_percent')) form.price_inflate_percent = row.price_inflate_percent;
-  if (hasRowField(row, 'small_pack_margin_rs')) form.small_pack_margin_rs = row.small_pack_margin_rs;
+  // Sell prices come from Pricing Strategy — pack/MRP rule columns are per-product overrides.
+  if (hasRowField(row, 'price_inflate_percent')) form.price_inflate_percent = String(row.price_inflate_percent ?? '');
+  if (hasRowField(row, 'store_price_inflate_percent')) form.store_price_inflate_percent = String(row.store_price_inflate_percent ?? '');
+  if (hasRowField(row, 'small_pack_margin_rs')) form.small_pack_margin_rs = String(row.small_pack_margin_rs ?? '');
+
   if (hasRowField(row, 'low_stock_threshold')) form.low_stock_threshold = row.low_stock_threshold;
   if (hasRowField(row, 'weight_grams')) form.weight_grams = row.weight_grams;
 
@@ -556,6 +561,10 @@ export function buildSpreadsheetImportPayload(product = {}, row = {}, categories
     const published = parseBoolean(row.is_published);
     if (published !== null) form.is_published = published;
   }
+  if (hasRowField(row, 'sell_online')) {
+    const sellOnline = parseBoolean(row.sell_online);
+    if (sellOnline !== null) form.sell_online = sellOnline;
+  }
   if (hasRowField(row, 'is_featured')) {
     const featured = parseBoolean(row.is_featured);
     if (featured !== null) form.is_featured = featured;
@@ -573,9 +582,7 @@ export function buildSpreadsheetImportPayload(product = {}, row = {}, categories
 
   const payload = buildProductSavePayload(form);
 
-  if (hasRowField(row, 'compare_price') && String(row.compare_price).trim() !== '') {
-    payload.compare_price = Number(row.compare_price) || 0;
-  }
+  // compare_price comes from saved variants / Pricing Strategy only.
 
   if (hasRowField(row, 'weight_grams') && String(row.weight_grams).trim() !== '') {
     payload.weight_grams = Number(row.weight_grams) || null;
@@ -733,6 +740,41 @@ export function planProductSpreadsheetImport(rows = [], products = [], categorie
   });
 
   return { planned, skipped };
+}
+
+const PREVIEW_FIELDS = [
+  { key: 'title', label: 'Title' },
+  { key: 'local_name', label: 'Telugu name' },
+  { key: 'sku', label: 'SKU' },
+  { key: 'stock', label: 'Stock' },
+  { key: 'category_name', label: 'Category' },
+  { key: 'is_published', label: 'Published' },
+];
+
+export function buildSpreadsheetImportPreview(planned = [], products = [], { limit = 10 } = {}) {
+  const byId = new Map(products.map((p) => [p.id, p]));
+  return planned.slice(0, limit).map((item) => {
+    const product = byId.get(item.id);
+    const before = product ? productToSpreadsheetRow(product, []) : {};
+    const after = { ...before, ...item.payload };
+    const changes = PREVIEW_FIELDS
+      .filter((field) => {
+        const nextVal = after[field.key];
+        const prevVal = before[field.key];
+        return nextVal !== undefined && !spreadsheetValuesEqual(nextVal, prevVal);
+      })
+      .map((field) => ({
+        field: field.label,
+        from: before[field.key] ?? '—',
+        to: after[field.key] ?? '—',
+      }));
+    return {
+      row: item.row,
+      id: item.id,
+      title: item.title,
+      changes: changes.length ? changes : [{ field: 'Update', from: '—', to: 'Fields changed' }],
+    };
+  });
 }
 
 export async function applyProductSpreadsheetImport(planned = [], updateFn, { onProgress } = {}) {

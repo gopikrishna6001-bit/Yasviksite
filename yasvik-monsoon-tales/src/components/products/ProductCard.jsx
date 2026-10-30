@@ -1,17 +1,24 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, Star } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 import { usePremiumHapticPulse } from '@/hooks/usePremiumHapticPulse';
 import YasvikLogo from '@/components/brand/YasvikLogo';
 import { buildProductAltText } from '@/lib/productSeo';
 import { getProductTeluguName } from '@/lib/teluguProductNames';
 import { resolveVariantComparePrice } from '@/lib/productPricingUtils';
-import { getVariantCartKey, normalizeList, normalizeProductVariant } from '@/lib/productVariantUtils';
+import { getVariantCartKey, normalizeList, normalizeProductVariant, sortVariantsForShop } from '@/lib/productVariantUtils';
+import { computePackBulkSavings, formatPackRateLine } from '@/lib/variantBulkSavings';
+import { PackSavingsChip } from '@/components/products/PackSavingsBadge';
 import { isVideoMediaUrl, productPrimaryImageUrl, safeMedia } from '@/lib/mediaUrl';
 import { getProductPath } from '@/lib/productUrls';
+import { formatDisplayTitle } from '@/lib/formatDisplayTitle';
 import OptimizedImage from '@/components/ui/OptimizedImage';
+import { BundleCardMeta } from '@/components/products/BundleWhatsInside';
+import { isSellableBundleProduct } from '@/lib/productBundleUtils';
+import ComboProductCard from '@/components/products/ComboProductCard';
+import { isShopComboProduct } from '@/lib/comboUtils';
 
 function toMediaDescriptor(media, preset = 'thumb') {
   if (!media) return null;
@@ -22,7 +29,7 @@ function toMediaDescriptor(media, preset = 'thumb') {
 }
 
 function getProductTitle(product) {
-  return product?.title || product?.name || 'Yasvik product';
+  return formatDisplayTitle(product?.title || product?.name, 'Yasvik product');
 }
 
 function compactText(value = '') {
@@ -53,17 +60,17 @@ function ProductImagePlaceholder({ title }) {
       <div className="absolute inset-0 opacity-70" style={{ background: 'radial-gradient(circle at 28% 22%, rgba(139,105,20,.18), transparent 34%), radial-gradient(circle at 82% 72%, rgba(74,103,65,.16), transparent 34%)' }} />
       <div className="relative flex flex-col items-center text-center">
         <YasvikLogo variant="symbol" imageClassName="h-12 w-auto opacity-65" />
-        <p className="mt-3 max-w-[9rem] font-inter text-[10px] uppercase tracking-[0.18em] text-[#9a9185]">{title}</p>
+        <p className="mt-2 max-w-[9rem] font-inter text-[10px] leading-snug text-[#9a9185]">{title}</p>
       </div>
     </div>
   );
 }
 
-export default function ProductCard({ product, index = 0, onQuickView, variant = 'default' }) {
-  const isCommerce = variant === 'homepage' || variant === 'shop';
+export default function ProductCard({ product, preferredVariantLabel, index = 0, onQuickView, variant = 'default' }) {
+  const isBestseller = variant === 'bestseller';
+  const isCommerce = variant === 'homepage' || variant === 'shop' || isBestseller;
   const isShop = variant === 'shop';
   const { items, addItem, updateQty, storeOffline } = useCart();
-  const [imgLoaded, setImgLoaded] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [selectedVariantLabel, setSelectedVariantLabel] = useState('');
   const { isPulseActive, triggerPulse } = usePremiumHapticPulse();
@@ -72,7 +79,7 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
   const productImageAlt = buildProductAltText(product);
 
   const imagePreset = isCommerce ? 'thumb' : 'card';
-  const imageEager = isCommerce && index < 4;
+  const imageEager = isShop ? index < 2 : isCommerce && index < 4;
 
   const variantOptions = useMemo(() => {
     const cleanVariant = (variant) => {
@@ -85,28 +92,43 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
       };
     };
     const fromQuick = normalizeList(product?.quick_variants).map(cleanVariant).filter(Boolean);
-    if (fromQuick.length > 0) return fromQuick;
-    return normalizeList(product?.variants).map(cleanVariant).filter(Boolean);
+    if (fromQuick.length > 0) return sortVariantsForShop(fromQuick);
+    return sortVariantsForShop(normalizeList(product?.variants).map(cleanVariant).filter(Boolean));
   }, [product?.quick_variants, product?.variants, imagePreset]);
+
+  const variantHint = preferredVariantLabel || product?.preferredVariantLabel || '';
 
   useEffect(() => {
     if (variantOptions.length > 0) {
+      if (variantHint && variantOptions.some((variant) => variant.label === variantHint)) {
+        setSelectedVariantLabel(variantHint);
+        return;
+      }
       setSelectedVariantLabel((prev) => (prev && variantOptions.some((variant) => variant.label === prev) ? prev : variantOptions[0].label));
       return;
     }
     setSelectedVariantLabel('');
-  }, [variantOptions, product?.id]);
+  }, [variantOptions, product?.id, variantHint]);
 
   const selectedVariant = variantOptions.find((variant) => variant.label === selectedVariantLabel) || null;
   const cartKey = getVariantCartKey(product.id, selectedVariant);
   const cartItem = items.find((c) => c.key === cartKey);
   const qty = cartItem?.qty || 0;
   const activePrice = Number(selectedVariant?.price ?? product.price ?? 0);
-  const activeComparePrice = Number(
-    resolveVariantComparePrice(product, selectedVariant, activePrice) ?? 0,
-  );
+  const activeComparePrice = Number(resolveVariantComparePrice(product, selectedVariant, activePrice) || 0);
+  const discountPct = activeComparePrice > activePrice
+    ? Math.round(((activeComparePrice - activePrice) / activeComparePrice) * 100)
+    : 0;
+  const saveAmount = activeComparePrice > activePrice ? activeComparePrice - activePrice : 0;
+  const ratingAvg = Number(product?.average_rating || product?.review_avg || 0);
+  const ratingCount = Number(product?.review_count || 0);
+  const selectedBulkSavings = selectedVariant
+    ? computePackBulkSavings(variantOptions, selectedVariant)
+    : null;
   const sourceContext = getSourceContext(product);
   const detailUrl = product.isFallback ? '/shop' : getProductPath(product);
+  const location = useLocation();
+  const detailLinkState = { from: `${location.pathname}${location.search || ''}` };
   const unitLabel = selectedVariant?.label || product.unit || product.weight || product.pack_size || '';
 
   const primaryRawUrl = useMemo(
@@ -124,10 +146,6 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
       .find((url) => url && url !== defaultMediaUrl);
     return galleryCandidate ? toMediaDescriptor(galleryCandidate, imagePreset) : toMediaDescriptor(product?.hero_video, imagePreset);
   }, [defaultMediaUrl, imagePreset, isHovering, product?.hero_video, product?.hover_media, product?.image_urls, product?.images]);
-
-  useEffect(() => {
-    setImgLoaded(false);
-  }, [primaryMedia?.url, product?.id]);
 
   const addPayload = {
     id: product.id,
@@ -168,25 +186,43 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
     onQuickView(product);
   };
 
-  const cardClass = isCommerce
+  const cardClass = isBestseller
+    ? 'group relative flex h-full flex-col overflow-hidden rounded-xl border border-soft-border/80 bg-white text-deep-forest shadow-[0_4px_16px_rgba(31,61,43,0.05)]'
+    : isCommerce
     ? 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-soft-border bg-white text-deep-forest shadow-[0_10px_34px_rgba(31,61,43,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-neon-paddy/25 hover:shadow-[0_16px_42px_rgba(31,61,43,0.1)]'
     : 'yasvik-product-card group relative flex h-full flex-col overflow-hidden rounded-[1.45rem] border border-[#1a1814]/10 bg-[#fffaf0] text-[#1a1814] shadow-[0_16px_42px_rgba(26,24,20,.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#8b6914]/30 hover:shadow-[0_24px_62px_rgba(26,24,20,.13)]';
 
-  const imageWrapClass = isCommerce ? 'relative aspect-square overflow-hidden bg-warm-cream' : 'relative aspect-square overflow-hidden bg-[#eee4cf]';
+  const imageWrapClass = isBestseller
+    ? 'relative aspect-square overflow-hidden rounded-lg bg-[#f5f1e8] m-2 mb-0'
+    : isCommerce ? 'relative aspect-square overflow-hidden bg-warm-cream' : 'relative aspect-square overflow-hidden bg-[#eee4cf]';
 
-  const titleClass = isCommerce
+  const titleClass = isBestseller
+    ? 'line-clamp-2 min-h-[2.5rem] font-inter text-sm font-bold leading-snug text-deep-forest'
+    : isCommerce
     ? 'line-clamp-2 min-h-[2.75rem] font-inter text-[15px] font-bold leading-snug text-deep-forest md:min-h-[3rem] md:text-base'
     : 'line-clamp-2 min-h-[3.2rem] font-cormorant text-[24px] font-semibold leading-[1.05] tracking-[-0.01em] text-[#1a1814] md:text-[26px]';
 
   const showSourceBadge = sourceContext && !isCommerce;
   const showSourceSubtitle = sourceContext && !isCommerce;
 
+  if (!product) return null;
+
+  if (isShopComboProduct(product) || isSellableBundleProduct(product)) {
+    return <ComboProductCard product={product} index={index} featured={isBestseller} />;
+  }
+
+  const entranceMotion = isShop
+    ? {}
+    : {
+        initial: { opacity: 0, y: 18 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: '-30px' },
+        transition: { duration: 0.34, delay: Math.min(index * 0.03, 0.18), ease: [0.22, 1, 0.36, 1] },
+      };
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration: 0.34, delay: Math.min(index * 0.03, 0.18), ease: [0.22, 1, 0.36, 1] }}
+      {...entranceMotion}
       className={cardClass}
       onPointerEnter={(event) => {
         if (event.pointerType === 'mouse' || event.pointerType === 'pen') setIsHovering(true);
@@ -197,7 +233,7 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
         {onQuickView ? (
           <button type="button" onClick={handlePreview} className="absolute inset-0 z-[1]" aria-label={`Preview ${title}`} />
         ) : (
-          <Link to={detailUrl} className="absolute inset-0 z-[1]" aria-label={`Open ${title}`} />
+          <Link to={detailUrl} state={detailLinkState} className="absolute inset-0 z-[1]" aria-label={`Open ${title}`} />
         )}
 
         {primaryMedia?.url && !primaryMedia.isVideo ? (
@@ -206,8 +242,10 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
             alt={productImageAlt}
             preset={imagePreset}
             eager={imageEager}
-            onLoad={() => setImgLoaded(true)}
-            className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035] ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+            fadeOnLoad={!isShop}
+            placeholder={isShop ? null : <ProductImagePlaceholder title={title} />}
+            wrapperClassName="absolute inset-0"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]"
             style={{ transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}
           />
         ) : primaryMedia?.url && primaryMedia.isVideo ? (
@@ -221,8 +259,10 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
             src={hoverMedia.url}
             alt=""
             preset={imagePreset}
+            eager
             aria-hidden="true"
-            className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${isHovering ? 'scale-100 opacity-100' : 'scale-[1.025] opacity-0'}`}
+            wrapperClassName="absolute inset-0"
+            className={`h-full w-full object-cover transition-all duration-500 ${isHovering ? 'scale-100 opacity-100' : 'scale-[1.025] opacity-0'}`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}
           />
         )}
@@ -236,45 +276,96 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
         )}
       </div>
 
-      <div className={`flex flex-1 flex-col ${isCommerce ? 'p-3.5 md:p-4' : 'p-4'}`}>
-        <Link to={detailUrl} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
+      <div className={`flex flex-1 flex-col ${isBestseller ? 'px-2.5 pb-2.5 pt-2' : isCommerce ? 'p-3.5 md:p-4' : 'p-4'}`}>
+        <Link to={detailUrl} state={detailLinkState} onClick={onQuickView ? handlePreview : undefined} className="block text-left">
           <h3 className={titleClass}>{title}</h3>
-          {teluguName ? (
+          {!isBestseller && teluguName ? (
             <p className="mt-1 line-clamp-2 font-cormorant text-sm leading-snug text-deep-forest/60">{teluguName}</p>
           ) : null}
         </Link>
+        {isSellableBundleProduct(product) && (product.bundle_item_count || product.bundle_net_weight_g) ? (
+          <Link to={detailUrl} state={detailLinkState} className="mt-1.5 block">
+            <BundleCardMeta
+              bundle={{
+                item_count: product.bundle_item_count,
+                total_net_weight_g: product.bundle_net_weight_g,
+              }}
+            />
+          </Link>
+        ) : null}
+        {isBestseller && unitLabel ? (
+          <p className="mt-0.5 font-inter text-xs text-deep-forest/50">{unitLabel}</p>
+        ) : null}
+        {isBestseller && ratingCount > 0 && ratingAvg > 0 ? (
+          <div className="mt-0.5 flex items-center gap-0.5 text-[#c9a227]">
+            <Star className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+            <span className="font-inter text-xs font-semibold text-deep-forest/65">{ratingAvg.toFixed(1)}</span>
+          </div>
+        ) : null}
         {showSourceSubtitle ? (
           <p className="mt-2 line-clamp-1 font-inter text-[12px] leading-5 text-[#6f675d]">{sourceContext}</p>
         ) : !isCommerce ? (
           <p className="mt-2 line-clamp-1 font-inter text-[12px] leading-5 text-[#9a9185]">Thoughtfully chosen for everyday kitchens</p>
         ) : null}
 
-        {variantOptions.length > 0 && (
+        {variantOptions.length > 0 && !isBestseller && (
           <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5 hide-scrollbar">
-            {variantOptions.map((variant) => (
+            {variantOptions.map((variant) => {
+              const savings = computePackBulkSavings(variantOptions, variant);
+              const active = selectedVariant?.label === variant.label;
+              return (
               <button
                 key={variant.label}
                 type="button"
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setSelectedVariantLabel(variant.label); }}
-                className={`flex-shrink-0 rounded-full px-3 py-1.5 font-inter text-[10px] font-bold transition-colors ${selectedVariant?.label === variant.label ? (isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]') : (isCommerce ? 'border border-soft-border bg-warm-cream text-deep-forest/70 hover:border-neon-paddy/30' : 'border border-[#1a1814]/10 bg-[#f5f1e8] text-[#6f675d] hover:border-[#8b6914]/35')}`}
+                className={`flex-shrink-0 rounded-full px-3 py-1.5 font-inter text-[10px] font-bold transition-colors ${active ? (isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]') : (isCommerce ? 'border border-soft-border bg-warm-cream text-deep-forest/70 hover:border-neon-paddy/30' : 'border border-[#1a1814]/10 bg-[#f5f1e8] text-[#6f675d] hover:border-[#8b6914]/35')}`}
               >
-                {variant.label}
+                <span>{variant.label}</span>
+                {savings ? (
+                  <span className="ml-1">
+                    <PackSavingsChip savings={savings} className={active ? 'bg-warm-cream/15 text-warm-cream' : ''} />
+                  </span>
+                ) : null}
               </button>
-            ))}
+            );})}
           </div>
         )}
 
-        <div className={`mt-auto flex items-end justify-between gap-3 ${isCommerce ? 'pt-3' : 'pt-4'}`}>
-          <div>
-            <div className={`font-cormorant font-semibold leading-none text-deep-forest ${isCommerce ? 'text-[1.65rem] md:text-[1.75rem]' : 'mt-1 text-[28px] text-[#1a1814]'}`}>
-              ₹{activePrice || product.price || 0}
-            </div>
-            {activeComparePrice > activePrice && (
-              <div className={`font-inter line-through ${isCommerce ? 'mt-0.5 text-[11px] text-deep-forest/45' : 'text-[11px] text-[#9a9185]'}`}>
-                ₹{activeComparePrice}
+        <div className={`mt-auto ${isBestseller ? 'flex flex-col gap-2 pt-2' : `flex items-end justify-between gap-2 ${isCommerce ? 'pt-3' : 'pt-4'}`}`}>
+          <div className={isBestseller ? 'flex items-baseline gap-2' : isCommerce ? 'min-w-0 flex-1' : ''}>
+            {isCommerce && discountPct > 0 ? (
+              <div className="mb-1 flex flex-wrap items-center gap-1.5">
+                <span className="rounded-full bg-neon-paddy px-2 py-0.5 font-inter text-[10px] font-bold uppercase tracking-wide text-white">
+                  {discountPct}% off
+                </span>
+                <span className="font-inter text-[11px] font-semibold text-neon-paddy">
+                  Save ₹{saveAmount}
+                </span>
               </div>
-            )}
-            {unitLabel && (
+            ) : null}
+            <div className={`flex flex-wrap items-baseline gap-x-2 gap-y-0.5 ${isBestseller ? '' : ''}`}>
+              <div className={`font-inter font-bold leading-none text-deep-forest ${isBestseller ? 'text-base' : isCommerce ? 'font-cormorant text-[1.65rem] font-semibold md:text-[1.75rem]' : 'mt-1 font-cormorant text-[28px] text-[#1a1814]'}`}>
+                ₹{activePrice || product.price || 0}
+              </div>
+              {activeComparePrice > activePrice && (
+                <>
+                  <div className={`font-inter line-through ${isBestseller ? 'text-xs text-deep-forest/40' : isCommerce ? 'text-sm font-medium text-deep-forest/45' : 'text-[11px] text-[#9a9185]'}`}>
+                    MRP ₹{activeComparePrice}
+                  </div>
+                  {isBestseller ? (
+                    <span className="font-inter text-xs font-bold text-[#d97706]">
+                      {discountPct}% off
+                    </span>
+                  ) : null}
+                </>
+              )}
+            </div>
+            {selectedBulkSavings ? (
+              <p className={`font-inter text-deep-forest/55 ${isBestseller ? 'text-[8px]' : 'mt-0.5 text-[10px]'}`}>
+                {formatPackRateLine(selectedBulkSavings)}
+              </p>
+            ) : null}
+            {unitLabel && !isBestseller && (
               <div className={`font-inter ${isCommerce ? 'mt-1 text-[11px] font-medium text-deep-forest/55' : 'text-[10px] font-bold uppercase tracking-[0.16em] text-[#9a9185]'}`}>
                 {unitLabel}
               </div>
@@ -283,30 +374,31 @@ export default function ProductCard({ product, index = 0, onQuickView, variant =
           {product.isFallback ? (
             <Link
               to="/shop"
-              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.12em] ${isCommerce ? 'border border-soft-border text-deep-forest hover:border-neon-paddy/30' : 'border border-[#1a1814]/20 text-[#1a1814]'}`}
+              className={`flex items-center justify-center rounded-md px-3 font-inter font-bold uppercase tracking-[0.12em] ${isBestseller ? 'h-10 w-full text-xs border border-soft-border text-deep-forest' : `h-10 min-w-20 text-[11px] ${isCommerce ? 'border border-soft-border text-deep-forest hover:border-neon-paddy/30' : 'border border-[#1a1814]/20 text-[#1a1814]'}`}`}
             >
               View
             </Link>
           ) : qty === 0 ? (
             <button
+              type="button"
               onClick={handleAdd}
               disabled={storeOffline}
-              className={`flex h-10 min-w-20 items-center justify-center rounded-full px-4 font-inter text-[11px] font-bold uppercase tracking-[0.13em] transition-all active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 ${isCommerce ? 'bg-neon-paddy text-white hover:bg-deep-forest' : 'bg-[#1e1c18] text-[#f5f1e8] hover:bg-[#4a6741]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}
+              className={`flex items-center justify-center rounded-md font-inter font-bold uppercase tracking-[0.1em] transition-all active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 ${isBestseller ? 'h-10 w-full bg-deep-forest px-2 text-xs text-warm-cream' : `h-10 min-w-20 px-4 text-[11px] ${isCommerce ? 'bg-neon-paddy text-white hover:bg-deep-forest' : 'bg-[#1e1c18] text-[#f5f1e8] hover:bg-[#4a6741]'}`} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}
             >
-              <Plus className="mr-1 h-3.5 w-3.5" /> {storeOffline ? 'Restocking' : 'Add'}
+              {isBestseller ? 'Add to cart' : (<><Plus className="mr-1 h-3.5 w-3.5" /> {storeOffline ? 'Restocking' : 'Add'}</>)}
             </button>
           ) : (
-            <div className={`flex h-10 items-center overflow-hidden rounded-full ${isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]'} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
-              <button onClick={handleDec} aria-label={`Decrease ${title}`} className="flex h-10 w-9 items-center justify-center hover:bg-white/12"><Minus className="h-3.5 w-3.5" /></button>
-              <span className="min-w-7 text-center font-inter text-sm font-bold">{qty}</span>
-              <button onClick={handleInc} aria-label={`Increase ${title}`} className="flex h-10 w-9 items-center justify-center hover:bg-white/12"><Plus className="h-3.5 w-3.5" /></button>
+            <div className={`flex items-center overflow-hidden rounded-md ${isBestseller ? 'h-10 w-full bg-deep-forest text-warm-cream' : `h-10 ${isCommerce ? 'bg-deep-forest text-warm-cream' : 'bg-[#1e1c18] text-[#f5f1e8]'}`} ${isPulseActive ? 'premium-haptic-pulse' : ''}`}>
+              <button onClick={handleDec} aria-label={`Decrease ${title}`} className={`flex items-center justify-center hover:bg-white/12 ${isBestseller ? 'h-7 w-7' : 'h-10 w-9'}`}><Minus className="h-3 w-3" /></button>
+              <span className={`min-w-6 text-center font-inter font-bold ${isBestseller ? 'text-xs' : 'text-sm'}`}>{qty}</span>
+              <button onClick={handleInc} aria-label={`Increase ${title}`} className={`flex items-center justify-center hover:bg-white/12 ${isBestseller ? 'h-7 w-7' : 'h-10 w-9'}`}><Plus className="h-3 w-3" /></button>
             </div>
           )}
         </div>
 
-        {!product.isFallback && (
+        {!product.isFallback && !isBestseller && (
           <div className={`mt-3 border-t pt-3 ${isCommerce ? 'border-soft-border' : 'border-[#1a1814]/8'}`}>
-            <Link to={detailUrl} className={`font-inter text-[10px] font-bold uppercase tracking-[0.16em] ${isCommerce ? 'text-deep-forest/60 hover:text-deep-forest' : 'text-[#6f675d] hover:text-[#1a1814]'}`}>View details</Link>
+            <Link to={detailUrl} state={detailLinkState} className={`font-inter text-[10px] font-bold uppercase tracking-[0.16em] ${isCommerce ? 'text-deep-forest/60 hover:text-deep-forest' : 'text-[#6f675d] hover:text-[#1a1814]'}`}>View details</Link>
           </div>
         )}
       </div>

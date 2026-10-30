@@ -2,8 +2,8 @@
   "id": "/admin",
   "name": "Yasvik Admin",
   "short_name": "Yasvik Admin",
-  "description": "Counter POS, orders, pricing, products — Yasvik store control.",
-  "start_url": "/admin/pos",
+  "description": "Product photos, orders, pricing — Yasvik store control.",
+  "start_url": "/admin/install.html",
   "scope": "/admin",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
@@ -26,9 +26,10 @@
     }
   ],
   "shortcuts": [
+    { "name": "Install Admin app", "short_name": "Install", "url": "/admin/install.html" },
+    { "name": "Product photos", "short_name": "Photos", "url": "/admin/products" },
+    { "name": "Homepage settings", "short_name": "Home", "url": "/admin/settings" },
     { "name": "Counter POS", "short_name": "POS", "url": "/admin/pos" },
-    { "name": "Orders", "url": "/admin/orders" },
-    { "name": "Pricing", "url": "/admin/pricing" },
-    { "name": "Products", "url": "/admin/products" }
+    { "name": "Orders", "url": "/admin/orders" }
   ]
 }

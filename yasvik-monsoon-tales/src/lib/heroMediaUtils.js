@@ -93,18 +93,23 @@ function buildR2HeroVideoPlan() {
 }
 
 export function buildHomeHeroMediaPlan({ slides = [], desktopUrl = '', mobileUrl = '', fallbackUrl = '' } = {}) {
-  const slideUrls = slides
-    .map((slide) => slide.mobileMedia || slide.media)
-    .filter(Boolean);
+  const validSlides = (slides || []).filter((s) => s.media || s.mobileMedia);
 
-  if (slideUrls.length > 1) {
-    return { mode: 'slideshow', slides, urls: slideUrls, intervalMs: 5000 };
+  if (validSlides.length > 1) {
+    return {
+      mode: 'slideshow',
+      slides: validSlides,
+      urls: validSlides.map((s) => s.media || s.mobileMedia),
+      intervalMs: 5000,
+      desktop: validSlides[0].media || validSlides[0].mobileMedia,
+      mobile: validSlides[0].mobileMedia || validSlides[0].media,
+    };
   }
 
-  if (slideUrls.length === 1) {
-    const slide = slides[0];
-    const url = slide.mobileMedia || slide.media;
-    if (isVideoUrl(url) || getYouTubeId(url)) {
+  if (validSlides.length === 1) {
+    const slide = validSlides[0];
+    const url = slide.media || slide.mobileMedia;
+    if (isVideoUrl(url) || getYouTubeId(url) || isVideoUrl(slide.mobileMedia) || getYouTubeId(slide.mobileMedia)) {
       return {
         mode: 'video',
         url: mediaUrl(url),
@@ -115,7 +120,9 @@ export function buildHomeHeroMediaPlan({ slides = [], desktopUrl = '', mobileUrl
     }
     return {
       mode: 'image',
-      url: heroImageUrl(url),
+      url: heroImageUrl(slide.media || slide.mobileMedia),
+      desktop: heroImageUrl(slide.media || slide.mobileMedia),
+      mobile: heroImageUrl(slide.mobileMedia || slide.media),
       poster: heroImageUrl(slide.poster || slide.media || ''),
     };
   }
@@ -125,7 +132,9 @@ export function buildHomeHeroMediaPlan({ slides = [], desktopUrl = '', mobileUrl
   const fallback = safeHeroMedia(fallbackUrl);
   const url = pickPrimaryHeroUrl(mobile, desktop, fallback);
 
-  if (!url) return buildR2HeroVideoPlan();
+  if (!url) {
+    return { mode: 'image', url: '', desktop: '', mobile: '', poster: '' };
+  }
 
   if (isVideoUrl(url) || getYouTubeId(url)) {
     return {

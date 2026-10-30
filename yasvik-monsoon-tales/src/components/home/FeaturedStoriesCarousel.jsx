@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react';
 import { stories as storiesApi } from '@/services/api';
+import ImageSlideshow, { storyCoverSlides } from '@/components/ui/ImageSlideshow';
 
 export default function FeaturedStoriesCarousel() {
   const [emblaRef] = useEmblaCarousel({
@@ -56,17 +57,31 @@ export default function FeaturedStoriesCarousel() {
                   transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}
                   className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-temple-stone/15"
                 >
-                  {story.cover_image ? (
-                    <img
-                      src={story.cover_image}
-                      alt={story.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-temple-stone/20" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent" />
+                  {(() => {
+                    const slides = storyCoverSlides(story);
+                    if (slides.length > 1) {
+                      return (
+                        <ImageSlideshow
+                          slides={slides}
+                          alt={story.title}
+                          showDots
+                          intervalMs={4500}
+                        />
+                      );
+                    }
+                    if (slides[0] || story.cover_image) {
+                      return (
+                        <img
+                          src={slides[0] || story.cover_image}
+                          alt={story.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      );
+                    }
+                    return <div className="w-full h-full bg-temple-stone/20" />;
+                  })()}
+                  <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent pointer-events-none" />
                   {story.story_type && (
                     <div className="absolute top-4 left-4">
                       <span className="font-inter text-[8px] tracking-[0.3em] uppercase text-white/60 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -75,7 +90,7 @@ export default function FeaturedStoriesCarousel() {
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="font-cormorant text-2xl text-white font-light leading-tight">
+                    <h3 className="font-cormorant text-2xl text-white font-semibold leading-tight">
                       {story.title}
                     </h3>
                     {story.read_time_minutes && (

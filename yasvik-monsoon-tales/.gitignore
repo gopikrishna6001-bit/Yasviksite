@@ -31,3 +31,16 @@ dist-ssr
 .vite
 
 cloudflare/.dev.vars
+
+# Local media staging (upload via npm run media:import-inbox)
+media-inbox/*
+!media-inbox/.gitkeep
+media-seed/
+
+# Local review artifacts and scratch — not part of the site
+.review-screenshots/
+import-preview/
+.cache/
+.tmp/
+.wrangler/
+supabase/.temp/

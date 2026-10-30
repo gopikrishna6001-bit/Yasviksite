@@ -1,52 +1,126 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, ShoppingBag, Truck, CreditCard, MessageCircle } from 'lucide-react';
-import { useCart } from '@/lib/CartContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { X, Minus, Plus, ShoppingBag, CreditCard, ChevronDown } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { resolveFreeDeliveryThreshold } from '@/lib/commerceCopy';
-import { fetchAllAppSettings, resolveSetting, resolveSettingsMap, SETTINGS_QUERY_KEYS } from '@/services/settingsService';
-import { getLineItemStockKg } from '@/lib/productVariantUtils';
+import { useCart } from '@/lib/CartContext';
+import { useNavigate, Link } from 'react-router-dom';
+import PackSavingsBadge from '@/components/products/PackSavingsBadge';
+import { sumCartBulkSavings } from '@/lib/variantBulkSavings';
 import CartForgotThese from '@/components/crosssell/CartForgotThese';
 import YasvikButton from '@/components/brand/YasvikButton';
 import { safeMedia } from '@/lib/mediaUrl';
-import { YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+import { formatCartLineVariant, getCartLineSavings } from '@/lib/cartDisplayUtils';
+import { MIN_DELIVERY_ORDER_RS } from '@/lib/commerceCopy';
+import {
+  isCartBundleLine,
+  formatComboMetaLine,
+  formatComboQtySummary,
+  formatScaledComponentQuantity,
+  formatRupee,
+  buildBundleCartSnapshot,
+} from '@/lib/comboVisualUtils';
+import { fetchBundleForProduct } from '@/services/productRelationsApi';
+import { formatNetWeightLabel } from '@/lib/productBundleUtils';
+import ComboMosaic from '@/components/products/ComboMosaic';
 
-function normalizePhone(value = '') {
-  const digits = String(value || '').replace(/\D/g, '');
-  if (!digits) return YASVIK_WHATSAPP_NUMBER;
-  if (digits.length === 10) return `91${digits}`;
-  return digits;
-}
+function CartBundleContents({ item }) {
+  const [open, setOpen] = useState(false);
+  const stored = Array.isArray(item.bundleContents) ? item.bundleContents : [];
+  const legacy = Array.isArray(item.products) ? item.products : [];
+  const needsFetch = open && !stored.length && item.type !== 'combo' && item.productId;
+  const comboQty = Math.max(1, Number(item.qty) || 1);
 
-function cleanPublicLicense(value = '') {
-  const text = String(value || '').trim();
-  return /pending|to be confirmed|license number/i.test(text) ? '' : text;
+  const { data: bundle } = useQuery({
+    queryKey: ['cart-bundle-contents', item.productId],
+    queryFn: () => fetchBundleForProduct(item.productId, { includeDraftComponents: true }),
+    enabled: Boolean(needsFetch),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const lines = (() => {
+    if (stored.length) return stored;
+    if (legacy.length) {
+      return legacy.map((row) => ({
+        id: row.id,
+        title: row.title || row.name,
+        quantityLabel: row.qty > 1 ? `× ${row.qty}` : '',
+        imageUrl: null,
+      }));
+    }
+    if (!bundle) return [];
+    return buildBundleCartSnapshot(
+      { id: item.productId, title: item.title, slug: item.productSlug },
+      bundle,
+      bundle.items,
+      bundle.products,
+    ).bundleContents || [];
+  })();
+
+  return (
+    <div className="mt-2">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-2 rounded-lg bg-warm-cream/80 px-2.5 py-1.5 text-left"
+      >
+        <span className="font-inter text-[11px] font-semibold text-deep-forest/70">View contents</span>
+        <ChevronDown className={`h-3.5 w-3.5 text-deep-forest/45 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <ul className="mt-2 space-y-1.5 rounded-xl border border-soft-border/70 bg-white p-2">
+              {lines.length ? lines.map((line) => {
+                const quantityLabel = line.quantityValue != null
+                  ? formatScaledComponentQuantity({
+                    quantityValue: line.quantityValue,
+                    quantityUnit: line.quantityUnit,
+                    packCount: line.packCount,
+                    comboQty,
+                  })
+                  : line.quantityLabel;
+                return (
+                  <li key={line.id || line.productId || line.title} className="flex items-center gap-2">
+                    <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-lg bg-warm-cream">
+                      {line.imageUrl ? (
+                        <img src={safeMedia(line.imageUrl, 'thumb')} alt="" className="h-full w-full object-cover" />
+                      ) : null}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      {line.href && !line.linkDisabled ? (
+                        <Link to={line.href} className="block truncate font-inter text-xs font-semibold text-deep-forest hover:underline">
+                          {line.title}
+                        </Link>
+                      ) : (
+                        <p className="truncate font-inter text-xs font-semibold text-deep-forest">{line.title}</p>
+                      )}
+                      {quantityLabel ? (
+                        <p className="font-inter text-[10px] text-deep-forest/50">{quantityLabel}</p>
+                      ) : null}
+                    </div>
+                  </li>
+                );
+              }) : (
+                <li className="px-1 py-2 font-inter text-[11px] text-deep-forest/50">Loading contents…</li>
+              )}
+            </ul>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function CartDrawer({ open, onClose }) {
   const navigate = useNavigate();
   const { items, updateQty, removeItem, totalPrice, totalItems, storeOffline } = useCart();
-  const { data: settings = [] } = useQuery({
-    queryKey: SETTINGS_QUERY_KEYS.public,
-    queryFn: fetchAllAppSettings,
-    staleTime: 10 * 60 * 1000,
-  });
-  const settingsMap = resolveSettingsMap(settings);
-  const freeDeliveryThreshold = resolveFreeDeliveryThreshold(settingsMap);
-  const fssaiLicense = cleanPublicLicense(resolveSetting(settings, 'fssai_license_number', ''));
-  const qualifiesForFreeDelivery = totalPrice >= freeDeliveryThreshold;
-  const amountNeeded = Math.max(0, freeDeliveryThreshold - totalPrice);
-  const deliveryProgress = Math.min(100, (totalPrice / freeDeliveryThreshold) * 100);
-  const milestoneCopy = qualifiesForFreeDelivery
-    ? `Free home delivery in Hyderabad — unlocked.`
-    : deliveryProgress >= 70
-      ? `₹${amountNeeded.toFixed(0)} more for free delivery in Hyderabad.`
-      : `Free home delivery in Hyderabad above ₹${freeDeliveryThreshold}.`;
-  const whatsappNumber = normalizePhone(
-    settingsMap.whatsapp_number || settingsMap.support_whatsapp_number || settingsMap.contact_whatsapp || settingsMap.footer_whatsapp_number,
-  );
-  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hi Yasvik, I have a query about my order / delivery.')}`;
-
+  const totalBulkSavings = sumCartBulkSavings(items);
 
   const handleCheckout = () => {
     if (storeOffline) return;
@@ -71,10 +145,11 @@ export default function CartDrawer({ open, onClose }) {
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 260 }}
             className="relative z-10 flex h-full w-full max-w-md flex-col border-l border-soft-border bg-warm-cream text-deep-forest shadow-[0_24px_64px_rgba(31,61,43,0.16)]"
+            aria-label="Shopping cart"
           >
             <div className="flex items-center justify-between border-b border-soft-border bg-white/90 px-5 py-4 backdrop-blur-sm">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="h-5 w-5 text-neon-paddy" strokeWidth={1.7} />
+                <ShoppingBag className="h-5 w-5 text-deep-forest" strokeWidth={1.7} />
                 <h2 className="font-cormorant text-2xl font-semibold text-deep-forest">
                   My Cart
                   {totalItems > 0 && (
@@ -82,12 +157,7 @@ export default function CartDrawer({ open, onClose }) {
                   )}
                 </h2>
               </div>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close cart"
-                className="yasvik-icon-button h-9 w-9"
-              >
+              <button type="button" onClick={onClose} aria-label="Close cart" className="yasvik-icon-button h-9 w-9">
                 <X className="h-4 w-4" strokeWidth={1.7} />
               </button>
             </div>
@@ -105,33 +175,100 @@ export default function CartDrawer({ open, onClose }) {
                   </YasvikButton>
                 </div>
               ) : (
-                items.map((item) => (
-                  <div key={item.key} className="flex gap-3 rounded-2xl border border-soft-border bg-white p-3 shadow-[0_8px_24px_rgba(31,61,43,0.04)]">
-                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-soft-border bg-warm-cream">
-                      {item.hero_image ? (
-                        <img src={safeMedia(item.hero_image, 'thumb')} alt={item.title} className="h-full w-full object-cover" />
-                      ) : (
-                        <ShoppingBag className="h-6 w-6 text-deep-forest/25" strokeWidth={1.5} />
-                      )}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate font-inter text-sm font-semibold text-deep-forest">{item.title}</p>
-                      {item.variant && (
-                        <p className="mt-0.5 font-inter text-[11px] text-deep-forest/55">
-                          {item.variant}
-                          {item.pack_kg ? ` · ${item.pack_kg}kg pack` : ''}
-                        </p>
-                      )}
-                      {item.unit && !item.variant && (
-                        <p className="mt-0.5 font-inter text-[11px] text-deep-forest/55">{item.unit}</p>
-                      )}
-                      {getLineItemStockKg(item) > 0 && (
-                        <p className="mt-0.5 font-inter text-[10px] text-deep-forest/45">
-                          Bulk stock use: {getLineItemStockKg(item)}kg
-                        </p>
-                      )}
-                      <div className="mt-2 flex items-center justify-between gap-3">
-                        <span className="font-inter text-base font-bold text-deep-forest">₹{item.price * item.qty}</span>
+                items.map((item) => {
+                  const isBundle = isCartBundleLine(item);
+                  const variantLabel = isBundle ? null : formatCartLineVariant(item);
+                  const savings = getCartLineSavings(item);
+                  const metaLine = isBundle
+                    ? formatComboQtySummary({
+                      comboQty: item.qty,
+                      itemCount: item.bundleItemCount || item.products?.length,
+                      packCount: item.bundlePackCount || item.bundleItemCount,
+                      netWeightG: item.bundleNetWeightG,
+                    })
+                    || item.bundleMetaLine
+                    || formatComboMetaLine({
+                      itemCount: item.bundleItemCount || item.products?.length,
+                      netWeightG: item.bundleNetWeightG,
+                      netWeightLabel: formatNetWeightLabel(item.bundleNetWeightG),
+                    })
+                    : null;
+                  const lineTotal = Number(item.price) * Number(item.qty || 1);
+                  const mosaicProducts = (item.bundleContents || [])
+                    .filter((row) => row?.imageUrl)
+                    .map((row) => ({
+                      id: row.id || row.productId,
+                      hero_image: row.imageUrl,
+                      featured_image_url: row.imageUrl,
+                    }));
+
+                  return (
+                    <div key={item.key} className="rounded-2xl border border-soft-border bg-white p-3 shadow-[0_8px_24px_rgba(31,61,43,0.04)]">
+                      <div className="flex gap-3">
+                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-soft-border bg-warm-cream">
+                          {item.hero_image ? (
+                            <img src={safeMedia(item.hero_image, 'thumb')} alt={item.title || 'Cart item'} className="h-full w-full object-cover" />
+                          ) : isBundle ? (
+                            <ComboMosaic
+                              products={mosaicProducts}
+                              totalCount={item.bundleItemCount}
+                              className="h-full w-full"
+                              alt={item.title || 'Combo'}
+                            />
+                          ) : (
+                            <ShoppingBag className="h-6 w-6 text-deep-forest/25" strokeWidth={1.5} />
+                          )}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          {isBundle ? (
+                            <p className="font-inter text-[10px] font-bold uppercase tracking-[0.12em] text-sun-dried-clay">
+                              {item.yasvikMark || 'Combo'}
+                            </p>
+                          ) : null}
+                          <p className="font-inter text-sm font-semibold leading-snug text-deep-forest">
+                            {item.title || 'Yasvik product'}
+                          </p>
+                          {isBundle && item.comboOption?.label ? (
+                            <p className="mt-0.5 font-inter text-[11px] font-medium text-deep-forest/65">
+                              Option:
+                              {' '}
+                              {item.comboOption.label}
+                            </p>
+                          ) : null}
+                          {isBundle && metaLine ? (
+                            <p className="mt-0.5 font-inter text-[11px] text-deep-forest/55">{metaLine}</p>
+                          ) : null}
+                          {variantLabel ? (
+                            <p className="mt-0.5 font-inter text-[11px] font-medium text-deep-forest/60">{variantLabel}</p>
+                          ) : null}
+                          <PackSavingsBadge savings={item.bulk_savings} qty={item.qty} surface="cart" className="mt-0.5" />
+                          <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                            <span className="font-inter text-base font-bold text-deep-forest">
+                              {formatRupee(lineTotal) || `₹${lineTotal}`}
+                            </span>
+                            {savings ? (
+                              <>
+                                <span className="font-inter text-xs text-deep-forest/40 line-through">
+                                  MRP ₹{savings.compare * item.qty}
+                                </span>
+                                <span className="rounded-full bg-deep-forest/8 px-2 py-0.5 font-inter text-[10px] font-bold text-deep-forest">
+                                  Save ₹{savings.saveTotal}
+                                </span>
+                              </>
+                            ) : null}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeItem(item.key)}
+                          aria-label={`Remove ${item.title || 'item'}`}
+                          className="mt-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-deep-forest/45 hover:bg-warm-cream hover:text-sun-dried-clay"
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+
+                      <div className="mt-2 flex items-center justify-between gap-2">
                         <div className="flex items-center overflow-hidden rounded-lg border border-soft-border bg-warm-cream">
                           <button
                             type="button"
@@ -152,17 +289,11 @@ export default function CartDrawer({ open, onClose }) {
                           </button>
                         </div>
                       </div>
+
+                      {isBundle ? <CartBundleContents item={item} /> : null}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => removeItem(item.key)}
-                      aria-label={`Remove ${item.title}`}
-                      className="mt-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-deep-forest/45 hover:bg-warm-cream hover:text-sun-dried-clay"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
 
@@ -171,39 +302,26 @@ export default function CartDrawer({ open, onClose }) {
             ) : null}
 
             {items.length > 0 && (
-              <div className="space-y-3 border-t border-soft-border bg-white/90 px-5 py-4 backdrop-blur-sm">
-                <div className="rounded-2xl border border-soft-border bg-warm-cream p-3">
-                  <div className="flex items-center gap-2">
-                    <Truck className="h-4 w-4 text-neon-paddy" strokeWidth={1.7} />
-                    <p className="font-inter text-xs font-semibold text-deep-forest/80">{milestoneCopy}</p>
-                  </div>
-                  {!qualifiesForFreeDelivery && (
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${deliveryProgress}%` }}
-                        transition={{ duration: 0.35 }}
-                        className="h-full rounded-full bg-neon-paddy"
-                      />
+              <div className="shrink-0 space-y-2 border-t border-soft-border bg-white/90 px-5 py-3 backdrop-blur-sm">
+                <div className="space-y-1 font-inter text-sm">
+                  {totalBulkSavings > 0 ? (
+                    <div className="flex justify-between text-deep-forest/70">
+                      <span>Fair pricing benefit</span>
+                      <span>₹{totalBulkSavings}</span>
                     </div>
-                  )}
-                </div>
-                <div className="space-y-1 border-t border-soft-border pt-3 font-inter text-sm">
-                  <div className="flex justify-between text-deep-forest/65">
-                    <span>Subtotal</span>
-                    <span>₹{totalPrice}</span>
-                  </div>
-                  <div className="flex justify-between text-neon-paddy">
-                    <span>Delivery</span>
-                    <span>{qualifiesForFreeDelivery ? 'FREE' : 'At checkout'}</span>
-                  </div>
-                  <div className="flex justify-between pt-2 font-cormorant text-xl font-semibold text-deep-forest">
+                  ) : null}
+                  <div className="flex justify-between font-cormorant text-xl font-semibold text-deep-forest">
                     <span>Total</span>
                     <span>₹{totalPrice}</span>
                   </div>
+                  <p className="font-inter text-[10px] text-deep-forest/45">
+                    {totalPrice < MIN_DELIVERY_ORDER_RS
+                      ? `Add ₹${Math.ceil(MIN_DELIVERY_ORDER_RS - totalPrice)} more for home delivery · or pick up free at our store`
+                      : 'Delivery extra · standard Porter / Rapido / courier charges'}
+                  </p>
                 </div>
                 {storeOffline && (
-                  <p className="rounded-2xl border border-neon-paddy/25 bg-neon-paddy/8 px-3 py-2 font-inter text-xs font-semibold text-deep-forest/75">
+                  <p className="rounded-xl border border-deep-forest/20 bg-warm-cream px-3 py-2 font-inter text-xs font-semibold text-deep-forest/75">
                     We&apos;re restocking the shop — checkout will open again soon.
                   </p>
                 )}
@@ -211,23 +329,10 @@ export default function CartDrawer({ open, onClose }) {
                   type="button"
                   onClick={handleCheckout}
                   disabled={storeOffline}
-                  className="yasvik-harvest-cta w-full gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-deep-forest py-3 font-inter text-sm font-bold text-warm-cream disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <CreditCard className="h-4 w-4" /> Proceed to checkout
                 </button>
-                <div className="rounded-2xl border border-soft-border bg-warm-cream p-3 font-inter text-[10px] leading-relaxed text-deep-forest/55">
-                  <p>Delivery charges applicable for locations outside Hyderabad.</p>
-                  {fssaiLicense && <p className="mt-1">FSSAI: {fssaiLicense}</p>}
-                </div>
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-2xl border border-[#25D366]/40 bg-[#25D366]/8 px-4 py-2.5 font-inter text-xs font-semibold text-deep-forest transition-colors hover:bg-[#25D366]/15"
-                >
-                  <MessageCircle className="h-3.5 w-3.5 text-[#25D366]" />
-                  Message us on WhatsApp for any queries
-                </a>
               </div>
             )}
           </motion.aside>

@@ -5,6 +5,7 @@ import { Save, Loader2, ChevronDown, ChevronUp, Trash2, Image as ImageIcon } fro
 import { appClient } from '@/api/appClient';
 import { stories as storiesApi } from '@/services/api';
 import MediaPickerModal from '@/components/admin/MediaPickerModal';
+import ImageUploadField from '@/components/admin/ImageUploadField';
 import StoreOfflineAdminPanel from '@/components/admin/StoreOfflineAdminPanel';
 import DeliveryZonesAdminPanel from '@/components/admin/DeliveryZonesAdminPanel';
 import MetaCatalogAdminPanel from '@/components/admin/MetaCatalogAdminPanel';
@@ -19,7 +20,16 @@ import {
 } from '@/services/settingsService';
 import { DEFAULT_THEME_PRESET_KEY, YASVIK_THEME_PRESETS } from '@/lib/themePresets';
 import { BRAND_LOGO_HORIZONTAL, BRAND_LOGO_SYMBOL } from '@/lib/brandAssets';
-import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_WHATSAPP_NUMBER } from '@/lib/storeLocation';
+import {
+  YASVIK_GOOGLE_MAPS_URL,
+  YASVIK_STORE_PHOTO_PLACEHOLDER,
+  YASVIK_SUPPORT_PHONE_DISPLAY,
+  YASVIK_WHATSAPP_NUMBER,
+} from '@/lib/storeLocation';
+import { buildGoogleMapsEmbedUrl } from '@/lib/storeLocationSettings';
+import HeroSlidesEditor from '@/components/admin/HeroSlidesEditor';
+import GoogleReviewsEditor from '@/components/admin/GoogleReviewsEditor';
+import { HOME_GOOGLE_REVIEWS_SETTING_KEY } from '@/lib/homeGoogleReviews';
 
 const CORE_VALUE_PROOF_FIELDS = YASVIK_CORE_VALUES.map((value) => {
   const keys = getCoreValueSettingKeys(value.id);
@@ -59,24 +69,63 @@ const SETTINGS_SECTIONS = [
     title: 'Homepage Hero Copy & Media',
     description: 'Headline and optional video/image. Fallback banner art is in Admin → Illustrations → Hero.',
     fields: [
-      { key: 'home_hero_headline', label: 'Hero Headline', type: 'text', defaultValue: 'Good Food.\nFair Prices.\nDelivered Home.' },
+      { key: 'home_hero_headline', label: 'Hero Headline', type: 'text', defaultValue: 'Better Food.\nFound.' },
       {
         key: 'home_hero_subheadline',
         label: 'Hero Subheadline',
         type: 'textarea',
         rows: 3,
         defaultValue:
-          'Carefully chosen staples, millets, flours, cold-pressed oils, spices, honey, jaggery, dry fruits and more — delivered home across Hyderabad.',
+          'We travel, meet makers and choose everyday foods we can stand behind — then make them easier to bring into modern homes.',
       },
       { key: 'home_hero_desktop_media_url', label: 'Hero Media (Desktop)', type: 'media', defaultValue: '', description: 'Designed banner image (16:9). Shows full image — no crop, no duplicate headline. CTAs overlay bottom-left.' },
       { key: 'home_hero_mobile_media_url', label: 'Hero Media (Mobile)', type: 'media', defaultValue: '', description: 'Optional mobile banner (9:16 or 4:5). Leave blank to reuse desktop.' },
       {
         key: 'home_hero_slides_json',
-        label: 'Hero Slides (JSON, optional)',
-        type: 'textarea',
-        rows: 6,
+        label: 'Hero slideshow (desktop + mobile)',
+        type: 'hero-slides',
         defaultValue: '',
-        description: 'Advanced: JSON array of slides with media URLs. Leave blank for a single desktop/mobile pair above.',
+        description: 'Add 2+ images for an auto-rotating hero. Optional mobile crop per slide. Leave empty to use the single desktop/mobile pair above.',
+      },
+      { key: 'home_promo_enabled', label: 'Show promo strip on home', type: 'boolean', defaultValue: false },
+      {
+        key: 'home_promo_title',
+        label: 'Promo title',
+        type: 'text',
+        defaultValue: 'Free store pickup • Home delivery available',
+        description: 'Short headline on the promo strip below the hero.',
+      },
+      {
+        key: 'home_promo_body',
+        label: 'Promo body',
+        type: 'text',
+        defaultValue: 'Same-day delivery across Hyderabad · MRP shown on every product',
+      },
+      {
+        key: 'home_promo_cta_label',
+        label: 'Promo CTA label',
+        type: 'text',
+        defaultValue: 'Shop offers',
+      },
+      {
+        key: 'home_promo_cta_link',
+        label: 'Promo CTA link',
+        type: 'text',
+        defaultValue: '/shop?sort=offers',
+      },
+    ],
+  },
+  {
+    id: 'google-reviews',
+    title: 'Homepage Google Reviews',
+    description: 'Paste customer reviews from Google. They rotate one-by-one on the homepage under “What our customers say”.',
+    fields: [
+      {
+        key: HOME_GOOGLE_REVIEWS_SETTING_KEY,
+        label: 'Google reviews',
+        type: 'google-reviews',
+        defaultValue: '[]',
+        description: 'Add name, stars, and the review text exactly as it appears on Google. Order here is the play order.',
       },
     ],
   },
@@ -106,11 +155,109 @@ const SETTINGS_SECTIONS = [
       { key: 'whatsapp_number', label: 'WhatsApp Number', type: 'text', defaultValue: YASVIK_WHATSAPP_NUMBER, description: 'Digits only, with country code. Used on shop, cart, and contact flows.' },
       { key: 'support_phone', label: 'Support Phone (display)', type: 'text', defaultValue: YASVIK_SUPPORT_PHONE_DISPLAY },
       {
+        key: 'store_photo_url',
+        label: 'Store Photo',
+        type: 'media',
+        defaultValue: YASVIK_STORE_PHOTO_PLACEHOLDER,
+        description: 'Photo of your Yasvik storefront. Placeholder shown until you upload your own.',
+      },
+      {
+        key: 'store_google_maps_url',
+        label: 'Google Maps Link',
+        type: 'text',
+        defaultValue: YASVIK_GOOGLE_MAPS_URL,
+        description: 'Share link for “Get directions” (maps.app.goo.gl or Google Business link).',
+      },
+      {
+        key: 'store_google_maps_embed_url',
+        label: 'Google Maps Embed URL',
+        type: 'text',
+        defaultValue: buildGoogleMapsEmbedUrl(),
+        description: 'Optional. Paste embed URL from Google Maps → Share → Embed a map. Leave default to use store coordinates.',
+      },
+      {
+        key: 'store_address_text',
+        label: 'Store Address (one line per row)',
+        type: 'textarea',
+        rows: 4,
+        defaultValue: '',
+        description: 'Optional override. Blank = built-in Ashok Nagar address.',
+      },
+      {
+        key: 'store_hours_text',
+        label: 'Store Hours (display)',
+        type: 'text',
+        defaultValue: '9:00 AM – 9:00 PM · Open daily',
+      },
+      {
+        key: 'store_display_name',
+        label: 'Store Name (display)',
+        type: 'text',
+        defaultValue: 'Yasvik Natural Foods',
+      },
+      {
         key: 'ga_measurement_id',
         label: 'Google Analytics ID (build env)',
         type: 'text',
         defaultValue: '',
         description: 'Set VITE_GA_MEASUREMENT_ID in Cloudflare Pages env (e.g. G-XXXXXXXX). Redeploy after changing.',
+      },
+    ],
+  },
+  {
+    id: 'seo',
+    title: 'SEO & Social',
+    description: 'Global business description, social image, profiles, and map coordinates used in schema.',
+    fields: [
+      {
+        key: 'business_seo_description',
+        label: 'Business SEO description',
+        type: 'textarea',
+        rows: 4,
+        defaultValue: 'Yasvik — Better Food. Found. We travel, learn and choose everyday foods we can stand behind, including homemade snacks, pickles, spice powders and podis, cold-pressed oils, ghee, honey, jaggery, dry fruits, heritage rice, millets and essentials — from our store in Ashok Nagar, Hyderabad.',
+      },
+      {
+        key: 'social_share_image_url',
+        label: 'Social share image',
+        type: 'media',
+        defaultValue: BRAND_LOGO_HORIZONTAL,
+      },
+      {
+        key: 'social_same_as_json',
+        label: 'SameAs links (JSON array)',
+        type: 'textarea',
+        rows: 4,
+        defaultValue: '[]',
+      },
+      {
+        key: 'facebook_url',
+        label: 'Facebook URL',
+        type: 'text',
+        defaultValue: '',
+      },
+      {
+        key: 'instagram_url',
+        label: 'Instagram URL',
+        type: 'text',
+        defaultValue: '',
+      },
+      {
+        key: 'youtube_url',
+        label: 'YouTube URL',
+        type: 'text',
+        defaultValue: '',
+      },
+      {
+        key: 'store_geo_lat',
+        label: 'Store latitude',
+        type: 'text',
+        defaultValue: '17.5079009',
+      },
+      {
+        key: 'store_geo_lng',
+        label: 'Store longitude',
+        type: 'text',
+        defaultValue: '78.3114584',
       },
     ],
   },
@@ -129,6 +276,14 @@ function normalizeValue(field, rawValue) {
   if (rawValue === undefined || rawValue === null || rawValue === '') return field.defaultValue;
   if (field.type === 'number') return Number(rawValue) || 0;
   if (field.type === 'boolean') return rawValue === true || rawValue === 'true';
+  if (field.type === 'google-reviews' || field.type === 'hero-slides') {
+    if (typeof rawValue === 'string') return rawValue;
+    try {
+      return JSON.stringify(rawValue);
+    } catch {
+      return field.defaultValue;
+    }
+  }
   return String(rawValue);
 }
 
@@ -179,7 +334,11 @@ export default function AdminSettings() {
       const field = ALL_CONFIG_FIELDS.find((f) => f.key === key);
       const latestSettings = queryClient.getQueryData(SETTINGS_QUERY_KEYS.all) || settings;
       await upsertAppSetting(latestSettings, key, formValues[key], {
-        data_type: field?.type === 'theme-preset' ? 'string' : field?.type,
+        data_type: field?.type === 'theme-preset'
+          ? 'string'
+          : field?.type === 'google-reviews' || field?.type === 'hero-slides'
+            ? 'json'
+            : field?.type,
         description: field?.description || '',
       });
     },
@@ -448,12 +607,34 @@ export default function AdminSettings() {
                                 </option>
                               ))}
                             </select>
+                          ) : field.type === 'hero-slides' ? (
+                            <HeroSlidesEditor
+                              value={value || ''}
+                              onChange={(json) => handleValueChange(field.key, json)}
+                            />
+                          ) : field.type === 'google-reviews' ? (
+                            <GoogleReviewsEditor
+                              value={value || '[]'}
+                              onChange={(json) => handleValueChange(field.key, json)}
+                            />
                           ) : field.type === 'textarea' ? (
                             <textarea
                               value={value || ''}
                               onChange={(e) => handleValueChange(field.key, e.target.value)}
                               rows={field.rows || 3}
                               className="w-full px-4 py-2 border border-border rounded-xl font-inter text-sm text-rain-cloud focus:outline-none focus:border-forest-canopy"
+                            />
+                          ) : field.type === 'media' ? (
+                            <ImageUploadField
+                              value={value || ''}
+                              onChange={(url) => handleValueChange(field.key, url)}
+                              aspectClass={field.key.includes('mobile') ? 'aspect-[4/5]' : 'aspect-video'}
+                              accept="image/*"
+                              folder={field.key.includes('hero') ? 'heroes' : 'general'}
+                              seoName={field.key.includes('hero') ? 'home-hero' : field.key}
+                              assetRole={field.key.includes('hero') ? 'hero-banner' : 'setting-media'}
+                              entityTitle={field.label}
+                              hideUrlField
                             />
                           ) : (
                             <input
@@ -464,40 +645,6 @@ export default function AdminSettings() {
                             />
                           )}
 
-                          {field.type === 'media' ? (
-                            <div className="mt-2 flex items-center gap-2">
-                              <button
-                                type="button"
-                                onClick={() => setPickerKey(field.key)}
-                                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border font-inter text-xs text-rain-cloud/70 hover:bg-rain-mist transition-colors"
-                              >
-                                <ImageIcon className="w-3.5 h-3.5" />
-                                Pick from Media
-                              </button>
-                              {value ? (
-                                <a
-                                  href={String(value)}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  className="font-inter text-xs text-forest-canopy hover:underline"
-                                >
-                                  Preview URL
-                                </a>
-                              ) : null}
-                            </div>
-                          ) : null}
-
-                          {field.type === 'media' && value && isMediaValue(value) ? (
-                            <div className="mt-3 h-20 w-20 rounded-lg overflow-hidden border border-border bg-rain-mist/60">
-                              {isVideoValue(value) ? (
-                                <div className="flex h-full w-full items-center justify-center bg-rain-cloud/10">
-                                  <ImageIcon className="h-5 w-5 text-rain-cloud/35" />
-                                </div>
-                              ) : (
-                                <img src={String(value)} alt={field.label} className="w-full h-full object-cover" />
-                              )}
-                            </div>
-                          ) : null}
                         </div>
 
                         <button
@@ -584,6 +731,9 @@ export default function AdminSettings() {
       <MediaPickerModal
         open={Boolean(pickerKey)}
         onClose={() => setPickerKey('')}
+        folder={pickerKey?.includes('hero') ? 'heroes' : 'general'}
+        assetRole={pickerKey?.includes('hero') ? 'hero-banner' : ''}
+        seoName={pickerKey?.includes('hero') ? 'home-hero' : ''}
         onSelect={(url) => {
           if (!pickerKey) return;
           handleValueChange(pickerKey, url);

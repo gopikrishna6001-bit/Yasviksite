@@ -1,0 +1,16 @@
+---
+description: Yasvik storefront typography — Cormorant + DM Sans; Shop/PDP are source of truth
+globs: yasvik-monsoon-tales/src/pages/**/*.jsx,yasvik-monsoon-tales/src/components/**/*.jsx,yasvik-monsoon-tales/src/brand/**/*
+alwaysApply: false
+---
+
+# Storefront typography (file-scoped)
+
+When editing customer UI under `yasvik-monsoon-tales`:
+
+- Display: `font-cormorant` + `font-semibold` + `text-deep-forest`
+- Body/UI: `font-inter` (DM Sans)
+- Layout: import `retailClasses` from `@/brand/retailTheme` (`container`, `titleLg`, `body`, buttons)
+- No Syne / Inter / light display headings / arbitrary page max-widths
+
+See also the always-on rule `yasvik-storefront-typography.mdc`.

@@ -55,7 +55,7 @@ export default function PersonalizedContextBanner() {
               <p className="font-inter text-[9px] tracking-[0.25em] uppercase text-white/50 mb-1">
                 {topCategoryId ? 'Based on your interest' : 'Inspired by your journeys'}
               </p>
-              <h3 className="font-cormorant text-xl text-white font-light leading-snug max-w-[200px]">
+              <h3 className="font-cormorant text-xl text-white font-semibold leading-snug max-w-[200px]">
                 {prompt}
               </h3>
               <div className="flex items-center gap-1.5 mt-3">

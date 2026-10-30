@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { appClient } from '@/api/appClient';
 import { searchLabelProducts } from '@/lib/labelProductSearch';
@@ -10,7 +10,7 @@ import {
 } from '@/lib/labelBatchQueue';
 import { generateBatchNo } from '@/lib/priceLabelGenerator';
 
-export function useLabelBatchQueue({ initialPackedDate } = {}) {
+export function useLabelBatchQueue({ initialPackedDate, initialProductId } = {}) {
   const [search, setSearch] = useState('');
   const [pickerDraft, setPickerDraft] = useState({});
   const [variantTouched, setVariantTouched] = useState(() => new Set());
@@ -97,6 +97,15 @@ export function useLabelBatchQueue({ initialPackedDate } = {}) {
     const draft = getPickerDraft(product.id, suggestedVariantIndex);
     addProductRow(product.id, draft.variantIndex, draft.quantity);
   };
+
+  useEffect(() => {
+    if (!initialProductId || !productsById[initialProductId]) return;
+    setQueueRows((prev) => {
+      if (prev.some((row) => row.productId === initialProductId)) return prev;
+      return [...prev, { id: newLabelQueueRowId(), productId: initialProductId, variantIndex: 0, quantity: 1 }];
+    });
+    ensureBatchForProduct(initialProductId);
+  }, [initialProductId, productsById]);
 
   const updateRow = (rowId, patch) => {
     setQueueRows((prev) => prev.map((row) => (row.id === rowId ? { ...row, ...patch } : row)));

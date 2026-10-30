@@ -4,6 +4,8 @@
  * Used by components in later phases — not wired to homepage layout yet.
  */
 
+import { categoryShopPath } from '@/lib/seoEntity';
+
 export const MONSOON_COLORS = {
   primaryGreen: '#34C230',
   freshGreen: '#62D75F',
@@ -181,12 +183,13 @@ export const STORE_GEOGRAPHY = {
 };
 
 export const HERO_COPY = {
-  eyebrow: 'Natural Foods & Everyday Essentials',
-  headline: 'Good Food.\nFair Prices.\nDelivered Home.',
+  eyebrow: 'Better Food. Found.',
+  headline: 'Better Food.\nFound.',
   subheadline:
-    'Carefully chosen staples, millets, flours, cold-pressed oils, spices, honey, jaggery, dry fruits and more — delivered home across Hyderabad.',
-  primaryCta: 'Shop Essentials',
-  secondaryCta: 'Browse Categories',
+    'We travel, meet makers and choose everyday foods we can stand behind — then make them easier to bring into modern homes.',
+  primaryCta: 'Shop now',
+  secondaryCta: 'Our story',
+  secondaryCtaPath: '/about',
   brandChips: [],
 };
 
@@ -219,7 +222,7 @@ export function normalizeHeroSubheadline(text) {
 }
 
 export const STORY_COPY =
-  'We choose foods that make sense for everyday Indian homes — staples, millets, oils, spices, and essentials that are useful, thoughtfully sourced, and quality checked.';
+  'We go looking for better ingredients, makers and processes — then bring a smaller selection we can stand behind into modern homes.';
 
 export function getCategoryImageUrl(category = {}) {
   return category.cover_image || '';
@@ -228,6 +231,7 @@ export function getCategoryImageUrl(category = {}) {
 export function matchCategoryId(categories = [], config) {
   const haystack = categories.map((cat) => ({
     id: cat.id,
+    slug: cat.slug,
     name: String(cat.name || cat.emotional_title || '').toLowerCase(),
     cover_image: getCategoryImageUrl(cat),
   }));
@@ -245,7 +249,7 @@ export function resolveCategoryLinks(categories = []) {
       ...config,
       categoryId: match?.id || null,
       imageUrl: match?.cover_image || '',
-      href: match?.id ? `/shop?category=${match.id}` : '/shop',
+      href: match?.slug ? categoryShopPath(match.slug) : '/shop',
     };
   });
 }

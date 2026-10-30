@@ -48,16 +48,34 @@ export function buildVariantOptions(product = {}) {
   }];
 }
 
-export function resolveVariantPricing(product, variant) {
+/** One shared selling price for labels (shop / POS / shelf). Channel arg ignored. */
+export function resolveVariantPricing(product, variant, _channel = 'web') {
   const sellingPrice = variant?.price ?? product.price;
   const mrp = variant?.compare_price ?? product.compare_price ?? product.discount_price;
-  return { sellingPrice, mrp };
+  return { sellingPrice, mrp, channel: 'web' };
 }
 
-export function formatVariantOptionLabel(variant, product = null) {
+export function formatVariantOptionLabel(variant, product = null, channel = 'web') {
   const parts = [variant.label || 'Standard pack'];
-  if (variant.price != null && variant.price !== '') {
-    parts.push(`₹${variant.price}`);
+  const pricing = resolveVariantPricing(product || {}, variant, channel);
+  if (pricing.sellingPrice != null && pricing.sellingPrice !== '') {
+    parts.push(`₹${pricing.sellingPrice}`);
   }
   return parts.join(' · ');
+}
+
+export function formatLabelPriceSummary(product = {}, variant = null, channel = 'web') {
+  const pricing = resolveVariantPricing(product, variant, channel);
+  const sell = pricing.sellingPrice;
+  if (sell == null || sell === '') return '—';
+  const mrp = pricing.mrp;
+  if (mrp != null && Number(mrp) > Number(sell)) {
+    return `₹${sell} (MRP ₹${mrp})`;
+  }
+  return `₹${sell}`;
+}
+
+/** @deprecated Single price — always "Price". */
+export function labelPriceChannelLabel(_channel = 'web') {
+  return 'Price';
 }

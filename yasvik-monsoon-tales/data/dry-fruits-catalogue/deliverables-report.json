@@ -1,0 +1,121 @@
+{
+  "created_slugs": [
+    "dried-kiwi",
+    "kimia-dates",
+    "dates",
+    "makhana",
+    "chia-seeds",
+    "sabja-seeds",
+    "halim-seeds",
+    "white-sesame-seeds",
+    "roasted-cashews",
+    "five-seed-mix",
+    "everyday-seed-mix",
+    "roasted-seed-mix",
+    "yasvik-everyday-dry-fruit-combo",
+    "yasvik-seven-superfoods-combo",
+    "yasvik-twelve-superfoods-combo",
+    "yasvik-daily-nutrition-combo",
+    "yasvik-family-dry-fruit-seeds-combo",
+    "yasvik-premium-family-combo",
+    "yasvik-five-seeds-combo",
+    "yasvik-kids-snack-combo",
+    "yasvik-office-snack-combo"
+  ],
+  "updated_slugs": [
+    "badam-almonds",
+    "cashews",
+    "salted-pista",
+    "walnuts",
+    "anjeer-rvnea",
+    "green-raisins",
+    "black-raisins",
+    "dry-dates",
+    "fard-dates",
+    "pumpkin-seeds",
+    "sunflower-seeds",
+    "watermelon-seeds",
+    "flax-seeds-yas-007",
+    "cashews-fried-masala-b5nzo",
+    "cashews-pieces-ax2o7",
+    "cashews-split-avag5",
+    "salted-pista-premium-bjn3c"
+  ],
+  "skipped": [
+    {
+      "requested": "almonds",
+      "reason": "Exists as badam-almonds — updated in place"
+    },
+    {
+      "requested": "cashew-nuts",
+      "reason": "Exists as cashews — updated in place"
+    },
+    {
+      "requested": "salted-pistachios",
+      "reason": "Exists as salted-pista — updated in place"
+    },
+    {
+      "requested": "walnut-kernels",
+      "reason": "Exists as walnuts — updated in place"
+    },
+    {
+      "requested": "dried-figs-anjeer",
+      "reason": "Exists as anjeer-rvnea — fixed wrong copy/image mapping"
+    },
+    {
+      "requested": "golden-raisins",
+      "reason": "Exists as green-raisins — retitled Golden Raisins, slug kept for SEO"
+    },
+    {
+      "requested": "plain-cashews",
+      "reason": "Covered by cashews; grade variants (split/pieces) already exist"
+    },
+    {
+      "requested": "masala-cashews (new)",
+      "reason": "Mapped to cashews-fried-masala-b5nzo"
+    },
+    {
+      "requested": "inventory-linked bundles",
+      "reason": "Combos/BOM auto-deduction not supported — drafted as packaged SKUs instead"
+    }
+  ],
+  "needing_supplier_cost": [
+    "dried-kiwi",
+    "kimia-dates",
+    "dates",
+    "makhana",
+    "chia-seeds",
+    "sabja-seeds",
+    "halim-seeds",
+    "white-sesame-seeds",
+    "roasted-cashews",
+    "five-seed-mix",
+    "everyday-seed-mix",
+    "roasted-seed-mix",
+    "yasvik-everyday-dry-fruit-combo",
+    "yasvik-seven-superfoods-combo",
+    "yasvik-twelve-superfoods-combo",
+    "yasvik-daily-nutrition-combo",
+    "yasvik-family-dry-fruit-seeds-combo",
+    "yasvik-premium-family-combo",
+    "yasvik-five-seeds-combo",
+    "yasvik-kids-snack-combo",
+    "yasvik-office-snack-combo"
+  ],
+  "needing_ingredients_confirm": [
+    "dried-kiwi",
+    "roasted-cashews",
+    "five-seed-mix",
+    "everyday-seed-mix",
+    "roasted-seed-mix",
+    "cashews-fried-masala-b5nzo"
+  ],
+  "draft_recipe_pending": [
+    "everyday-seed-mix",
+    "roasted-seed-mix"
+  ],
+  "all_new_remain_unpublished": true,
+  "combo_inventory_behaviour": "Packaged combo SKUs with own stock. Checkout does not explode combos into component deductions.",
+  "pricing_calculator": "Existing Admin → Pricing Strategy (landed cost / margin / packaging). No separate new calculator required.",
+  "sql_file": "/Users/macbookprom3/Documents/Yasvik App/yasvik-monsoon-tales/data/dry-fruits-catalogue/dry_fruits_catalogue_data.sql"
+}

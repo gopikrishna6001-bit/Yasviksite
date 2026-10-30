@@ -10,7 +10,7 @@ export const LABEL_FIELD_CATALOG = [
   { key: 'shelfLife', label: 'Shelf life', sample: 'Best before 6 months' },
   { key: 'fssaiLicense', label: 'FSSAI license', sample: '23626032001451', prefix: 'Lic.No.' },
   { key: 'website', label: 'Website', sample: 'www.yasvik.com' },
-  { key: 'productBarcode', label: 'Product barcode (Code128 SKU)', sample: 'TOOR-DAL' },
+  { key: 'productBarcode', label: 'Product barcode (Code128 SKU)', sample: 'YAS-001' },
   { key: 'posScanCode', label: 'POS QR link (opens on phone)', sample: 'https://www.yasvik.com/pos-scan?c=…' },
   { key: 'barcodeValue', label: 'Batch barcode (batch-serial)', sample: 'YV260619001-001' },
 ];

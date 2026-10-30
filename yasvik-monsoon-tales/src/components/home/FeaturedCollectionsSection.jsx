@@ -22,7 +22,7 @@ function CollectionCard({ collection, index }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/70 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="font-cormorant text-lg text-white font-light leading-snug">
+            <h3 className="font-cormorant text-lg text-white font-semibold leading-snug">
               {collection.title}
             </h3>
             {collection.description && (

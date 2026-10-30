@@ -1,23 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { ZoomIn } from 'lucide-react';
 import { people as peopleApi } from '@/services/api';
 import ImageLightbox from '@/components/ui/ImageLightbox';
-import { ZoomIn } from 'lucide-react';
 
 export default function FeaturedPeopleCarousel() {
-  const [lightbox, setLightbox] = useState(null); // { src, caption }
-
-  const [emblaRef] = useEmblaCarousel({
-    loop: true,
-    align: 'center',
-    dragFree: false,
-    duration: 35,
-    skipSnaps: false,
-    inViewThreshold: 0.7,
-  });
+  const [lightbox, setLightbox] = useState(null);
 
   const { data: people = [] } = useQuery({
     queryKey: ['featured-people-carousel'],
@@ -29,118 +18,94 @@ export default function FeaturedPeopleCarousel() {
 
   return (
     <>
-    {lightbox && (
-      <ImageLightbox
-        src={lightbox.src}
-        alt={lightbox.caption}
-        caption={lightbox.caption}
-        onClose={() => setLightbox(null)}
-      />
-    )}
-    <motion.section
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="py-16 overflow-hidden bg-temple-stone/10"
-    >
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-        className="font-inter text-[9px] tracking-[0.35em] uppercase text-rain-cloud/30 text-center mb-10"
+      {lightbox ? (
+        <ImageLightbox
+          src={lightbox.src}
+          alt={lightbox.caption}
+          caption={lightbox.caption}
+          onClose={() => setLightbox(null)}
+        />
+      ) : null}
+
+      <section
+        className="border-b border-soft-border/40 bg-white px-4 py-8 md:px-8 md:py-10"
+        aria-labelledby="people-heading"
       >
-        Meet Our Farmers
-      </motion.p>
-
-      <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-        <div className="flex pl-4 pr-4">
-          {people.map((person, i) => (
-            <div key={person.id} className="flex-shrink-0 w-[78vw] max-w-[340px] mx-2">
-              <Link to={`/people/${person.id}`} className="block active:opacity-90">
-                <motion.div
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}
-                  className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-rain-cloud/15"
-                >
-                  {person.portrait_image ? (
-                    <img
-                      src={person.portrait_image}
-                      alt={person.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-rain-cloud/20" />
-                  )}
-                  {/* Zoom button */}
-                  {person.portrait_image && (
-                    <button
-                      onClick={(e) => { e.preventDefault(); setLightbox({ src: person.portrait_image, caption: person.name }); }}
-                      className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm active:scale-90 transition-transform"
-                    >
-                      <ZoomIn className="w-4 h-4 text-white" />
-                    </button>
-                  )}
-                  {/* Gradient overlay for text on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/70 via-rain-cloud/10 to-transparent" />
-                  {/* Name + role pinned to bottom of image */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    {person.role && (
-                      <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-white/55 mb-1">
-                        {person.role}
-                      </p>
-                    )}
-                    <h3 className="font-cormorant text-2xl text-white font-light leading-tight">
-                      {person.name}
-                    </h3>
-                    {person.location_label && (
-                      <p className="font-inter text-[10px] text-white/50 mt-1">{person.location_label}</p>
-                    )}
-                  </div>
-                </motion.div>
-
-                {/* Quote below image */}
-                {person.quote && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 + i * 0.06 }}
-                    className="mt-4 pl-1"
-                  >
-                    <p className="font-cormorant text-xl text-wet-earth leading-snug line-clamp-3 italic">
-                      "{person.quote}"
-                    </p>
-                  </motion.div>
-                )}
-              </Link>
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-5 flex items-end justify-between gap-3">
+            <div>
+              <p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-deep-forest/45">
+                The growers
+              </p>
+              <h2 id="people-heading" className="font-cormorant text-xl font-semibold text-deep-forest md:text-2xl">
+                Our People
+              </h2>
+              <p className="mt-1 font-inter text-xs text-deep-forest/55">
+                Farmers, makers and communities we learn from.
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
+            <Link to="/farmers" className="font-inter text-xs font-bold text-neon-paddy hover:text-deep-forest">
+              Meet them
+            </Link>
+          </div>
 
-      <div className="flex justify-center items-center gap-2 mt-8">
-        <div className="flex gap-1.5">
-          {people.slice(0, 5).map((_, i) => (
-            <div
-              key={i}
-              className={`rounded-full bg-rain-cloud/20 transition-all ${i === 0 ? 'w-4 h-1' : 'w-1 h-1'}`}
-            />
-          ))}
+          <div className="flex gap-3 overflow-x-auto pb-1 hide-scrollbar md:gap-4">
+            {people.map((person) => (
+              <article
+                key={person.id}
+                className="w-[11.5rem] flex-shrink-0 overflow-hidden rounded-xl border border-soft-border/70 bg-warm-cream/40 sm:w-[13rem] md:w-[15rem]"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-deep-forest/10">
+                  <Link to={`/people/${person.id}`} className="block h-full w-full active:opacity-90">
+                    {person.portrait_image ? (
+                      <img
+                        src={person.portrait_image}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-deep-forest/15" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/75 via-deep-forest/10 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      {person.role ? (
+                        <p className="mb-0.5 font-inter text-[9px] font-bold uppercase tracking-[0.12em] text-white/65">
+                          {person.role}
+                        </p>
+                      ) : null}
+                      <h3 className="font-cormorant text-lg font-semibold leading-tight text-white md:text-xl">
+                        {person.name}
+                      </h3>
+                      {person.location_label ? (
+                        <p className="mt-0.5 font-inter text-[10px] text-white/65">{person.location_label}</p>
+                      ) : null}
+                    </div>
+                  </Link>
+                  {person.portrait_image ? (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setLightbox({ src: person.portrait_image, caption: person.name });
+                      }}
+                      className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/85 text-deep-forest shadow-sm"
+                      aria-label={`Zoom portrait of ${person.name}`}
+                    >
+                      <ZoomIn className="h-3.5 w-3.5" />
+                    </button>
+                  ) : null}
+                </div>
+                {person.quote ? (
+                  <p className="line-clamp-3 px-3 py-2.5 font-cormorant text-sm italic leading-snug text-deep-forest/70">
+                    &ldquo;{person.quote}&rdquo;
+                  </p>
+                ) : null}
+              </article>
+            ))}
+          </div>
         </div>
-        <motion.span
-          animate={{ x: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="text-rain-cloud/30 text-xs ml-2"
-        >
-          ←→
-        </motion.span>
-      </div>
-    </motion.section>
+      </section>
     </>
   );
 }

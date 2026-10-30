@@ -2,6 +2,7 @@
 export function invalidatePublicProductQueries(queryClient) {
   const exactKeys = [
     'home-diaspora-products',
+    'home-best-sellers',
     'home-featured-hero-products',
     'shop-products',
     'products-world',

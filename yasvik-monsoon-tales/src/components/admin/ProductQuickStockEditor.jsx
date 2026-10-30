@@ -5,6 +5,7 @@ import {
   productToEditorForm,
 } from '@/lib/adminProductFormUtils';
 import { getAdminStockEditorState, getAdminStockLabel } from '@/lib/productStockUtils';
+import AdminNumberBox from '@/components/admin/AdminNumberBox';
 
 export function buildQuickStockPayload(product, { bulkKg, variantStocks = {} }) {
   const form = productToEditorForm(product);
@@ -18,7 +19,7 @@ export function buildQuickStockPayload(product, { bulkKg, variantStocks = {} }) 
       return { ...variant, stock: Number(variantStocks[key]) || 0 };
     });
   }
-  return buildProductSavePayload(form);
+  return buildProductSavePayload(form, { includeMedia: false });
 }
 
 export default function ProductQuickStockEditor({ product, onSave, isSaving = false }) {
@@ -88,14 +89,13 @@ export default function ProductQuickStockEditor({ product, onSave, isSaving = fa
                 {inputMeta.label}
               </label>
               <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  min="0"
-                  step={inputMeta.step}
+                <AdminNumberBox
+                  allowDecimal={Boolean(inputMeta.step && String(inputMeta.step).includes('.'))}
                   value={bulkKg}
-                  onChange={(e) => setBulkKg(e.target.value)}
+                  onChange={setBulkKg}
                   className="w-full rounded-lg border border-border px-3 py-2 font-inter text-sm focus:border-forest-canopy focus:outline-none"
                   autoFocus
+                  aria-label={inputMeta.label}
                 />
                 {inputMeta.suffix ? (
                   <span className="shrink-0 font-inter text-xs text-rain-cloud/45">{inputMeta.suffix}</span>
@@ -112,14 +112,13 @@ export default function ProductQuickStockEditor({ product, onSave, isSaving = fa
               <label className="mb-1 block font-inter text-xs text-rain-cloud/55">
                 Stock (units)
               </label>
-              <input
-                type="number"
-                min="0"
-                step="1"
+              <AdminNumberBox
+                allowDecimal={false}
                 value={bulkKg}
-                onChange={(e) => setBulkKg(e.target.value)}
+                onChange={setBulkKg}
                 className="w-full rounded-lg border border-border px-3 py-2 font-inter text-sm focus:border-forest-canopy focus:outline-none"
                 autoFocus
+                aria-label="Stock (units)"
               />
             </div>
           )}
@@ -132,15 +131,14 @@ export default function ProductQuickStockEditor({ product, onSave, isSaving = fa
                   <span className="min-w-0 flex-1 truncate font-inter text-xs text-rain-cloud/70">
                     {variant.packLabel || variant.label}
                   </span>
-                  <input
-                    type="number"
-                    min="0"
-                    step="1"
+                  <AdminNumberBox
+                    allowDecimal={false}
                     value={variantStocks[variant.key] ?? ''}
-                    onChange={(e) =>
-                      setVariantStocks((prev) => ({ ...prev, [variant.key]: e.target.value }))
+                    onChange={(val) =>
+                      setVariantStocks((prev) => ({ ...prev, [variant.key]: val }))
                     }
                     className="w-16 rounded-lg border border-border px-2 py-1 text-right font-inter text-xs focus:border-forest-canopy focus:outline-none"
+                    aria-label={`Stock for ${variant.packLabel || variant.label}`}
                   />
                 </div>
               ))}

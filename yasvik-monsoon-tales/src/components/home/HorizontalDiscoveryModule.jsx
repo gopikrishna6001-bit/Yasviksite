@@ -17,7 +17,7 @@ export default function HorizontalDiscoveryModule({ label, title, items = [], se
       <div className="flex items-center justify-between px-5 mb-4">
         <div>
           {label && <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-rain-cloud/35">{label}</p>}
-          <h2 className="font-cormorant text-2xl text-rain-cloud font-light mt-0.5">{title}</h2>
+          <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold mt-0.5">{title}</h2>
         </div>
         {seeAllHref && (
           <Link to={seeAllHref} className="flex items-center gap-1 font-inter text-xs text-wet-earth">
@@ -57,7 +57,7 @@ export default function HorizontalDiscoveryModule({ label, title, items = [], se
                 <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/65 via-transparent to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-3">
-                <p className="font-cormorant text-white text-base font-light leading-tight">{item.title}</p>
+                <p className="font-cormorant text-white text-base font-semibold leading-tight">{item.title}</p>
                 {item.subtitle && (
                   <p className="font-inter text-[9px] text-white/50 mt-0.5 line-clamp-1">{item.subtitle}</p>
                 )}

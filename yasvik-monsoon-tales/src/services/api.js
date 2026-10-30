@@ -15,10 +15,13 @@
 
 import { appClient } from '@/api/appClient';
 import { sortCatalogProducts, sortFeaturedProducts } from '@/lib/productSortUtils';
+import { expandCategoryFilterIds, sortProductsByCategoryHierarchy } from '@/lib/categoryTree';
+import { filterOnlineProducts } from '@/lib/productVisibility';
 import { getSampleCoreValueStory } from '@/content/coreValueStories';
 import { isProductUuid } from '@/lib/productUrls';
 import { countMediaReferences } from '@/lib/mediaReferences';
 import { normalizeMediaStorageKey } from '@/lib/mediaStorageKey';
+import { supabase } from '@/api/supabaseClient';
 
 // ─── AUTH ────────────────────────────────────────────────────────────────────
 
@@ -57,7 +60,24 @@ export const products = {
     }
 
     const bySlug = await appClient.entities.Product.filter({ slug: key, is_published: true }, '-created_date', 1);
-    if (bySlug?.[0]) return bySlug[0];
+    if (bySlug?.[0]?.id) return appClient.entities.Product.get(bySlug[0].id);
+
+    // Legacy slug → canonical product (e.g. retired native-sesame-seeds).
+    if (!isProductUuid(key)) {
+      try {
+        const { data: alias } = await supabase
+          .from('product_slug_aliases')
+          .select('product_id')
+          .eq('old_slug', key)
+          .maybeSingle();
+        if (alias?.product_id) {
+          const aliased = await appClient.entities.Product.get(alias.product_id);
+          if (aliased?.is_published) return aliased;
+        }
+      } catch {
+        // Alias table may be unavailable; continue with fallbacks.
+      }
+    }
 
     if (isProductUuid(key)) return null;
 
@@ -65,7 +85,9 @@ export const products = {
       return await appClient.entities.Product.get(key);
     } catch {
       const all = await appClient.entities.Product.filter({ is_published: true }, '-created_date', 300);
-      return all.find((product) => product.slug === key || product.id === key) || null;
+      const match = all.find((product) => product.slug === key || product.id === key);
+      if (match?.id) return appClient.entities.Product.get(match.id);
+      return null;
     }
   },
 
@@ -73,33 +95,57 @@ export const products = {
     appClient.entities.Product.filter(filters, sort, limit),
 
   listPublished: async (sort = 'sort_order', limit = 20) => {
-    const rows = await appClient.entities.Product.filter({ is_published: true }, sort, limit);
-    return sortCatalogProducts(rows);
+    const rows = await appClient.entities.Product.filter({ is_published: true, sell_online: true }, sort, limit);
+    const categories = await appClient.entities.Category.filter({ is_active: true }, 'sort_order', 200);
+    return sortProductsByCategoryHierarchy(filterOnlineProducts(rows), categories);
   },
 
-  listFeatured: async (limit = 6) => {
-    const rows = await appClient.entities.Product.filter({ is_published: true, is_featured: true }, 'sort_order', limit);
-    return sortFeaturedProducts(rows);
+  listFeatured: async (limit = 20) => {
+    const cap = Math.max(1, Number(limit) || 20);
+    const [byFeatured, byHero] = await Promise.all([
+      appClient.entities.Product.filter({ is_published: true, is_featured: true, sell_online: true }, 'sort_order', cap),
+      appClient.entities.Product.filter({ is_published: true, featured_in_hero: true, sell_online: true }, 'sort_order', cap),
+    ]);
+    const seen = new Set();
+    const merged = [];
+    [...byFeatured, ...byHero].forEach((row) => {
+      if (!row?.id || seen.has(row.id)) return;
+      seen.add(row.id);
+      merged.push(row);
+    });
+    return sortFeaturedProducts(filterOnlineProducts(merged)).slice(0, cap);
   },
 
   listFeaturedInHero: async (limit = 8) => {
-    const rows = await appClient.entities.Product.filter({ is_published: true, featured_in_hero: true }, 'sort_order', limit);
-    return sortFeaturedProducts(rows);
+    const rows = await appClient.entities.Product.filter({ is_published: true, featured_in_hero: true, sell_online: true }, 'sort_order', limit);
+    return sortFeaturedProducts(filterOnlineProducts(rows));
   },
 
   listByCategory: async (categoryId, limit = 200) => {
-    const rows = await appClient.entities.Product.filter({ is_published: true, category_id: categoryId }, 'sort_order', limit);
-    return sortCatalogProducts(rows);
+    const allCategories = await appClient.entities.Category.filter({ is_active: true }, 'sort_order', 200);
+    const categoryIds = expandCategoryFilterIds(categoryId, allCategories);
+    const rows = await appClient.entities.Product.filter(
+      { is_published: true, sell_online: true, category_id: categoryIds },
+      'sort_order',
+      limit,
+    );
+    return sortProductsByCategoryHierarchy(filterOnlineProducts(rows), allCategories);
   },
 
-  listByJourney: (journeyId, limit = 6) =>
-    appClient.entities.Product.filter({ is_published: true, journey_id: journeyId }, '-created_date', limit),
+  listByJourney: async (journeyId, limit = 6) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, sell_online: true, journey_id: journeyId }, '-created_date', limit);
+    return filterOnlineProducts(rows);
+  },
 
-  listByPerson: (personId, limit = 6) =>
-    appClient.entities.Product.filter({ is_published: true, person_id: personId }, '-created_date', limit),
+  listByPerson: async (personId, limit = 6) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, sell_online: true, person_id: personId }, '-created_date', limit);
+    return filterOnlineProducts(rows);
+  },
 
-  listByRegion: (regionId, limit = 6) =>
-    appClient.entities.Product.filter({ is_published: true, region_id: regionId }, '-created_date', limit),
+  listByRegion: async (regionId, limit = 6) => {
+    const rows = await appClient.entities.Product.filter({ is_published: true, sell_online: true, region_id: regionId }, '-created_date', limit);
+    return filterOnlineProducts(rows);
+  },
 
   create: (data) => appClient.entities.Product.create(data),
   update: (id, data) => appClient.entities.Product.update(id, data),
@@ -487,6 +533,7 @@ export {
   fetchCompleteYourBasket,
   fetchActiveBundles,
   fetchBundleBySlug,
+  fetchBundleForProduct,
   fetchCartCrossSell,
 } from './productRelationsApi';
 

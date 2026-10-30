@@ -1,23 +1,35 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Clock, ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
-import PageHeaderBanner from '@/components/brand/atmosphere/PageHeaderBanner';
-import PublicPageHeader from '@/components/brand/PublicPageHeader';
+import { useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Send } from 'lucide-react';
+import RetailPageShell from '@/components/retail/RetailPageShell';
+import RetailPageHeader from '@/components/retail/RetailPageHeader';
+import StoreLocationCard from '@/components/retail/StoreLocationCard';
+import { retailClasses } from '@/brand/retailTheme';
+import { resolveStoreLocationSettings } from '@/lib/storeLocationSettings';
 import { appClient } from '@/api/appClient';
-import { YASVIK_SUPPORT_PHONE_DISPLAY, YASVIK_SUPPORT_PHONE_TEL } from '@/lib/storeLocation';
-
-const STORE_HOURS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+import {
+  fetchAllAppSettings,
+  resolveSettingsMap,
+  SETTINGS_QUERY_KEYS,
+} from '@/services/settingsService';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
+  const { data: settings = [] } = useQuery({
+    queryKey: SETTINGS_QUERY_KEYS.public,
+    queryFn: fetchAllAppSettings,
+    staleTime: 10 * 60 * 1000,
+  });
+  const store = useMemo(() => resolveStoreLocationSettings(resolveSettingsMap(settings)), [settings]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
     await appClient.integrations.Core.SendEmail({
-      to: 'yasvikfoods@gmail.com',
+      to: store.email || 'yasvikfoods@gmail.com',
       subject: `Message from ${form.name} via Yasvik`,
       body: `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
     });
@@ -26,164 +38,65 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-warm-cream pb-24 text-deep-forest transition-colors duration-300">
-      <PageHeaderBanner page="contact" />
-      <PublicPageHeader
-        eyebrow="Reach out"
-        title="Contact Yasvik"
-        description="Questions, local orders, store feedback or sourcing suggestions — send them here and we will read them carefully."
-      />
-      <div className="relative z-10 mx-auto grid max-w-5xl gap-6 px-6 md:grid-cols-[0.9fr_1.1fr]">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="rounded-[2rem] border border-[var(--theme-border)] bg-[var(--bg-card)] p-5 shadow-[0_22px_70px_rgba(6,53,31,.08)] md:p-8"
-        >
-          <p className="mb-2 font-inter text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--theme-accent)]">Connect With Yasvik</p>
-          <h2 className="font-syne text-2xl font-extrabold tracking-[-0.03em] text-[var(--text-main)]">We are always here.</h2>
-          <p className="mt-3 font-inter text-sm leading-7 text-[var(--theme-muted)]">We are always here to answer your questions and share our passion for conscious food.</p>
+    <RetailPageShell>
+      <RetailPageHeader title="Store & Contact" backTo="/" backLabel="Home" />
 
-          <div className="mt-6 space-y-3">
-            <div className="flex gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
-              <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
-              <div>
-                <p className="font-inter text-sm font-semibold leading-7 text-[var(--text-main)]">
-                  Yasvik Store, Bavanipuram Colony Road no4,<br />
-                  Ashok Nagar, Chanda Nagar, Hyderabad,<br />
-                  Telangana, 500050, IN
-                </p>
-                <a
-                  href={YASVIK_GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1.5 font-inter text-xs font-bold text-[var(--theme-accent)] hover:underline"
-                >
-                  Get directions on Google Maps
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+      <div className={`${retailClasses.container} space-y-8 py-6 md:py-10`}>
+        <StoreLocationCard store={store} />
+
+        <section id="message" className="scroll-mt-28">
+          <div className={`${retailClasses.card} p-5 md:p-8`}>
+            <h2 className="font-cormorant text-xl font-semibold text-deep-forest">Send a message</h2>
+            <p className="mt-1 font-inter text-sm text-deep-forest/65">We read every note — usually reply within a day.</p>
+
+            {sent ? (
+              <div className="py-10 text-center">
+                <p className="font-cormorant text-2xl text-deep-forest">Thank you. We&apos;ll be in touch.</p>
               </div>
-            </div>
-            <a href={`tel:${YASVIK_SUPPORT_PHONE_TEL}`} className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4 font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]">
-              <Phone className="h-4 w-4 text-[var(--theme-accent)]" /> {YASVIK_SUPPORT_PHONE_DISPLAY}
-            </a>
-            <a href="mailto:yasvikfoods@gmail.com" className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4 font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]">
-              <Mail className="h-4 w-4 text-[var(--theme-accent)]" /> yasvikfoods@gmail.com
-            </a>
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-[var(--theme-border)] p-4">
-            <div className="mb-3 flex items-center gap-2">
-              <Clock className="h-4 w-4 text-[var(--theme-accent)]" />
-              <p className="font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--theme-muted)]">Operating Hours</p>
-            </div>
-            <div className="space-y-1">
-              {STORE_HOURS.map((day) => (
-                <div key={day} className="flex items-center justify-between gap-3 font-inter text-xs text-[var(--theme-muted)]">
-                  <span>{day}</span>
-                  <span className="font-semibold text-[var(--text-main)]">9:00 AM - 9:00 PM</span>
+            ) : (
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <div>
+                  <label className={retailClasses.label}>Your name</label>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    className="mt-1.5 w-full rounded-lg border border-soft-border bg-warm-cream/50 px-4 py-3 font-inter text-sm text-deep-forest outline-none focus:border-deep-forest/40"
+                    placeholder="Your name"
+                  />
                 </div>
-              ))}
-            </div>
+                <div>
+                  <label className={retailClasses.label}>Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    className="mt-1.5 w-full rounded-lg border border-soft-border bg-warm-cream/50 px-4 py-3 font-inter text-sm text-deep-forest outline-none focus:border-deep-forest/40"
+                    placeholder="you@email.com"
+                  />
+                </div>
+                <div>
+                  <label className={retailClasses.label}>Message</label>
+                  <textarea
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                    className="mt-1.5 w-full resize-none rounded-lg border border-soft-border bg-warm-cream/50 px-4 py-3 font-inter text-sm text-deep-forest outline-none focus:border-deep-forest/40"
+                    placeholder="How can we help?"
+                  />
+                </div>
+                <button type="submit" disabled={sending} className={`w-full gap-2 ${retailClasses.btnPrimary}`}>
+                  <Send className="h-4 w-4" aria-hidden="true" />
+                  {sending ? 'Sending…' : 'Send message'}
+                </button>
+              </form>
+            )}
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="rounded-[2rem] border border-[var(--theme-border)] bg-[var(--bg-card)] p-5 shadow-[0_22px_70px_rgba(6,53,31,.09)] md:p-8"
-        >
-          {/* Contact details */}
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
-              <Mail className="h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
-              <a
-                href="mailto:yasvikfoods@gmail.com"
-                className="font-inter text-sm font-semibold text-[var(--text-main)] transition-colors hover:text-[var(--theme-accent)]"
-              >
-                yasvikfoods@gmail.com
-              </a>
-            </div>
-            <div className="flex items-center gap-3 rounded-2xl bg-[var(--theme-soft)] p-4">
-              <MapPin className="h-4 w-4 flex-shrink-0 text-[var(--theme-accent)]" />
-              <span className="font-inter text-sm font-semibold text-[var(--text-main)]">
-                Ashok Nagar, Hyderabad
-              </span>
-            </div>
-          </div>
-
-          <div className="my-7 h-px w-full bg-[var(--theme-border)]" />
-
-          {/* Contact form */}
-          {sent ? (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="py-10 text-center"
-            >
-              <p className="font-syne text-2xl font-bold text-[var(--text-main)]">
-                Thank you. We'll be in touch.
-              </p>
-              <p className="mt-3 font-inter text-xs text-[var(--theme-muted)]">
-                We read every message carefully.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="mb-1.5 block font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--theme-muted)]">
-                  Your name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className="w-full rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
-                  placeholder="How should we address you?"
-                />
-              </div>
-
-              <div>
-                <label className="mb-1.5 block font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--theme-muted)]">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  className="w-full rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="mb-1.5 block font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--theme-muted)]">
-                  Message
-                </label>
-                <textarea
-                  required
-                  rows={5}
-                  value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  className="w-full resize-none rounded-xl border border-[var(--theme-border)] bg-[var(--bg-canvas)] px-4 py-3 font-inter text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--theme-muted)]/55 focus:border-[var(--action-primary)] focus:ring-2 focus:ring-[var(--ysv-focus-ring)]"
-                  placeholder="Tell us what's on your mind…"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={sending}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--action-primary)] py-3.5 font-inter text-sm font-bold text-[var(--action-text)] transition-all hover:brightness-95 active:scale-[0.985] disabled:opacity-50"
-              >
-                {sending ? 'Sending…' : <><Send className="h-4 w-4" /> Send message</>}
-              </button>
-            </form>
-          )}
-        </motion.div>
+        </section>
       </div>
-    </div>
+    </RetailPageShell>
   );
 }

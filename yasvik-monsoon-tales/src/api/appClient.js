@@ -1,7 +1,7 @@
 import { supabase } from '@/api/supabaseClient';
 import { hydrateProductPricingFields } from '@/lib/productPricingMeta';
 import { slimProductForList } from '@/lib/productListPayload';
-import { prepareUploadFile } from '@/lib/compressUploadImage';
+import { prepareUploadFile, UPLOAD_COMPRESS_PRESETS } from '@/lib/compressUploadImage';
 import { buildSeoMediaBaseName, buildSeoMediaFileName } from '@/lib/mediaSeoNaming';
 import { normalizeMediaStorageKey } from '@/lib/mediaStorageKey';
 
@@ -135,6 +135,7 @@ const writeFieldAllowlist = {
     'content',
     'body',
     'cover_image',
+    'cover_images',
     'featured_image_url',
     'excerpt',
     'read_time_minutes',
@@ -142,6 +143,8 @@ const writeFieldAllowlist = {
     'person_id',
     'is_published',
     'is_featured',
+    'content_category',
+    'show_on_home',
     'sort_order',
     'seo_title',
     'seo_description',
@@ -150,6 +153,13 @@ const writeFieldAllowlist = {
   Category: new Set([
     'name',
     'slug',
+    'seo_slug',
+    'seo_title',
+    'seo_description',
+    'seo_intro',
+    'seo_faqs',
+    'canonical_override',
+    'indexable',
     'description',
     'short_intro',
     'icon_url',
@@ -159,6 +169,21 @@ const writeFieldAllowlist = {
     'emotional_title',
     'sort_order',
     'is_active',
+    'exclude_from_bill_discount',
+    'parent_id',
+    'show_on_homepage',
+    'homepage_order',
+    'is_featured_category',
+    'is_hero_category',
+    'is_seasonal_category',
+    'homepage_label',
+    'homepage_image_override',
+    'homepage_description',
+    'homepage_cta_label',
+    'homepage_cta_url',
+    'homepage_status',
+    'seasonal_starts_at',
+    'seasonal_ends_at',
   ]),
   Region: new Set([
     'name',
@@ -291,6 +316,11 @@ const writeFieldAllowlist = {
     'person_id',
     'region_id',
     'processing_method',
+    'source_type',
+    'supplier_name',
+    'origin_state',
+    'process_method',
+    'shelf_life_text',
     'best_for',
     'storage_note',
     'yasvik_mark',
@@ -314,6 +344,7 @@ const writeFieldAllowlist = {
     'is_published',
     'is_featured',
     'featured_in_hero',
+    'sell_online',
     'hero_video',
     'sort_order',
     'product_group',
@@ -322,7 +353,27 @@ const writeFieldAllowlist = {
     'featured_image_url',
     'seo_title',
     'seo_description',
+    'canonical_override',
+    'indexable',
     'seo_keywords',
+    'ingredients',
+    'allergen_info',
+    'primary_customer_benefit',
+    'natural_variation_note',
+    'subject_to_availability',
+    'launch_batch',
+    'inventory_mode',
+    'image_status',
+    'image_source',
+    'image_accuracy_reviewed',
+    'image_approved_by',
+    'image_approved_at',
+    'product_kind',
+    'composition_status',
+    'composition_json',
+    'bundle_id',
+    'bundle_item_count',
+    'bundle_net_weight_g',
   ]),
   AppSettings: new Set([
     'setting_key',
@@ -369,6 +420,9 @@ const writeFieldAllowlist = {
     'amount_paise',
     'subtotal_paise',
     'delivery_fee_paise',
+    'delivery_fee_charged_paise',
+    'delivery_cost_actual_paise',
+    'invoice_url',
     'receipt_id',
     'razorpay_order_id',
     'razorpay_payment_id',
@@ -406,6 +460,12 @@ const productWriteStripKeys = new Set([
   'weight_grams',
 ]);
 
+function mapFiltersToDb(name, filters = {}) {
+  const mapped = mapToDb(name, filters);
+  if (filters?.id !== undefined) mapped.id = filters.id;
+  return mapped;
+}
+
 function mapToDb(name, payload = {}) {
   const aliases = fieldAliases[name] || {};
   const effective = { ...(payload || {}) };
@@ -431,6 +491,18 @@ function mapToDb(name, payload = {}) {
     if (effective.label) effective.type = effective.type || effective.label;
     if (!effective.name && effective.label) effective.name = effective.label;
     if (!effective.country) effective.country = 'India';
+  }
+
+  if (name === 'Story') {
+    if (Array.isArray(effective.cover_images)) {
+      effective.cover_images = effective.cover_images.filter(Boolean);
+      if (!effective.cover_image && effective.cover_images[0]) {
+        effective.cover_image = effective.cover_images[0];
+      }
+    }
+    if (effective.cover_image) {
+      effective.featured_image_url = effective.cover_image;
+    }
   }
 
   // App-layer fields (e.g. title) map onto DB columns (e.g. name). When both
@@ -506,6 +578,7 @@ function mapFromDb(name, payload = {}) {
     out.quick_variants = out.quick_variants ?? out.variants ?? [];
     const pricingFields = hydrateProductPricingFields(out);
     out.selling_price_per_kg = pricingFields.selling_price_per_kg;
+    out.store_selling_price_per_kg = pricingFields.store_selling_price_per_kg;
     out.price_inflate_percent = pricingFields.price_inflate_percent;
     out.small_pack_margin_rs = pricingFields.small_pack_margin_rs;
     out.purity_badges = out.purity_badges ?? out.certifications ?? [];
@@ -519,6 +592,9 @@ function mapFromDb(name, payload = {}) {
   if (name === 'Story') {
     out.cover_image = out.cover_image || out.featured_image_url || '';
     out.featured_image_url = out.featured_image_url || out.cover_image || '';
+    out.cover_images = Array.isArray(out.cover_images)
+      ? out.cover_images
+      : (out.cover_image ? [out.cover_image] : []);
     out.body = out.body || out.content || '';
     out.content = out.content || out.body || '';
     out.excerpt = out.excerpt || out.short_description || '';
@@ -540,6 +616,7 @@ function mapFromDb(name, payload = {}) {
     out.cover_image = out.cover_image || '';
     out.icon_url = out.icon_url || '';
     out.short_intro = out.short_intro || out.description || '';
+    out.seo_faqs = Array.isArray(out.seo_faqs) ? out.seo_faqs : parseJsonList(out.seo_faqs);
   }
   if (name === 'Collection') {
     out.title = out.title || out.name || '';
@@ -680,7 +757,11 @@ async function attachProductImages(rows = [], { primaryOnly = false } = {}) {
       hero_image,
       featured_image_url: hero_image || row.featured_image_url || '',
       images: primaryOnly
-        ? (hero_image ? [hero_image] : [])
+        ? (() => {
+            const urls = imageRowsForProduct.map((i) => i.url).filter(Boolean);
+            if (urls.length) return urls.length > 1 ? urls.slice(0, 2) : [urls[0]];
+            return hero_image ? [hero_image] : [];
+          })()
         : imageRowsForProduct.map((i) => i.url).filter(Boolean),
     };
 
@@ -759,7 +840,10 @@ async function syncProductImages(productId, images = [], heroImage = '') {
   const desiredImages = hero ? [hero, ...withoutHero] : gallery;
 
   const { error: deleteError } = await supabase.from('product_images').delete().eq('product_id', productId);
-  if (deleteError) throw deleteError;
+  if (deleteError) {
+    console.warn('[syncProductImages] delete failed', deleteError.message);
+    return;
+  }
   if (desiredImages.length === 0) return;
 
   const rows = desiredImages.map((url, index) => ({
@@ -769,7 +853,10 @@ async function syncProductImages(productId, images = [], heroImage = '') {
     is_primary: index === 0,
   }));
   const { error: insertError } = await supabase.from('product_images').insert(rows);
-  if (insertError) throw insertError;
+  if (insertError) {
+    // Do not roll back featured_image_url — gallery sync is best-effort.
+    console.warn('[syncProductImages] insert failed', insertError.message);
+  }
 }
 
 function makeEntity(name) {
@@ -813,7 +900,7 @@ function makeEntity(name) {
     },
     async filter(filters = {}, sort = '-created_date', limit = 20) {
       let query = supabase.from(table).select('*');
-      const mappedFilters = mapToDb(name, filters);
+      const mappedFilters = mapFiltersToDb(name, filters);
       sort = normalizeSortForEntity(name, sort);
       if (sort) {
         const desc = sort.startsWith('-');
@@ -838,7 +925,12 @@ function makeEntity(name) {
       if (error) throw error;
       const mapped = mapFromDb(name, normalizeRow(data));
       if (name === 'Product') {
-        await syncProductImages(mapped.id, payload?.images || [], payload?.hero_image || mapped.hero_image || '');
+        const shouldSyncImages =
+          Object.prototype.hasOwnProperty.call(payload || {}, 'images')
+          || Object.prototype.hasOwnProperty.call(payload || {}, 'hero_image');
+        if (shouldSyncImages) {
+          await syncProductImages(mapped.id, payload?.images || [], payload?.hero_image || mapped.hero_image || '');
+        }
         const [hydrated] = await attachProductImages([mapped]);
         return hydrated || mapped;
       }
@@ -856,7 +948,12 @@ function makeEntity(name) {
       if (error) throw error;
       const mapped = mapFromDb(name, normalizeRow(data));
       if (name === 'Product') {
-        await syncProductImages(id, payload?.images || [], payload?.hero_image || mapped.hero_image || '');
+        const shouldSyncImages =
+          Object.prototype.hasOwnProperty.call(payload || {}, 'images')
+          || Object.prototype.hasOwnProperty.call(payload || {}, 'hero_image');
+        if (shouldSyncImages) {
+          await syncProductImages(id, payload?.images || [], payload?.hero_image || mapped.hero_image || '');
+        }
         const [hydrated] = await attachProductImages([mapped]);
         return hydrated || mapped;
       }
@@ -892,12 +989,24 @@ async function invokeCloudflare(name, payload = {}) {
 }
 
 async function uploadToBucket(bucket, file, isPrivate = false, meta = {}) {
-  const session = await supabase.auth.getSession();
-  const token = session.data.session?.access_token;
-  if (!token) throw new Error('Sign in required to upload files');
+  // Prefer a fresh access token — stale admin tabs often look "logged in"
+  // while upload auth fails with Authentication required.
+  let session = await supabase.auth.getSession();
+  let token = session.data.session?.access_token;
+  const expiresAt = Number(session.data.session?.expires_at || 0) * 1000;
+  if (!token || (expiresAt && expiresAt < Date.now() + 60_000)) {
+    const refreshed = await supabase.auth.refreshSession();
+    if (refreshed.error) {
+      throw new Error('Sign in required to upload files. Open Admin, sign in with Google, then retry.');
+    }
+    session = refreshed;
+    token = refreshed.data.session?.access_token;
+  }
+  if (!token) throw new Error('Sign in required to upload files. Open Admin, sign in with Google, then retry.');
 
-  const prepared = await prepareUploadFile(file);
   const folder = String(meta.folder || meta.entityType || 'general').trim().toLowerCase();
+  const compressPreset = UPLOAD_COMPRESS_PRESETS[folder] || {};
+  const prepared = await prepareUploadFile(file, compressPreset);
   const seoName = String(meta.seoName || meta.entitySlug || meta.label || '').trim();
   const assetRole = String(meta.assetRole || meta.asset_role || '').trim();
   const seoBase = buildSeoMediaBaseName({
@@ -917,6 +1026,8 @@ async function uploadToBucket(bucket, file, isPrivate = false, meta = {}) {
   form.append('folder', folder);
   if (seoName) form.append('seo_name', seoName);
   if (assetRole) form.append('asset_role', assetRole);
+  if (meta.entityId) form.append('entity_id', String(meta.entityId));
+  if (meta.label) form.append('label', String(meta.label).slice(0, 240));
   if (isPrivate) form.append('private', '1');
 
   const res = await fetch(`${CF_API_BASE}/media/upload`, {
@@ -925,47 +1036,75 @@ async function uploadToBucket(bucket, file, isPrivate = false, meta = {}) {
     body: form,
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data?.error || 'Upload failed');
+  if (!res.ok) {
+    const apiError = data?.error || 'Upload failed';
+    if (res.status === 401 || /auth/i.test(apiError)) {
+      throw new Error(`${apiError}. Sign out of Admin, sign in again with Google, then retry upload.`);
+    }
+    throw new Error(apiError);
+  }
 
   if (isPrivate) {
     return { file_uri: data.file_uri };
   }
 
   const fileUrl = data.file_url;
+  if (!fileUrl) throw new Error('Upload failed: missing file URL');
 
-  try {
-    const { data: existing } = await supabase
-      .from('media_assets')
-      .select('id, upload_url, file_path')
-      .eq('file_path', data.file_path)
-      .maybeSingle();
-
-    if (existing?.upload_url) {
-      return {
-        file_url: existing.upload_url,
-        file_path: existing.file_path,
-        folder: data.folder || folder,
-        reused: true,
-      };
-    }
-
-    await supabase.from('media_assets').insert({
-      name: meta.label || `${seoBase}.${uploadExt}` || file?.name || data.original_name || data.file_path,
-      slug: seoBase,
+  // Worker now indexes media_assets with the service role. Only fall back
+  // to a client insert when the worker could not index.
+  if (data.indexed === true) {
+    return {
+      file_url: fileUrl,
       file_path: data.file_path,
-      file_size: data.file_size ?? prepared?.size ?? file?.size ?? null,
-      mime_type: data.mime_type ?? prepared?.type ?? file?.type ?? null,
-      media_type: (file?.type || '').startsWith('video/') ? 'video' : 'image',
-      entity_type: data.folder || folder,
-      entity_id: meta.entityId || null,
-      upload_url: fileUrl,
-      is_active: true,
-    });
-  } catch {
-    // Non-blocking: upload succeeded even if indexing row fails.
+      folder: data.folder || folder,
+      indexed: true,
+    };
   }
 
-  return { file_url: fileUrl, file_path: data.file_path, folder: data.folder || folder };
+  const { data: existing, error: existingError } = await supabase
+    .from('media_assets')
+    .select('id, upload_url, file_path')
+    .eq('file_path', data.file_path)
+    .maybeSingle();
+  if (existingError) {
+    console.warn('[upload] media_assets lookup failed', existingError.message);
+  }
+
+  if (existing?.upload_url) {
+    return {
+      file_url: existing.upload_url,
+      file_path: existing.file_path,
+      folder: data.folder || folder,
+      reused: true,
+      indexed: true,
+    };
+  }
+
+  const { error: indexError } = await supabase.from('media_assets').insert({
+    name: meta.label || `${seoBase}.${uploadExt}` || file?.name || data.original_name || data.file_path,
+    slug: seoBase || null,
+    file_path: data.file_path,
+    file_size: data.file_size ?? prepared?.size ?? file?.size ?? null,
+    mime_type: data.mime_type ?? prepared?.type ?? file?.type ?? null,
+    media_type: (file?.type || '').startsWith('video/') ? 'video' : 'image',
+    entity_type: data.folder || folder,
+    entity_id: null,
+    upload_url: fileUrl,
+    is_active: true,
+    created_by: null,
+  });
+
+  if (indexError) {
+    const err = new Error(
+      `Uploaded to storage, but Media Library index failed: ${indexError.message || data.index_error || 'unknown error'}`,
+    );
+    err.file_url = fileUrl;
+    err.file_path = data.file_path;
+    throw err;
+  }
+
+  return { file_url: fileUrl, file_path: data.file_path, folder: data.folder || folder, indexed: true };
 }
 
 async function deleteFromBucket(filePathOrUrl) {
@@ -994,22 +1133,26 @@ export const appClient = {
     async me() {
       const { data, error } = await supabase.auth.getUser();
       if (error || !data?.user) throw error || new Error('Not authenticated');
+      const authUser = data.user;
       const baseUser = {
-        id: data.user.id,
-        email: data.user.email,
-        ...data.user.user_metadata,
+        id: authUser.id,
+        email: authUser.email,
+        ...authUser.user_metadata,
+        last_sign_in_at: authUser.last_sign_in_at,
+        identities: authUser.identities || [],
+        app_metadata: authUser.app_metadata || {},
       };
 
       // Pull role/profile from DB (legacy UI depends on role/user profile fields).
       const { data: profile } = await supabase
         .from('user_profiles')
         .select('*')
-        .eq('id', data.user.id)
+        .eq('id', authUser.id)
         .maybeSingle();
 
       if (profile) {
         const mapped = mapFromDb('UserProfile', normalizeRow(profile));
-        const avatar_url = mapped.avatar_url || data.user.user_metadata?.avatar_url || null;
+        const avatar_url = mapped.avatar_url || authUser.user_metadata?.avatar_url || null;
         return {
           ...baseUser,
           ...mapped,
@@ -1019,12 +1162,12 @@ export const appClient = {
 
       // Best-effort bootstrap for old projects where profile row may be missing.
       const fallbackProfile = {
-        id: data.user.id,
-        email: data.user.email,
+        id: authUser.id,
+        email: authUser.email,
         display_name:
-          data.user.user_metadata?.full_name ||
-          data.user.user_metadata?.name ||
-          (data.user.email || '').split('@')[0],
+          authUser.user_metadata?.full_name ||
+          authUser.user_metadata?.name ||
+          (authUser.email || '').split('@')[0],
         role: 'customer',
         is_active: true,
       };
@@ -1042,6 +1185,22 @@ export const appClient = {
     async loginViaEmailPassword(email, password) {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
+
+      // Admin/manager must use Google only — block password even via /login.
+      const userId = data?.user?.id;
+      if (userId) {
+        const { data: profile } = await supabase
+          .from('user_profiles')
+          .select('role')
+          .eq('id', userId)
+          .maybeSingle();
+        const role = String(profile?.role || data.user?.app_metadata?.role || '').toLowerCase();
+        if (role === 'admin' || role === 'manager') {
+          await supabase.auth.signOut();
+          throw new Error('Administrators and managers must sign in with Google');
+        }
+      }
+
       return data;
     },
     async loginWithProvider(provider, redirectPath = '/') {

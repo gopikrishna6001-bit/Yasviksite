@@ -97,15 +97,30 @@ function resolveAbsoluteMediaUrl(url = '', options = {}) {
   return `${mediaBase}/${raw.replace(/^\//, '')}`;
 }
 
+/** Shelf/collage galleries are weak for Merchant Center / GBP; prefer pack shots when available. */
+function isWeakCatalogImage(url = '') {
+  return /[-_/]gallery(\.|$)/i.test(String(url || ''));
+}
+
+function pickCatalogPrimaryImage(candidates = []) {
+  const unique = [...new Set(candidates.filter(Boolean))];
+  if (unique.length === 0) return '';
+  const preferred = unique.find((url) => !isWeakCatalogImage(url));
+  return preferred || unique[0];
+}
+
 function getProductImages(product = {}, options = {}) {
   const gallery = normalizeList(product.images).map((item) => resolveAbsoluteMediaUrl(item, options)).filter(Boolean);
   const hero = resolveAbsoluteMediaUrl(
-    product.hero_image || product.featured_image_url || gallery[0] || '',
+    product.hero_image || product.featured_image_url || '',
     options,
   );
-  const additional = gallery.filter((url) => url && url !== hero);
+  const primary = pickCatalogPrimaryImage([hero, ...gallery]) || FALLBACK_IMAGE;
+  const additional = [hero, ...gallery].filter((url, index, arr) => (
+    url && url !== primary && arr.indexOf(url) === index
+  ));
   return {
-    primary: hero || FALLBACK_IMAGE,
+    primary,
     additional,
   };
 }

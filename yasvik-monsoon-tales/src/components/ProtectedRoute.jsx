@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import { canAccessAdminPath, isAdminRole } from '@/lib/adminAccess';
 
 const DefaultFallback = () => (
   <div className="fixed inset-0 flex items-center justify-center">
@@ -13,6 +14,7 @@ export default function ProtectedRoute({
   fallback = <DefaultFallback />,
   unauthenticatedElement,
   requiredRoles = null,
+  requiredPath = null,
   forbiddenElement = null,
 }) {
   const { isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth, user } = useAuth();
@@ -38,10 +40,18 @@ export default function ProtectedRoute({
     return unauthenticatedElement;
   }
 
+  if (user?.is_active === false) {
+    return forbiddenElement || unauthenticatedElement;
+  }
+
   if (Array.isArray(requiredRoles) && requiredRoles.length > 0) {
     const role = (user?.role || '').toLowerCase();
     const allowed = requiredRoles.map((r) => String(r).toLowerCase()).includes(role);
     if (!allowed) return forbiddenElement || unauthenticatedElement;
+  }
+
+  if (requiredPath && (!isAdminRole(user?.role) || !canAccessAdminPath(user?.role, requiredPath))) {
+    return forbiddenElement || unauthenticatedElement;
   }
 
   return <Outlet />;

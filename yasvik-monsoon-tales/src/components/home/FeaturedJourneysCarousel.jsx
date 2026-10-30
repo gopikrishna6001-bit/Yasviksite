@@ -1,19 +1,97 @@
 import { useQuery } from '@tanstack/react-query';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import useEmblaCarousel from 'embla-carousel-react';
 import { appClient } from '@/api/appClient';
+import { people as peopleApi } from '@/services/api';
+
+function JourneyCard({ journey }) {
+  return (
+    <Link
+      to={`/journeys/${journey.id}`}
+      className="w-[11.5rem] flex-shrink-0 active:opacity-90 sm:w-[13rem] md:w-[15rem]"
+    >
+      <article className="overflow-hidden rounded-xl border border-soft-border/70 bg-white">
+        <div className="relative aspect-[4/5] overflow-hidden bg-temple-stone/15">
+          {journey.cover_image ? (
+            <img
+              src={journey.cover_image}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="h-full w-full bg-temple-stone/20" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/75 via-deep-forest/10 to-transparent" />
+          {journey.location_label ? (
+            <span className="absolute left-2.5 top-2.5 rounded-md bg-white/15 px-2 py-0.5 font-inter text-[9px] font-bold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm">
+              {journey.location_label}
+            </span>
+          ) : null}
+          <div className="absolute bottom-0 left-0 right-0 p-3">
+            <h3 className="font-cormorant text-lg font-semibold leading-tight text-white md:text-xl">
+              {journey.title}
+            </h3>
+            {journey.tagline ? (
+              <p className="mt-1 line-clamp-2 font-inter text-[10px] text-white/70">
+                {journey.tagline}
+              </p>
+            ) : null}
+          </div>
+        </div>
+        {journey.description ? (
+          <p className="line-clamp-2 px-3 py-2.5 font-inter text-[11px] leading-relaxed text-deep-forest/55">
+            {journey.description}
+          </p>
+        ) : null}
+      </article>
+    </Link>
+  );
+}
+
+function PersonCard({ person }) {
+  return (
+    <Link
+      to={`/people/${person.id}`}
+      className="w-[11.5rem] flex-shrink-0 active:opacity-90 sm:w-[13rem] md:w-[15rem]"
+    >
+      <article className="overflow-hidden rounded-xl border border-soft-border/70 bg-white">
+        <div className="relative aspect-[4/5] overflow-hidden bg-deep-forest/10">
+          {person.portrait_image ? (
+            <img
+              src={person.portrait_image}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="h-full w-full bg-deep-forest/15" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/75 via-deep-forest/10 to-transparent" />
+          {person.role ? (
+            <span className="absolute left-2.5 top-2.5 rounded-md bg-white/15 px-2 py-0.5 font-inter text-[9px] font-bold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm">
+              {person.role}
+            </span>
+          ) : null}
+          <div className="absolute bottom-0 left-0 right-0 p-3">
+            <h3 className="font-cormorant text-lg font-semibold leading-tight text-white md:text-xl">
+              {person.name}
+            </h3>
+            {person.location_label ? (
+              <p className="mt-0.5 font-inter text-[10px] text-white/65">{person.location_label}</p>
+            ) : null}
+          </div>
+        </div>
+        {person.quote ? (
+          <p className="line-clamp-2 px-3 py-2.5 font-cormorant text-sm italic leading-snug text-deep-forest/70">
+            &ldquo;{person.quote}&rdquo;
+          </p>
+        ) : null}
+      </article>
+    </Link>
+  );
+}
 
 export default function FeaturedJourneysCarousel() {
-  const [emblaRef] = useEmblaCarousel({
-    loop: true,
-    align: 'center',
-    dragFree: false,
-    duration: 35,
-    skipSnaps: false,
-    inViewThreshold: 0.7,
-  });
-
   const { data: journeys = [] } = useQuery({
     queryKey: ['featured-journeys-carousel'],
     queryFn: async () => {
@@ -32,102 +110,46 @@ export default function FeaturedJourneysCarousel() {
     staleTime: 5 * 60 * 1000,
   });
 
-  if (!journeys.length) return null;
+  const { data: people = [] } = useQuery({
+    queryKey: ['featured-people-carousel'],
+    queryFn: () => peopleApi.listFeatured(6),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (!journeys.length && !people.length) return null;
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="py-16 overflow-hidden"
+    <section
+      className="border-b border-soft-border/40 bg-warm-cream px-4 py-8 md:px-8 md:py-10"
+      aria-labelledby="journeys-heading"
     >
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-        className="font-inter text-[9px] tracking-[0.35em] uppercase text-rain-cloud/30 text-center mb-10"
-      >
-        Explore Journeys
-      </motion.p>
+      <div className="mx-auto max-w-[1400px]">
+        <div className="mb-5 flex items-end justify-between gap-3">
+          <div>
+            <p className="font-inter text-[11px] font-bold uppercase tracking-[0.14em] text-deep-forest/45">
+              Our roots
+            </p>
+            <h2 id="journeys-heading" className="font-cormorant text-2xl font-semibold text-deep-forest md:text-3xl">
+              Yasvik Journeys
+            </h2>
+            <p className="mt-1 font-inter text-xs text-deep-forest/55">
+              Field notes, plus the farmers, makers and communities we learn from.
+            </p>
+          </div>
+          <Link to="/our-roots" className="inline-flex items-center gap-1 font-inter text-xs font-bold text-neon-paddy hover:text-deep-forest">
+            View all
+          </Link>
+        </div>
 
-      <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-        <div className="flex pl-4 pr-4">
-          {journeys.map((journey, i) => (
-            <div key={journey.id} className="flex-shrink-0 w-[78vw] max-w-[340px] mx-2">
-              <Link to={`/journeys/${journey.id}`} className="block active:opacity-90">
-                <motion.div
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}
-                  className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-temple-stone/15"
-                >
-                  {journey.cover_image ? (
-                    <img
-                      src={journey.cover_image}
-                      alt={journey.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-temple-stone/20" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-rain-cloud/75 via-rain-cloud/10 to-transparent" />
-                  {journey.location_label && (
-                    <div className="absolute top-4 left-4">
-                      <span className="font-inter text-[8px] tracking-[0.3em] uppercase text-white/60 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                        {journey.location_label}
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="font-cormorant text-2xl text-white font-light leading-tight">
-                      {journey.title}
-                    </h3>
-                    {journey.tagline && (
-                      <p className="font-inter text-[10px] text-white/50 mt-1.5">
-                        {journey.tagline}
-                      </p>
-                    )}
-                  </div>
-                </motion.div>
-
-                {journey.description && (
-                  <motion.p
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 + i * 0.06 }}
-                    className="mt-4 pl-1 font-inter text-[11px] text-rain-cloud/45 leading-relaxed line-clamp-2"
-                  >
-                    {journey.description}
-                  </motion.p>
-                )}
-              </Link>
-            </div>
+        <div className="flex gap-3 overflow-x-auto pb-1 hide-scrollbar md:gap-4">
+          {journeys.map((journey) => (
+            <JourneyCard key={`journey-${journey.id}`} journey={journey} />
+          ))}
+          {people.map((person) => (
+            <PersonCard key={`person-${person.id}`} person={person} />
           ))}
         </div>
       </div>
-
-      <div className="flex justify-center items-center gap-2 mt-8">
-        <div className="flex gap-1.5">
-          {journeys.slice(0, 5).map((_, i) => (
-            <div
-              key={i}
-              className={`rounded-full bg-rain-cloud/20 transition-all ${i === 0 ? 'w-4 h-1' : 'w-1 h-1'}`}
-            />
-          ))}
-        </div>
-        <motion.span
-          animate={{ x: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="text-rain-cloud/30 text-xs ml-2"
-        >
-          ←→
-        </motion.span>
-      </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,5 +1,20 @@
 /about /our-roots 301!
 /journeys /our-roots 301!
-/stories /our-roots 301!
 /people /our-roots 301!
-/* /index.html 200
+/shop/snacks /shop/homemade-snacks-sweets 301!
+/shop/homemade-snacks-and-sweets /shop/homemade-snacks-sweets 301!
+/shop/snacks-and-sweets /shop/homemade-snacks-sweets 301!
+/shop/pickles /shop/homemade-pickles 301!
+/shop/pickles-and-condiments /shop/homemade-pickles 301!
+/shop/spices /shop/spices-powders-podis 301!
+/shop/spices-masalas-and-pantry /shop/spices-powders-podis 301!
+/shop/cold-pressed-oil /shop/cold-pressed-oils 301!
+/shop/dry-fruits /shop/dry-fruits-nuts-seeds 301!
+/shop/dry-fruits-nuts-and-seeds /shop/dry-fruits-nuts-seeds 301!
+/shop/heritage-rice-millets /shop/heritage-rice 301!
+/shop/millets /shop/millets-millet-foods 301!
+/shop/millet-flours /shop/millets-millet-foods 301!
+/shop/store-staples /shop/organic-staples 301!
+/shop/pooja /shop/pooja-essentials 301!
+# SPA routing: Cloudflare Pages serves index.html for unknown routes automatically.
+# Missing /assets/* files return 404 via public/assets/404.html (not index.html).

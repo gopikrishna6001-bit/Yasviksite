@@ -1,3 +1,4 @@
+import { normalizeProductSku } from '@/lib/productSku';
 import { buildProductTitle } from '@/lib/yasvikSeznikLabelLayout';
 import { getProductNameEn, getProductNameTe } from '@/lib/labelProductOptions';
 import { formatPackedDate, formatPrice } from '@/lib/priceLabelGenerator';
@@ -16,19 +17,20 @@ export function buildSampleFieldValues(template = {}) {
     shelfLife: meta.shelfLifeDefault || 'Best before 6 months',
     fssaiLicense: meta.fssaiLicenseDefault || '23626032001451',
     website: meta.websiteDefault || 'www.yasvik.com',
-    productBarcode: 'TOOR-DAL',
+    productBarcode: 'YAS-001',
     posScanCode: buildPosScanQrPayload(
-      { id: 'sample', sku: 'DAL-TOOR-1KG' },
-      { sku: 'DAL-TOOR-1KG', price: 132 },
+      { id: 'sample', sku: 'YAS-001' },
+      { sku: 'YAS-001', price: 132 },
       132
-    ) || 'https://www.yasvik.com/pos-scan?c=YV%3ADAL-TOOR-1KG%3A132',
+    ) || 'https://www.yasvik.com/pos-scan?c=YV%3AYAS-001%3A132',
     barcodeValue: buildBatchBarcodeValue(batchNo, 1),
   };
 }
 
 export function resolveLabelFieldValues(product, variant, options = {}, template = {}) {
   const meta = template.meta || {};
-  const pricing = resolveVariantPricing(product, variant);
+  const priceChannel = options.priceChannel === 'store' ? 'store' : 'web';
+  const pricing = resolveVariantPricing(product, variant, priceChannel);
   const packedDate = options.packedDate ? formatPackedDate(options.packedDate) : '—';
   const batchNo = String(options.batchNo || '').trim() || '—';
 
@@ -44,7 +46,7 @@ export function resolveLabelFieldValues(product, variant, options = {}, template
     shelfLife: meta.shelfLifeDefault || 'Best before 6 months',
     fssaiLicense: meta.fssaiLicenseDefault || '23626032001451',
     website: meta.websiteDefault || 'www.yasvik.com',
-    productBarcode: String(product?.sku || '').trim(),
+    productBarcode: normalizeProductSku(product?.sku),
     posScanCode: posScanCode || '',
     posScanInner: buildPosScanCode(product, variant, pricing.sellingPrice) || '',
     barcodeValue: batchNo !== '—' ? buildBatchBarcodeValue(batchNo, serial) : '',

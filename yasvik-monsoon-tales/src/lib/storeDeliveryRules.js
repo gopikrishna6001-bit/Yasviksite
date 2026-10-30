@@ -50,7 +50,7 @@ export function computeLocalColonyDelivery({
       feePaise: 3000,
       mode: 'pickup_or_delivery',
       pickupRecommended: true,
-      eta_label: 'Same-day / next-day (local)',
+      eta_label: 'Delivery time confirmed before dispatch',
       notes: [
         'Orders below ₹299: store pickup recommended, or ₹30 delivery',
         ...notes,
@@ -65,14 +65,14 @@ export function computeLocalColonyDelivery({
       feePaise: feeRs * 100,
       mode: 'delivery',
       pickupRecommended: false,
-      eta_label: 'Same-day / next-day (local)',
+      eta_label: 'Delivery time confirmed before dispatch',
       notes: [`₹299–₹999 orders: ₹${feeRs} local delivery`, ...notes],
       warnings,
     };
   }
 
   let feePaise = 0;
-  notes.push('Free delivery above ₹999');
+  notes.push('Home delivery available — fee shown at checkout');
 
   if (weightKg > 10) {
     warnings.push('Heavy order (10 kg+): additional delivery charge may apply — we will confirm before dispatch');
@@ -85,8 +85,26 @@ export function computeLocalColonyDelivery({
     feePaise,
     mode: 'delivery',
     pickupRecommended: false,
-    eta_label: 'Same-day / next-day (local)',
+    eta_label: 'Delivery time confirmed before dispatch',
     notes,
     warnings,
   };
+}
+
+/** Status-aware ETA for display (emails, admin, tracking). */
+export function resolveOrderEtaDisplay(status, etaLabel) {
+  switch (String(status || '').toLowerCase()) {
+    case 'out_for_delivery':
+      return 'Arriving today';
+    case 'shipped':
+    case 'ready_for_dispatch':
+      return 'Today';
+    case 'delivered':
+    case 'cancelled':
+    case 'refunded':
+    case 'failed':
+      return null;
+    default:
+      return etaLabel || null;
+  }
 }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Yasvik Admin</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="manifest" href="/manifest-admin.json" />
+    <link rel="apple-touch-icon" href="/media/brand/logo-symbol.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Yasvik Admin" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#3d342c" />
+    <link rel="canonical" href="https://www.yasvik.com/admin/install.html" />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem max(1.5rem, env(safe-area-inset-bottom));
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #3d342c;
+        color: #f5f1e8;
+        line-height: 1.5;
+      }
+      .card {
+        max-width: 26rem;
+        margin: 0 auto;
+        background: #fffaf0;
+        color: #1f3d2b;
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      }
+      h1 {
+        margin: 0 0 0.35rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+      .sub {
+        margin: 0 0 1rem;
+        font-size: 0.9rem;
+        color: rgba(31, 61, 43, 0.65);
+      }
+      .warn {
+        margin: 0 0 1rem;
+        padding: 0.85rem 1rem;
+        border-radius: 0.85rem;
+        background: #fff4d6;
+        border: 1px solid #e8c468;
+        font-size: 0.82rem;
+        color: #6b4f12;
+      }
+      ol {
+        margin: 0 0 1.25rem;
+        padding-left: 1.2rem;
+        font-size: 0.92rem;
+      }
+      li { margin-bottom: 0.55rem; }
+      .btn {
+        display: block;
+        width: 100%;
+        min-height: 48px;
+        margin-bottom: 0.65rem;
+        border: 0;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        line-height: 48px;
+      }
+      .btn-primary { background: #4a6741; color: #fffaf0; }
+      .btn-secondary { background: #ece4d4; color: #1f3d2b; }
+      .url {
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        background: #f3ede0;
+        font-size: 0.78rem;
+        word-break: break-all;
+        color: #4a6741;
+      }
+      .foot {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: rgba(31, 61, 43, 0.5);
+        text-align: center;
+      }
+    </style>
+    <script>
+      (function () {
+        var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        if (standalone) {
+          window.location.replace('/admin/products');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Install Yasvik Admin</h1>
+      <p class="sub">For product photos &amp; store control on iPhone — not the customer shop app.</p>
+
+      <div class="warn">
+        <strong>Important:</strong> Add to Home Screen <strong>from this page</strong>.
+        If you add from the shop homepage, iPhone saves <code>yasvik.com/</code> and you cannot change it.
+      </div>
+
+      <ol>
+        <li>Stay on this page in <strong>Safari</strong> (not Chrome, not the shop icon).</li>
+        <li>Tap <strong>Share</strong> → <strong>Add to Home Screen</strong>.</li>
+        <li>Confirm the name is <strong>Yasvik Admin</strong> → <strong>Add</strong>.</li>
+        <li>Open the new icon → log in → add product photos.</li>
+      </ol>
+
+      <a class="btn btn-primary" href="/admin-login">Log in to Admin</a>
+      <a class="btn btn-secondary" href="/admin/products">Go to Products</a>
+
+      <div class="url">Install from: https://www.yasvik.com/admin/install.html</div>
+      <p class="foot">Bookmark this page if Add to Home Screen still shows the shop URL.</p>
+    </div>
+  </body>
+</html>

@@ -8,60 +8,122 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://cpksnpuavywbmhrzglyh.supabase.co" />
     <link rel="preconnect" href="https://cpksnpuavywbmhrzglyh.supabase.co" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap&v=20260727" />
     <link rel="manifest" href="/manifest.json" id="yasvik-pwa-manifest" />
     <link rel="apple-touch-icon" href="/media/brand/logo-symbol.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <script>
       (function () {
-        if (!/^\/admin(\/|$)/.test(location.pathname)) return;
+        if (!/^\/admin(\/|$)|^\/admin-login/.test(location.pathname)) return;
         var link = document.getElementById('yasvik-pwa-manifest');
         if (link) link.href = '/manifest-admin.json';
         document.title = 'Yasvik Admin';
-        var titleMeta = document.createElement('meta');
-        titleMeta.name = 'apple-mobile-web-app-title';
+        var titleMeta = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+        if (!titleMeta) {
+          titleMeta = document.createElement('meta');
+          titleMeta.name = 'apple-mobile-web-app-title';
+          document.head.appendChild(titleMeta);
+        }
         titleMeta.content = 'Yasvik Admin';
-        document.head.appendChild(titleMeta);
         var theme = document.querySelector('meta[name="theme-color"]');
         if (theme) theme.content = '#3d342c';
       })();
     </script>
     <link rel="canonical" href="https://www.yasvik.com/" />
-    <meta name="description" content="Yasvik is a web application and online store for natural foods and everyday groceries in Hyderabad. Browse products, create an account, sign in with Google, and place orders for delivery or pickup." />
-    <meta property="og:title" content="Yasvik | Natural Foods & Everyday Essentials" />
-    <meta property="og:description" content="Yasvik web application — browse natural foods, create an account, and place grocery orders in Hyderabad." />
+    <meta name="description" content="Better Food. Found. Carefully chosen snacks, pickles, oils, honey, jaggery, heritage rice and everyday foods from Yasvik in Ashok Nagar, Hyderabad — order online, WhatsApp or visit." />
+    <meta name="robots" content="index,follow" />
+    <meta name="keywords" content="yasvik, yasvik foods, better food found, ashok nagar hyderabad, homemade snacks hyderabad, pickles hyderabad, cold pressed oils, ghee honey jaggery, heritage rice, millets hyderabad" />
+    <meta property="og:title" content="Yasvik | Better Food. Found." />
+    <meta property="og:description" content="We travel, learn and choose — then make better everyday foods easier to bring into modern homes in Hyderabad." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.yasvik.com/" />
     <meta property="og:image" content="https://www.yasvik.com/media/brand/logo-horizontal.png" />
+    <meta property="og:site_name" content="Yasvik Foods" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yasvik | Better Food. Found." />
+    <meta name="twitter:description" content="Carefully chosen snacks, pickles, oils, honey, jaggery, heritage rice and everyday foods from Yasvik in Hyderabad." />
+    <meta name="twitter:image" content="https://www.yasvik.com/media/brand/logo-horizontal.png" />
     <meta name="theme-color" content="#FAF7EF" />
-    <title>Yasvik | Natural Foods & Everyday Essentials | Hyderabad</title>
+  <script id="yasvik-chunk-recovery">
+      (function () {
+        var STORAGE_KEY = 'yasvik-chunk-reload';
+        function reloadOnce() {
+          if (sessionStorage.getItem(STORAGE_KEY)) return false;
+          sessionStorage.setItem(STORAGE_KEY, '1');
+          var url = new URL(window.location.href);
+          url.searchParams.set('v', Date.now().toString(36));
+          window.location.replace(url.toString());
+          return true;
+        }
+        window.addEventListener('vite:preloadError', function (event) {
+          event.preventDefault();
+          reloadOnce();
+        });
+        window.addEventListener('error', function (event) {
+          var target = event.target;
+          if (!target) return;
+          var tag = String(target.tagName || '').toUpperCase();
+          if (tag === 'SCRIPT') {
+            if (String(target.type || '').toLowerCase() !== 'module') return;
+            reloadOnce();
+            return;
+          }
+          // Stale HTML after deploy can point at a missing hashed CSS file → unstyled / "distributed" layout.
+          if (tag === 'LINK' && String(target.rel || '').toLowerCase() === 'stylesheet') {
+            var href = String(target.href || '');
+            if (href.indexOf('/assets/') !== -1) reloadOnce();
+          }
+        }, true);
+        window.addEventListener('load', function () {
+          try {
+            var sheet = Array.prototype.find.call(document.styleSheets || [], function (s) {
+              return s && s.href && String(s.href).indexOf('/assets/') !== -1;
+            });
+            if (!sheet || !sheet.cssRules || sheet.cssRules.length < 50) reloadOnce();
+          } catch (e) {
+            // Opaque / blocked stylesheet — treat as broken after deploy.
+            reloadOnce();
+          }
+        });
+        window.addEventListener('pageshow', function (event) {
+          if (event.persisted) sessionStorage.removeItem(STORAGE_KEY);
+        });
+      })();
+    </script>
+    <title>Yasvik | Better Food. Found. | Hyderabad</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Yasvik",
+        "@type": "GroceryStore",
+        "@id": "https://www.yasvik.com/#store",
+        "name": "Yasvik Foods",
+        "alternateName": "Yasvik",
         "url": "https://www.yasvik.com",
-        "applicationCategory": "ShoppingApplication",
-        "operatingSystem": "Web browser",
-        "description": "Yasvik is a web application operated by Yasvik Natural Foods in Hyderabad, India. It allows customers to browse natural foods and groceries, create an account, sign in with Google or email, and place orders for delivery or pickup.",
-        "provider": {
-          "@type": "Organization",
-          "name": "Yasvik Natural Foods",
-          "email": "yasvikfoods@gmail.com",
-          "url": "https://www.yasvik.com",
-          "sameAs": ["https://maps.app.goo.gl/5ED9n4iZ3tQZKzGb6"]
-        }
+        "image": "https://www.yasvik.com/media/brand/logo-horizontal.png",
+        "description": "Yasvik — Better Food. Found. Visit us in Ashok Nagar, Chanda Nagar, Hyderabad for homemade snacks, pickles, spice powders and podis, cold-pressed oils, ghee, honey, jaggery, dry fruits, heritage rice, millets and carefully chosen everyday foods.",
+        "telephone": "+91-78429-38998",
+        "email": "yasvikfoods@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bavanipuram Colony Road no 4, Ashok Nagar",
+          "addressLocality": "Chanda Nagar, Hyderabad",
+          "addressRegion": "Telangana",
+          "postalCode": "500050",
+          "addressCountry": "IN"
+        },
+        "areaServed": "Hyderabad",
+        "sameAs": ["https://maps.app.goo.gl/sKdPkSmNvqmrUC2a7"]
       }
     </script>
   </head>
   <body>
     <noscript>
       <div style="max-width:42rem;margin:0 auto;padding:1.5rem 1rem;font-family:system-ui,sans-serif;color:#1f3d2b;line-height:1.6">
-        <h1 style="font-size:1.5rem;margin:0 0 0.75rem">Yasvik online store</h1>
+        <h1 style="font-size:1.5rem;margin:0 0 0.75rem">Yasvik — Better Food. Found.</h1>
         <p>
-          The purpose of this application is to let customers of Yasvik Natural Foods in Hyderabad browse
-          natural foods and groceries online, create an account, sign in with Google or email, and place orders
-          for delivery or pickup.
+          We travel, learn and choose everyday foods we can stand behind: homemade snacks, pickles, spice powders,
+          cold-pressed oils, ghee, honey, jaggery, dry fruits, heritage rice and millets. Shop online,
+          visit us in Ashok Nagar, Chanda Nagar, or order through WhatsApp across Hyderabad.
         </p>
         <p>
           <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a>

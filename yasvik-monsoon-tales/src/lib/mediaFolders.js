@@ -8,9 +8,16 @@ export const MEDIA_FOLDERS = [
   { id: 'people', label: 'People', description: 'Farmer & team portraits' },
   { id: 'illustrations', label: 'Illustrations', description: 'Site atmosphere artwork' },
   { id: 'brand', label: 'Brand', description: 'Logos & brand assets' },
+  { id: 'catalogues', label: 'Catalogues', description: 'Generated PDF catalogues' },
   { id: 'customers', label: 'Profile pictures', description: 'Customer avatar & profile photos' },
   { id: 'general', label: 'General', description: 'Misc uploads' },
 ];
+
+/** R2 / import-inbox uses singular `hero/`; library entity_type uses `heroes`. */
+const FOLDER_ALIASES = {
+  hero: 'heroes',
+  heroes: 'heroes',
+};
 
 export const MEDIA_FOLDER_IDS = MEDIA_FOLDERS.map((folder) => folder.id);
 
@@ -26,17 +33,22 @@ export function isAllowedMediaFolder(folderId = '') {
 
 export function normalizeMediaFolder(folderId = '') {
   const value = String(folderId || 'general').trim().toLowerCase();
-  return isAllowedMediaFolder(value) ? value : 'general';
+  const canonical = FOLDER_ALIASES[value] || value;
+  return isAllowedMediaFolder(canonical) ? canonical : 'general';
 }
 
 export function assetMatchesFolder(asset = {}, folderId = 'all') {
   if (!folderId || folderId === 'all') return true;
 
+  const canonical = normalizeMediaFolder(folderId);
   const entityType = String(asset.entity_type || '').toLowerCase();
-  if (entityType === folderId) return true;
+  if (entityType === canonical || FOLDER_ALIASES[entityType] === canonical) return true;
 
   const filePath = String(asset.file_path || asset.file_url || asset.upload_url || '').toLowerCase();
-  return filePath.includes(`/media-assets/${folderId}/`) || filePath.includes(`/${folderId}/`);
+  if (filePath.includes(`/media-assets/${canonical}/`)) return true;
+  // import-inbox / wrangler use singular `hero/` on R2
+  if (canonical === 'heroes' && filePath.includes('/media-assets/hero/')) return true;
+  return filePath.includes(`/${canonical}/`);
 }
 
 export function buildMediaAssetName(file, folderId = 'general') {

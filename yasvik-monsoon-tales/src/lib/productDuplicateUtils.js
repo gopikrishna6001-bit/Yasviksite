@@ -1,3 +1,5 @@
+import { suggestProductSku } from '@/lib/productSku';
+
 export function slugifyProduct(value) {
   return String(value || '')
     .trim()
@@ -12,16 +14,16 @@ export function uniqueCopySuffix() {
 }
 
 /** Slug, SKU and product code from display name — used when duplicating. */
-export function deriveProductIdentityFromTitle(title = '') {
+export function deriveProductIdentityFromTitle(title = '', allProducts = []) {
   const cleanTitle = String(title || '').trim();
   const slugBase = slugifyProduct(cleanTitle) || 'product';
   const suffix = uniqueCopySuffix();
-  const token = slugBase.replace(/-/g, '').toUpperCase().slice(0, 8) || suffix.toUpperCase();
+  const sku = suggestProductSku('', allProducts);
 
   return {
     slug: `${slugBase}-${suffix}`,
-    sku: `YAS-${token}-${suffix.toUpperCase()}`,
-    product_code: `YAS-${token}`,
+    sku,
+    product_code: sku,
   };
 }
 
@@ -30,8 +32,8 @@ export function deriveVariantSku(baseSku, variant = {}, index = 0) {
   return `${baseSku}-${pack}`.slice(0, 64);
 }
 
-export function applyDuplicateIdentity(form = {}) {
-  const identity = deriveProductIdentityFromTitle(form.title);
+export function applyDuplicateIdentity(form = {}, allProducts = []) {
+  const identity = deriveProductIdentityFromTitle(form.title, allProducts);
   const variants = Array.isArray(form.variants)
     ? form.variants.map((variant, index) => ({
         ...variant,

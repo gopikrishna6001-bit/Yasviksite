@@ -27,7 +27,7 @@ function createdAtValue(product = {}) {
  * group order → product order → title → newest.
  */
 export function sortCatalogProducts(products = []) {
-  return [...products].sort((a, b) => {
+  return [...products].filter(Boolean).sort((a, b) => {
     const groupOrderDiff = groupSortOrderValue(a) - groupSortOrderValue(b);
     if (groupOrderDiff !== 0) return groupOrderDiff;
 
@@ -46,7 +46,7 @@ export function sortCatalogProducts(products = []) {
 
 /** Featured carousel / hero picks: sort_order only, then title, then newest. */
 export function sortFeaturedProducts(products = []) {
-  return [...products].sort((a, b) => {
+  return [...products].filter(Boolean).sort((a, b) => {
     const orderDiff = sortOrderValue(a) - sortOrderValue(b);
     if (orderDiff !== 0) return orderDiff;
 

@@ -74,7 +74,7 @@ export default function IsolatedProductMoment() {
               {product.sourcing_location}
             </p>
           )}
-          <h2 className="font-cormorant text-3xl text-rain-cloud font-light leading-tight">
+          <h2 className="font-cormorant text-3xl text-rain-cloud font-semibold leading-tight">
             {product.title}
           </h2>
           {product.short_description && (

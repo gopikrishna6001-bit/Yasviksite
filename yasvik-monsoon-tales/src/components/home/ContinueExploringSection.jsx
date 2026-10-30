@@ -14,7 +14,7 @@ export default function ContinueExploringSection() {
     <section className="py-8">
       <div className="px-5 mb-4">
         <p className="font-inter text-[9px] tracking-[0.28em] uppercase text-rain-cloud/35">From Your Discoveries</p>
-        <h2 className="font-cormorant text-2xl text-rain-cloud font-light mt-0.5">Continue Exploring</h2>
+        <h2 className="font-cormorant text-2xl text-rain-cloud font-semibold mt-0.5">Continue Exploring</h2>
       </div>
 
       <div className="flex gap-3 overflow-x-auto px-5 pb-1 hide-scrollbar snap-x">
