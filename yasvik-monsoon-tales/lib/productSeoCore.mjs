@@ -224,11 +224,13 @@ export function buildProductSeoMeta(product = {}, options = {}) {
 
 export function buildProductJsonLd(product = {}, options = {}) {
   const seo = buildProductSeoMeta(product, options);
+  // Always emit the customer-facing selling price (not MRP / compare-at).
   const price = Number(options.price ?? product.price ?? 0);
   const inStock = options.inStock ?? (
     product.availability === 'in_stock' || Number(product.stock ?? product.stock_quantity ?? 1) > 0
   );
   const canonicalUrl = seo.canonicalUrl;
+  const priceValidUntil = options.priceValidUntil || new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
   const payload = {
     '@context': 'https://schema.org',
@@ -244,7 +246,9 @@ export function buildProductJsonLd(product = {}, options = {}) {
       url: canonicalUrl,
       priceCurrency: String(product.currency || 'INR').toUpperCase(),
       price: price > 0 ? price.toFixed(2) : undefined,
+      priceValidUntil,
       availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
       seller: {
         '@type': 'GroceryStore',
         '@id': `${SITE_ORIGIN}/#store`,
