@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/ensure-sitemap-env.mjs && node scripts/build_public_seo_snapshot.mjs && node scripts_generate_sitemap.mjs && node scripts/generate_meta_catalog_feed.mjs",
+    "prebuild": "node scripts/ensure-sitemap-env.mjs && node scripts/build_public_seo_snapshot.mjs && node scripts_generate_sitemap.mjs && node scripts/generate_meta_catalog_feed.mjs && node scripts/generate_llm_price_feed.mjs",
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/prerender_public_routes.mjs",

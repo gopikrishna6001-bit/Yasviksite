@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Allow: /catalog/
+Allow: /api/catalog/
+Allow: /llms.txt
 Disallow: /admin
 Disallow: /admin/*
 Disallow: /login

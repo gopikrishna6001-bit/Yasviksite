@@ -1,4 +1,5 @@
 import { handleMetaCatalogFeedRequest } from './metaCatalogFeed.js';
+import { handleLlmPriceFeedRequest } from './llmPriceFeed.js';
 import {
   browserPdfOptions,
   compileCatalogue,
@@ -84,6 +85,19 @@ export default {
         return await handleMetaCatalogFeedRequest(request, env);
       } catch (error) {
         return json({ error: error?.message || 'Catalog feed failed' }, 500, request);
+      }
+    }
+
+    if (
+      request.method === 'GET' &&
+      (pathname === '/catalog/llm-prices.json' ||
+        pathname === '/catalog/llm-prices.md' ||
+        pathname === '/catalog/llm-prices.csv')
+    ) {
+      try {
+        return await handleLlmPriceFeedRequest(request, env);
+      } catch (error) {
+        return json({ error: error?.message || 'LLM price feed failed' }, 500, request);
       }
     }
 

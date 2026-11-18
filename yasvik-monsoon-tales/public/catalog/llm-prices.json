@@ -1,0 +1,6517 @@
+{
+  "brand": "Yasvik",
+  "store": "Ashok Nagar, Chanda Nagar, Hyderabad",
+  "currency": "INR",
+  "updated_at": "2026-11-18T10:14:43.038Z",
+  "source": "yasvik.com storefront packs (quick_variants)",
+  "instructions": [
+    "current_price is what customers pay on yasvik.com today.",
+    "mrp is strikethrough / compare-at only — never quote mrp as the selling price.",
+    "If Meta catalog CSV is used, prefer sale_price when present; otherwise do not invent prices.",
+    "Re-fetch this document before answering price questions; prices change.",
+    "Phone / WhatsApp for confirmation: +91 78429 38998."
+  ],
+  "product_count": 196,
+  "products": [
+    {
+      "name": "Almonds",
+      "slug": "badam-almonds",
+      "url": "https://www.yasvik.com/product/badam-almonds",
+      "category": null,
+      "current_price": 119,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMB-TWFYF-100G",
+          "current_price": 119,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMB-TWFYF-250G",
+          "current_price": 279,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMB-TWFYF-500G",
+          "current_price": 559,
+          "mrp": 729,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PREMIUMB-TWFYF-1-KG",
+          "current_price": 1099,
+          "mrp": 1429,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Amla Powder",
+      "slug": "amla-powder",
+      "url": "https://www.yasvik.com/product/amla-powder",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-ORANGEPE-OE6DL-100G",
+          "current_price": 109,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-ORANGEPE-OE6DL-250G",
+          "current_price": 249,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Anakapalle Jaggery",
+      "slug": "anakapalle-jaggery",
+      "url": "https://www.yasvik.com/product/anakapalle-jaggery",
+      "category": null,
+      "current_price": 50,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-JAGGERY-6Y9K2-500G",
+          "current_price": 50,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-JAGGERY-6Y9K2-1KG",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-JAGGERY-6Y9K2-2KG",
+          "current_price": 159,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Atreyapuram Ghee Putharekulu",
+      "slug": "atreyapuram-spl-ghee-putharekulu-qjpex",
+      "url": "https://www.yasvik.com/product/atreyapuram-spl-ghee-putharekulu-qjpex",
+      "category": null,
+      "current_price": 149,
+      "headline_size": "5 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "5 pcs",
+          "sku": null,
+          "current_price": 149,
+          "mrp": 229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Atreyapuram Red Jaggery Putharekulu",
+      "slug": "atreyapuram-red-jaggery-putharekulu-lm3cr",
+      "url": "https://www.yasvik.com/product/atreyapuram-red-jaggery-putharekulu-lm3cr",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "5 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "5 pcs",
+          "sku": null,
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Bajra Kichidi",
+      "slug": "bajra-kichidi-eriue",
+      "url": "https://www.yasvik.com/product/bajra-kichidi-eriue",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-146-100G",
+          "current_price": 69,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-146-250G",
+          "current_price": 159,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-146-500G",
+          "current_price": 299,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Beetroot Karapusa",
+      "slug": "beetroot-karapusa",
+      "url": "https://www.yasvik.com/product/beetroot-karapusa",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-BEETROOT-DM4OZ-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-BEETROOT-DM4OZ-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-BEETROOT-DM4OZ-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Black Horse Gram",
+      "slug": "black-horse-gram",
+      "url": "https://www.yasvik.com/product/black-horse-gram",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-018-500G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-018-1KG",
+          "current_price": 159,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-018-2KG",
+          "current_price": 289,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Black Raisins",
+      "slug": "black-raisins",
+      "url": "https://www.yasvik.com/product/black-raisins",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMB-JGOHK-100G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMB-JGOHK-250G",
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMB-JGOHK-500G",
+          "current_price": 369,
+          "mrp": 559,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PREMIUMB-JGOHK-1KG",
+          "current_price": 729,
+          "mrp": 1099,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Boondi Achu",
+      "slug": "boondi-achu-lz9jd",
+      "url": "https://www.yasvik.com/product/boondi-achu-lz9jd",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-030-250G",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-030-500G",
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-030-1KG",
+          "current_price": 569,
+          "mrp": 859,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Boondi Laddu",
+      "slug": "boondi-laddu-0t6sk",
+      "url": "https://www.yasvik.com/product/boondi-laddu-0t6sk",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-002-250G",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-002-500G",
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-002-1KG",
+          "current_price": 569,
+          "mrp": 859,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Boondi Mixture",
+      "slug": "boondi-mixture-0cg3h",
+      "url": "https://www.yasvik.com/product/boondi-mixture-0cg3h",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": null,
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 119,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "400 g",
+          "sku": null,
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Brown Chana",
+      "slug": "brown-chana",
+      "url": "https://www.yasvik.com/product/brown-chana",
+      "category": null,
+      "current_price": 55,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-013-500G",
+          "current_price": 55,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-013-1KG",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-013-2KG",
+          "current_price": 169,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Carom/Ajwain Honey",
+      "slug": "multi-floral-honey-knq4b",
+      "url": "https://www.yasvik.com/product/multi-floral-honey-knq4b",
+      "category": null,
+      "current_price": 229,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-135-250G",
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-135-500G",
+          "current_price": 439,
+          "mrp": 659,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-135-1KG",
+          "current_price": 819,
+          "mrp": 1229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cashew Nuts",
+      "slug": "cashews",
+      "url": "https://www.yasvik.com/product/cashews",
+      "category": null,
+      "current_price": 119,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMC-100G",
+          "current_price": 119,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMC-250G",
+          "current_price": 279,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMC-500G",
+          "current_price": 559,
+          "mrp": 729,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1kg",
+          "sku": null,
+          "current_price": 1099,
+          "mrp": 1429,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cashew Pieces",
+      "slug": "cashews-pieces-ax2o7",
+      "url": "https://www.yasvik.com/product/cashews-pieces-ax2o7",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-114-100G",
+          "current_price": 69,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-114-250G",
+          "current_price": 179,
+          "mrp": 229,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-114-500G",
+          "current_price": 359,
+          "mrp": 469,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cashew Split",
+      "slug": "cashews-split-avag5",
+      "url": "https://www.yasvik.com/product/cashews-split-avag5",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-097-100G",
+          "current_price": 109,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-097-250G",
+          "current_price": 259,
+          "mrp": 339,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-097-500G",
+          "current_price": 499,
+          "mrp": 649,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chana Dal",
+      "slug": "chana-dal",
+      "url": "https://www.yasvik.com/product/chana-dal",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-026-500G",
+          "current_price": 59,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-026-1KG",
+          "current_price": 119,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-026-2KG",
+          "current_price": 219,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chat Masala",
+      "slug": "chat-masala-cjoph",
+      "url": "https://www.yasvik.com/product/chat-masala-cjoph",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-169-100-G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-169-250-G",
+          "current_price": 159,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-169-500-G",
+          "current_price": 319,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chegodilu",
+      "slug": "chekodilu-lth6d",
+      "url": "https://www.yasvik.com/product/chekodilu-lth6d",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-028-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-028-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-028-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chekkalu",
+      "slug": "chekkalu-0hj6i",
+      "url": "https://www.yasvik.com/product/chekkalu-0hj6i",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-010-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-010-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-010-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chia Seeds",
+      "slug": "chia-seeds",
+      "url": "https://www.yasvik.com/product/chia-seeds",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-CHIA-100G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-DF-CHIA-200G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-CHIA-500G",
+          "current_price": 279,
+          "mrp": 419,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chicken Masala",
+      "slug": "chicken-masala-cid0w",
+      "url": "https://www.yasvik.com/product/chicken-masala-cid0w",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-168-100-G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-168-250-G",
+          "current_price": 159,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-168-500-G",
+          "current_price": 319,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chicken Pickle",
+      "slug": "chicken-pickle-4juhx",
+      "url": "https://www.yasvik.com/product/chicken-pickle-4juhx",
+      "category": null,
+      "current_price": 369,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": "YAS-138-200-G",
+          "current_price": 369,
+          "mrp": 729,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-138-500G",
+          "current_price": 909,
+          "mrp": 1819,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Chicken Pickle (Bone)",
+      "slug": "chicken-pickle-bone-5as80",
+      "url": "https://www.yasvik.com/product/chicken-pickle-bone-5as80",
+      "category": null,
+      "current_price": 389,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-139-250G",
+          "current_price": 389,
+          "mrp": 779,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-139-500G",
+          "current_price": 779,
+          "mrp": 1559,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cinnamon",
+      "slug": "cinnamon",
+      "url": "https://www.yasvik.com/product/cinnamon",
+      "category": null,
+      "current_price": 45,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "50 g",
+          "sku": "YAS-DALCHI-8KUQW-50G",
+          "current_price": 45,
+          "mrp": 55,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-DALCHI-8KUQW-100G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-DALCHI-8KUQW-250G",
+          "current_price": 179,
+          "mrp": 219,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Almond Oil",
+      "slug": "cold-pressed-almond-oil-v2dfs",
+      "url": "https://www.yasvik.com/product/cold-pressed-almond-oil-v2dfs",
+      "category": null,
+      "current_price": 319,
+      "headline_size": "100 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 599,
+          "mrp": 779,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 ml",
+          "sku": "YAS-152-500ML",
+          "current_price": 1469,
+          "mrp": 1919,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 ml",
+          "sku": null,
+          "current_price": 319,
+          "mrp": 419,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Black Sesame Oil",
+      "slug": "cold-pressed-black-sesame-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-black-sesame-oil",
+      "category": null,
+      "current_price": 329,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-COLDPRES-HQ0CM-500ML",
+          "current_price": 329,
+          "mrp": 499,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-COLDPRES-HQ0CM-1L",
+          "current_price": 629,
+          "mrp": 949,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Castor Oil",
+      "slug": "cold-pressed-castor-oil-1xe5u",
+      "url": "https://www.yasvik.com/product/cold-pressed-castor-oil-1xe5u",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "200 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 ml",
+          "sku": "YAS-153-500ML",
+          "current_price": 419,
+          "mrp": 629,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Coconut Oil",
+      "slug": "cold-pressed-coconut-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-coconut-oil",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "100 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-014-500ML",
+          "current_price": 369,
+          "mrp": 559,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-014-1L",
+          "current_price": 719,
+          "mrp": 1079,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 ml",
+          "sku": null,
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Flaxseed Oil",
+      "slug": "cold-pressed-flaxseed-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-flaxseed-oil",
+      "category": null,
+      "current_price": 279,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-COLDPRES-M20XU-500ML",
+          "current_price": 279,
+          "mrp": 419,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-COLDPRES-M20XU-1L",
+          "current_price": 549,
+          "mrp": 829,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Groundnut Oil",
+      "slug": "cold-pressed-groundnut-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-groundnut-oil",
+      "category": null,
+      "current_price": 229,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-038-500ML",
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-038-1L",
+          "current_price": 439,
+          "mrp": 659,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Mahua Oil",
+      "slug": "cold-pressed-mahua-oil-r4vcb",
+      "url": "https://www.yasvik.com/product/cold-pressed-mahua-oil-r4vcb",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "100 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-171-500-ML",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-171-1-L",
+          "current_price": 439,
+          "mrp": 659,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 ml",
+          "sku": null,
+          "current_price": 59,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Mustard Oil",
+      "slug": "cold-pressed-mustard-oil-i5qmv",
+      "url": "https://www.yasvik.com/product/cold-pressed-mustard-oil-i5qmv",
+      "category": null,
+      "current_price": 299,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-036-500ML",
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-036-1L",
+          "current_price": 579,
+          "mrp": 869,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Neem Oil",
+      "slug": "cold-pressed-neem-oil-c3hrb",
+      "url": "https://www.yasvik.com/product/cold-pressed-neem-oil-c3hrb",
+      "category": null,
+      "current_price": 169,
+      "headline_size": "200 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 ml",
+          "sku": "YAS-154-500ML",
+          "current_price": 389,
+          "mrp": 589,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Niger Oil",
+      "slug": "cold-pressed-niger-oil-c490b",
+      "url": "https://www.yasvik.com/product/cold-pressed-niger-oil-c490b",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "200 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 ml",
+          "sku": "YAS-155-500ML",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Safflower Oil",
+      "slug": "cold-pressed-safflower-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-safflower-oil",
+      "category": null,
+      "current_price": 339,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-COLDPRES-KI3CR-500ML",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-COLDPRES-KI3CR-1L",
+          "current_price": 639,
+          "mrp": 959,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed Sunflower Oil",
+      "slug": "cold-pressed-sunflower-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-sunflower-oil",
+      "category": null,
+      "current_price": 309,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-COLDPRES-HJU8W-500ML",
+          "current_price": 309,
+          "mrp": 469,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-COLDPRES-HJU8W-1L",
+          "current_price": 609,
+          "mrp": 919,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cold Pressed White Sesame Oil",
+      "slug": "cold-pressed-sesame-oil",
+      "url": "https://www.yasvik.com/product/cold-pressed-sesame-oil",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "200 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": "YAS-039-500ML",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 l",
+          "sku": "YAS-039-1L",
+          "current_price": 629,
+          "mrp": 949,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 ml",
+          "sku": null,
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Coriander Seeds",
+      "slug": "coriander-seeds",
+      "url": "https://www.yasvik.com/product/coriander-seeds",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-020-100G",
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-020-250G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-020-500G",
+          "current_price": 139,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cowpeas",
+      "slug": "cowpeas",
+      "url": "https://www.yasvik.com/product/cowpeas",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-021-500G",
+          "current_price": 59,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-021-1KG",
+          "current_price": 119,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-021-2KG",
+          "current_price": 229,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Cumin Seeds",
+      "slug": "cumin-seeds",
+      "url": "https://www.yasvik.com/product/cumin-seeds",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-JEERA-7F8DG-100G",
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-JEERA-7F8DG-250G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-JEERA-7F8DG-500G",
+          "current_price": 169,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Curry Chilli Powder",
+      "slug": "curry-chilli-powder-9k3kc",
+      "url": "https://www.yasvik.com/product/curry-chilli-powder-9k3kc",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-CURRYCHI-100G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-CURRYCHI-250G",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-CURRYCHI-500G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Curry Leaves Chilli Powder",
+      "slug": "karivepaku-chilli-powder-fnw5a",
+      "url": "https://www.yasvik.com/product/karivepaku-chilli-powder-fnw5a",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-149-100G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": null,
+          "current_price": 199,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-149-500G",
+          "current_price": 389,
+          "mrp": 589,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1kg",
+          "sku": null,
+          "current_price": 769,
+          "mrp": 1159,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Dried Figs",
+      "slug": "anjeer-rvnea",
+      "url": "https://www.yasvik.com/product/anjeer-rvnea",
+      "category": null,
+      "current_price": 169,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-137-100G",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-137-250G",
+          "current_price": 399,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-137-500G",
+          "current_price": 909,
+          "mrp": 1369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-137-1KG",
+          "current_price": 1809,
+          "mrp": 2719,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Dry Dates",
+      "slug": "dry-dates",
+      "url": "https://www.yasvik.com/product/dry-dates",
+      "category": null,
+      "current_price": 50,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMD-J53MS-100G",
+          "current_price": 50,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMD-J53MS-250G",
+          "current_price": 109,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMD-J53MS-500G",
+          "current_price": 199,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PREMIUMD-J53MS-1KG",
+          "current_price": 349,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Everyday Seeds Combo",
+      "slug": "yasvik-everyday-seeds-Combo",
+      "url": "https://www.yasvik.com/product/yasvik-everyday-seeds-Combo",
+      "category": null,
+      "current_price": 550,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-EVERYDAY-SEEDS",
+          "current_price": 550,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Extra Virgin Olive Oil",
+      "slug": "extra-virgin-olive-oil",
+      "url": "https://www.yasvik.com/product/extra-virgin-olive-oil",
+      "category": null,
+      "current_price": 309,
+      "headline_size": "250 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 ml",
+          "sku": "YAS-025-250ML",
+          "current_price": 309,
+          "mrp": 469,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 ml",
+          "sku": "YAS-025-500ML",
+          "current_price": 579,
+          "mrp": 869,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1L",
+          "sku": null,
+          "current_price": 1139,
+          "mrp": 1709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Fard Dates",
+      "slug": "fard-dates",
+      "url": "https://www.yasvik.com/product/fard-dates",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMD-U48EP-100G",
+          "current_price": 79,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMD-U48EP-250G",
+          "current_price": 179,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMD-U48EP-500G",
+          "current_price": 329,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PREMIUMD-U48EP-1KG",
+          "current_price": 599,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Fenugreek Seeds",
+      "slug": "fenugreek-seeds",
+      "url": "https://www.yasvik.com/product/fenugreek-seeds",
+      "category": null,
+      "current_price": 25,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-FENUGREE-7TBQ6-100G",
+          "current_price": 25,
+          "mrp": 35,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-FENUGREE-7TBQ6-250G",
+          "current_price": 45,
+          "mrp": 55,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-FENUGREE-7TBQ6-500G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Flax Seeds",
+      "slug": "flax-seeds-yas-007",
+      "url": "https://www.yasvik.com/product/flax-seeds-yas-007",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-007-100G",
+          "current_price": 39,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-007-200G",
+          "current_price": 59,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-007-250G",
+          "current_price": 69,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-007-500G",
+          "current_price": 139,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-007-1KG",
+          "current_price": 259,
+          "mrp": 339,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Flax Seeds Chilli Powder",
+      "slug": "curry-leaves-chilli-powder-copy-fe-3p7ht",
+      "url": "https://www.yasvik.com/product/curry-leaves-chilli-powder-copy-fe-3p7ht",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-162-100-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-162-50-G",
+          "current_price": 35,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-162-500-G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Food Grade Edible Camphor",
+      "slug": "food-grade-edible-camphor",
+      "url": "https://www.yasvik.com/product/food-grade-edible-camphor",
+      "category": null,
+      "current_price": 19,
+      "headline_size": "10 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "10 g",
+          "sku": "YAS-PACHAKAR-BK1FW-10G",
+          "current_price": 19,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "25 g",
+          "sku": "YAS-PACHAKAR-BK1FW-25G",
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-PACHAKAR-BK1FW-50G",
+          "current_price": 79,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Garam Masala",
+      "slug": "garam-masala-ceca7",
+      "url": "https://www.yasvik.com/product/garam-masala-ceca7",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-165-100-G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-165-250-G",
+          "current_price": 159,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-165-500-G",
+          "current_price": 319,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Garlic Chilli Powder",
+      "slug": "3curry-leaves-chilli-powder-copy-3q5ca",
+      "url": "https://www.yasvik.com/product/3curry-leaves-chilli-powder-copy-3q5ca",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-164-100-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-164-50-G",
+          "current_price": 35,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-164-500-G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Golden Raisins",
+      "slug": "green-raisins",
+      "url": "https://www.yasvik.com/product/green-raisins",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-034-100G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-034-200G",
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-034-250G",
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-034-500G",
+          "current_price": 429,
+          "mrp": 649,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-034-1KG",
+          "current_price": 849,
+          "mrp": 1279,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Gond Laddu",
+      "slug": "gond-laddu",
+      "url": "https://www.yasvik.com/product/gond-laddu",
+      "category": null,
+      "current_price": 239,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-031-250G",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-031-500G",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-031-1KG",
+          "current_price": 889,
+          "mrp": 1339,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Green Chilli Papad (Small)",
+      "slug": "green-chilli-papad-small-9xud3",
+      "url": "https://www.yasvik.com/product/green-chilli-papad-small-9xud3",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-066-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-066-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-066-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Green Gram",
+      "slug": "moong-dal",
+      "url": "https://www.yasvik.com/product/moong-dal",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-051-500G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-051-1KG",
+          "current_price": 139,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-051-2KG",
+          "current_price": 259,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Green Peas",
+      "slug": "green-peas",
+      "url": "https://www.yasvik.com/product/green-peas",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-033-500G",
+          "current_price": 59,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-033-1KG",
+          "current_price": 119,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-033-2KG",
+          "current_price": 229,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Groundnuts",
+      "slug": "groundnuts",
+      "url": "https://www.yasvik.com/product/groundnuts",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-GROUNDNU-500G",
+          "current_price": 99,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-GROUNDNU-1KG",
+          "current_price": 189,
+          "mrp": 219,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-GROUNDNU-2KG",
+          "current_price": 369,
+          "mrp": 429,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Halim Seeds",
+      "slug": "halim-seeds",
+      "url": "https://www.yasvik.com/product/halim-seeds",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-HALIM-100G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-DF-HALIM-200G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": null,
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": null,
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Handpound mysore mallige rice",
+      "slug": "handpound-dampudu-biyyam",
+      "url": "https://www.yasvik.com/product/handpound-dampudu-biyyam",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-023-1KG",
+          "current_price": 189,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-023-2KG",
+          "current_price": 359,
+          "mrp": 719,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "5 kg",
+          "sku": "YAS-023-5KG",
+          "current_price": 889,
+          "mrp": 1779,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Henna Powder",
+      "slug": "henna-powder",
+      "url": "https://www.yasvik.com/product/henna-powder",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-HENNAPOW-100G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-HENNAPOW-250G",
+          "current_price": 199,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Homemade Turmeric Powder",
+      "slug": "homemade-turmeric-powder",
+      "url": "https://www.yasvik.com/product/homemade-turmeric-powder",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-032-100G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-032-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-032-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Horse Gram",
+      "slug": "horse-gram",
+      "url": "https://www.yasvik.com/product/horse-gram",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-017-500G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-017-1KG",
+          "current_price": 159,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-017-2KG",
+          "current_price": 289,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Indigo Powder",
+      "slug": "indigo-powder",
+      "url": "https://www.yasvik.com/product/indigo-powder",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-040-100G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-040-250G",
+          "current_price": 199,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jaggery Gavvalu",
+      "slug": "jaggery-gavvalu",
+      "url": "https://www.yasvik.com/product/jaggery-gavvalu",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "150 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "150 g",
+          "sku": null,
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "300 g",
+          "sku": null,
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-041-1KG",
+          "current_price": 559,
+          "mrp": 839,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Janthikalu",
+      "slug": "janthikalu-0f836",
+      "url": "https://www.yasvik.com/product/janthikalu-0f836",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-008-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-008-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-008-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jeera Masala",
+      "slug": "jeera-masala-cfxz9",
+      "url": "https://www.yasvik.com/product/jeera-masala-cfxz9",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-166-100-G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-166-250-G",
+          "current_price": 159,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-166-500-G",
+          "current_price": 319,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jeera Papad (Small)",
+      "slug": "jira-papad-small-eq3i1",
+      "url": "https://www.yasvik.com/product/jira-papad-small-eq3i1",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-083-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-083-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-083-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jonna Boondi",
+      "slug": "jonna-boondi-0b4cq",
+      "url": "https://www.yasvik.com/product/jonna-boondi-0b4cq",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-004-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-004-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-004-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jonna Murukku",
+      "slug": "homemade-murukku",
+      "url": "https://www.yasvik.com/product/homemade-murukku",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-042-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-042-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-042-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jonna Palli Pakodi",
+      "slug": "jonna-palli-pakodi-lx1ur",
+      "url": "https://www.yasvik.com/product/jonna-palli-pakodi-lx1ur",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-029-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-029-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-029-1KG",
+          "current_price": 479,
+          "mrp": 719,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jowar Kichidi",
+      "slug": "jowar-kichidi-evuoz",
+      "url": "https://www.yasvik.com/product/jowar-kichidi-evuoz",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-148-100G",
+          "current_price": 69,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-148-250G",
+          "current_price": 159,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-148-500G",
+          "current_price": 299,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jowar Papad (Big)",
+      "slug": "jowar-papad-big-9ryvo",
+      "url": "https://www.yasvik.com/product/jowar-papad-big-9ryvo",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-046-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-046-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-046-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Jowar Papad (Small)",
+      "slug": "jowar-papad-small-bgxyl",
+      "url": "https://www.yasvik.com/product/jowar-papad-small-bgxyl",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-071-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-071-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-071-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kabuli Chana",
+      "slug": "kabuli-chana",
+      "url": "https://www.yasvik.com/product/kabuli-chana",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-043-1KG",
+          "current_price": 139,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-043-2KG",
+          "current_price": 269,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kaju Biscuits",
+      "slug": "kaju-biscuits",
+      "url": "https://www.yasvik.com/product/kaju-biscuits",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-044-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-044-500G",
+          "current_price": 249,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-044-1KG",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kaju Chikki",
+      "slug": "kaju-chikki-77wlz",
+      "url": "https://www.yasvik.com/product/kaju-chikki-77wlz",
+      "category": null,
+      "current_price": 349,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-142-250G",
+          "current_price": 349,
+          "mrp": 529,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-142-500G",
+          "current_price": 679,
+          "mrp": 1019,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-142-1KG",
+          "current_price": 1299,
+          "mrp": 1949,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kerala Cardamom",
+      "slug": "kerala-cardamom",
+      "url": "https://www.yasvik.com/product/kerala-cardamom",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "10 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "10 g",
+          "sku": "YAS-B693W-10-G",
+          "current_price": 49,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "25 g",
+          "sku": "YAS-ELACHI-B693W-25G",
+          "current_price": 119,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-ELACHI-B693W-50G",
+          "current_price": 249,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-ELACHI-B693W-100G",
+          "current_price": 489,
+          "mrp": 569,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-ELACHI-B693W-250G",
+          "current_price": 1229,
+          "mrp": 1419,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kerala Cloves",
+      "slug": "kerala-cloves",
+      "url": "https://www.yasvik.com/product/kerala-cloves",
+      "category": null,
+      "current_price": 19,
+      "headline_size": "10 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "10 g",
+          "sku": "YAS-BC2LY-10-G",
+          "current_price": 19,
+          "mrp": 29,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "25 g",
+          "sku": "YAS-BC2LY-25-G",
+          "current_price": 59,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-CLOVE-BC2LY-50G",
+          "current_price": 109,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-CLOVE-BC2LY-100G",
+          "current_price": 219,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-CLOVE-BC2LY-250G",
+          "current_price": 549,
+          "mrp": 629,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kimia Dates",
+      "slug": "dates",
+      "url": "https://www.yasvik.com/product/dates",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-DATES-100G",
+          "current_price": 89,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-DF-DATES-250G",
+          "current_price": 199,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-DATES-500G",
+          "current_price": 389,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-DF-DATES-1KG",
+          "current_price": 759,
+          "mrp": 989,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kobbari Burelu",
+      "slug": "kobbari-burelu-lqn1w",
+      "url": "https://www.yasvik.com/product/kobbari-burelu-lqn1w",
+      "category": null,
+      "current_price": 169,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-024-250G",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-024-500G",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-024-1KG",
+          "current_price": 639,
+          "mrp": 959,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Kolli Hills Black Pepper",
+      "slug": "kolli-hills-black-pepper",
+      "url": "https://www.yasvik.com/product/kolli-hills-black-pepper",
+      "category": null,
+      "current_price": 9,
+      "headline_size": "10 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "10 g",
+          "sku": "YAS-047-10-G",
+          "current_price": 9,
+          "mrp": 19,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "25 g",
+          "sku": "YAS-047-25G",
+          "current_price": 29,
+          "mrp": 39,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-047-50G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-047-100G",
+          "current_price": 129,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-047-250G",
+          "current_price": 329,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Korra Murukku",
+      "slug": "rice-murukku-voipc",
+      "url": "https://www.yasvik.com/product/rice-murukku-voipc",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": null,
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 119,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-019-1KG",
+          "current_price": 559,
+          "mrp": 839,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Lemon Pickle",
+      "slug": "lemon-pickle",
+      "url": "https://www.yasvik.com/product/lemon-pickle",
+      "category": null,
+      "current_price": 119,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": "YAS-048-200-G",
+          "current_price": 119,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "350 g",
+          "sku": "YAS-048-350-G",
+          "current_price": 189,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-048-500G",
+          "current_price": 259,
+          "mrp": 519,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Mahabeera Seeds",
+      "slug": "mahabeera-seeds-06e6c",
+      "url": "https://www.yasvik.com/product/mahabeera-seeds-06e6c",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-156-100-G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-156-200-G",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-156-250-G",
+          "current_price": 209,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-156-500-G",
+          "current_price": 399,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Makhana",
+      "slug": "makhana",
+      "url": "https://www.yasvik.com/product/makhana",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "50 g",
+          "sku": "YAS-DF-MAKH-50G",
+          "current_price": 89,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-MAKH-100G",
+          "current_price": 189,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-DF-MAKH-250G",
+          "current_price": 459,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-MAKH-500G",
+          "current_price": 909,
+          "mrp": 1189,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Mango Pickle / Avakaya",
+      "slug": "mango-pickle-avakaya",
+      "url": "https://www.yasvik.com/product/mango-pickle-avakaya",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-049-250G",
+          "current_price": 129,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-049-500G",
+          "current_price": 249,
+          "mrp": 499,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Masala Cashews",
+      "slug": "cashews-fried-masala-b5nzo",
+      "url": "https://www.yasvik.com/product/cashews-fried-masala-b5nzo",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-133-100G",
+          "current_price": 129,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-133-250G",
+          "current_price": 329,
+          "mrp": 419,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-133-500G",
+          "current_price": 649,
+          "mrp": 849,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Masoor Dal",
+      "slug": "masoor-dal",
+      "url": "https://www.yasvik.com/product/masoor-dal",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-050-500G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-050-1KG",
+          "current_price": 139,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-050-2KG",
+          "current_price": 269,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Moringa Chilli Powder",
+      "slug": "moringa-chilli-powder-zab09",
+      "url": "https://www.yasvik.com/product/moringa-chilli-powder-zab09",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-027-100-G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 39,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-027-500G",
+          "current_price": 389,
+          "mrp": 589,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Multi Floral Honey",
+      "slug": "multi-floral-honey",
+      "url": "https://www.yasvik.com/product/multi-floral-honey",
+      "category": null,
+      "current_price": 219,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-052-250G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-052-500G",
+          "current_price": 399,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-052-1KG",
+          "current_price": 779,
+          "mrp": 1169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "350 g",
+          "sku": null,
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "800 g",
+          "sku": null,
+          "current_price": 599,
+          "mrp": 899,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Mustard Seeds",
+      "slug": "mustard-seeds",
+      "url": "https://www.yasvik.com/product/mustard-seeds",
+      "category": null,
+      "current_price": 19,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-053-100G",
+          "current_price": 19,
+          "mrp": 29,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-053-250G",
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-053-500G",
+          "current_price": 69,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Mysore Pak",
+      "slug": "mysore-pak-0yr1a",
+      "url": "https://www.yasvik.com/product/mysore-pak-0yr1a",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-016-250G",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-016-500G",
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-016-1KG",
+          "current_price": 569,
+          "mrp": 859,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Nalla Karam Powder",
+      "slug": "nalla-karam-powder-3i5p0",
+      "url": "https://www.yasvik.com/product/nalla-karam-powder-3i5p0",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-159-100-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-159-50-G",
+          "current_price": 35,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-159-500-G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Narayana Kamini Rice",
+      "slug": "narayana-kamini-rice-kulst",
+      "url": "https://www.yasvik.com/product/narayana-kamini-rice-kulst",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-022-1KG",
+          "current_price": 189,
+          "mrp": 379,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-022-2KG",
+          "current_price": 359,
+          "mrp": 719,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "5 kg",
+          "sku": "YAS-022-5KG",
+          "current_price": 889,
+          "mrp": 1779,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Niger Seeds Chutney Powder",
+      "slug": "niger-seeds-chutney-powder-el618",
+      "url": "https://www.yasvik.com/product/niger-seeds-chutney-powder-el618",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-144-100G",
+          "current_price": 69,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-144-250G",
+          "current_price": 159,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-144-500G",
+          "current_price": 299,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Nuvvula Ariselu",
+      "slug": "nuvvula-ariselu-0wons",
+      "url": "https://www.yasvik.com/product/nuvvula-ariselu-0wons",
+      "category": null,
+      "current_price": 179,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-015-250G",
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-015-500G",
+          "current_price": 349,
+          "mrp": 529,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-015-1KG",
+          "current_price": 669,
+          "mrp": 1009,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Nuvvula Laddu",
+      "slug": "sesame-jaggery-laddu",
+      "url": "https://www.yasvik.com/product/sesame-jaggery-laddu",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-105-500G",
+          "current_price": 449,
+          "mrp": 679,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-105-1KG",
+          "current_price": 889,
+          "mrp": 1339,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Oats Laddu",
+      "slug": "oats-laddu",
+      "url": "https://www.yasvik.com/product/oats-laddu",
+      "category": null,
+      "current_price": 239,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-055-250G",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-055-500G",
+          "current_price": 469,
+          "mrp": 709,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-055-1KG",
+          "current_price": 889,
+          "mrp": 1339,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Orange Peel Powder",
+      "slug": "orange-peel-powder",
+      "url": "https://www.yasvik.com/product/orange-peel-powder",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-056-100G",
+          "current_price": 109,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-056-250G",
+          "current_price": 249,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Barnyard Millet",
+      "slug": "organic-barnyard-millet",
+      "url": "https://www.yasvik.com/product/organic-barnyard-millet",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-057-500-G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-057-1KG",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Black Rice",
+      "slug": "organic-black-rice",
+      "url": "https://www.yasvik.com/product/organic-black-rice",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-058-1KG",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Browntop Millet",
+      "slug": "organic-browntop-millet-ugnf8",
+      "url": "https://www.yasvik.com/product/organic-browntop-millet-ugnf8",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-170-500-G",
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-170-1-KG",
+          "current_price": 359,
+          "mrp": 539,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Foxtail Millet",
+      "slug": "organic-foxtail-millet",
+      "url": "https://www.yasvik.com/product/organic-foxtail-millet",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-059-500-G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-059-1KG",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Foxtail Millet Flakes",
+      "slug": "organic-foxtail-millet-flakes",
+      "url": "https://www.yasvik.com/product/organic-foxtail-millet-flakes",
+      "category": null,
+      "current_price": 29,
+      "headline_size": "150 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-060-250-G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-060-500G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "150 g",
+          "sku": null,
+          "current_price": 29,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Foxtail Millet Flour",
+      "slug": "organic-foxtail-millet-flour",
+      "url": "https://www.yasvik.com/product/organic-foxtail-millet-flour",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-061-500G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-061-1KG",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Foxtail Millet Noodles",
+      "slug": "organic-foxtail-millet-noodles",
+      "url": "https://www.yasvik.com/product/organic-foxtail-millet-noodles",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "1 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 pcs",
+          "sku": "YAS-062-200G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Idly Rice",
+      "slug": "organic-idly-rice",
+      "url": "https://www.yasvik.com/product/organic-idly-rice",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-063-1KG",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Jaggery Balls",
+      "slug": "organic-jaggery-balls",
+      "url": "https://www.yasvik.com/product/organic-jaggery-balls",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-064-500G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-064-1KG",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Jaggery Powder",
+      "slug": "yureka-jaggery-powder",
+      "url": "https://www.yasvik.com/product/yureka-jaggery-powder",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-079-500G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-079-1KG",
+          "current_price": 149,
+          "mrp": 229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Jowar (White Sorghum) Flour",
+      "slug": "organic-jowar-flour",
+      "url": "https://www.yasvik.com/product/organic-jowar-flour",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-076-500G",
+          "current_price": 59,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-076-1KG",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Kaikuttal Rice",
+      "slug": "organic-kaikuttal-rice",
+      "url": "https://www.yasvik.com/product/organic-kaikuttal-rice",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-084-1KG",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Karunguruvai Rice",
+      "slug": "organic-karunguruvai-rice",
+      "url": "https://www.yasvik.com/product/organic-karunguruvai-rice",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-086-1KG",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Kattuyanam Rice",
+      "slug": "organic-kattuyanam-rice",
+      "url": "https://www.yasvik.com/product/organic-kattuyanam-rice",
+      "category": null,
+      "current_price": 179,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-085-1KG",
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Kodo Millet",
+      "slug": "organic-kodo-millet",
+      "url": "https://www.yasvik.com/product/organic-kodo-millet",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-067-500-G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-067-1KG",
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Little Millet",
+      "slug": "organic-little-millet",
+      "url": "https://www.yasvik.com/product/organic-little-millet",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-072-500-G",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-072-1KG",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Matta Rice",
+      "slug": "organic-matta-rice",
+      "url": "https://www.yasvik.com/product/organic-matta-rice",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-082-1KG",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Chapati Mix",
+      "slug": "organic-multi-millet-chapati-mix",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-chapati-mix",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-095-250-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-095-500G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-095-1KG",
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Dosa Mix",
+      "slug": "organic-multi-millet-dosa-mix",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-dosa-mix",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-094-250-G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-094-500G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-094-1KG",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Flour",
+      "slug": "organic-multi-millet-flour",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-flour",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-074-500G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-074-1KG",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Health Mix",
+      "slug": "organic-multi-millet-health-mix",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-health-mix",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-077-250G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-077-500G",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-077-1KG",
+          "current_price": 269,
+          "mrp": 409,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Noodles",
+      "slug": "organic-multi-millet-noodles",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-noodles",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "1 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 pcs",
+          "sku": "YAS-090-200G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Multi Millet Pasta",
+      "slug": "organic-multi-millet-pasta",
+      "url": "https://www.yasvik.com/product/organic-multi-millet-pasta",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "1 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 pcs",
+          "sku": "YAS-092-200G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Palm Jaggery Balls",
+      "slug": "organic-palm-jaggery-balls-6u5ih",
+      "url": "https://www.yasvik.com/product/organic-palm-jaggery-balls-6u5ih",
+      "category": null,
+      "current_price": 239,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-141-500G",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-141-1KG",
+          "current_price": 449,
+          "mrp": 679,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Pearl Millet Flour",
+      "slug": "organic-pearl-millet-flour",
+      "url": "https://www.yasvik.com/product/organic-pearl-millet-flour",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-075-500G",
+          "current_price": 59,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-075-1KG",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi / Finger Millet",
+      "slug": "organic-ragi-finger-millet",
+      "url": "https://www.yasvik.com/product/organic-ragi-finger-millet",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-069-500-G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-069-1KG",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi Flakes",
+      "slug": "organic-ragi-flakes",
+      "url": "https://www.yasvik.com/product/organic-ragi-flakes",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-ORGANICR-IHNJJ-250-G",
+          "current_price": 39,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-ORGANICR-500G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi Millet Flour",
+      "slug": "organic-ragi-flour",
+      "url": "https://www.yasvik.com/product/organic-ragi-flour",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-073-500G",
+          "current_price": 69,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-073-1KG",
+          "current_price": 119,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi Noodles",
+      "slug": "organic-ragi-noodles",
+      "url": "https://www.yasvik.com/product/organic-ragi-noodles",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "1 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 pcs",
+          "sku": "YAS-089-200G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi Pasta",
+      "slug": "organic-ragi-pasta",
+      "url": "https://www.yasvik.com/product/organic-ragi-pasta",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "1 pcs",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 pcs",
+          "sku": "YAS-091-200G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Ragi Rava",
+      "slug": "organic-ragi-rava",
+      "url": "https://www.yasvik.com/product/organic-ragi-rava",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-093-250-G",
+          "current_price": 39,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-093-500G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Red Rice",
+      "slug": "organic-red-rice",
+      "url": "https://www.yasvik.com/product/organic-red-rice",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-087-1KG",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Red Rice Flakes",
+      "slug": "organic-red-rice-flakes",
+      "url": "https://www.yasvik.com/product/organic-red-rice-flakes",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-088-250-G",
+          "current_price": 49,
+          "mrp": 79,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-088-500G",
+          "current_price": 89,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Sorghum / Jowar",
+      "slug": "organic-sorghum-jowar",
+      "url": "https://www.yasvik.com/product/organic-sorghum-jowar",
+      "category": null,
+      "current_price": 39,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-068-500-G",
+          "current_price": 39,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-068-1KG",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Organic Sprouted Ragi Malt with Dry Fruits",
+      "slug": "organic-sprouted-ragi-malt",
+      "url": "https://www.yasvik.com/product/organic-sprouted-ragi-malt",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-078-250G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-078-500G",
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-078-1KG",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Palakura Murukulu",
+      "slug": "palakura-murukulu-0iy7q",
+      "url": "https://www.yasvik.com/product/palakura-murukulu-0iy7q",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-011-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-011-500G",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-011-1KG",
+          "current_price": 449,
+          "mrp": 679,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Palli Chikki",
+      "slug": "palli-chikki-0kwcp",
+      "url": "https://www.yasvik.com/product/palli-chikki-0kwcp",
+      "category": null,
+      "current_price": 159,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-012-250G",
+          "current_price": 159,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-012-500G",
+          "current_price": 299,
+          "mrp": 449,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-012-1KG",
+          "current_price": 569,
+          "mrp": 859,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Palm Jaggery Gavvalu",
+      "slug": "thati-bellam-gavvalu-6ochm",
+      "url": "https://www.yasvik.com/product/thati-bellam-gavvalu-6ochm",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-140-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-140-500G",
+          "current_price": 259,
+          "mrp": 389,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-140-1KG",
+          "current_price": 479,
+          "mrp": 719,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pappu Chakodi",
+      "slug": "pappu-chakodi-08bo9",
+      "url": "https://www.yasvik.com/product/pappu-chakodi-08bo9",
+      "category": null,
+      "current_price": 179,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-003-250G",
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-003-500G",
+          "current_price": 349,
+          "mrp": 529,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-003-1KG",
+          "current_price": 669,
+          "mrp": 1009,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pappula Chilli Powder",
+      "slug": "2curry-leaves-chilli-powder-copy-3plsq",
+      "url": "https://www.yasvik.com/product/2curry-leaves-chilli-powder-copy-3plsq",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-163-100-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-163-50-G",
+          "current_price": 35,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-163-500-G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Peanut Chutney Powder",
+      "slug": "groundnut-chutney-powder-emu0x",
+      "url": "https://www.yasvik.com/product/groundnut-chutney-powder-emu0x",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-145-100G",
+          "current_price": 69,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-145-250G",
+          "current_price": 159,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-145-500G",
+          "current_price": 299,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pepper Masala",
+      "slug": "pepper-masala-chd9m",
+      "url": "https://www.yasvik.com/product/pepper-masala-chd9m",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-167-100-G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-167-250-G",
+          "current_price": 219,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-167-500-G",
+          "current_price": 439,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": null,
+          "current_price": 49,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Poojam Oil",
+      "slug": "poojam-oil-s842d",
+      "url": "https://www.yasvik.com/product/poojam-oil-s842d",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "500 ml",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 ml",
+          "sku": null,
+          "current_price": 99,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1000 ml",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 219,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Premium Cow Milk Soap",
+      "slug": "premium-cow-milk-soap-j86ub",
+      "url": "https://www.yasvik.com/product/premium-cow-milk-soap-j86ub",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "85 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "85 g",
+          "sku": null,
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pumpkin Seeds",
+      "slug": "pumpkin-seeds",
+      "url": "https://www.yasvik.com/product/pumpkin-seeds",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-PREMIUMP-GRAZO-100G",
+          "current_price": 79,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-PREMIUMP-GRAZO-200G",
+          "current_price": 149,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-PREMIUMP-GRAZO-250G",
+          "current_price": 179,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-PREMIUMP-GRAZO-500G",
+          "current_price": 359,
+          "mrp": 469,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PREMIUMP-GRAZO-1KG",
+          "current_price": 699,
+          "mrp": 909,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pure Buffalo Ghee",
+      "slug": "buffalo-ghee",
+      "url": "https://www.yasvik.com/product/buffalo-ghee",
+      "category": null,
+      "current_price": 199,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-PUREBUFF-250ML",
+          "current_price": 269,
+          "mrp": 409,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "400 g",
+          "sku": null,
+          "current_price": 429,
+          "mrp": 649,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-PUREBUFF-1000ML",
+          "current_price": 1009,
+          "mrp": 1519,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 199,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Pure Cow Ghee",
+      "slug": "cow-ghee",
+      "url": "https://www.yasvik.com/product/cow-ghee",
+      "category": null,
+      "current_price": 269,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-COWBUFFE-250ML",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "400 g",
+          "sku": null,
+          "current_price": 549,
+          "mrp": 829,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-COWBUFFE-1000ML",
+          "current_price": 1309,
+          "mrp": 1969,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 269,
+          "mrp": 409,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Putnalu Chilli Powder",
+      "slug": "garlic-chilli-powder-3mrgs",
+      "url": "https://www.yasvik.com/product/garlic-chilli-powder-3mrgs",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-160-100-G",
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "50 g",
+          "sku": "YAS-160-50-G",
+          "current_price": 35,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-160-500-G",
+          "current_price": 319,
+          "mrp": 479,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ragi Biscuits",
+      "slug": "ragi-biscuits-uhdu6",
+      "url": "https://www.yasvik.com/product/ragi-biscuits-uhdu6",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-150-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-150-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-150-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ragi Laddu",
+      "slug": "ragi-laddu",
+      "url": "https://www.yasvik.com/product/ragi-laddu",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-096-500G",
+          "current_price": 449,
+          "mrp": 679,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-096-1KG",
+          "current_price": 819,
+          "mrp": 1229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ragi Murukulu",
+      "slug": "ragi-murukulu-ns63a",
+      "url": "https://www.yasvik.com/product/ragi-murukulu-ns63a",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": null,
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 119,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "400 g",
+          "sku": null,
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ragi Papad (Big)",
+      "slug": "ragi-papad-big-9h9p5",
+      "url": "https://www.yasvik.com/product/ragi-papad-big-9h9p5",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-045-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-045-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-045-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ragi Papad (Small)",
+      "slug": "ragi-papad-small-9xbhs",
+      "url": "https://www.yasvik.com/product/ragi-papad-small-9xbhs",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-065-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-065-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-065-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Red Chilli Papad (Small)",
+      "slug": "red-chilli-papad-small-9ynyl",
+      "url": "https://www.yasvik.com/product/red-chilli-papad-small-9ynyl",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-070-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-070-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-070-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Red Chilli Pickle",
+      "slug": "red-chilli-pickle",
+      "url": "https://www.yasvik.com/product/red-chilli-pickle",
+      "category": null,
+      "current_price": 149,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-098-250G",
+          "current_price": 149,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-098-500G",
+          "current_price": 279,
+          "mrp": 559,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Red Chilli Powder",
+      "slug": "homemade-chilli-powder",
+      "url": "https://www.yasvik.com/product/homemade-chilli-powder",
+      "category": null,
+      "current_price": 59,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-099-100G",
+          "current_price": 59,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-099-250G",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-099-500G",
+          "current_price": 289,
+          "mrp": 439,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Red Rajma",
+      "slug": "red-rajma",
+      "url": "https://www.yasvik.com/product/red-rajma",
+      "category": null,
+      "current_price": 149,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-100-1KG",
+          "current_price": 149,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-100-2KG",
+          "current_price": 309,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Ribbon Pakodi",
+      "slug": "ribbon-pakodi",
+      "url": "https://www.yasvik.com/product/ribbon-pakodi",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": null,
+          "current_price": 69,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 119,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-BEETROOT-DNC7G-1KG",
+          "current_price": 559,
+          "mrp": 839,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Roasted Seeds Mix",
+      "slug": "roasted-seed-mix",
+      "url": "https://www.yasvik.com/product/roasted-seed-mix",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 249,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-RSEED-500G",
+          "current_price": 449,
+          "mrp": 589,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": null,
+          "current_price": 99,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1kg",
+          "sku": null,
+          "current_price": 889,
+          "mrp": 1159,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Sabja Seeds",
+      "slug": "sabja-seeds",
+      "url": "https://www.yasvik.com/product/sabja-seeds",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-SABJA-100G",
+          "current_price": 79,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-DF-SABJA-200G",
+          "current_price": 139,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-SABJA-500G",
+          "current_price": 339,
+          "mrp": 509,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Sabudana",
+      "slug": "sabudana",
+      "url": "https://www.yasvik.com/product/sabudana",
+      "category": null,
+      "current_price": 19,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-103-100G",
+          "current_price": 19,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-103-250G",
+          "current_price": 39,
+          "mrp": 49,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-103-500G",
+          "current_price": 59,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Salted Pistachios",
+      "slug": "salted-pista",
+      "url": "https://www.yasvik.com/product/salted-pista",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "50 g",
+          "sku": "YAS-104-50G",
+          "current_price": 99,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-104-100G",
+          "current_price": 179,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-104-250G",
+          "current_price": 439,
+          "mrp": 579,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-104-500G",
+          "current_price": 859,
+          "mrp": 1119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-104-1-KG",
+          "current_price": 1709,
+          "mrp": 2229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Salted Pistachios (Premium)",
+      "slug": "salted-pista-premium-bjn3c",
+      "url": "https://www.yasvik.com/product/salted-pista-premium-bjn3c",
+      "category": null,
+      "current_price": 209,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-134-100G",
+          "current_price": 209,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-134-250G",
+          "current_price": 519,
+          "mrp": 679,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-134-500G",
+          "current_price": 1039,
+          "mrp": 1349,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-134-1KG",
+          "current_price": 2079,
+          "mrp": 2709,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Shikakai Powder",
+      "slug": "shikakai-powder",
+      "url": "https://www.yasvik.com/product/shikakai-powder",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-106-100G",
+          "current_price": 109,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-106-250G",
+          "current_price": 249,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Soya Kichidi",
+      "slug": "soya-kichidi-eur41",
+      "url": "https://www.yasvik.com/product/soya-kichidi-eur41",
+      "category": null,
+      "current_price": 69,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-147-100G",
+          "current_price": 69,
+          "mrp": 139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-147-250G",
+          "current_price": 159,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-147-500G",
+          "current_price": 299,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Soya Papad (Big)",
+      "slug": "soya-papad-big-d4cwg",
+      "url": "https://www.yasvik.com/product/soya-papad-big-d4cwg",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-081-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-081-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-081-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Soya Papad (Small)",
+      "slug": "soya-papad-small-d3olx",
+      "url": "https://www.yasvik.com/product/soya-papad-small-d3olx",
+      "category": null,
+      "current_price": 109,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-080-250G",
+          "current_price": 109,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-080-500G",
+          "current_price": 219,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-080-1KG",
+          "current_price": 409,
+          "mrp": 619,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Split Moong Dal with Skin",
+      "slug": "split-moong-dal-with-skin",
+      "url": "https://www.yasvik.com/product/split-moong-dal-with-skin",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-107-500G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-107-1KG",
+          "current_price": 129,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-107-2KG",
+          "current_price": 239,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Split Urad Dal with Skin",
+      "slug": "split-urad-dal-with-skin",
+      "url": "https://www.yasvik.com/product/split-urad-dal-with-skin",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-108-500G",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-108-1KG",
+          "current_price": 169,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-108-2KG",
+          "current_price": 319,
+          "mrp": 369,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Sunflower Seeds",
+      "slug": "sunflower-seeds",
+      "url": "https://www.yasvik.com/product/sunflower-seeds",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-109-100G",
+          "current_price": 49,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-109-200G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-109-250G",
+          "current_price": 99,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-109-500G",
+          "current_price": 179,
+          "mrp": 209,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-109-1KG",
+          "current_price": 359,
+          "mrp": 419,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Sunnundalu",
+      "slug": "sunnundalu-m1agq",
+      "url": "https://www.yasvik.com/product/sunnundalu-m1agq",
+      "category": null,
+      "current_price": 189,
+      "headline_size": "200 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "200 g",
+          "sku": null,
+          "current_price": 189,
+          "mrp": 289,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "400 g",
+          "sku": null,
+          "current_price": 329,
+          "mrp": 499,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": null,
+          "current_price": 769,
+          "mrp": 1159,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Tadka Mix",
+      "slug": "tadka-mix",
+      "url": "https://www.yasvik.com/product/tadka-mix",
+      "category": null,
+      "current_price": 35,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-110-100G",
+          "current_price": 35,
+          "mrp": 45,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-110-250G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-110-500G",
+          "current_price": 149,
+          "mrp": 189,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Tamarind",
+      "slug": "tamarind",
+      "url": "https://www.yasvik.com/product/tamarind",
+      "category": null,
+      "current_price": 25,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-111-100G",
+          "current_price": 25,
+          "mrp": 35,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-111-250G",
+          "current_price": 55,
+          "mrp": 69,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-111-500G",
+          "current_price": 99,
+          "mrp": 129,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Tomato Pickle",
+      "slug": "tomato-pickle",
+      "url": "https://www.yasvik.com/product/tomato-pickle",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-112-250G",
+          "current_price": 129,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "350 g",
+          "sku": "YAS-112-350-G",
+          "current_price": 179,
+          "mrp": 269,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-112-500-G",
+          "current_price": 239,
+          "mrp": 359,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Toor Dal",
+      "slug": "toor-dal",
+      "url": "https://www.yasvik.com/product/toor-dal",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-113-500G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-113-1KG",
+          "current_price": 139,
+          "mrp": 169,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-113-2KG",
+          "current_price": 279,
+          "mrp": 329,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Tulsi Honey",
+      "slug": "tulsi-honey-819n8",
+      "url": "https://www.yasvik.com/product/tulsi-honey-819n8",
+      "category": null,
+      "current_price": 229,
+      "headline_size": "250 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "250 g",
+          "sku": "YAS-143-250G",
+          "current_price": 229,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-143-500G",
+          "current_price": 439,
+          "mrp": 659,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-143-1KG",
+          "current_price": 819,
+          "mrp": 1229,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Unpolished Moong Dal",
+      "slug": "unpolished-moong-dal",
+      "url": "https://www.yasvik.com/product/unpolished-moong-dal",
+      "category": null,
+      "current_price": 139,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-115-500G",
+          "current_price": 139,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-115-1KG",
+          "current_price": 249,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-115-2KG",
+          "current_price": 489,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Unpolished Toor Dal",
+      "slug": "unpolished-toor-dal",
+      "url": "https://www.yasvik.com/product/unpolished-toor-dal",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-116-500G",
+          "current_price": 79,
+          "mrp": 99,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-116-1KG",
+          "current_price": 129,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-116-2KG",
+          "current_price": 249,
+          "mrp": 309,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Walnut Kernels",
+      "slug": "walnuts",
+      "url": "https://www.yasvik.com/product/walnuts",
+      "category": null,
+      "current_price": 89,
+      "headline_size": "50 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "50 g",
+          "sku": "YAS-120-50G",
+          "current_price": 89,
+          "mrp": 119,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "100 g",
+          "sku": "YAS-120-100G",
+          "current_price": 179,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-120-250G",
+          "current_price": 439,
+          "mrp": 579,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-120-500G",
+          "current_price": 869,
+          "mrp": 1139,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-120-1-KG",
+          "current_price": 1719,
+          "mrp": 2239,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Watermelon Seeds",
+      "slug": "watermelon-seeds",
+      "url": "https://www.yasvik.com/product/watermelon-seeds",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-121-100G",
+          "current_price": 79,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-121-200G",
+          "current_price": 149,
+          "mrp": 199,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-121-250G",
+          "current_price": 179,
+          "mrp": 239,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-121-500G",
+          "current_price": 359,
+          "mrp": 469,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-121-1KG",
+          "current_price": 699,
+          "mrp": 909,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "White Peas",
+      "slug": "white-peas",
+      "url": "https://www.yasvik.com/product/white-peas",
+      "category": null,
+      "current_price": 49,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-125-500G",
+          "current_price": 49,
+          "mrp": 59,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-125-1KG",
+          "current_price": 89,
+          "mrp": 109,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-125-2KG",
+          "current_price": 189,
+          "mrp": 219,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "White Rajma",
+      "slug": "white-rajma",
+      "url": "https://www.yasvik.com/product/white-rajma",
+      "category": null,
+      "current_price": 79,
+      "headline_size": "500 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "500 g",
+          "sku": "YAS-126-500G",
+          "current_price": 79,
+          "mrp": 89,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "1 kg",
+          "sku": "YAS-126-1KG",
+          "current_price": 149,
+          "mrp": 179,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-126-2KG",
+          "current_price": 309,
+          "mrp": 349,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "White Sesame Seeds",
+      "slug": "white-sesame-seeds",
+      "url": "https://www.yasvik.com/product/white-sesame-seeds",
+      "category": null,
+      "current_price": 99,
+      "headline_size": "100 g",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "100 g",
+          "sku": "YAS-DF-WSES-100G",
+          "current_price": 99,
+          "mrp": 149,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "200 g",
+          "sku": "YAS-DF-WSES-200G",
+          "current_price": 169,
+          "mrp": 259,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "250 g",
+          "sku": "YAS-DF-WSES-250G",
+          "current_price": 209,
+          "mrp": 319,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "500 g",
+          "sku": "YAS-DF-WSES-500G",
+          "current_price": 399,
+          "mrp": 599,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Whole Green Gram",
+      "slug": "whole-green-gram",
+      "url": "https://www.yasvik.com/product/whole-green-gram",
+      "category": null,
+      "current_price": 129,
+      "headline_size": "1 kg",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "1 kg",
+          "sku": "YAS-128-1KG",
+          "current_price": 129,
+          "mrp": 159,
+          "currency": "INR",
+          "in_stock": true
+        },
+        {
+          "size": "2 kg",
+          "sku": "YAS-128-2KG",
+          "current_price": 239,
+          "mrp": 299,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 12 Superfoods Combo",
+      "slug": "yasvik-twelve-superfoods-combo",
+      "url": "https://www.yasvik.com/product/yasvik-twelve-superfoods-combo",
+      "category": null,
+      "current_price": 899,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-12-SUPERFOODS",
+          "current_price": 899,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 17 Item Discovery",
+      "slug": "yasvik-17-item-discovery-box",
+      "url": "https://www.yasvik.com/product/yasvik-17-item-discovery-box",
+      "category": null,
+      "current_price": 999,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-17-DISCOVERY",
+          "current_price": 999,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 2.2kg Family Combo",
+      "slug": "yasvik-family-dry-fruit-seeds-combo",
+      "url": "https://www.yasvik.com/product/yasvik-family-dry-fruit-seeds-combo",
+      "category": null,
+      "current_price": 1499,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-2200-FAMILY",
+          "current_price": 1499,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 2.75kg Premium Combo",
+      "slug": "yasvik-premium-family-combo",
+      "url": "https://www.yasvik.com/product/yasvik-premium-family-combo",
+      "category": null,
+      "current_price": 2199,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-2750-PREMIUM",
+          "current_price": 2199,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 20 Item Variety",
+      "slug": "yasvik-grand-variety-combo",
+      "url": "https://www.yasvik.com/product/yasvik-grand-variety-combo",
+      "category": null,
+      "current_price": 1299,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-20-VARIETY",
+          "current_price": 1299,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 4kg Grand Family Combo",
+      "slug": "yasvik-grand-family-combo",
+      "url": "https://www.yasvik.com/product/yasvik-grand-family-combo",
+      "category": null,
+      "current_price": 2999,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-4000-GRAND",
+          "current_price": 2999,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik 7 Superfoods Combo",
+      "slug": "yasvik-seven-superfoods-combo",
+      "url": "https://www.yasvik.com/product/yasvik-seven-superfoods-combo",
+      "category": null,
+      "current_price": 699,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-7-SUPERFOODS",
+          "current_price": 699,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik Five Dry Fruits Combo",
+      "slug": "yasvik-five-dry-fruits-combo",
+      "url": "https://www.yasvik.com/product/yasvik-five-dry-fruits-combo",
+      "category": null,
+      "current_price": 899,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-C-FIVE-DRY-FRUITS",
+          "current_price": 899,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    },
+    {
+      "name": "Yasvik Mini Chikki",
+      "slug": "yasvik-mini-chikki",
+      "url": "https://www.yasvik.com/product/yasvik-mini-chikki",
+      "category": null,
+      "current_price": 20,
+      "headline_size": "pack",
+      "currency": "INR",
+      "packs": [
+        {
+          "size": "pack",
+          "sku": "YAS-DF-MINI-CHIKKI",
+          "current_price": 20,
+          "mrp": null,
+          "currency": "INR",
+          "in_stock": true
+        }
+      ]
+    }
+  ]
+}
